@@ -5,7 +5,7 @@ sidebar:
   order: 1
 ---
 
-Distr exposes a RESTful JSON API that allows you to interact with the platform programmatically. 
+Distr exposes a RESTful JSON API that allows you to interact with the platform programmatically.
 It is the same API used by the Distr Vendor and Customer Portals.
 
 If you prefer to interact with the API on a higher level of abstraction, you can use our [first-party SDKs](/docs/integrations/sdk) 
