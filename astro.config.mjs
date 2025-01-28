@@ -28,16 +28,29 @@ export default defineConfig({
     },
     sidebar: [
       {
-        label: 'Guides',
-        items: [
-          // Each item here is one entry in the navigation menu.
-          {label: 'Example Guide', slug: 'docs/guides/example'},
-        ],
+        label: 'Getting started',
+        autogenerate: {directory: 'docs/getting-started'},
       },
+      // {
+      //   label: 'Guides',
+      //   autogenerate: {directory: 'guides'},
+      // },
+      // {
+      //   label: 'Use cases',
+      //   autogenerate: {directory: 'use-cases'},
+      // },
+      // {
+      //   label: 'Product',
+      //   autogenerate: {directory: 'product'},
+      // },
       {
-        label: 'Reference',
-        autogenerate: {directory: 'reference'},
+        label: 'Self hosting',
+        autogenerate: {directory: 'docs/self-hosting'},
       },
+      // {
+      //   label: 'Integrations',
+      //   autogenerate: {directory: 'integrations'},
+      // },
     ],
     prerender: true,
   }), tailwind()],
