@@ -60,7 +60,7 @@ The Onboarding Wizard is a step-by-step guide that assists Distr users in upload
   begin by onboarding the [test app](https://github.com/go-shiori/shiori).
 </Aside>
 
-![wizard-start](https://github.com/user-attachments/assets/ec3023db-abe6-434e-9e28-452f693d3300)
+![wizard-start](../../../../assets/docs/getting-started/quickstart/wizard-start.png)
 
 ### Let's Onboard a Sample Application
 
@@ -68,7 +68,7 @@ Upon clicking "Continue" on the initial Onboarding Wizard screen, you'll be prom
 
 At this stage, Distr handles the process of locating the app definition file, exposing the application version and preparing it for distribution.
 
-![test-app](https://github.com/user-attachments/assets/2e894d70-247b-4ede-a937-b2e37c1137ed)
+![test-app](../../../../assets/docs/getting-started/quickstart/wizard-test.png)
 
 ### Define Ownership of Target Environment
 
@@ -77,7 +77,7 @@ Next, you'll move to the stage where users are prompted to choose a name and def
 -- **"I Am"**: Select this if you are responsible for and have control over the deployment target, such as for IoT, edge, or internal use cases.
 -- **"An employee of the customer"**: Select this when the end-user's team is responsible for managing deployments, and the Distr user does not have access to the deployment target. More suited towards On-prem and end-customer hosted use cases.
 
-![define-owner](https://github.com/user-attachments/assets/a890ed82-05b4-4a83-ba4b-94c6aa51435c)
+![define-owner](../../../../assets/docs/getting-started/quickstart/customer-creation.png)
 
 <Aside type="note" title="Info">
   Once you click `Continue`, Distr will create a deployment named
@@ -88,24 +88,24 @@ Next, you'll move to the stage where users are prompted to choose a name and def
 </Aside>
 
 Deployment with status: `initial`
-![deployment-check](https://github.com/user-attachments/assets/84437f8d-31e1-419c-899b-b714610e9a0c)
+![deployment-check](../../../../assets/docs/getting-started/quickstart/app-created.png)
 
 ### Connect the Target Environment with the Distr Agent
 
 To complete the final step and connect the target environment to Distr, you'll need to access the target environment and run the curl command displayed in the Onboarding Wizard console. In this test case, the agent will be installed in a local Docker Desktop environment. So make sure to have access to a local Docker desktop instance.
 
 Once the agent is installed, it will pull the deployment specifications and install the deployment into the target environment. After installation, the agent will communicate with the Distr hub to confirm that the deployment is up and running. This will update the status on the deployment page to `"OK"`.
-![run-agent](https://github.com/user-attachments/assets/0e85094b-f596-458b-8883-614bd5888347)
+![run-agent](../../../../assets/docs/getting-started/quickstart/connection-command.png)
 
 Run the Distr agent in the target environment:
-![run-agent](https://github.com/user-attachments/assets/a155889a-07b3-4ef0-af00-18895c78a78a)
+![run-agent](../../../../assets/docs/getting-started/quickstart/run-command.png)
 
 ### The Test Deployment is Operational
 
 Check in the "Deployments" tab, to see if the test deployments health is _green_.
 
 Deployment with status: `OK`
-![agent-up](https://github.com/user-attachments/assets/b68c78d6-2508-4ba4-a885-bb0109418c7a)
+![agent-up](../../../../assets/docs/getting-started/quickstart/deployment-healthy.png)
 
 As mentioned earlier, the test bookmarking app is packaged in a Docker Compose file and runs locally on Docker Desktop. You can verify the deployment by checking the running Docker containers.
 
@@ -118,11 +118,11 @@ Here's what you'll find:
    - The Shiori app
    - The Shiori app's database container
 
-![docker-ps](https://github.com/user-attachments/assets/3279b486-2a7b-4931-ba55-cb0bfc6f7227)
+![docker-ps](../../../../assets/docs/getting-started/quickstart/docker-ps.png)
 
 You can also navigate to the main Dashboard page, where the widgets will update to display the latest uptime and deployment metrics currently available.
 
-![dashboard-view](https://github.com/user-attachments/assets/df040ff8-c7bc-4309-962f-9ef4c33cddb3)
+![dashboard-view](../../../../assets/docs/getting-started/quickstart/dashboard-new-deploy.png)
 
 ## Onboard more applications, customers and deployments.
 
@@ -132,13 +132,13 @@ Distr users will only see the Onboarding Wizard once, and only if no application
 
 Head over to the `Applications` tab and on the top right corner click on the `+ Add Application` button. And simply follow the steps.
 
-![add-application](https://github.com/user-attachments/assets/8479305e-add9-4945-916c-fda88c04124b)
+![add-application](../../../../assets/docs/getting-started/quickstart/add-app.png)
 
 ### Invite More Customers
 
 Head over to the `Customers` tab and on the top right corner click on the `+ Invite customer` button. And simply follow the steps.
 
-![invite-customer](https://github.com/user-attachments/assets/83818aae-8201-42a1-a22b-49b0bb4a810f)
+![invite-customer](../../../../assets/docs/getting-started/quickstart/add-customer.png)
 
 <Aside type="note" title="Warning">
   Once the customer's email address is submitted, the recipient will receive an
@@ -151,7 +151,7 @@ Head over to the `Customers` tab and on the top right corner click on the `+ Inv
 
 Head over to the `Deployments` tab and click on the `+ Add deployment` button and follow the steps.
 
-![Add deployments](https://github.com/user-attachments/assets/5cfb11f6-a5c7-4a47-91e0-d029515c4386)
+![Add deployments](../../../../assets/docs/getting-started/quickstart/add-deploy.png)
 
 - For more information on how to deploy a Docker compose packaged application, check out this [guide](https://glasskube.dev/products/cloud/docs/guides/onboarding-a-docker-app/).
 - For more information on how to deploy a Helm chart packaged application, check out this [guide](https://glasskube.dev/products/cloud/docs/guides/onboard-helm-app/).
