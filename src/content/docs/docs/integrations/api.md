@@ -8,16 +8,16 @@ sidebar:
 Distr exposes a RESTful JSON API that allows you to interact with the platform programmatically.
 It is the same API used by the Distr Vendor and Customer Portals.
 
-If you prefer to interact with the API on a higher level of abstraction, you can use our [first-party SDKs](/docs/integrations/sdk) 
+If you prefer to interact with the API on a higher level of abstraction, you can use our [first-party SDKs](/docs/integrations/sdk)
 that handle authentication and error handling for you, and provide types.
 
 ## Base URL
 
-Every Distr instance, no matter if self hosted or the SaaS version, exposes this API under the `/api/v1` path. 
+Every Distr instance, no matter if self hosted or the SaaS version, exposes this API under the `/api/v1` path.
 
 ## Authentication
 
-To authenticate with the Distr API, you need to use a Personal Access Token. 
+To authenticate with the Distr API, you need to use a Personal Access Token.
 To create a Personal Access Token, follow the steps outlined in the [Creating a Personal Access Token](/docs/integrations/personal-access-token/) guide.
 
 For each HTTP request to the API, you need to include the Personal Access Token in the `Authorization` header, like shown here:
@@ -27,7 +27,7 @@ curl 'https://app.distr.sh/api/v1/applications' \
   -H "Authorization: AccessToken <your-access-token-here>"
 ```
 
-This will authenticate you as the user who created the Personal Access Token for the lifetime of this request. 
+This will authenticate you as the user who created the Personal Access Token for the lifetime of this request.
 The token needs to be sent with every request to the API.
 
 ## Request Limits
