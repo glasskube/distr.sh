@@ -1,8 +1,8 @@
 ---
-title: Self hosting distr.sh?
-description: How to self host
+title: Kubernetes
+description: Self-hosting distr.sh with Kubernetes
 sidebar:
   order: 2
 ---
 
-# Self Hosting
+Coming soon…
