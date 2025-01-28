@@ -74,14 +74,14 @@ Next, you'll move to the stage where users are prompted to choose a name and def
 Once you click "Continue," Distr will create a deployment named "Test-Customer." Since the target deployment environment hasn't been connected yet, the deployment status will appear in the gray "initial" stage. To complete the process and make the deployment of our test app healthy, we'll need to connect the target environment to Distr.
 :::
 
-Deployment with status: *initial*
+Deployment with status: _initial_
 ![deployment-check](https://github.com/user-attachments/assets/84437f8d-31e1-419c-899b-b714610e9a0c)
 
 ### Connect the Target Environment with the Distr Agent
 
 To complete the final step and connect the target environment to Distr, you'll need to access the target environment and run the curl command displayed in the Onboarding Wizard console. In this test case, the agent will be installed in a local Docker Desktop environment. So make sure to have access to a local Docker desktop instance.
 
-Once the agent is installed, it will pull the deployment specifications and install the deployment into the target environment. After installation, the agent will communicate with the Distr hub to confirm that the deployment is up and running. This will update the status on the deployment page to *"OK."*
+Once the agent is installed, it will pull the deployment specifications and install the deployment into the target environment. After installation, the agent will communicate with the Distr hub to confirm that the deployment is up and running. This will update the status on the deployment page to _"OK."_
 ![run-agent](https://github.com/user-attachments/assets/0e85094b-f596-458b-8883-614bd5888347)
 
 Run the Distr agent in the target environment:
@@ -89,9 +89,9 @@ Run the Distr agent in the target environment:
 
 ### The Test Deployment is Operational
 
-Check in the "Deployments" tab, to see if the test deployments health is *green*.
+Check in the "Deployments" tab, to see if the test deployments health is _green_.
 
-Deployment with status: *OK*
+Deployment with status: _OK_
 ![agent-up](https://github.com/user-attachments/assets/b68c78d6-2508-4ba4-a885-bb0109418c7a)
 
 As mentioned earlier, the test bookmarking app is packaged in a Docker Compose file and runs locally on Docker Desktop. You can verify the deployment by checking the running Docker containers.
@@ -102,8 +102,9 @@ Here's what you'll find:
 
 1. The Distr (glasskube) agent was installed first.
 2. The agent then deployed two additional containers:
-  - The Shiori app
-  - The Shiori app's database container
+
+- The Shiori app
+- The Shiori app's database container
 
 ![docker-ps](https://github.com/user-attachments/assets/3279b486-2a7b-4931-ba55-cb0bfc6f7227)
 
