@@ -49,7 +49,7 @@ export default defineConfig({
       },
       {
         label: 'Integrations',
-        autogenerate: {directory: 'docs/integrations'},
+        autogenerate: {directory: 'integrations'},
       },
     ],
     prerender: true,
