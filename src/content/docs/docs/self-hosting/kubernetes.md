@@ -9,7 +9,7 @@ Distr is available as a Helm chart distributed via ghcr.io.
 To install Distr in Kubernetes, simply run:
 
 ```shell
-helm upgrade --install --namespace distr --create-namespace \
+helm upgrade --install --wait --namespace distr --create-namespace \
   distr oci://ghcr.io/glasskube/charts/distr --version 0.13.2 \
   --set postgresql.enabled=true
 ```
