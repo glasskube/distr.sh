@@ -13,8 +13,8 @@ import {Aside} from '@astrojs/starlight/components';
 
 The platform consists of two key components:
 
-1. **Distr Server**: A centralized platform accessible via a GUI, API, or SDK. This is where ISVs manage their application deployments and provide version updates to customers.
-2. **Distr Agents**: Lightweight components, one for Docker Compose and another for Helm-packaged applications, deployed within the customer-controlled environment, alongside the ISV application. The agent handles maintenance and lifecycle tasks and communicates with the centralized platform. It reports critical information such as uptime status and the current application version while comparing it to the versions available from the ISV.
+1. **Distr Hub**: A centralized platform accessible via a GUI, API, or SDK. This is where ISVs manage their application deployments and provide version updates to customers.
+2. **Distr Agents**: Lightweight components, one for Docker Compose and another for Helm-packaged applications, deployed within the customer-controlled environment, alongside the ISV application. The agent handles maintenance and lifecycle tasks and communicates with Distr Hub. It reports critical information such as uptime status and the current application version while comparing it to the versions available from the ISV.
 
 This architecture ensures that communication and updates between the ISV and their end customers is as close to real time as possible, facilitating efficient application lifecycle management.
 
@@ -30,7 +30,7 @@ The Distr platform was designed with [ISVs in mind](https://glasskube.dev/blog/5
 
 Upon signing up, ISVs are greeted with the default view: the **"Vendor Platform"**. This can be verified from the top-right corner of the interface, this console allows ISVs to onboard customer profiles and invite their customers to the Distr platform. When an ISV sends an invite link, customers are directed to the **"Customer Portal"**. This portal provides customers with access to the ISV’s application, available versions, and tools to manage the deployment and lifecycle of the application.
 
-![vendor-portal](https://github.com/user-attachments/assets/d470a418-cc90-41e2-bf28-00f0e0b7e9ed)
+![vendor-portal](../../../../assets/docs/getting-started/how-it-works/dashboard.png)
 
 The Customer Portal takes a "less is more" approach, offering only the essential features customers need to manage the applications they’ve purchased.
 
@@ -44,7 +44,7 @@ In addition to the graphical user interfaces, Distr provides programmatic access
 
 ### Distr API
 
-The [Distr API](https://glasskube.dev/products/cloud/docs/integrations/distr-cloud-api/), allows users to bypass the GUI for direct programmatic interaction. The API used in Distr is the same as the open-source version, ensuring feature parity between the SaaS platform and the API. This guarantees a consistent experience regardless of the access method chosen.
+The [Distr API](https://glasskube.dev/products/cloud/docs/integrations/distr-cloud-api/), allows users to bypass the GUI for direct programmatic interaction. The API used in Distr is the same as the Open Source version, ensuring feature parity between the SaaS platform and the API. This guarantees a consistent experience regardless of the access method chosen.
 
 ### Distr SDK
 
