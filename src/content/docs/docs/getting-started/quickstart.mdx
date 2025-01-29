@@ -88,6 +88,7 @@ Next, you'll move to the stage where users are prompted to choose a name and def
 </Aside>
 
 Deployment with status: `initial`
+
 ![deployment-check](../../../../assets/docs/getting-started/quickstart/app-created.png)
 
 ### Connect the Target Environment with the Distr Agent
@@ -95,6 +96,7 @@ Deployment with status: `initial`
 To complete the final step and connect the target environment to Distr, you'll need to access the target environment and run the curl command displayed in the Onboarding Wizard console. In this test case, the agent will be installed in a local Docker Desktop environment. So make sure to have access to a local Docker desktop instance.
 
 Once the agent is installed, it will pull the deployment specifications and install the deployment into the target environment. After installation, the agent will communicate with the Distr hub to confirm that the deployment is up and running. This will update the status on the deployment page to `"OK"`.
+
 ![run-agent](../../../../assets/docs/getting-started/quickstart/connection-command.png)
 
 Run the Distr agent in the target environment:
@@ -105,6 +107,7 @@ Run the Distr agent in the target environment:
 Check in the "Deployments" tab, to see if the test deployments health is _green_.
 
 Deployment with status: `OK`
+
 ![agent-up](../../../../assets/docs/getting-started/quickstart/deployment-healthy.png)
 
 As mentioned earlier, the test bookmarking app is packaged in a Docker Compose file and runs locally on Docker Desktop. You can verify the deployment by checking the running Docker containers.
