@@ -11,4 +11,4 @@ Additionally, we also provide some batteries-included deployment examples to hel
 
 ## Semantic Versioning
 
-We are using [semantic versioning](https://semver.org/) for the releases of Distr Hub, agents and SDKs. 
+We are using [semantic versioning](https://semver.org/) for the releases of Distr Hub, Distr Agents and Distr SDKs. 
