@@ -37,13 +37,13 @@ A modal will open where you can add a new version by entering a name and the cor
 
 **Base Values and Template**
 
-You can provide a base values file and a template file for the Helm chart. 
-The base values file is a YAML file that contains the default values for the Helm chart. 
+You can provide a base values file and a template file for the Helm chart.
+The base values file is a YAML file that contains the default values for the Helm chart.
 The template file is a file that contains the template for the Helm chart.
 
 The template will also be shown later on in the deployment process, so the user can adjust the values before deploying the Helm chart.
 
-Both files are optional. 
+Both files are optional.
 
 Click on the **Create** button to add the version to your Helm App.
 
@@ -93,4 +93,3 @@ This will show you the same screen as above, where you can select your applicati
 
 After you have installed the Distr agent and deployed your Helm App, you can check the status of your deployment in the **Deployments** section.
 You can also see the status logs of the deployment by clicking on the **Status** button.
-

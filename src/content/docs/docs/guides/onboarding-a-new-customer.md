@@ -23,7 +23,7 @@ This will open up a small form where you can enter the name and email address of
 When clicking submit, a mail will be sent to the customer with a link to the Distr Customer Portal.
 
 It's now your customer's turn to open the invitation mail, click the link, and set a password for their Distr user account.
-They will from now on have access to the Distr Customer Portal, with that exact email address and their chosen password. 
+They will from now on have access to the Distr Customer Portal, with that exact email address and their chosen password.
 
 ## Customer Portal
 
@@ -34,11 +34,11 @@ It looks like the Vendor Portal, but has less options and only shows the deploym
 
 ## Optional: Branding Options
 
-You can choose to brand the Distr Customer Portal by using your own logo and a welcome page, that can be formatted with Markdown. 
+You can choose to brand the Distr Customer Portal by using your own logo and a welcome page, that can be formatted with Markdown.
 This can be done in the **Branding** section of the Distr vendor portal.
 Every customer will see the same branding, customer-specific branding is not supported yet.
 
-![Branding](../../../../assets/docs/guides/branding.png) 
+![Branding](../../../../assets/docs/guides/branding.png)
 
 The customer portal will now look like this:
 
