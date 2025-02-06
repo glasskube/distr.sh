@@ -33,7 +33,11 @@ To add a new version to your Docker App, click on the **Manage versions** button
 
 A modal will open where you can add a new version by entering a name and the corresponding Docker Compose file.
 In this example, we will upload a file containing Gitea and a Postgres database,
-whose source can be found [here](https://github.com/docker/awesome-compose/blob/master/gitea-postgres/compose.yaml) (we did pin the version to `1.23.1`):
+whose source can be found [here](https://github.com/docker/awesome-compose/blob/master/gitea-postgres/compose.yaml) (we additionally pin the version to `1.23.1`
+and make the password an environment variable).
+
+You can optionally add a template for the environment variables that your Docker Compose file uses.
+The template will be shown to the user when they deploy this version to a deployment environment.
 
 ![Add version](../../../../assets/docs/guides/docker_add_version.png)
 
@@ -47,7 +51,8 @@ After you have created the version, you can see it in the list of versions:
 
 You can use the **Copy from** button to create a new version based on the existing one.
 
-If you are looking for a more automated and integrated experience in creating new versions, take a look at our [SDKs](/docs/integrations/sdk).
+If you are looking for a more automated and integrated experience in creating new versions, 
+take a look at our [GitHub Action](/docs/integrations/gh-action) or [SDKs](/docs/integrations/sdk).
 
 ## Creating a new deployment
 
@@ -67,9 +72,14 @@ On the next screen, you will find the instructions to connect your deployment en
 
 ![Install agent](../../../../assets/docs/guides/docker_deployment_connect.png)
 
-As the last step, you can deploy your newly onboarded docker app to the new deployment environment:
+As the last step, you can deploy your newly onboarded docker app to the new deployment environment, and set the specific environment variables:
 
 ![Deploy app](../../../../assets/docs/guides/docker_deployment_deploy.png)
+
+**Environment Variables**
+
+The entered environment variables will be passed unmodified to the `docker compose` process via the `--env-file` argument.
+For more information on how to use them, please refer to the [official Docker documentation](https://docs.docker.com/compose/how-tos/environment-variables/).
 
 ### Use an existing deployment environment
 
