@@ -9,26 +9,25 @@ x-partly-shared-env: &partly-shared-env
 
 services:
   one:
-    image: "stefanprodan/podinfo"
+    image: 'stefanprodan/podinfo'
     ports:
-      - "3001:9898"
+      - '3001:9898'
     environment:
       <<: *partly-shared-env
       SERVER_NAME: ${SERVER_NAME_ONE:?error}
 
   two:
-    image: "stefanprodan/podinfo"
+    image: 'stefanprodan/podinfo'
     ports:
-      - "3002:9898"
+      - '3002:9898'
     environment:
       <<: *partly-shared-env
       SERVER_NAME: ${SERVER_NAME_TWO:?error}
 
   three:
-    image: "stefanprodan/podinfo"
+    image: 'stefanprodan/podinfo'
     ports:
-      - "3003:9898"
+      - '3003:9898'
     environment:
       <<: *shared-env
       SERVER_NAME: ${SERVER_NAME_THREE:?error}
-
