@@ -1,0 +1,94 @@
+---
+title: Run Distr on MacOS
+description: While running the Distr agent on Windows or Linux is straightforward, MacOS may require a few additional tweaks.
+sidebar:
+  order: 6
+---
+import {Aside, Code, TabItem, Tabs} from '@astrojs/starlight/components';
+
+Distr is designed to be as versatile as possible. Software vendors need to support end-customers, no matter what their target environment looks like. While most enterprise environments run on Kubernetes clusters or Linux-based VMs, there are always exceptions. What if, for whatever reason, MacOS is the chosen operating system for running Distr agents?
+
+If you're using Windows or Linux, the Quickstart guide should cover everything you need. But if you're setting up Distr on MacOS, follow these steps to ensure a smooth deployment experience.
+
+## Running Distr agents
+<Aside type="note">
+When we talk about "running Distr," we're specifically referring to running the [Distr agents](/docs/product/agents/). Since Distr can also be self-hosted, much of this guide could apply to running Distr in a local Docker environment as well. However, we'll focus on the SaaS version of Distr and properly configuring a local MacOS target environment to deploy applications through Distr.
+</Aside>
+
+## Prerequisites
+Before you begin, make sure you have:
+
+- A MacOS system with admin access
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed
+- Access to the [Distr platform](https://app.distr.sh/)
+
+## 1. Install Docker Desktop
+First, install [Docker Desktop for Mac](https://docs.docker.com/desktop/setup/install/mac-install/). Follow the installation instructions provided by Docker.
+
+## 2. Verify the Docker Context
+Check the local Docker context being used:
+
+**Run:** 
+```
+docker context ls
+```
+
+Expected output: 
+```
+NAME              DESCRIPTION                               DOCKER ENDPOINT                                  ERROR
+default           Current DOCKER_HOST based configuration   unix:///var/run/docker.sock
+desktop-linux *   Docker Desktop                            unix:///Users/jakepage/.docker/run/docker.sock
+```
+
+<Aside type="caution">
+By default, Docker Desktop on Mac may use the `desktop-linux` context instead of `default`. For the Distr agent to locate the correct Docker endpoint, the context must be set to `default`.
+</Aside>
+
+If Docker is set to the desktop-linux context, you might encounter errors in the container logs like:
+
+```
+unable to get image 'postgres:17.3-alpine3.20': Cannot connect to the Docker daemon at unix:///Users/jakepage/.docker/run/docker.sock. Is the docker daemon running?
+```
+
+## 3. Set the Docker Context to default
+
+To switch the Docker context to default, run:
+
+```
+docker context use default
+```
+
+Expected output:
+```
+NAME            DESCRIPTION                               DOCKER ENDPOINT                                  ERROR
+default *       Current DOCKER_HOST based configuration   unix:///var/run/docker.sock
+desktop-linux   Docker Desktop                            unix:///Users/jakepage/.docker/run/docker.sock
+```
+
+## 4. Update the Docker Config File
+
+Check your `~/.docker/config.json` file and ensure "credsStore" is replaced with "credStore":
+
+**Before:**
+
+```
+{
+    "auths": {},
+    "credsStore": "osxkeychain"
+}
+```
+
+**After:** 
+
+```
+{
+    "auths": {},
+    "credStore": "osxkeychain"
+}
+```
+## 5. Test the Setup
+
+To verify everything is configured correctly, try [deploying an application](/docs/guides/onboarding-a-docker-app/#creating-a-new-deployment) through Distr. If there are no errors related to Docker socket access, your setup is good to go.
+
+---
+With these steps, your MacOS environment should be fully configured to run Distr agents without issues. If you encounter any problems, feel free to reach out to us on [Discord](https://discord.gg/6qqBSAWZfW) or via email at support@glasskube.com.
