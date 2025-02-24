@@ -1,0 +1,60 @@
+---
+title: License Management
+description: How to use Licenses to grant or restrict application version to customers
+sidebar:
+  order: 5
+---
+
+import {Aside, Code, TabItem, Tabs} from '@astrojs/starlight/components';
+
+In this guide, we'll walk you through how to use the license management feature to control which application versions your end-customers can access.
+
+<Aside type="tip">
+The license management feature is currently in Beta. To request access, reach out to us on [Discord](https://discord.gg/6qqBSAWZfW) or by email at support@glasskube.com. 
+</Aside>
+
+With the licensing feature, you can link a license to a customer, allowing access to specific application versions, whether it’s one, a select few, or all available versions. You can name the license, set an expiration date, and assign it to a particular customer, giving you granular control over which applications and versions each end-customer can use.
+
+## License flow diagram
+![license-diagram](https://github.com/user-attachments/assets/19c5d1e9-9b7b-4821-b024-49d879d8e73e)
+
+<Aside type="note">
+The diagram above illustrates how a license links an end-customer account to a specific set of application versions. Once the license is active, the customer will only be able to see and can only deploy the granted versions of the application.
+</Aside>
+
+## Use case
+Many vendors offer tiered pricing plans with different features and functionality. For those serving on-prem environments, granular control over version access is crucial, whether it’s delivering a specific feature set, pointed hotfixes to select customers or offering early access to new application versions. This level of precision is exactly what our first beta release of the licensing feature aims to deliver.
+
+## License features
+
+1. Each license is linked to a single `customer/application` pairing. 
+2. Each license grants a customer access to one or multiple application versions.
+3. Once an application version has been granted via a license, it can't be revoked (currently working on the version revoking functionality).
+4. A customer can be associated to multiple licenses.
+5. License edits are reflected in the customer portal in real time.
+
+## How to use it
+
+If you don’t see the feature yet, reach out, and we’ll enable it for you. Once you’re in, here’s how it works:
+
+1. **Create a customer:** If non exist
+2. **Navigate to the "License Mgmt" tab and click "Create License"**
+3. **Give it a name**
+4. **Set an expiration date**
+5. **Assign to an application**
+6. **Choose the version/s of the app you would like to grant the customer access to**
+7. **Link it to a customer**
+8. **Save:** Hit "Save" and you’re done! 
+
+The customer can now access and deploy the assigned application version/s directly from their [customer portal](/docs/product/customer-portal/).
+
+![license-form](https://github.com/user-attachments/assets/50ce9476-e318-4e63-9699-5ca415c739c7)
+
+## OCI registry authentication: 
+If your images are stored in a private OCI registry, you'll need to provide access credentials. You can configure these credentials in the lower section of the license configuration panel. Once set, the application versions will be available at the deployment target for as long as the license is valid.
+
+![OCI-registry-auth](https://github.com/user-attachments/assets/a4f48551-6c24-4f67-875b-33a70465577e)
+
+## Licensing walkthrough video
+
+[![Watch the video](https://github.com/user-attachments/assets/664dbd85-8296-4ab6-af1f-911e75120d77)](https://www.youtube.com/watch?v=qh-ewkWxRj4)
