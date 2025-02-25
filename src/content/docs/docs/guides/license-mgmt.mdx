@@ -10,7 +10,7 @@ import {Aside, Code, TabItem, Tabs} from '@astrojs/starlight/components';
 In this guide, we'll walk you through how to use the license management feature to control which application versions your end-customers can access.
 
 <Aside type="tip">
-The license management feature is currently in Beta. To request access, reach out to us on [Discord](https://discord.gg/6qqBSAWZfW) or by email at support@glasskube.com. 
+The license management feature is currently in Beta. To request access, reach out to us on [Discord](https://discord.gg/6qqBSAWZfW).
 </Aside>
 
 With the licensing feature, you can link a license to a customer, allowing access to specific application versions, whether it’s one, a select few, or all available versions. You can name the license, set an expiration date, and assign it to a particular customer, giving you granular control over which applications and versions each end-customer can use.
@@ -27,7 +27,7 @@ Many vendors offer tiered pricing plans with different features and functionalit
 
 ## License features
 
-1. Each license is linked to a single `customer/application` pairing. 
+1. Each license is linked to a single `customer/application` pairing.
 2. Each license grants a customer access to one or multiple application versions.
 3. Once an application version has been granted via a license, it can't be revoked (currently working on the version revoking functionality).
 4. A customer can be associated to multiple licenses.
@@ -44,13 +44,13 @@ If you don’t see the feature yet, reach out, and we’ll enable it for you. On
 5. **Assign to an application**
 6. **Choose the version/s of the app you would like to grant the customer access to**
 7. **Link it to a customer**
-8. **Save:** Hit "Save" and you’re done! 
+8. **Save:** Hit "Save" and you’re done!
 
 The customer can now access and deploy the assigned application version/s directly from their [customer portal](/docs/product/customer-portal/).
 
 ![license-form](../../../../assets/docs/guides/license-form.png)
 
-## OCI registry authentication: 
+## OCI registry authentication:
 If your images are stored in a private OCI registry, you'll need to provide access credentials. You can configure these credentials in the lower section of the license configuration panel. Once set, the application versions will be available at the deployment target for as long as the license is valid.
 
 ![OCI-registry-auth](../../../../assets/docs/guides/OCI-Registry-auth.png)

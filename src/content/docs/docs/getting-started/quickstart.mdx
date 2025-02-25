@@ -5,6 +5,7 @@ sidebar:
   order: 3
 ---
 
+
 import {Aside} from '@astrojs/starlight/components';
 
 ## Prerequisites
@@ -34,15 +35,15 @@ In this Quickstart guide, we’ll walk through the primary workflow designed to 
 - Open your **free** [Distr account](https://distr.sh/).
 - **Onboarding a sample application** to explore how Distr works.
 - **Choosing a deployment target setup**:
-  - Onboard your first customer, or
-  - Assign yourself as the owner of the deployment target environment.
+- Onboard your first customer, or
+- Assign yourself as the owner of the deployment target environment.
 - **Creating a deployment** and verifying its installation using the Distr agent.
 
 All of this can be easily accomplished by following the helpful Onboarding Wizard. Let’s get started!
 
 ## Follow the onboarding wizard to get started
 
-<Aside type="note" title="Warning">
+<Aside type="note">
   The Onboarding Wizard will only appear if your Distr account has not yet
   created its first application, customer, or deployment. If you’ve already used
   the Onboarding Wizard but would like to add more applications, customers, or
@@ -54,7 +55,7 @@ All of this can be easily accomplished by following the helpful Onboarding Wizar
 
 The Onboarding Wizard is a step-by-step guide that assists Distr users in uploading an application based on a Docker Compose file or a Helm chart, onboarding a customer if one is available, and adding a deployment that will be installed by the Distr agent.
 
-<Aside type="note" title="Info">
+<Aside type="note">
   The Onboarding Wizard also offers the option to onboard a sample app for
   testing purposes. To gain a better understanding of how Distr works, we'll
   begin by onboarding the [test app](https://github.com/go-shiori/shiori).
@@ -79,7 +80,7 @@ Next, you'll move to the stage where users are prompted to choose a name and def
 
 ![define-owner](../../../../assets/docs/getting-started/quickstart/customer-creation.png)
 
-<Aside type="note" title="Info">
+<Aside type="note">
   Once you click `Continue`, Distr will create a deployment named
   `Test-Customer`. Since the target deployment environment hasn't been connected
   yet, the deployment status will appear in the gray `initial` stage. To
@@ -100,6 +101,10 @@ Once the agent is installed, it will pull the deployment specifications and inst
 ![run-agent](../../../../assets/docs/getting-started/quickstart/connection-command.png)
 
 Run the Distr agent in the target environment:
+<Aside type="tip">
+  If you are running the agent on macOS, make sure to checkout the [macOS setup guide](/docs/guides/distr-on-macos/) for additional steps.
+</Aside>
+
 ![run-agent](../../../../assets/docs/getting-started/quickstart/run-command.png)
 
 ### The Test Deployment is Operational
@@ -118,8 +123,8 @@ Here's what you'll find:
 
 1. The Distr agent was installed first.
 2. The agent then deployed two additional containers:
-   - The Shiori app
-   - The Shiori app's database container
+- The Shiori app
+- The Shiori app's database container
 
 ![docker-ps](../../../../assets/docs/getting-started/quickstart/docker-ps.png)
 
@@ -143,7 +148,7 @@ Head over to the `Customers` tab and in the top right corner click on the `+ Inv
 
 ![invite-customer](../../../../assets/docs/getting-started/quickstart/add-customer.png)
 
-<Aside type="note" title="Warning">
+<Aside type="caution">
   Once the customer's email address is submitted, the recipient will receive an
   email containing login credentials for the Distr Customer Portal. Through this
   portal, they can view and manage the deployments of the applications they have
