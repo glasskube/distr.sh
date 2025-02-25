@@ -10,10 +10,8 @@ For this, you need a working installation of Docker, as well as the Docker Compo
 
 First, download and unpack the Distr Docker Compose deployment manifest from the latest release:
 
-<!-- TODO: update release version automatically? -->
-
 ```shell
-mkdir distr && cd distr && curl -fsSL https://github.com/glasskube/distr/releases/download/1.0.0/deploy-docker.tar.bz2 | tar -jx
+mkdir distr && cd distr && curl -fsSL https://github.com/glasskube/distr/releases/latest/download/deploy-docker.tar.bz2 | tar -jx
 ```
 
 This command creates a new directory called `distr` containing two files: `docker-compose.yaml` and `.env`.
