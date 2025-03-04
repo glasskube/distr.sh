@@ -1,6 +1,6 @@
 ---
-title: Run Distr on MacOS
-description: While running the Distr agent on Windows or Linux is straightforward, MacOS may require a few additional tweaks.
+title: Run Distr on macOS
+description: While running the Distr agent on Windows or Linux is straightforward, macOS may require a few additional tweaks.
 sidebar:
   order: 6
 ---
@@ -86,13 +86,13 @@ then you will need to update the Docker config file in step 5.
 
 The above error indicates that Docker is configured to use a credential store called "desktop," but the corresponding executable `docker-credential-desktop` is either not installed or not accessible through the system's PATH.
 
-### Why this happens
+#### Why this happens
 
 <Aside tag="info">
 When Docker is configured to use a credential store, it tries to invoke an external binary (docker-credential-NAME). On macOS, `docker-credential-osxkeychain` is generally preferred because it integrates well with the macOS Keychain. Using `docker-credential-desktop` can lead to path issues, especially if the Docker Desktop installation did not properly add this helper to the system's PATH.
 </Aside>
 
-### How to fix it
+#### How to fix it
 Check your docker config file and verify which `credsStore` is being used? 
 
 Run:
@@ -109,27 +109,27 @@ Expected output:
 }
 ```
 
-### Use `docker-credential-osxkeychain` instead.
+#### Use `docker-credential-osxkeychain` instead.
 
 Since you're on a Mac, you could use `docker-credential-osxkeychain` instead of `docker-credential-desktop`.
 
-1. Install `docker-credential-helper`
+Install `docker-credential-helper`
 
 ```sh
 brew install docker-credential-helper
 ```
 
-2. Verify `docker-credential-osxkeychain` is available.
+Verify `docker-credential-osxkeychain` is available.
 
 ```sh
 $ docker-credential-osxkeychain version
 docker-credential-osxkeychain (github.com/docker/docker-credential-helpers) v0.8.2
 ```
 
-### 3. Edit the Docker config file
+#### Edit the Docker config file
 Now, we need to update Docker's config file to use `osxkeychain` instead of `desktop`.
 
-#### 1. Open the config file in `nano` or Vim.
+#####  Open the config file in `nano` or Vim.
 Run this command in your terminal:
 
 ```sh
@@ -138,14 +138,14 @@ nano ~/.docker/config.json
 
 This will open the file in a simple text editor inside your terminal.
 
-#### 2. Find the `credStore` line
+##### Find the `credStore` line
 Look for this line:
 
 ```json
 "credStore": "desktop"
 ```
 
-#### 3. Change `"desktop"` to `"osxkeychain"`
+##### Change `"desktop"` to `"osxkeychain"`
 Modify it so it looks like this:
 
 ```json
@@ -154,14 +154,14 @@ Modify it so it looks like this:
 
 Be careful not to delete the quotation marks or any commas.
 
-#### 4. Save the file
+##### Save the file
 Once you've made the change, follow these steps to save and exit:
 
 - **Press `CTRL + X`** to start exiting.
 - **Press `Y`** to confirm saving the changes.
 - **Press `Enter`** to save with the same filename.
 
-#### 5. Confirm the change
+##### Confirm the change
 Run:
 
 ```sh
@@ -177,7 +177,7 @@ You should see:
 }
 ```
 
-## 5. Test the Setup
+## 6. Test the Setup
 
 To verify everything is configured correctly, try [deploying an application](/docs/guides/onboarding-a-docker-app/#creating-a-new-deployment) through Distr. If there are no errors related to Docker socket access, your setup is good to go.
 
