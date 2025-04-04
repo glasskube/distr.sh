@@ -24,7 +24,7 @@ You will be asked to enter a name and select the type of the application:
 ![Add application](../../../../assets/docs/guides/docker_add_application.png)
 
 After you have clicked on the **Create Application** button, you will be redirected to the detailed view of this application.
-In this view you can manage the versions of the application. 
+In this view you can manage the versions of the application.
 
 ![Application Detail View](../../../../assets/docs/guides/docker_app_detail.png)
 
@@ -36,8 +36,8 @@ whose source can be found [here](https://github.com/docker/awesome-compose/blob/
 and make the password an environment variable).
 
 You can optionally add a template for the environment variables that your Docker Compose file uses.
-The template will be shown to the user when they deploy this version to a deployment environment. 
-In this example we enter a reminder for the user to set the database password, as the deployment would fail otherwise. 
+The template will be shown to the user when they deploy this version to a deployment environment.
+In this example we enter a reminder for the user to set the database password, as the deployment would fail otherwise.
 
 ![Add version](../../../../assets/docs/guides/docker_add_version.png)
 

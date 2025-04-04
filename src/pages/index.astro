@@ -53,6 +53,35 @@
         ui_host: 'https://eu.posthog.com',
       })
     </script>
+    <script is:inline>
+      (function () {
+        const k = 'ko',
+          i = (window.globalKoalaKey = window.globalKoalaKey || k);
+        if (window[i]) return;
+        const ko = (window[i] = []);
+        [
+          'identify',
+          'track',
+          'removeListeners',
+          'on',
+          'off',
+          'qualify',
+          'ready',
+        ].forEach(function (t) {
+          ko[t] = function () {
+            var n = [].slice.call(arguments);
+            return n.unshift(t), ko.push(n), ko;
+          };
+        });
+        const n = document.createElement('script');
+        n.async = !0;
+        n.setAttribute(
+          'src',
+          'https://cdn.getkoala.com/v1/pk_65d1fa2b228d1a15e6cbd8f9476a369bb5c1/sdk.js',
+        );
+        (document.body || document.head).appendChild(n);
+      })();
+    </script>
   </head>
   <body class="bg-white dark:bg-gray-900 m-0 min-h-screen">
     <header class="bg-white dark:bg-gray-900">
@@ -124,6 +153,12 @@
             href="/docs/getting-started/about/"
             class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-gray-900 rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
             Read the docs
+          </a>
+          <a
+            href="https://glasskube.dev"
+            target="_blank"
+            class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-gray-900 rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+            Visit Website
           </a>
         </div>
         <div

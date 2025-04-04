@@ -4,6 +4,7 @@ description: While running the Distr agent on Windows or Linux is straightforwar
 sidebar:
   order: 6
 ---
+
 import {Aside, Code, TabItem, Tabs} from '@astrojs/starlight/components';
 
 Distr is designed to be as versatile as possible. That involves being able to run on a variety of operating systems successfully. While most enterprise environments run on Linux-based VMs, there are always exceptions. What if, for testing purposed for instance, macOS is the chosen operating system for running Distr agents?
@@ -11,11 +12,18 @@ Distr is designed to be as versatile as possible. That involves being able to ru
 If you're using Windows or Linux, the [Quickstart guide](/docs/getting-started/quickstart/) should cover everything you need. But if you're setting up Distr on macOS, follow these steps to ensure a smooth deployment experience.
 
 ## Running Distr agents
+
 <Aside type="note">
-When we talk about "running Distr," we're specifically referring to running the [Distr agents](/docs/product/agents/). Since Distr can also be self-hosted, much of this guide could apply to running Distr in a local Docker environment as well. However, we'll focus on the SaaS version of Distr and properly configuring a local MacOS target environment to deploy applications through Distr.
+  When we talk about "running Distr," we're specifically referring to running
+  the [Distr agents](/docs/product/agents/). Since Distr can also be
+  self-hosted, much of this guide could apply to running Distr in a local Docker
+  environment as well. However, we'll focus on the SaaS version of Distr and
+  properly configuring a local MacOS target environment to deploy applications
+  through Distr.
 </Aside>
 
 ## Prerequisites
+
 Before you begin, make sure you have:
 
 - A macOS system with admin access
@@ -23,15 +31,20 @@ Before you begin, make sure you have:
 - Access to the [Distr platform](https://app.distr.sh/)
 
 ## 1. Install Docker Desktop
+
 First, install [Docker Desktop for Mac](https://docs.docker.com/desktop/setup/install/mac-install/). Follow the installation instructions provided by Docker.
 
 ### 1.1 Delete Distr volume on Docker Desktop
 
 <Aside type="note">
-If you've already tried to install Distr on Docker Desktop and failed to deploy an application, a volume named `distr_scratch` has been created. This volume is used to store the Distr agent's data. If it exists, you need to delete it.
+  If you've already tried to install Distr on Docker Desktop and failed to
+  deploy an application, a volume named `distr_scratch` has been created. This
+  volume is used to store the Distr agent's data. If it exists, you need to
+  delete it.
 </Aside>
 
 Delete the volume, run:
+
 ```sh
 docker volume rm distr_scratch
 ```
@@ -39,15 +52,22 @@ docker volume rm distr_scratch
 ## 2. Verify the Docker Context
 
 <Aside type="caution">
-When Docker Desktop runs on macOS, it creates a lightweight Linux VM, and the `desktop-linux` context points to the Docker daemon within this VM. However, Distr expects to connect to the default Docker socket (`/var/run/docker.sock`). This mismatch can cause connectivity issues, especially when pulling or deploying container images. Setting the context to `default` aligns the Docker CLI with the expected Docker endpoint, ensuring Distr can interact with the Docker daemon properly.
+  When Docker Desktop runs on macOS, it creates a lightweight Linux VM, and the
+  `desktop-linux` context points to the Docker daemon within this VM. However,
+  Distr expects to connect to the default Docker socket
+  (`/var/run/docker.sock`). This mismatch can cause connectivity issues,
+  especially when pulling or deploying container images. Setting the context to
+  `default` aligns the Docker CLI with the expected Docker endpoint, ensuring
+  Distr can interact with the Docker daemon properly.
 </Aside>
 
 Check the current Docker context, run:
+
 ```sh
 docker context ls
 ```
 
-Expected output: 
+Expected output:
 
 ```sh
 NAME              DESCRIPTION                               DOCKER ENDPOINT                                  ERROR
@@ -95,8 +115,8 @@ If you're using the Distr agent on macOS, note that it does not rely on Docker's
 
    ```json
    {
-       "auths": {},
-       "credStore": "desktop"
+     "auths": {},
+     "credStore": "desktop"
    }
    ```
 
@@ -124,7 +144,7 @@ If you're using the Distr agent on macOS, note that it does not rely on Docker's
 
    ```json
    {
-       "auths": {}
+     "auths": {}
    }
    ```
 
@@ -151,4 +171,5 @@ Removing the `credStore` setting ensures that the Distr agent operates without c
 To verify everything is configured correctly, try [deploying an application](/docs/guides/onboarding-a-docker-app/#creating-a-new-deployment) through Distr. If there are no errors related to Docker socket access, your setup is good to go.
 
 ---
+
 With these steps, your MacOS environment should be fully configured to run Distr agents without issues. If you encounter any problems, feel free to reach out to us on [Discord](https://discord.gg/6qqBSAWZfW) or via email at support@glasskube.com.
