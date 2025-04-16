@@ -41,10 +41,18 @@ export default defineConfig({
       logo: {
         src: './src/assets/distr.svg',
       },
-      social: {
-        github: 'https://github.com/glasskube/distr',
-        discord: 'https://discord.gg/6qqBSAWZfW',
-      },
+      social: [
+        {
+          icon: 'github',
+          label: 'GitHub',
+          href: 'https://github.com/glasskube/distr',
+        },
+        {
+          icon: 'discord',
+          label: 'Discord',
+          href: 'https://discord.gg/6qqBSAWZfW',
+        },
+      ],
       components: {
         // Override the default `SocialIcons` component.
         SocialIcons: './src/components/NavBarCta.astro',

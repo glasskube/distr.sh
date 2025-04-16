@@ -9,14 +9,14 @@ import {Aside} from '@astrojs/starlight/components';
 
 ## Components
 
-[Distr](https://distr.sh/) is a comprehensive platform available both as a [SaaS](https://glasskube.dev/glossary/saas-definition/) solution and as a fully [self-hostable](https://glasskube.dev/glossary/self-managed-software/) option. It allows ISVs to deliver their applications to on-premises customers through a centralized platform. This platform enables end customers to access available application versions and maintain control over when and where installations are deployed.
+[Distr](https://distr.sh/) is a comprehensive platform available both as a [SaaS](https://glasskube.dev/glossary/saas-definition/) solution and as a fully [self-hostable](/docs/self-hosting/getting-started/) option. It allows Software and AI companies deliver their applications to self-managed customers through a centralized platform. This platform enables end customers to access available application versions and maintain control over when and where installations are deployed.
 
 The platform consists of two key components:
 
-1. **Distr Hub**: A centralized platform accessible via a GUI, API, or SDK. This is where ISVs manage their application deployments and provide version updates to customers.
-2. **Distr Agents**: Lightweight components, one for Docker Compose and another for Helm-packaged applications, deployed within the customer-controlled environment, alongside the ISV application. The agent handles maintenance and lifecycle tasks and communicates with Distr Hub. It reports critical information such as uptime status and the current application version while comparing it to the versions available from the ISV.
+1. **Distr Hub**: A centralized platform accessible via a GUI, API, or SDK. This is where vendors manage their application deployments and provide version updates to customers.
+2. **Distr Agents**: Lightweight components, one for Docker Compose and another for Helm-packaged applications, deployed within the customer-controlled environment, alongside the vendor application. The agent handles maintenance and lifecycle tasks and communicates with Distr Hub. It reports critical information such as uptime status and the current application version while comparing it to the versions made available by the vendor.
 
-This architecture ensures that communication and updates between the ISV and their end customers is as close to real time as possible, facilitating efficient application lifecycle management.
+This architecture ensures that communication and updates between the software vendor and their end customers is as close to real time as possible, facilitating efficient application lifecycle management.
 
 <Aside type="note">
   Ready to get started? Create your Distr account
