@@ -2,14 +2,18 @@
 import {defineConfig} from 'astro/config';
 import starlight from '@astrojs/starlight';
 
-import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
+import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://distr.sh',
+
   integrations: [
     starlight({
       title: 'Distr Docs',
+      customCss: [
+        './src/styles/global.css',
+      ],
       editLink: {
         baseUrl: 'https://github.com/glasskube/distr.sh/tree/main',
       },
@@ -85,7 +89,10 @@ export default defineConfig({
       ],
       prerender: true,
     }),
-    tailwind(),
     sitemap(),
   ],
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });
