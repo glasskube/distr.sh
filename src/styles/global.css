@@ -1,0 +1,38 @@
+@layer base, starlight, theme, components, utilities;
+
+@import '@astrojs/starlight-tailwind';
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+
+@import '@fontsource/inter/latin-300.css';
+@import '@fontsource/inter/latin-400.css';
+@import '@fontsource/inter/latin-600.css';
+@import '@fontsource/inter/latin-700.css';
+@import '@fontsource/poppins/latin-600.css';
+
+@theme {
+  /*Configure your Tailwind theme that will be used by Starlight.*/
+  /*https://starlight.astro.build/guides/css-and-tailwind/#styling-starlight-with-tailwind*/
+  --spacing-108: 27rem;
+  --spacing-128: 32rem;
+  --spacing-144: 36rem;
+  --spacing-160: 40rem;
+  --spacing-180: 45rem;
+  --spacing-200: 50rem;
+  --spacing-256: 64rem;
+
+  --font-sans: 'Inter', 'system-ui', 'sans-serif';
+  --font-display: 'Poppins', 'Inter', 'system-ui', 'sans-serif';
+  --font-mono: 'monospace';
+}
+
+/*Add additional Tailwind styles to this file:*/
+/*https://tailwindcss.com/docs/adding-custom-styles#using-custom-css*/
+
+@layer distr {
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+  }
+}
