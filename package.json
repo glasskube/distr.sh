@@ -19,7 +19,7 @@
     "@fontsource/poppins": "^5.2.5",
     "@tailwindcss/vite": "^4.1.4",
     "astro": "^5.7.4",
-    "sharp": "^0.33.0",
+    "sharp": "^0.34.0",
     "tailwindcss": "^4.1.4"
   },
   "devDependencies": {
