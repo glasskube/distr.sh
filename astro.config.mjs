@@ -11,9 +11,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Distr Docs',
-      customCss: [
-        './src/styles/global.css',
-      ],
+      customCss: ['./src/styles/global.css'],
       editLink: {
         baseUrl: 'https://github.com/glasskube/distr.sh/tree/main',
       },
