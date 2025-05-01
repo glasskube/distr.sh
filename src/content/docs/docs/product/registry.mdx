@@ -1,18 +1,27 @@
 ---
-title: Artifacts Registry
-description: Managing artifacts and downloads in the Distr Registry
+title: Artifact Registry
+description: Distr OCI-compliant artifact registry to distribute Docker images and Helm Charts to self-managed customers with advanced tag-based control and download analytics.
 sidebar:
-  order: 1
+  order: 2
 ---
 
 import {Aside} from '@astrojs/starlight/components';
 import ThemeImage from '../../../../components/ThemeImage.astro';
 
-The Distr Artifact Registry is a built-in, [OCI-compliant](https://github.com/opencontainers/distribution-spec?tab=readme-ov-file) registry designed for software vendors who need full control over how their software artifacts are distributed to end-customers. It supports container images, Helm charts, SBOMs, and other OCI artifacts, all managed directly within your [Distr account](https://signup.distr.sh/).
+The Distr Artifact Registry is a built-in, [OCI-compliant](https://github.com/opencontainers/distribution-spec?tab=readme-ov-file) registry designed for AI and software companies
+to distribute Docker images and Helm Charts, SBOMs and other OCI artifacts to self-managed and BYOC deployments.
+It features advanced tag-based access and licensing controls.
+Additionally, you can track individual artifact tag downloads to track on which version of your software your customers are using.
 
-Use it to publish versioned artifacts, enforce licensing rules, and track consumption across your customer base, with full visibility and fine-grained access control.
+Use it to publish versioned artifacts, enforce licensing rules, and track consumption across your customer base.
 
-<ThemeImage 
+<Aside type="note">
+  The Distr Artifact registry is a private registry, meaning that only
+  authenticated users can push and pull artifacts. Unauthenticated users will
+  not be able to access your artifacts.
+</Aside>
+
+<ThemeImage
   lightSrc="/src/assets/docs/product/registry/light-mode-registry.png"
   darkSrc="/src/assets/docs/product/registry/dark-mode-registry.png"
   alt="Registry diagram"
@@ -20,152 +29,158 @@ Use it to publish versioned artifacts, enforce licensing rules, and track consum
 
 ### Core capabilities
 
-- **Multi-artifact support**: Distribute Helm charts, container images, configuration bundles, and any OCI-compliant artifact
-- **Software supply chain security**: Store SBOMs and signatures for safer distribution
-- **Visibility**: Track where, how, and by whom artifacts are consumed
-- **Open standards**: Built on the OCI specification and compatible with existing tooling (Docker, ORAS, etc.)
-- **Built-in licensing (beta)**: Bind artifacts to licenses for fine-grained customer access control
+- **Multi-artifact support**: Distribute Docker Images, Helm Charts, Terraform Modules, and any OCI-compliant artifact
+- **Software supply chain security**: Store SBOMs and signatures for image verification
+- **Visibility**: Get insights into which customers are using which artifacts and versions
+- **Open standards**: Built on the OCI specification and compatible with existing tooling (Docker, ORAS, Helm, etc.)
+- **Built-in licensing (beta)**: Bind artifact (versions) to licenses for fine-grained customer access control
 
-## Registry User Flow 
+## Quickstart
 
-As a vendor, here’s how you’ll typically use the registry:
+After the license feature is enabled, you can start using the Distr Artifact Registry.
 
-1. To start using the registry [choose a registry slug](/docs/product/registry/#use-the-registry) and [log in](/docs/product/registry/#registry-login).
-2. [Tag and push](/docs/product/registry/#registry-login) your artifacts to the registry, you can manage this from the [Artifacts](/docs/product/registry/#artifacts) section.
-3. Once stored, your artifacts can be made available to your end-customers via their favourite registry CLI tool (Docker, ORAS, etc.).
-4. Use the [Downloads](/docs/product/registry/#downloads) section to monitor how your customers are consuming your artifacts.
-5. (Optional) We also offer a [Licensing](/docs/product/registry/#registry-license-management) feature (currently in beta) that lets you bind artifacts to licenses on a 1:1 basis. This gives you fine-grained control over which customers can access specific artifacts, even down to individual versions.
+1. To start using the registry, choose a registry slug and log in.
+2. Tag and push your artifacts to the registry, you can manage this from the Artifacts section.
+3. Once stored, your artifacts can be assigned by other users and end-customers via their favourite registry CLI tool (Docker, ORAS, Kubernetes, etc.).
+4. Use the Downloads section to get granular analytics.
+5. (Optional) If you want to restrict access to specific artifacts or versions, you can create licenses that bind customers to specific artifacts and versions.
 
 Want a quick overview of how it works? Watch this short walkthrough:
 
-<iframe 
-  width="560" 
-  height="315" 
-  src="https://www.youtube.com/embed/gM9WCx61owQ?si=rWP7n4UR1liAKi_6" 
-  title="YouTube video player" 
-  frameborder="0" 
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-  referrerpolicy="strict-origin-when-cross-origin" 
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/gM9WCx61owQ?si=rWP7n4UR1liAKi_6"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
   allowfullscreen
-  style="width: 560px; height: 315px; max-width: 100%; aspect-ratio: 16/9; border-radius: 8px; margin: 2rem auto; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-</iframe>
+  style="width: 560px; height: 315px; max-width: 100%; aspect-ratio: 16/9; border-radius: 8px; margin: 2rem auto; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></iframe>
 
-Let’s take a closer look at each component.
-
-## Registry Components
+## Registry Features
 
 The Registry section consists of three main components:
 
-<ThemeImage 
+<ThemeImage
   lightSrc="/src/assets/docs/product/registry/light-registry-sections.png"
   darkSrc="/src/assets/docs/product/registry/dark-registry-sections.png"
   alt="Registry artifacts view"
 />
 
-### Artifacts
+### Artifacts List
 
-The *Artifacts* section, underneath the Registry drop down on the left side panel allows you to:
-- Upload binary artifacts and software components
-- Manage different versions of your artifacts
-- Easily access artifact IDs
-- View usage metrics
+The artifact list page is where you can view all the artifacts stored in your registry.
+You can get an overview about the pull count over all tags and how many users and customers using which artifact.
 
-<ThemeImage 
+<ThemeImage
   lightSrc="/src/assets/docs/product/registry/light-registry-artifacts.png"
   darkSrc="/src/assets/docs/product/registry/dark-registry-artifacts.png"
   alt="Registry artifacts view"
 />
 
-Artifacts stored in the registry can be anything from executable binaries to configuration files, documentation, or any other resources your customers might need.
+### Artifact Details
+
+The artifact details page provides you with a detailed view about all tags of a specific artifact.
+You can geht the oci url if the artifact and the upload date and artifact size.
+You can get an overview about the pull count over for each tag.
 
 <Aside type="note">
-  Once an artifact is pushed to the registry, it becomes immutable. Tags cannot be modified or reused. 
+  The Distr artifact registry only supports immutable tags. This means that once
+  a tag is pushed to the registry it can't be associated with another digest.
 </Aside>
 
-#### Use the registry 
+TODO: add image
+
+### Artifact Downloads
+
+The Downloads section gives you a chronological list of all artifacts that have been downloaded by which user from which IP adress.
+
+<ThemeImage
+  lightSrc="/src/assets/docs/product/registry/light-artifact-downloads.png"
+  darkSrc="/src/assets/docs/product/registry/dark-artifact-downloads.png"
+  alt="Registry artifacts view"
+/>
+
+Using this information, Distr can provide you the information if a user is on the latest version of your software or not.
+
+## Using the registry as a vendor
+
+### Getting started
 
 To use the registry, you need to set a registry slug at the organization level. This only needs to be configured once in the Distr account settings.
 
 **Set Organization Slug**
 
-<ThemeImage 
+<ThemeImage
   lightSrc="/src/assets/docs/product/registry/light-slug.png"
   darkSrc="/src/assets/docs/product/registry/dark-slug.png"
   alt="Registry artifacts view"
 />
 
-The slug will be used as part of the url for artifact registry. 
+The slug will be used as part of the url for artifact registry.
 
 <Aside type="caution">
-  The registry slug must start with a lower case letter or digit and consist only of lowercase letters, digits, as well as the following special characters: **“.”, “_”, “__”, “-”**.
+  The registry slug must start with a lower case letter or digit and consist
+  only of lowercase letters, digits, as well as the following special
+  characters: **“.”, “_”, “__”, “-”**.
 </Aside>
 
-#### Registry login 
-To login to the registry, you'll have to create a [personal access token](/docs/integrations/personal-access-token/) and use it in the following login command:
+#### Registry login
 
-``` bash
+To login to the registry, you'll have to create a [personal access token (PAT)](/docs/integrations/personal-access-token/) and use it in the following login command:
+
+<Aside type="note">
+  The Distr artifact registry does not require a username when login in. The PAT
+  is directly associated with your user account.
+</Aside>
+
+```bash
 echo "YOUR-ACCESS-TOKEN" | docker login distr-registry:8585 --password-stdin -u -
 ```
-Then you can start tagging and pushing images to your account level registry. 
+
+Then you can start tagging and pushing images to your account level registry.
 
 For example, you can try the following commands to push your own `hello-world` image:
 
-``` bash
+```bash
 docker pull hello-world
-docker tag hello-world distr-registry:8585/distr-registry/hello-world:v1.0.0
-docker push distr-registry:8585/distr-registry/hello-world:v1.0.0
+docker tag hello-world registry.distr.sh/slug/hello-world:1.0.0
+docker push registry.distr.sh/slug/hello-world:1.0.0
 ```
-
-### Downloads
-The *Downloads* section gives you detailed insight into how your end-customers are using your artifacts, think of it as CloudTrail, but for your registry.
-
-<ThemeImage 
-  lightSrc="/src/assets/docs/product/registry/light-artifact-downloads.png"
-  darkSrc="/src/assets/docs/product/registry/dark-artifact-downloads.png"
-  alt="Registry artifacts view"
-/> 
-
-Here, you’ll find:
-
-- A complete log of artifact downloads
-- Metadata like the customer’s IP address, download date, and the specific artifact accessed
-- Download history organized by customer
-
-This visibility helps you better understand how your artifacts are being used and distributed across your customer base.
 
 ### Licenses
 
 <Aside type="note">
-  Registry Licenses is available in beta. Contact us to get early access, we’ll activate it for your account today!
+  Registry Licenses is available in beta. Contact us to get early access!
 </Aside>
 
-*Registry licenses* provide 1:1 access control for end customers, linking directly to specific artifacts, even down to individual versions.
+_Registry licenses_ restricts which artifacts end customers are able to access even down to individual versions.
+One license can be a bundle of multiple artifacts and versions.
+A customer can be associated with multiple licenses.
+A license can have an expiration date, if the expiration date is empty the license will not expire.
 
-Much like application licensing, Registry Licensing lets you:
-
-- Control which customers can access which artifacts
-- Set expiration dates for artifact access
-- Manage authentication for private registry usage
-- Create bundles of artifacts that can be licensed together
-
-#### Creating a License: 
+#### Creating a License:
 
 To create a license, you’ll:
 
 1. Give it a **name**
 2. Set an **expiration date**
 3. **Select the artifacts** you want to include
-4. **Choose the scope**. All tags, specific tags, or just a single version
-5. **Assign an owner**, this is the end customer the license is tied to
+4. **Choose the scope**. All tags, specific tags, or just a single tag.
+5. **Assign the owner** this is the end customer the license is tied to
 
-<ThemeImage 
+<Aside type="note">
+  The scope of a license can't be reduced. So an artifact can't get unassigned
+  from a license.
+</Aside>
+
+<ThemeImage
   lightSrc="/src/assets/docs/product/registry/light-license.png"
   darkSrc="/src/assets/docs/product/registry/dark-license.png"
   alt="Registry artifacts view"
-/> 
+/>
 
-Licensing gives you precise control over software access and ensures that only authorized customers can download and use your distributions.
+## Using the registry as an end-customer
 
-<Aside>
-  Need help with Registry setup? Reach out to our team via the support chat or visit our community [Discord](https://discord.gg/6qqBSAWZfW) for assistance.
-</Aside>
+TODO: Add image that clearly shows the difference between the vendor and customer portal (less download icons etc - indicating the end-customer can only pull, but see the latest version)
