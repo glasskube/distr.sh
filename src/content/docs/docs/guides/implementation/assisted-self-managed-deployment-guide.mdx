@@ -1,0 +1,207 @@
+---
+title: Assisted Self-Managed Implementation Guide
+description: Step-by-step instructions for implementing assisted self-managed customer deployments
+sidebar:
+  order: 2
+---
+
+import {Aside, Steps, Tabs, TabItem} from '@astrojs/starlight/components';
+import ThemeImage from '../../../../../components/ThemeImage.astro';
+import MermaidDiagram from '../../../../../components/MermaidDiagram.astro';
+
+This guide provides practical steps for implementing the Assisted Self-Managed deployment model, where customers maintain control of their infrastructure while allowing deployment agents to automate updates.
+
+## Prerequisites
+
+Before implementing this model, ensure you have:
+
+- An active Distr account with vendor access
+- Software packaged as Docker images or Helm charts
+- Agent installation documentation for customer environments
+
+## Solution Architecture
+
+<MermaidDiagram 
+  chart={`
+graph TD
+
+  subgraph Vendor_Environment
+    hub[Distr Hub]
+    reg[Distr Registry]
+    stor[PostgreSQL]
+    hub --> reg
+    stor --> hub
+  end
+
+  subgraph Customer_Environment
+    customer[End Customer]
+    dockerAgent[Docker Agent]
+    helmAgent[Helm Agent]
+    tfAgent[Terraform Agent]
+    vmApp[App on VM]
+    k8sApp[App on Kubernetes]
+    infra[Terraform Infra]
+
+    hub --> dockerAgent
+    hub --> helmAgent
+    hub --> tfAgent
+
+    customer --> dockerAgent
+    customer --> helmAgent
+    customer --> tfAgent
+
+    dockerAgent --> vmApp
+    helmAgent --> k8sApp
+    tfAgent --> infra
+    reg --> tfAgent
+  end
+`}
+/>
+
+## Implementation Process
+
+<Steps>
+1. **Set Up Your Registry**
+
+   Configure your Distr Registry to host and manage your application artifacts:
+   
+   - Navigate to the Registry section in Distr Hub
+   - Configure your artifact storage settings
+   - Configure access controls for specific customers
+
+2. **Onboard Your Application**
+   
+   Prepare your application for agent-based deployments:
+
+   <Tabs>
+   <TabItem label="Docker Application">
+   - Package your application as Docker images
+   - Create a Docker Compose template
+   - Identify environment variables for customer configuration
+   - [Follow the Docker application onboarding guide](/docs/guides/platform-management/onboarding-a-docker-app/)
+   </TabItem>
+   <TabItem label="Kubernetes Application">
+   - Package your application as Helm charts
+   - Document Helm values for customer configuration
+   - Define default configurations
+   - [Follow the Helm application onboarding guide](/docs/guides/platform-management/onboarding-a-helm-app/)
+   </TabItem>
+   </Tabs>
+
+3. **Configure Agent Settings**
+   
+   Prepare deployment agent configurations:
+   
+   - Navigate to the Agents section in Distr Hub
+   - Configure agent permissions (typically limited to application updates)
+   - Set notification preferences for new versions
+   - Configure update approval settings (customer approval required)
+   - Define monitoring and logging parameters
+
+4. **Prepare Customer Environment**
+   
+   Work with your customer to prepare their environment:
+   
+   - Identify deployment target (virtual machines, Kubernetes clusters)
+   - Confirm network requirements for agent communication
+   - Verify outbound connectivity to Distr Registry
+   - Document any infrastructure prerequisites
+
+5. **Customer Onboarding Process**
+   
+   Guide your customer through the agent setup:
+   
+   - Create customer credentials in Distr Hub
+   - Generate agent installation tokens
+   - Provide installation documentation
+   - Assist with initial agent deployment
+   - Verify agent connectivity to Distr Hub
+
+6. **Initial Application Deployment**
+   
+   Deploy the application through the agent:
+   
+   - Guide the customer through selecting the application in their portal
+   - Assist with environment-specific configuration
+   - Initiate the initial deployment
+   - Verify successful installation
+   - Confirm monitoring and logging are functioning
+
+7. **Establish Update Workflow**
+   
+   Create a process for delivering updates:
+   
+   - Define your update notification process
+   - Document the update approval workflow
+   - Test the update process with a minor version change
+   - Create procedures for handling update failures
+</Steps>
+
+## Agent Installation
+
+For assisted self-managed customers, you'll provide agent installation scripts. These typically look like:
+
+### Docker Agent Installation
+
+```bash
+# Run the installation script
+curl -sSL https://registry.yourdomain.distr.sh/install/agent | DISTR_CUSTOMER_TOKEN=customer-token bash
+
+# Verify installation
+docker ps | grep distr-agent
+```
+
+### Kubernetes Agent Installation
+
+```bash
+# Add the Helm repository
+helm repo add distr https://registry.yourdomain.distr.sh/helm/agent --username customer-username --password customer-token
+
+# Install the agent
+helm install distr-agent distr/agent \
+  --namespace distr-system \
+  --create-namespace \
+  --set customerToken=customer-token
+```
+
+## Agent Communication Model
+
+Explain to your customers that the agent:
+
+- Makes only outbound connections to Distr Hub
+- Does not require inbound access to customer networks
+- Uses TLS for all communications
+- Can work with customer proxies if required
+- Only performs actions explicitly permitted in its configuration
+
+<Aside type="tip">
+  Create an agent security document for customer security teams, detailing the agent's permissions and communication patterns.
+</Aside>
+
+## Update Notification Workflow
+
+With assisted self-managed deployments, the update process typically follows this pattern:
+
+1. You publish a new version to the Distr Registry
+2. Customers receive notifications of available updates
+3. Customers review release notes and approve the update
+4. The agent downloads and deploys the new version
+5. The agent reports deployment success or failure
+6. Both you and the customer can monitor deployment status
+
+## Best Practices
+
+- Provide clear documentation on agent requirements
+- Start with limited agent permissions and expand as trust develops
+- Create detailed release notes for each version
+- Establish SLAs for responding to deployment issues
+- Set up regular check-ins with customers to review deployment health
+
+## Next Steps
+
+After implementing the Assisted Self-Managed model, you might want to:
+
+- [Configure advanced monitoring](/docs/product/vendor-portal/#monitoring) for deployed applications
+- [Set up automated health checks](/docs/product/vendor-portal/#health-checks) for proactive issue detection
+- [Implement usage analytics](/docs/product/vendor-portal/#analytics) to understand feature adoption
+

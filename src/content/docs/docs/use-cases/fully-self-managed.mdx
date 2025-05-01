@@ -1,0 +1,53 @@
+---
+title: Fully Self-Managed Deployment
+description: For customers who manage their own infrastructure with full control and minimal vendor access
+sidebar:
+  order: 1
+---
+
+import {Aside} from '@astrojs/starlight/components';
+import MermaidDiagram from '../../../../components/MermaidDiagram.astro';
+
+Fully Self-Managed deployment gives security-conscious enterprises complete control over their infrastructure with no vendor agents or access. This registry-centric model serves organizations with restrictive security policies, regulatory requirements, or internal policies prohibiting third-party access.
+
+Distr provides a private artifact registry that enables controlled software distribution while respecting customer autonomy. Customers pull updates on their own schedule rather than receiving automated deployments, maintaining full control over when and how updates are deployed.
+
+### Solution Architecture
+
+<MermaidDiagram 
+  chart={`
+graph TD
+    subgraph Vendor Environment
+        HUB[Distr Hub]
+        REG[Distr Registry]
+        HUB --> REG
+        REG -->|Publishes artifacts| CUST1[Customer A]
+        REG -->|Publishes artifacts| CUST2[Customer B]
+    end
+
+    subgraph Customer A Environment
+        CUST1 -->|Pulls artifacts| APP1[Customer A Application]
+        APP1 -->|Deployed to| INFRA1[Customer A Infrastructure]
+    end
+
+    subgraph Customer B Environment
+        CUST2 -->|Pulls artifacts| APP2[Customer B Application]
+        APP2 -->|Deployed to| INFRA2[Customer B Infrastructure]
+    end
+
+    style HUB fill:#f5e6ff,stroke:#6c00b7
+    style REG fill:#f5e6ff,stroke:#6c00b7
+    style CUST1 fill:#e6f7ff,stroke:#0073b7
+    style APP1 fill:#e6f7ff,stroke:#0073b7
+    style INFRA1 fill:#e6f7ff,stroke:#0073b7
+    style CUST2 fill:#e6f7ff,stroke:#0073b7
+    style APP2 fill:#e6f7ff,stroke:#0073b7
+    style INFRA2 fill:#e6f7ff,stroke:#0073b7
+`}
+/>
+
+<Aside type="tip">
+  Ideal for customers with robust DevOps capabilities and strict security requirements around third-party access.
+</Aside>
+
+[Read the implementation guide →](/docs/guides/implementation/fully-self-managed-deployment-guide) 

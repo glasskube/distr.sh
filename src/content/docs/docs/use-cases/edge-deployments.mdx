@@ -1,37 +1,44 @@
 ---
 title: Edge Deployments
-description: An explanation on the Edge environment use-case
+description: Vendor-controlled deployments for decentralized devices and edge environments
 sidebar:
-  order: 4
+  order: 5
 ---
 
-In addition to developing and deploying software for end customers, many Software and AI companies extend their operations to include edge deployments. These involve scenarios where vendors not only provide the software but also ship physical edge devices or fully own and control the deployment target where the software is installed.
+import {Aside} from '@astrojs/starlight/components';
+import MermaidDiagram from '../../../../components/MermaidDiagram.astro';
 
-Edge deployments are characterized by the deployment of software to decentralized, often resource-constrained environments that operate outside of traditional data centers or cloud infrastructures. These environments are typically closer to the source of data generation, enabling faster processing, lower latency, and increased efficiency for specific use cases.
+Edge Deployments enable vendors to manage software on decentralized, often resource-constrained environments that operate outside traditional data centers. In this model, vendors maintain control of both the software and the deployment target - whether IoT devices, custom hardware, or edge infrastructure.
 
-## Examples of Edge Deployments
+Distr provides centralized management and orchestration for edge deployments across industries including healthcare (medical devices), manufacturing (industrial systems), telecommunications (base stations), transportation (fleet management), energy (grid equipment), and defense (secure edge systems).
 
-- **IoT Devices**: Devices such as smart sensors, wearables, or connected appliances equipped with vendor software that collect, process, and analyze data in real-time.
-- **Hardware with Pre-Installed Software**: Custom-built hardware, like medical devices, industrial machinery, or point-of-sale systems, shipped with the vendor software pre-installed and pre-configured.
-- **Satellites**: Space-based systems where vendors deploy software to manage and operate satellites, handle data transmission, or run specialized algorithms directly onboard.
+<MermaidDiagram 
+  chart={`
+graph TD
+    DR[Distr Registry] --> DH[Distr Hub]
+    DH -.-> E1[Edge 1]
+    DH -.-> E2[Edge 2]
+    DH -.-> E3[Edge 3]
+    E1 --> DA1[Agent]
+    E2 --> DA2[Agent]
+    E3 --> DA3[Agent]
+    DA1 --> D1[Device]
+    DA1 --> D2[Device]
+    DA2 --> D3[Device]
+    DA2 --> D4[Device]
+    DA3 --> D5[Device]
+    DA3 --> D6[Device]
+    
+    style DR fill:#f9f,stroke:#333,stroke-width:2px
+    style DH fill:#f9f,stroke:#333,stroke-width:2px
+    style E1 fill:#bbf,stroke:#333,stroke-width:2px
+    style E2 fill:#bbf,stroke:#333,stroke-width:2px
+    style E3 fill:#bbf,stroke:#333,stroke-width:2px
+`}
+/>
 
-## Use cases
+<Aside type="tip">
+  Distr helps overcome typical edge challenges: resource constraints, connectivity issues, security risks, hardware variability, and complex lifecycle management.
+</Aside>
 
-Edge deployments span a wide range of industries and use cases, including:
-
-- **Healthcare**: Medical imaging devices or portable diagnostic tools running vendor software to analyze patient data locally without requiring internet access.
-- **Manufacturing**: Industrial robots and monitoring systems running vendor software to optimize production lines or predict maintenance needs on the factory floor.
-- **Telecommunications**: Network edge devices, such as base stations, running vendor software to enhance connectivity and reduce latency for users in remote areas.
-- **Transportation**: Vehicles running vendor software for fleet management, navigation, or autonomous driving functions.
-- **Energy**: Wind turbines, solar panels, or grid equipment running vendor software to monitor performance and optimize energy generation or distribution.
-- **Defense and Aerospace**: Edge systems used for real-time data analysis, mission-critical tasks, or secure communication in defense or space missions.
-
-## Challenges of Edge Deployments
-
-While edge deployments offer many advantages, they also come with unique challenges that vendors must address:
-
-- **Resource Constraints**: Edge devices often have limited compute power, memory, and storage, requiring vendors to optimize their software for efficiency.
-- **Connectivity Issues**: Many edge environments lack reliable network connectivity, making it difficult to push updates or retrieve telemetry data in real-time.
-- **Security Risks**: Decentralized deployments are more vulnerable to physical tampering and cybersecurity threats, requiring robust encryption and access controls.
-- **Hardware Variability**: Vendors must account for diverse hardware configurations and ensure compatibility across different devices.
-- **Lifecycle Management**: Managing updates, maintenance, and troubleshooting across numerous decentralized devices can be complex and resource-intensive.
+[Read the implementation guide →](/docs/guides/implementation/edge-deployment-guide)

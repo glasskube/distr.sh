@@ -1,42 +1,39 @@
 ---
-title: Deployment Methods
-description: About distr
+title: Deployment methods
+description: Multiple ways to deploy Distr
 sidebar:
   order: 4
 ---
 
 import {Aside} from '@astrojs/starlight/components';
 
-Distr is a versatile platform designed to adapt to user preferences, thanks to its Open Source foundation. It offers two deployment methods: as a SaaS solution hosted, maintained by the Glasskube team or as a self-hosted option.
+## Deployment Methods
 
-Let’s explore the features of each deployment method:
+As an Open Source platform, Distr offers two deployment methods to suit different organizational needs:
 
-## Distr as a SaaS
+### SaaS (Hosted by Distr)
+The fastest way to get started is with our fully-managed SaaS offering:
+- **Maximum flexibility** with immediate access to the latest features and updates
+- Simplified upgrade paths with zero maintenance overhead
+- Support for unlimited applications and customers
+- Single Sign-On (SSO) integration capabilities
+- Advanced credentials encryption for enhanced security
+- Enterprise-grade reliability with no platform management responsibilities
+- Flexible pricing based on usage
 
-Features:
-
-- **Maximum flexibility** with access to the latest **updates** and features.
-- Simplified **upgrade** paths.
-- Support for **unlimited applications**.
-- **Single Sign-On (SSO)**.
-- Advanced **credentials encryptio**n for enhanced security.
-- **No platform management responsibilities**.
-
-<Aside type="note">
-  Get started by creating your Distr account [here](https://signup.distr.sh) and
-  then following the onboarding steps here.
+<Aside type="tip">
+  Get started immediately by creating your Distr account [here](https://signup.distr.sh) and following the onboarding tutorials.
 </Aside>
 
-## Self-Hosted Distr
-
-Features:
-
-- **Complete control** over the deployed version of Distr.
-- **Full responsibility for platform availability and maintenance**.
-- Ideal for users who **prefer to manage their environment** independently.
+### Self-Hosted
+For organizations with specific compliance requirements or those who prefer to manage their own infrastructure:
+- Complete control over your deployment and version management
+- Deploy in your own cloud account or on-premises infrastructure
+- OCI-compatible container images for easy deployment and scaling
+- Full responsibility for platform availability and maintenance
+- Same features and capabilities as the SaaS offering
+- Ideal for users with strict data locality or compliance requirements
 
 <Aside type="note">
-  To get started with the self-hosted option, follow our
-  [guide](/docs/self-hosting/getting-started/) to deploy Distr in your
-  environment.
+  Self-hosted deployments use the same semantic versioning as our SaaS offering, making it easy to stay up-to-date with the latest features. For setup instructions, see our [Self-Hosting Guide](/docs/self-hosting/getting-started).
 </Aside>

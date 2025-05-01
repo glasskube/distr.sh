@@ -21,6 +21,26 @@ export default defineConfig({
           content: `window.addEventListener('load', () => document.querySelector('.site-title').href += 'docs/')`,
         },
         {
+          tag: 'script',
+          attrs: {
+            type: 'module',
+          },
+          content: `
+            document.addEventListener('DOMContentLoaded', async () => {
+              try {
+                const mermaid = await import('https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs');
+                mermaid.default.initialize({ 
+                  startOnLoad: true,
+                  theme: 'default',
+                  securityLevel: 'loose'
+                });
+              } catch (error) {
+                console.error('Failed to initialize Mermaid:', error);
+              }
+            });
+          `,
+        },
+        {
           tag: 'link',
           attrs: {
             rel: 'preconnect',
@@ -65,12 +85,21 @@ export default defineConfig({
           autogenerate: {directory: 'docs/getting-started'},
         },
         {
-          label: 'Guides',
-          autogenerate: {directory: 'docs/guides'},
-        },
-        {
           label: 'Use cases',
           autogenerate: {directory: 'docs/use-cases'},
+        },
+        {
+          label: 'Guides',
+          items: [
+            {
+              label: 'Implementation',
+              autogenerate: {directory: 'docs/guides/implementation'},
+            },
+            {
+              label: 'Platform Management',
+              autogenerate: {directory: 'docs/guides/platform-management'},
+            },
+          ],
         },
         {
           label: 'Product',
@@ -83,6 +112,10 @@ export default defineConfig({
         {
           label: 'Integrations',
           autogenerate: {directory: 'docs/integrations'},
+        },
+        {
+          label: 'FAQs',
+          link: '/docs/faqs',
         },
       ],
       prerender: true,
