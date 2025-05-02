@@ -18,18 +18,18 @@ Distr handles the entire deployment lifecycle in the customer's cloud account th
   chart={`
 graph TD
 
-  subgraph Vendor_Environment
-    hub[Distr Hub]
-    reg[Distr Registry]
-    stor[PostgreSQL]
-    hub --> reg
-    stor --> hub
-  end
+subgraph Vendor_Environment
+hub[Distr Hub]
+reg[Distr Registry]
+stor[PostgreSQL]
+hub --> reg
+stor --> hub
+end
 
-  subgraph Customer_Environment
-    tfAgent[Terraform Agent]
-    dockerAgent[Docker Agent]
-    helmAgent[Helm Agent]
+subgraph Customer_Environment
+tfAgent[Terraform Agent]
+dockerAgent[Docker Agent]
+helmAgent[Helm Agent]
 
     aws[AWS Account]
     gcp[GCP Project]
@@ -52,12 +52,14 @@ graph TD
     dockerAgent --> vmApp
     helmAgent --> k8sApp
     tfAgent --> infra
-  end
+
+end
 `}
 />
 
 <Aside type="tip">
-  BYOC offers SaaS-like operational simplicity with the compliance benefits of customer resource ownership.
+  BYOC offers SaaS-like operational simplicity with the compliance benefits of
+  customer resource ownership.
 </Aside>
 
 [Read the implementation guide →](/docs/guides/implementation/byoc-deployment-guide)

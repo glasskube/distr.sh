@@ -7,7 +7,6 @@ sidebar:
 
 import {Aside, Steps, Tabs, TabItem} from '@astrojs/starlight/components';
 import ThemeImage from '../../../../../components/ThemeImage.astro';
-import MermaidDiagram from '../../../../../components/MermaidDiagram.astro';
 
 This guide provides practical steps for implementing the Fully Self-Managed deployment model, where customers maintain complete control over their infrastructure and deployment processes.
 
@@ -21,108 +20,89 @@ Before implementing this model, ensure you have:
 
 ## Solution Architecture
 
-<MermaidDiagram 
-  chart={`
-graph TD
-    subgraph Vendor Environment
-        HUB[Distr Hub]
-        REG[Distr Registry]
-        HUB --> REG
-        REG -->|Publishes artifacts| CUST1[Customer A]
-        REG -->|Publishes artifacts| CUST2[Customer B]
-    end
-
-    subgraph Customer A Environment
-        CUST1 -->|Pulls artifacts| APP1[Customer A Application]
-        APP1 -->|Deployed to| INFRA1[Customer A Infrastructure]
-    end
-
-    subgraph Customer B Environment
-        CUST2 -->|Pulls artifacts| APP2[Customer B Application]
-        APP2 -->|Deployed to| INFRA2[Customer B Infrastructure]
-    end
-
-    style HUB fill:#f5e6ff,stroke:#6c00b7
-    style REG fill:#f5e6ff,stroke:#6c00b7
-    style CUST1 fill:#e6f7ff,stroke:#0073b7
-    style APP1 fill:#e6f7ff,stroke:#0073b7
-    style INFRA1 fill:#e6f7ff,stroke:#0073b7
-    style CUST2 fill:#e6f7ff,stroke:#0073b7
-    style APP2 fill:#e6f7ff,stroke:#0073b7
-    style INFRA2 fill:#e6f7ff,stroke:#0073b7
-`}
+<ThemeImage
+  lightSrc="/src/assets/docs/use-cases/fully-self-managed/fully-self-managed-light.png"
+  darkSrc="/src/assets/docs/use-cases/fully-self-managed/fully-self-managed-dark.png"
+  alt="Fully-Self-Managed diagram"
 />
 
 ## Implementation Process
 
 <Steps>
 1. **Set Up Your Registry**
-
-   Configure your Distr Registry to host and manage your application artifacts:
-   
-   - Navigate to the Registry section in Distr Hub
-   - Configure your artifact storage settings
-   - Set up versioning policies and retention rules
-   - Configure access controls for specific customers
-
 2. **Onboard Your Application**
-   
-   Prepare your application for distribution through the registry:
-
-   <Tabs>
-   <TabItem label="Docker Application">
-   - Package your application as Docker images
-   - Create a Docker Compose template
-   - Document environment variables and configuration options
-   - [Follow the Docker application onboarding guide](/docs/guides/platform-management/onboarding-a-docker-app/)
-   </TabItem>
-   <TabItem label="Kubernetes Application">
-   - Package your application as Helm charts
-   - Document Helm values and configuration options
-   - Test chart installation with different configurations
-   - [Follow the Helm application onboarding guide](/docs/guides/platform-management/onboarding-a-helm-app/)
-   </TabItem>
-   </Tabs>
-
 3. **Create Customer-Specific Credentials**
-   
-   Generate unique credentials for each customer to access your registry:
-   
-   - Navigate to the Customers section
-   - [Add a new customer](docs/guides/platform-management/onboarding-a-new-customer/) or select an existing one
-   - Generate registry credentials
-   - Configure license and entitlement settings
-
 4. **Prepare Customer Documentation**
-   
-   Create clear documentation for your customers, including:
-   
-   - Registry access instructions
-   - Authentication procedures
-   - Artifact download steps
-   - Deployment instructions for your application
-   - Upgrade procedures
-   - Troubleshooting guidance
-
 5. **Customer Onboarding Process**
-   
-   Guide your customer through the initial setup:
-   
-   - Provide the customer with their registry credentials
-   - Walk them through accessing the registry
-   - Assist with the initial artifact download
-   - Support the first deployment as needed
-   - Verify successful deployment
-
 6. **Establish Update Workflow**
-   
-   Create a process for delivering updates to self-managed customers:
-   
-   - Define your release notification process
-   - Document the update procedure for customers
-   - Create a channel for update-related questions
-   - Establish verification procedures for successful updates
 </Steps>
+
+### 1. Set Up Your Registry
+
+Configure your Distr Registry to host and manage your application artifacts:
+   
+- Navigate to the Registry section in Distr Hub
+- Configure your artifact storage settings
+- Set up versioning policies and retention rules
+- Configure access controls for specific customers
+
+### 2. Onboard Your Application
+
+Prepare your application for distribution through the registry:
+   
+<Tabs>
+<TabItem label="Docker Application">
+- Package your application as Docker images
+- Create a Docker Compose template
+- Document environment variables and configuration options
+- [Follow the Docker application onboarding guide](/docs/guides/platform-management/onboarding-a-docker-app/)
+</TabItem>
+<TabItem label="Kubernetes Application">
+- Package your application as Helm charts
+- Document Helm values and configuration options
+- Test chart installation with different configurations
+- [Follow the Helm application onboarding guide](/docs/guides/platform-management/onboarding-a-helm-app/)
+</TabItem>
+</Tabs>
+
+### 3. Create Customer-Specific Credentials
+
+Generate unique credentials for each customer to access your registry:
+   
+- Navigate to the Customers section
+- [Add a new customer](docs/guides/platform-management/onboarding-a-new-customer/) or select an existing one
+- Generate registry credentials
+- Configure license and entitlement settings
+
+### 4. Prepare Customer Documentation
+
+Create clear documentation for your customers, including:
+   
+- Registry access instructions
+- Authentication procedures
+- Artifact download steps
+- Deployment instructions for your application
+- Upgrade procedures
+- Troubleshooting guidance
+
+### 5. Customer Onboarding Process
+
+Guide your customer through the initial setup:
+   
+- Provide the customer with their registry credentials
+- Walk them through accessing the registry
+- Assist with the initial artifact download
+- Support the first deployment as needed
+- Verify successful deployment
+
+### 6. Establish Update Workflow
+
+Create a process for delivering updates to self-managed customers:
+   
+- Define your release notification process
+- Document the update procedure for customers
+- Create a channel for update-related questions
+- Establish verification procedures for successful updates
 
 ## Registry Access Methods
 
@@ -163,7 +143,8 @@ Even with fully self-managed deployments, Distr provides visibility into:
 Access this information from the Analytics section in your Distr Hub dashboard.
 
 <Aside type="tip">
-  Consider creating customer-specific packages with pre-configured connection details to streamline the onboarding process.
+  Consider creating customer-specific packages with pre-configured connection
+  details to streamline the onboarding process.
 </Aside>
 
 ## Best Practices
@@ -181,4 +162,3 @@ After implementing the Fully Self-Managed model, you might want to:
 - [Configure license management](/docs/guides/license-mgmt/) for more granular control
 - [Set up customer-specific artifact repositories](/docs/product/vendor-portal/#customer-specific-repositories)
 - [Implement usage analytics](/docs/product/vendor-portal/#analytics) to track adoption
-

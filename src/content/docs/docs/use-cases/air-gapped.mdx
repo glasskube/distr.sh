@@ -6,7 +6,7 @@ sidebar:
 ---
 
 import {Aside} from '@astrojs/starlight/components';
-import MermaidDiagram from '../../../../components/MermaidDiagram.astro';
+import ThemeImage from '../../../../components/ThemeImage.astro';
 
 Distr supports air-gapped environments where strict security requirements demand physical or logical isolation from public networks. The air-gapped deployment model serves organizations in regulated industries (defense, finance, critical infrastructure) that cannot allow external connectivity or agents in their environment.
 
@@ -14,37 +14,15 @@ Distr offers two approaches: **IP Whitelisting** for environments that can permi
 
 ### Solution Architecture
 
-<MermaidDiagram 
-  chart={`
-graph TD
-    DR[Distr Registry] -.-> FW[Firewall Gate / Physical Device]
-    FW --> CR[Customer Registry]
-    CR --> CD1[Dev]
-    CR --> CD2[Staging]
-    CR --> CD3[Production]
-    CD1 --> A1[Dev-Application]
-    CD2 --> A2[Staging-Application]
-    CD3 --> A3[Prod-Application]
-
-    subgraph "Customer Environment"
-    FW
-    CR
-    CD1
-    CD2
-    CD3
-    A1
-    A2
-    A3
-    end
-
-    style DR fill:#f9f,stroke:#333,stroke-width:2px
-    style FW fill:#bbf,stroke:#333,stroke-width:2px
-    style CR fill:#bfb,stroke:#333,stroke-width:2px
-`}
+<ThemeImage
+  lightSrc="/src/assets/docs/use-cases/airgapped/airgapped-light.png"
+  darkSrc="/src/assets/docs/use-cases/airgapped/airgapped-dark.png"
+  alt="Fully-Self-Managed diagram"
 />
 
 <Aside type="tip">
-  This approach allows you to serve security-conscious customers without compromising their security posture or compliance requirements.
+  This approach allows you to serve security-conscious customers without
+  compromising their security posture or compliance requirements.
 </Aside>
 
 [Read the implementation guide →](/docs/guides/implementation/air-gapped-guide)

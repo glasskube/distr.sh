@@ -11,7 +11,9 @@ import ThemeImage from '../../../../components/ThemeImage.astro';
 The Distr Artifact Registry is a built-in, [OCI-compliant](https://github.com/opencontainers/distribution-spec?tab=readme-ov-file) registry designed for software vendors who need full control over how their software artifacts are distributed to end-customers. It supports container images, Helm charts, SBOMs, and other OCI artifacts, all managed directly within your [Distr account](https://signup.distr.sh/).
 
 <Aside type="note">
-  The Distr Artifacts Registry is the core feature that enables the [Fully Self-Managed Customer](/docs/use-cases/fully-managed/) and [Air gapped](/docs/use-cases/air-gapped/) use cases.
+  The Distr Artifacts Registry is the core feature that enables the [Fully
+  Self-Managed Customer](/docs/use-cases/fully-managed/) and [Air
+  gapped](/docs/use-cases/air-gapped/) use cases.
 </Aside>
 
 Use it to publish versioned artifacts, enforce licensing rules, and track consumption across your customer base, with full visibility and fine-grained access control.
@@ -24,7 +26,7 @@ Use it to publish versioned artifacts, enforce licensing rules, and track consum
 - **Open standards**: Built on the OCI specification and compatible with existing tooling (Docker, ORAS, etc.)
 - **Built-in licensing (beta)**: Bind artifacts to licenses for fine-grained customer access control
 
-## Registry User Flow 
+## Registry User Flow
 
 As a vendor, here’s how you’ll typically use the registry:
 
@@ -36,17 +38,16 @@ As a vendor, here’s how you’ll typically use the registry:
 
 Want a quick overview of how it works? Watch this short walkthrough:
 
-<iframe 
-  width="560" 
-  height="315" 
-  src="https://www.youtube.com/embed/gM9WCx61owQ?si=rWP7n4UR1liAKi_6" 
-  title="YouTube video player" 
-  frameborder="0" 
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-  referrerpolicy="strict-origin-when-cross-origin" 
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/gM9WCx61owQ?si=rWP7n4UR1liAKi_6"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
   allowfullscreen
-  style="width: 560px; height: 315px; max-width: 100%; aspect-ratio: 16/9; border-radius: 8px; margin: 2rem auto; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-</iframe>
+  style="width: 560px; height: 315px; max-width: 100%; aspect-ratio: 16/9; border-radius: 8px; margin: 2rem auto; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></iframe>
 
 Let’s take a closer look at each component.
 
@@ -54,54 +55,57 @@ Let’s take a closer look at each component.
 
 The Registry section consists of three main components:
 
-
 ### Artifacts
 
-The *Artifacts* section, underneath the Registry drop down on the left side panel allows you to:
+The _Artifacts_ section, underneath the Registry drop down on the left side panel allows you to:
+
 - Upload binary artifacts and software components
 - Manage different versions of your artifacts
 - Easily access artifact IDs
 - View usage metrics
 
-
 Artifacts stored in the registry can be anything from executable binaries to configuration files, documentation, or any other resources your customers might need.
 
 <Aside type="note">
-  Once an artifact is pushed to the registry, it becomes immutable. Tags cannot be modified or reused. 
+  Once an artifact is pushed to the registry, it becomes immutable. Tags cannot
+  be modified or reused.
 </Aside>
 
-#### Use the registry 
+#### Use the registry
 
 To use the registry, you need to set a registry slug at the organization level. This only needs to be configured once in the Distr account settings.
 
 **Set Organization Slug**
 
-
-The slug will be used as part of the url for artifact registry. 
+The slug will be used as part of the url for artifact registry.
 
 <Aside type="caution">
-  The registry slug must start with a lower case letter or digit and consist only of lowercase letters, digits, as well as the following special characters: **“.”, “_”, “__”, “-”**.
+  The registry slug must start with a lower case letter or digit and consist
+  only of lowercase letters, digits, as well as the following special
+  characters: **“.”, “_”, “__”, “-”**.
 </Aside>
 
-#### Registry login 
+#### Registry login
+
 To login to the registry, you'll have to create a [personal access token](/docs/integrations/personal-access-token/) and use it in the following login command:
 
-``` bash
+```bash
 echo "YOUR-ACCESS-TOKEN" | docker login distr-registry:8585 --password-stdin -u -
 ```
-Then you can start tagging and pushing images to your account level registry. 
+
+Then you can start tagging and pushing images to your account level registry.
 
 For example, you can try the following commands to push your own `hello-world` image:
 
-``` bash
+```bash
 docker pull hello-world
 docker tag hello-world distr-registry:8585/distr-registry/hello-world:v1.0.0
 docker push distr-registry:8585/distr-registry/hello-world:v1.0.0
 ```
 
 ### Downloads
-The *Downloads* section gives you detailed insight into how your end-customers are using your artifacts, think of it as CloudTrail, but for your registry.
 
+The _Downloads_ section gives you detailed insight into how your end-customers are using your artifacts, think of it as CloudTrail, but for your registry.
 
 Here, you’ll find:
 
@@ -114,10 +118,11 @@ This visibility helps you better understand how your artifacts are being used an
 ### Licenses
 
 <Aside type="note">
-  Registry Licenses is available in beta. Contact us to get early access, we’ll activate it for your account today!
+  Registry Licenses is available in beta. Contact us to get early access, we’ll
+  activate it for your account today!
 </Aside>
 
-*Registry licenses* provide 1:1 access control for end customers, linking directly to specific artifacts, even down to individual versions.
+_Registry licenses_ provide 1:1 access control for end customers, linking directly to specific artifacts, even down to individual versions.
 
 Much like application licensing, Registry Licensing lets you:
 
@@ -126,7 +131,7 @@ Much like application licensing, Registry Licensing lets you:
 - Manage authentication for private registry usage
 - Create bundles of artifacts that can be licensed together
 
-#### Creating a License: 
+#### Creating a License:
 
 To create a license, you’ll:
 
@@ -136,9 +141,9 @@ To create a license, you’ll:
 4. **Choose the scope**. All tags, specific tags, or just a single version
 5. **Assign an owner**, this is the end customer the license is tied to
 
-
 Licensing gives you precise control over software access and ensures that only authorized customers can download and use your distributions.
 
 <Aside>
-  Need help with Registry setup? Reach out to our team via the support chat or visit our community [Discord](https://discord.gg/6qqBSAWZfW) for assistance.
+  Need help with Registry setup? Reach out to our team via the support chat or
+  visit our community [Discord](https://discord.gg/6qqBSAWZfW) for assistance.
 </Aside>

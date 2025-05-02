@@ -1,0 +1,67 @@
+---
+title: Core Concepts
+description: Understanding the core concepts of Distr
+sidebar:
+  order: 2
+---
+
+import {Aside} from '@astrojs/starlight/components';
+import MermaidDiagram from '../../../../components/MermaidDiagram.astro';
+
+Distr is built around several key concepts that work together to enable flexible software distribution. Understanding these concepts will help you get the most out of the platform.
+
+## Distribution Models
+
+Distr supports five distinct deployment models to meet different customer requirements:
+
+- **[Fully Self-Managed](/docs/use-cases/fully-self-managed/)**: For customers who maintain complete control over their infrastructure with no vendor agents, using Distr Registry for artifact delivery.
+- **[Assisted Self-Managed](/docs/use-cases/assisted-self-managed/)**: Balances customer infrastructure control with vendor-provided deployment agents that simplify updates and maintenance.
+- **[Bring Your Own Cloud (BYOC)](/docs/use-cases/byoc/)**: Fully vendor-managed deployments within customer-owned cloud subscriptions, ideal for regulatory compliance.
+- **[Air-Gapped Environments](/docs/use-cases/air-gapped/)**: For high-security scenarios with physical or logical network isolation, offering secure artifact delivery through whitelisted connections or physical media.
+- **[Edge Deployments](/docs/use-cases/edge-deployments/)**: For vendor-controlled deployments to decentralized edge locations, IoT devices, or specialized hardware.
+
+Each model leverages Distr's flexible architecture to provide the right balance of control, security, and operational efficiency.
+
+## Key Components
+
+### Distr Hub
+
+[Distr Hub](/docs/product/distr-hub/) is the central control plane for managing users, customers, and application or registry configurations. It also provides monitoring and observability features and integrates seamlessly with your CI/CD pipelines.
+
+### Distr Registry
+
+[Distr Registry](/docs/product/registry/) is an OCI-compliant artifact registry that stores Docker images, Helm charts, and other OCI artifacts. It tracks artifact usage across customer environments, enforces licensing rules to control access, and provides end customers with a private registry containing only the artifacts they’re licensed to use.
+
+### Distr Agents
+
+[Distr Agents](/docs/product/agents/) are lightweight deployment agents that run in the customer’s target environment. They pull configurations from Distr Hub, execute deployment operations locally, and report status back to the vendor portal.
+
+### Licenses
+
+Distr has two native license types:
+
+**Application Licenses:** These create a 1:1 binding between an artifact and a customer. Access can be granted down to the version level. An application license is required for an end customer to access the application via the customer portal.
+
+**Artifact Licenses:** These allow multiple artifacts to be bound to a single customer license. Access is granted at the artifact tag level. End customers will only be able to pull the specific artifact versions they’re licensed for.
+
+### Portal System
+
+Two interfaces designed for different users:
+
+- **Vendor Portal**: Complete management console for software vendors
+- **Customer Portal**: Simplified, white-labeled interface for end customers
+
+## API and Extensibility
+
+Distr provides programmatic access through:
+
+- **REST API**: For integration with external systems
+- **SDK**: For embedding Distr functionality in other applications
+
+The [API](/docs/integrations/api/) and [SDK](/docs/integrations/sdk/) use the same underlying systems as the web interface, ensuring consistent behavior regardless of access method.
+
+<Aside type="tip">
+  Ready to apply these concepts? Follow our [quickstart
+  guide](/docs/getting-started/quickstart/) to set up your first distribution
+  workflow.
+</Aside>

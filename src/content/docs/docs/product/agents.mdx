@@ -11,7 +11,9 @@ import ThemeImage from '../../../../components/ThemeImage.astro';
 Deployment Agents are a core component of the Distr platform, designed to run within customer environments alongside vendor applications. These lightweight agents bridge the gap between the Distr Hub and deployment targets, enabling comprehensive lifecycle management requiring minimal access to customer infrastructure.
 
 <Aside type="note">
-  Distr deployment agents are the key components that enable the [Assisted Self-Managed Customer](/docs/use-cases/assisted-self-managed/) and [BYOC](/docs/use-cases/byoc/) use cases.
+  Distr deployment agents are the key components that enable the [Assisted
+  Self-Managed Customer](/docs/use-cases/assisted-self-managed/) and
+  [BYOC](/docs/use-cases/byoc/) use cases.
 </Aside>
 
 ## Agent Types
@@ -22,13 +24,14 @@ Distr offers specialized agents for different deployment tools, each designed to
 
 The Docker Compose agent is specifically designed for container-based deployments, providing comprehensive management of both single and multi-container applications. It handles application updates with minimal downtime, collects container health metrics and logs, and supports environment variable templating for flexible configuration.
 
-<ThemeImage 
+<ThemeImage
   lightSrc="/src/assets/docs/product/deployment-agents/docker-agent-light.png"
   darkSrc="/src/assets/docs/product/deployment-agents/docker-agent-dark.png"
   alt="Docker Compose Agent interface"
 />
 
 #### Configuration Steps
+
 1. Navigate to the Deployments panel in the Agents section
 2. Click "+ Add deployment"
 3. Provide a deployment name
@@ -42,13 +45,14 @@ The Docker Compose agent is specifically designed for container-based deployment
 
 The Helm agent specializes in Kubernetes deployments, managing the complete lifecycle of Helm charts in customer environments. It handles chart installation and upgrades, monitors Kubernetes resource health, supports customer-specific value overrides, and provides rollback capabilities for failed deployments.
 
-<ThemeImage 
+<ThemeImage
   lightSrc="/src/assets/docs/product/deployment-agents/helm-agent-light.png"
   darkSrc="/src/assets/docs/product/deployment-agents/helm-agent-dark.png"
   alt="Helm Agent interface"
 />
 
 #### Configuration Steps
+
 1. Access the Deployments panel in the Agents section
 2. Create a new deployment
 3. Install the Helm agent
@@ -59,7 +63,8 @@ The Helm agent specializes in Kubernetes deployments, managing the complete life
 ### Terraform Agent (Coming Soon)
 
 <Aside type="note">
-  Our upcoming Terraform agent will unlock powerful infrastructure-as-code capabilities, particularly for Bring Your Own Cloud (BYOC) scenarios.
+  Our upcoming Terraform agent will unlock powerful infrastructure-as-code
+  capabilities, particularly for Bring Your Own Cloud (BYOC) scenarios.
 </Aside>
 
 The Terraform agent will revolutionize infrastructure management by enabling the deployment of complete environments using Terraform modules stored in the Distr Registry. This agent will manage both infrastructure and applications, handle customer-specific cloud resource variables, and maintain infrastructure state tracking and versioning.
@@ -72,7 +77,7 @@ The Deployment Agents section of Distr consists of three main components that wo
 
 ### Applications
 
-<ThemeImage 
+<ThemeImage
   lightSrc="/src/assets/docs/product/deployment-agents/apps-light.png"
   darkSrc="/src/assets/docs/product/deployment-agents/apps-dark.png"
   alt="Applications interface"
@@ -81,12 +86,13 @@ The Deployment Agents section of Distr consists of three main components that wo
 The Applications section provides vendors with a dedicated space to configure and manage their software offerings. Using either Docker Compose files or Helm charts, vendors can define their application templates, specify which environment variables are configurable by customers, and manage different versions of their applications. This section serves as the foundation for all subsequent deployment activities.
 
 For detailed instructions on adding applications to Distr, see our platform management guides:
+
 - [Onboarding a Docker Application](/docs/guides/platform-management/onboarding-a-docker-app/)
 - [Onboarding a Helm Application](/docs/guides/platform-management/onboarding-a-helm-app/)
 
 ### Deployments
 
-<ThemeImage 
+<ThemeImage
   lightSrc="/src/assets/docs/product/deployment-agents/deploy-light.png"
   darkSrc="/src/assets/docs/product/deployment-agents/deploy-dark.png"
   alt="Deployments interface"
@@ -100,7 +106,7 @@ Customers, on the other hand, use this section to access and manage their purcha
 
 ### Licenses
 
-<ThemeImage 
+<ThemeImage
   lightSrc="/src/assets/docs/product/deployment-agents/licenses-light.png"
   darkSrc="/src/assets/docs/product/deployment-agents/licenses-dark.png"
   alt="Licenses interface"
@@ -109,7 +115,8 @@ Customers, on the other hand, use this section to access and manage their purcha
 The Licenses section provides granular control over application access through 1:1 binding between applications (or specific versions) and individual customers. This feature enables precise license management and access control, ensuring that only authorized customers can deploy specific applications or versions.
 
 <Aside type="note">
-  The license binding feature is currently in beta. Contact us to request access and learn more about its capabilities.
+  The license binding feature is currently in beta. Contact us to request access
+  and learn more about its capabilities.
 </Aside>
 
 ## Agent Capabilities
@@ -117,5 +124,7 @@ The Licenses section provides granular control over application access through 1
 All Distr agents share a common set of core capabilities designed to ensure reliable and secure deployments. These include guided installation processes, automated application updates, comprehensive health monitoring, log aggregation for troubleshooting, and secure, outbound-only communication with the Distr Hub.
 
 <Aside>
-  We are also developing an embeddable agent SDK that can be integrated directly into vendor applications, providing a more seamless deployment experience with minimal additional components. For more information, feel free to reach out.
+  We are also developing an embeddable agent SDK that can be integrated directly
+  into vendor applications, providing a more seamless deployment experience with
+  minimal additional components. For more information, feel free to reach out.
 </Aside>

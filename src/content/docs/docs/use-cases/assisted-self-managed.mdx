@@ -18,22 +18,22 @@ Distr's agents pull application definitions and artifacts from the Distr Hub, de
   chart={`
 graph TD
 
-  subgraph Vendor_Environment
-    hub[Distr Hub]
-    reg[Distr Registry]
-    stor[PostgreSQL]
-    hub --> reg
-    stor --> hub
-  end
+subgraph Vendor_Environment
+hub[Distr Hub]
+reg[Distr Registry]
+stor[PostgreSQL]
+hub --> reg
+stor --> hub
+end
 
-  subgraph Customer_Environment
-    customer[End Customer]
-    dockerAgent[Docker Agent]
-    helmAgent[Helm Agent]
-    tfAgent[Terraform Agent]
-    vmApp[App on VM]
-    k8sApp[App on Kubernetes]
-    infra[Terraform Infra]
+subgraph Customer_Environment
+customer[End Customer]
+dockerAgent[Docker Agent]
+helmAgent[Helm Agent]
+tfAgent[Terraform Agent]
+vmApp[App on VM]
+k8sApp[App on Kubernetes]
+infra[Terraform Infra]
 
     hub --> dockerAgent
     hub --> helmAgent
@@ -47,12 +47,15 @@ graph TD
     helmAgent --> k8sApp
     tfAgent --> infra
     reg --> tfAgent
-  end
+
+end
 `}
 />
 
 <Aside type="tip">
-  The agent acts only as a facilitator, pulling updates and applying them according to customer-defined policies. It does not provide vendor access to customer infrastructure.
+  The agent acts only as a facilitator, pulling updates and applying them
+  according to customer-defined policies. It does not provide vendor access to
+  customer infrastructure.
 </Aside>
 
 [Read the implementation guide →](/docs/guides/implementation/assisted-self-managed-deployment-guide)

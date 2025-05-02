@@ -7,12 +7,13 @@ sidebar:
 
 import {Aside, Steps, Tabs, TabItem} from '@astrojs/starlight/components';
 import ThemeImage from '../../../../../components/ThemeImage.astro';
-import MermaidDiagram from '../../../../../components/MermaidDiagram.astro';
 
 This guide provides practical steps for implementing the Air-Gapped deployment model for customers with highly restricted environments isolated from public networks.
 
 <Aside type="note">
-  Air-gapped deployments require special consideration and often custom solutions. Contact our team for personalized assistance with implementing this model.
+  Air-gapped deployments require special consideration and often custom
+  solutions. Contact our team for personalized assistance with implementing this
+  model.
 </Aside>
 
 ## Prerequisites
@@ -26,35 +27,10 @@ Before implementing this model, ensure you have:
 
 ### Solution Architecture
 
-### Solution Architecture
-
-<MermaidDiagram 
-  chart={`
-graph TD
-    DR[Distr Registry] -.-> FW[Firewall Gate / Physical Device]
-    FW --> CR[Customer Registry]
-    CR --> CD1[Dev]
-    CR --> CD2[Staging]
-    CR --> CD3[Production]
-    CD1 --> A1[Dev-Application]
-    CD2 --> A2[Staging-Application]
-    CD3 --> A3[Prod-Application]
-
-    subgraph "Customer Environment"
-    FW
-    CR
-    CD1
-    CD2
-    CD3
-    A1
-    A2
-    A3
-    end
-
-    style DR fill:#f9f,stroke:#333,stroke-width:2px
-    style FW fill:#bbf,stroke:#333,stroke-width:2px
-    style CR fill:#bfb,stroke:#333,stroke-width:2px
-`}
+<ThemeImage
+  lightSrc="/src/assets/docs/use-cases/airgapped/airgapped-light.png"
+  darkSrc="/src/assets/docs/use-cases/airgapped/airgapped-dark.png"
+  alt="Fully-Self-Managed diagram"
 />
 
 ## Implementation Options
@@ -68,65 +44,72 @@ This approach works for environments that can selectively allow outbound connect
 
 <Steps>
 1. **Set Up Registry with Fixed IP**
-
-   Configure your Distr Registry with fixed, dedicated IP addresses:
-   
-   - Contact Distr support to request a fixed IP allocation
-   - Document all IP addresses and network requirements
-   - Configure your registry for enhanced security controls
-   - Set up multi-factor authentication for all access
-
 2. **Onboard Your Application**
-   
-   Prepare your application with air-gapped considerations:
-   
-   - Package your application as Docker images or Helm charts
-   - Ensure all dependencies are included in the packages
-   - Remove any external service dependencies
-   - Include comprehensive offline documentation
-   - Prepare offline licensing mechanisms
-
 3. **Customer Network Configuration**
-   
-   Work with your customer to establish network access:
-   
-   - Provide the fixed IP addresses for whitelisting
-   - Document required ports and protocols
-   - Define network traffic patterns for security review
-   - Create a security document for the customer's security team
-   - Provide sample firewall rules for common platforms
-
 4. **Create Customer-Specific Credentials**
-   
-   Generate secure credentials for registry access:
-   
-   - Create dedicated customer access with enhanced security
-   - Configure IP-based access restrictions
-   - Implement certificate-based authentication
-   - Set up audit logging for all access attempts
-   - Configure expiring credentials with rotation policies
-
 5. **Verification Process**
-   
-   Establish a verification process:
-   
-   - Create a testing protocol for initial connectivity
-   - Implement verification of artifact integrity
-   - Document the verification process for compliance
-   - Prepare troubleshooting guides for connectivity issues
-   - Test the entire process in a simulated environment
-
 6. **Establish Secure Update Workflow**
-   
-   Create a secure update process:
-   
-   - Define your release notification process
-   - Implement cryptographic signing of all artifacts
-   - Create a verification mechanism for customers
-   - Establish a secondary verification channel
-   - Document the entire update workflow
 </Steps>
 
+### 1. Set Up Registry with Fixed IP
+
+Configure your Distr Registry with fixed, dedicated IP addresses:
+
+- Contact Distr support to request a fixed IP allocation
+- Document all IP addresses and network requirements
+- Configure your registry for enhanced security controls
+- Set up multi-factor authentication for all access
+
+### 2. Onboard Your Application
+
+Prepare your application with air-gapped considerations:
+
+- Package your application as Docker images or Helm charts
+- Ensure all dependencies are included in the packages
+- Remove any external service dependencies
+- Include comprehensive offline documentation
+- Prepare offline licensing mechanisms
+
+### 3. Customer Network Configuration
+
+Work with your customer to establish network access:
+
+- Provide the fixed IP addresses for whitelisting
+- Document required ports and protocols
+- Define network traffic patterns for security review
+- Create a security document for the customer's security team
+- Provide sample firewall rules for common platforms
+
+### 4. Create Customer-Specific Credentials
+
+Generate secure credentials for registry access:
+
+- Create dedicated customer access with enhanced security
+- Configure IP-based access restrictions
+- Implement certificate-based authentication
+- Set up audit logging for all access attempts
+- Configure expiring credentials with rotation policies
+
+### 5. Verification Process
+
+Establish a verification process:
+
+- Create a testing protocol for initial connectivity
+- Implement verification of artifact integrity
+- Document the verification process for compliance
+- Prepare troubleshooting guides for connectivity issues
+- Test the entire process in a simulated environment
+
+### 6. Establish Secure Update Workflow
+
+Create a secure update process:
+
+- Define your release notification process
+- Implement cryptographic signing of all artifacts
+- Create a verification mechanism for customers
+- Establish a secondary verification channel
+- Document the entire update workflow
+   
 </TabItem>
 <TabItem label="Fully Air-Gapped Approach">
 
@@ -134,55 +117,61 @@ This approach is for environments with complete isolation from external networks
 
 <Steps>
 1. **Self-Hosted Registry Setup**
-
-   Prepare a self-hosted registry solution:
-   
-   - Contact Distr support to request self-hosted registry software
-   - Document hardware and software requirements
-   - Create deployment instructions for air-gapped environments
-   - Implement enhanced security controls for the registry
-   - Define backup and recovery procedures
-
 2. **Onboard Your Application**
-   
-   Prepare your application with complete offline operation:
-   
-   - Package your application with all dependencies
-   - Remove any online requirements or check-ins
-   - Include offline activation mechanisms
-   - Create offline documentation
-   - Implement offline telemetry storage
-
 3. **Physical Transfer Mechanism**
-   
-   Establish secure physical transfer procedures:
-   
-   - Define secure media types (encrypted drives, secure USB devices)
-   - Create chain-of-custody documentation
-   - Implement cryptographic verification of contents
-   - Define secure media handling procedures
-   - Create secure media destruction protocols
-
 4. **Customer Environment Setup**
-   
-   Prepare documentation for customer setup:
-   
-   - Create detailed installation instructions
-   - Document registry import procedures
-   - Provide verification mechanisms for imports
-   - Include troubleshooting guides for common issues
-   - Define backup and recovery procedures
-
 5. **Update Distribution Process**
-   
-   Establish a process for delivering updates:
-   
-   - Define release schedule and notification process
-   - Create a secure packaging process for updates
-   - Document update verification procedures
-   - Include rollback instructions
-   - Establish a physical delivery schedule and procedure
 </Steps>
+
+### 1. Self-Hosted Registry Setup
+
+Prepare a self-hosted registry solution:
+
+- Contact Distr support to request self-hosted registry software
+- Document hardware and software requirements
+- Create deployment instructions for air-gapped environments
+- Implement enhanced security controls for the registry
+- Define backup and recovery procedures
+
+### 2. Onboard Your Application
+
+Prepare your application with complete offline operation:
+
+- Package your application with all dependencies
+- Remove any online requirements or check-ins
+- Include offline activation mechanisms
+- Create offline documentation
+- Implement offline telemetry storage
+
+### 3. Physical Transfer Mechanism
+
+Establish secure physical transfer procedures:
+
+- Define secure media types (encrypted drives, secure USB devices)
+- Create chain-of-custody documentation
+- Implement cryptographic verification of contents
+- Define secure media handling procedures
+- Create secure media destruction protocols
+
+### 4. Customer Environment Setup
+
+Prepare documentation for customer setup:
+
+- Create detailed installation instructions
+- Document registry import procedures
+- Provide verification mechanisms for imports
+- Include troubleshooting guides for common issues
+- Define backup and recovery procedures
+
+### 5. Update Distribution Process
+
+Establish a process for delivering updates:
+
+- Define release schedule and notification process
+- Create a secure packaging process for updates
+- Document update verification procedures
+- Include rollback instructions
+- Establish a physical delivery schedule and procedure
 
 </TabItem>
 </Tabs>
@@ -249,7 +238,8 @@ Air-gapped deployments require exceptional security measures:
 - All access should be strictly controlled and audited
 
 <Aside type="tip">
-  Consider creating a dedicated security procedures document specifically for your air-gapped customers.
+  Consider creating a dedicated security procedures document specifically for
+  your air-gapped customers.
 </Aside>
 
 ## Compliance Documentation
@@ -277,6 +267,3 @@ After implementing the Air-Gapped model, you might want to:
 - [Set up specialized support procedures](/docs/guides/admin/support-procedures/) for air-gapped customers
 - [Create customized security documentation](/docs/guides/admin/security-documentation/) for your software
 - [Implement enhanced compliance reporting](/docs/guides/admin/compliance-reporting/) for regulated industries
-
-
-
