@@ -6,7 +6,7 @@ sidebar:
 ---
 
 import {Aside} from '@astrojs/starlight/components';
-import MermaidDiagram from '../../../../components/MermaidDiagram.astro';
+import ThemeImage from '../../../../components/ThemeImage.astro';
 
 Assisted Self-Managed deployment strikes the balance between customer control and vendor assistance. Applications run in customer-controlled infrastructure while lightweight Distr Agents help manage deployments and updates. This model is ideal for organizations that want to maintain their own infrastructure while minimizing operational overhead.
 
@@ -14,42 +14,10 @@ Distr's agents pull application definitions and artifacts from the Distr Hub, de
 
 ### Solution Architecture
 
-<MermaidDiagram 
-  chart={`
-graph TD
-
-subgraph Vendor_Environment
-hub[Distr Hub]
-reg[Distr Registry]
-stor[PostgreSQL]
-hub --> reg
-stor --> hub
-end
-
-subgraph Customer_Environment
-customer[End Customer]
-dockerAgent[Docker Agent]
-helmAgent[Helm Agent]
-tfAgent[Terraform Agent]
-vmApp[App on VM]
-k8sApp[App on Kubernetes]
-infra[Terraform Infra]
-
-    hub --> dockerAgent
-    hub --> helmAgent
-    hub --> tfAgent
-
-    customer --> dockerAgent
-    customer --> helmAgent
-    customer --> tfAgent
-
-    dockerAgent --> vmApp
-    helmAgent --> k8sApp
-    tfAgent --> infra
-    reg --> tfAgent
-
-end
-`}
+<ThemeImage
+  lightSrc="/src/assets/docs/use-cases/assisted-self-managed/assisted-self-managed-light.png"
+  darkSrc="/src/assets/docs/use-cases/assisted-self-managed/assisted-self-managed-dark.png"
+  alt="Assisted-Self-Managed diagram"
 />
 
 <Aside type="tip">

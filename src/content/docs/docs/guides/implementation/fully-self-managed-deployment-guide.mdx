@@ -31,10 +31,10 @@ Before implementing this model, ensure you have:
 <Steps>
 1. **Set Up Your Registry**
 2. **Onboard Your Application**
-3. **Create Customer-Specific Credentials**
 4. **Prepare Customer Documentation**
-5. **Customer Onboarding Process**
+5. **Onboard a customer**
 6. **Establish Update Workflow**
+
 </Steps>
 
 ### 1. Set Up Your Registry
@@ -131,29 +131,6 @@ helm repo update
 helm install your-application your-repo/your-application --version 1.0.0
 ```
 
-## Monitoring Usage
-
-Even with fully self-managed deployments, Distr provides visibility into:
-
-- Which artifacts customers have downloaded
-- When downloads occurred
-- Which versions are being used
-- License compliance status
-
-Access this information from the Analytics section in your Distr Hub dashboard.
-
-<Aside type="tip">
-  Consider creating customer-specific packages with pre-configured connection
-  details to streamline the onboarding process.
-</Aside>
-
-## Best Practices
-
-- Maintain detailed release notes for each version
-- Establish a regular communication channel for updates
-- Create clear rollback procedures for customers
-- Provide offline documentation in case customers can't access your support portal
-- Consider offering installation validation services where customers can share logs for verification
 
 ## Next Steps
 

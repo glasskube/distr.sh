@@ -6,7 +6,7 @@ sidebar:
 ---
 
 import {Aside} from '@astrojs/starlight/components';
-import MermaidDiagram from '../../../../components/MermaidDiagram.astro';
+import ThemeImage from '../../../../components/ThemeImage.astro';
 
 Bring Your Own Cloud (BYOC) provides fully vendor-managed operations within customer-owned cloud resources. This model addresses regulatory requirements for resource ownership while delivering the operational simplicity of a managed service. Perfect for organizations with strict data residency or compliance requirements that need to maintain ownership of their cloud infrastructure.
 
@@ -14,47 +14,10 @@ Distr handles the entire deployment lifecycle in the customer's cloud account th
 
 ### Solution Architecture
 
-<MermaidDiagram 
-  chart={`
-graph TD
-
-subgraph Vendor_Environment
-hub[Distr Hub]
-reg[Distr Registry]
-stor[PostgreSQL]
-hub --> reg
-stor --> hub
-end
-
-subgraph Customer_Environment
-tfAgent[Terraform Agent]
-dockerAgent[Docker Agent]
-helmAgent[Helm Agent]
-
-    aws[AWS Account]
-    gcp[GCP Project]
-    azure[Azure Subscription]
-
-    vmApp[App on VM]
-    k8sApp[App on K8s]
-    infra[Provisioned Infra]
-
-    hub --> tfAgent
-    hub --> dockerAgent
-    hub --> helmAgent
-
-    reg --> tfAgent
-
-    tfAgent --> aws
-    tfAgent --> gcp
-    tfAgent --> azure
-
-    dockerAgent --> vmApp
-    helmAgent --> k8sApp
-    tfAgent --> infra
-
-end
-`}
+<ThemeImage
+  lightSrc="/src/assets/docs/use-cases/byoc/byoc-light.png"
+  darkSrc="/src/assets/docs/use-cases/byoc/byoc-dark.png"
+  alt="Fully-Self-Managed diagram"
 />
 
 <Aside type="tip">

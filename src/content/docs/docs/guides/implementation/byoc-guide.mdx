@@ -7,7 +7,6 @@ sidebar:
 
 import {Aside, Steps, Tabs, TabItem} from '@astrojs/starlight/components';
 import ThemeImage from '../../../../../components/ThemeImage.astro';
-import MermaidDiagram from '../../../../../components/MermaidDiagram.astro';
 
 This guide provides practical steps for implementing the Bring Your Own Cloud (BYOC) deployment model, where you deploy and manage both infrastructure and applications in customer-owned environments.
 
@@ -22,47 +21,10 @@ Before implementing this model, ensure you have:
 
 ## Solution Architecture
 
-<MermaidDiagram 
-  chart={`
-graph TD
-
-subgraph Vendor_Environment
-hub[Distr Hub]
-reg[Distr Registry]
-stor[PostgreSQL]
-hub --> reg
-stor --> hub
-end
-
-subgraph Customer_Environment
-tfAgent[Terraform Agent]
-dockerAgent[Docker Agent]
-helmAgent[Helm Agent]
-
-    aws[AWS Account]
-    gcp[GCP Project]
-    azure[Azure Subscription]
-
-    vmApp[App on VM]
-    k8sApp[App on K8s]
-    infra[Provisioned Infra]
-
-    hub --> tfAgent
-    hub --> dockerAgent
-    hub --> helmAgent
-
-    reg --> tfAgent
-
-    tfAgent --> aws
-    tfAgent --> gcp
-    tfAgent --> azure
-
-    dockerAgent --> vmApp
-    helmAgent --> k8sApp
-    tfAgent --> infra
-
-end
-`}
+<ThemeImage
+  lightSrc="/src/assets/docs/use-cases/byoc/byoc-light.png"
+  darkSrc="/src/assets/docs/use-cases/byoc/byoc-dark.png"
+  alt="Fully-Self-Managed diagram"
 />
 
 ## Implementation Process
