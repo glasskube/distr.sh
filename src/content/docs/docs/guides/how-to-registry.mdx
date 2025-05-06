@@ -1,0 +1,101 @@
+---
+title: How to set up and use the Registry
+description: Guide to set up and use the Registry
+sidebar:
+  order: 3
+---
+import {Aside} from '@astrojs/starlight/components';
+import ThemeImage from '../../../../components/ThemeImage.astro';
+
+
+A quick guide to configuring and using the Distr Artifact Registry for secure, tag-based software distribution.
+
+
+## 1. Set your Registry Slug
+
+Before you can push or pull artifacts, you must configure a registry slug at the organization level. This slug becomes part of your registry URL.
+
+<ThemeImage
+  lightSrc="/src/assets/docs/product/registry/light-slug.png"
+  darkSrc="/src/assets/docs/product/registry/dark-slug.png"
+  alt="Registry slug configuration"
+/>
+
+<Aside type="note">
+  The slug must start with a lowercase letter or digit and can only contain lowercase letters, digits, `.`, `_`, `__`, or `-`.
+</Aside>
+
+---
+
+## 2. Authenticate with a Personal Access Token
+
+Generate a [Personal Access Token (PAT)](/docs/integrations/personal-access-token/) in your Distr account. Use this token to log in to the registry:
+
+```bash
+echo "YOUR-ACCESS-TOKEN" | docker login registry.distr.sh:8585 --password-stdin -u -
+```
+
+<Aside type="tip">
+  No username is required, the PAT is linked directly to your user account.
+</Aside>
+
+---
+
+## 3. Push Your First Artifact
+
+Tag and push your Docker image (or other OCI artifact) to your registry:
+
+```bash
+docker pull hello-world
+docker tag hello-world registry.distr.sh/slug/hello-world:1.0.0
+docker push registry.distr.sh/slug/hello-world:1.0.0
+```
+
+---
+
+## 4. Control Artifact Access through Licensing
+
+- Assign licenses to customers to control which artifacts and tags they can access.
+- Licenses can be scoped to all tags, specific tags, or a single tag.
+- Licenses can have expiration dates or remain valid indefinitely.
+
+<ThemeImage
+  lightSrc="/src/assets/docs/product/registry/artifact-license-light.png"
+  darkSrc="/src/assets/docs/product/registry/artifact-license-dark.png"
+  alt="Registry artifacts view"
+/>
+
+---
+
+## 5. Monitor Usage
+
+- Use the Distr dashboard to view artifact pull counts, customer usage, and download analytics.
+- Use the Downloads panel to view a chronological list of all downloaded artifacts, including which user downloaded them and from which IP address.
+- The registry only supports immutable tags, once pushed, a tag cannot be changed.
+
+<ThemeImage
+  lightSrc="/src/assets/docs/product/registry/dashboard-artifact-view-light.png"
+  darkSrc="/src/assets/docs/product/registry/dashboard-artifact-view-dark.png"
+  alt="Registry artifacts view"
+/>
+
+---
+
+## 6. Customer Access
+
+- Customers should authenticate with their own [PAT](/docs/integrations/personal-access-token/) and can only pull artifacts they are licensed for.
+- The customer portal provides a simplified view, showing only accessible artifacts and versions.
+
+<ThemeImage
+  lightSrc="/src/assets/docs/product/registry/customer-artifact-view-light.png"
+  darkSrc="/src/assets/docs/product/registry/customer-artifact-view-dark.png"
+  alt="Registry artifacts view"
+/>
+
+---
+
+## Reference
+
+- [Registry product documentation](/docs/product/registry/)
+- [Personal Access Token setup](/docs/integrations/personal-access-token/)
+- [License management guide](/docs/guides/platform-management/license-mgmt/)

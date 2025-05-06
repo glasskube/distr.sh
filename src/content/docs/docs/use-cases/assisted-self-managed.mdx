@@ -5,7 +5,7 @@ sidebar:
   order: 2
 ---
 
-import {Aside} from '@astrojs/starlight/components';
+import {Aside, Steps} from '@astrojs/starlight/components';
 import ThemeImage from '../../../../components/ThemeImage.astro';
 
 Assisted Self-Managed deployment strikes the balance between customer control and vendor assistance. Applications run in customer-controlled infrastructure while lightweight Distr Agents help manage deployments and updates. This model is ideal for organizations that want to maintain their own infrastructure while minimizing operational overhead.
@@ -20,10 +20,19 @@ Distr's agents pull application definitions and artifacts from the Distr Hub, de
   alt="Assisted-Self-Managed diagram"
 />
 
+### Implementation steps
+
+<Steps>
+1. **Set Up Your [Registry](/docs/guides/how-to-registry/)**
+2. **Onboard Your [Application](/docs/guides/onboarding-a-helm-app/)**
+3. **White-label the [Customer portal](/docs/product/branding/)**
+5. **Onboard your first [customer](/docs/guides/onboarding-a-new-customer/)**
+6. **Customer creates a [Personal Access token](/docs/integrations/personal-access-token/)**
+7. **Customer can [deploy your application via the Dist agents](/docs/guides/end-customer-registry-view/#deployment-agent-quickstart-from-the-customer-portal)**
+</Steps>
+
 <Aside type="tip">
   The agent acts only as a facilitator, pulling updates and applying them
   according to customer-defined policies. It does not provide vendor access to
   customer infrastructure.
 </Aside>
-
-[Read the implementation guide →](/docs/guides/implementation/assisted-self-managed-deployment-guide)

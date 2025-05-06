@@ -14,23 +14,23 @@ Distr is built around several key concepts that work together to enable flexible
 
 Distr supports five distinct deployment models to meet different customer requirements:
 
-- **[Fully Self-Managed](/docs/use-cases/fully-self-managed/)**: For customers who maintain complete control over their infrastructure with no vendor agents, using Distr Registry for artifact delivery.
-- **[Assisted Self-Managed](/docs/use-cases/assisted-self-managed/)**: Balances customer infrastructure control with vendor-provided deployment agents that simplify updates and maintenance.
-- **[Bring Your Own Cloud (BYOC)](/docs/use-cases/byoc/)**: Fully vendor-managed deployments within customer-owned cloud subscriptions, ideal for regulatory compliance.
+- **[Fully Self-Managed](/docs/use-cases/fully-self-managed/)**: For customers who maintain complete control over their infrastructure, the Distr Registry for artifact distribution is the main feature used.
+- **[Assisted Self-Managed](/docs/use-cases/assisted-self-managed/)**: End customers retain full control over their environment access but delegate application deployment to Distr agents, which simplify initial installation, updates, and ongoing maintenance.
+- **[Bring Your Own Cloud (BYOC)](/docs/use-cases/byoc/)**: Fully vendor-managed deployments within customer-owned cloud accounts. Ideal for end customers who want to offload infrastructure and software maintenance to the vendor while keeping deployments within their own environment, for compliance, cost management, or use of pre-contracted cloud resources.
 - **[Air-Gapped Environments](/docs/use-cases/air-gapped/)**: For high-security scenarios with physical or logical network isolation, offering secure artifact delivery through whitelisted connections or physical media.
 - **[Edge Deployments](/docs/use-cases/edge-deployments/)**: For vendor-controlled deployments to decentralized edge locations, IoT devices, or specialized hardware.
 
-Each model leverages Distr's flexible architecture to provide the right balance of control, security, and operational efficiency.
+Each model leverages Distr’s flexible architecture to strike the right balance of control, security, and operational efficiency, adapting to a wide range of end-customer needs.
 
 ## Key Components
 
 ### Distr Hub
 
-[Distr Hub](/docs/product/distr-hub/) is the central control plane for managing users, customers, and application or registry configurations. It also provides monitoring and observability features and integrates seamlessly with your CI/CD pipelines.
+[Distr Hub](/docs/product/distr-hub/) serves as the central control plane for managing customers, users, applications, and registry configurations. It includes monitoring and observability features, integrates smoothly with your CI/CD pipelines, and allows you to customize the customer portal.
 
 ### Distr Registry
 
-[Distr Registry](/docs/product/registry/) is an OCI-compliant artifact registry that stores Docker images, Helm charts, and other OCI artifacts. It tracks artifact usage across customer environments, enforces licensing rules to control access, and provides end customers with a private registry containing only the artifacts they’re licensed to use.
+[Distr Registry](/docs/product/registry/) is an OCI-compliant artifact registry that stores Docker images, Helm charts, and other OCI artifacts. It tracks artifact usage across customer environments and provides end customers with a private registry containing only the artifacts they’re licensed to use.
 
 ### Distr Agents
 

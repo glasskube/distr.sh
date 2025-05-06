@@ -21,12 +21,12 @@ In the Distr web interface, navigate to the **Applications** section in the side
 
 You will be asked to enter a name and select the type of the application:
 
-![Add application](../../../../../assets/docs/guides/docker_add_application.png)
+![Add application](../../../../assets/docs/guides/docker_add_application.png)
 
 After you have clicked on the **Create Application** button, you will be redirected to the detailed view of this application.
 In this view you can manage the versions of the application.
 
-![Application Detail View](../../../../../assets/docs/guides/docker_app_detail.png)
+![Application Detail View](../../../../assets/docs/guides/docker_add_application.png)
 
 ### Creating a first version
 
@@ -39,7 +39,7 @@ You can optionally add a template for the environment variables that your Docker
 The template will be shown to the user when they deploy this version to a deployment environment.
 In this example we enter a reminder for the user to set the database password, as the deployment would fail otherwise.
 
-![Add version](../../../../../assets/docs/guides/docker_add_version.png)
+![Add version](../../../../assets/docs/guides/docker_add_version.png)
 
 Click on the **Create New Version** button to add the version to your Docker App.
 
@@ -47,7 +47,7 @@ Click on the **Create New Version** button to add the version to your Docker App
 
 After you have created the version, you can see it in the list of versions:
 
-![Version list](../../../../../assets/docs/guides/docker_manage_versions_copy.png)
+![Version list](../../../../assets/docs/guides/docker_manage_versions_copy.png)
 
 You can use the **Copy from** button to create a new version based on the existing one.
 
@@ -66,15 +66,15 @@ This will open a wizard that takes you through the process of creating a new dep
 
 The first step is to choose the deployment type (in this case docker) and a name:
 
-![Add deployment](../../../../../assets/docs/guides/docker_deployment_type.png)
+![Add deployment](../../../../assets/docs/guides/docker_deployment_type.png)
 
 On the next screen, you will find the instructions to connect your deployment environment to Distr, by installing the agent:
 
-![Install agent](../../../../../assets/docs/guides/docker_deployment_connect.png)
+![Install agent](../../../../assets/docs/guides/docker_deployment_connect.png)
 
 As the last step, you can deploy your newly onboarded docker app to the new deployment environment, and set the specific environment variables:
 
-![Deploy app](../../../../../assets/docs/guides/docker_deployment_deploy.png)
+![Deploy app](../../../../assets/docs/guides/docker_deployment_deploy.png)
 
 **Environment Variables**
 

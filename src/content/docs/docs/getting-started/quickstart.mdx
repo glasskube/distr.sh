@@ -8,25 +8,9 @@ sidebar:
 import {Aside} from '@astrojs/starlight/components';
 import ThemeImage from '../../../../components/ThemeImage.astro';
 
-## Prerequisites
-
-If you're ready to distribute your own application with Distr, it should be:
-
-- **Containerized** (Docker or Helm)
-- Using **consistent versioning**
-- Have **standardized dependencies**
-
-For more details on preparing your application, see our [self-managed readiness guide](https://glasskube.dev/white-paper/building-blocks/).
-
-<Aside type="tip">
-  Don't have an application ready? No problem! You can follow the tutorials and
-  ship a sample app to learn the platform. Distr provides test applications that
-  let you explore all features without setting up your own app first.
-</Aside>
-
 ## Getting Started with Platform Tutorials
 
-The fastest way to learn Distr is through the interactive tutorials available directly on the platform. When you first create an account, you'll have access to three guided tutorials that cover the core capabilities:
+The fastest way to learn how to use Distr is through the interactive tutorials available directly on the platform. When you first create an account, you'll have access to three guided tutorials that cover the core capabilities:
 
 <ThemeImage
   lightSrc="/src/assets/docs/getting-started/quickstart/tutorials-light.png"
@@ -36,7 +20,7 @@ The fastest way to learn Distr is through the interactive tutorials available di
 
 ### 1. Artifact Registry
 
-This tutorial walks you through setting up your organization's registry slug, creating a personal access token and logging in, and pushing and pulling artifacts.
+This tutorial walks you through setting up your organization's registry slug, creating a personal access token and logging in, pushing and pulling artifacts from your own private artifact registry.
 
 ### 2. Agents, Application and Deployments Tutorial
 
@@ -63,12 +47,10 @@ Upon completion, you'll be ready to:
 1. **Onboard Your Own Applications:** Add your [Docker Compose](/docs/guides/platform-management/onboarding-a-docker-app/) or [Helm chart-based applications](/docs/guides/platform-management/onboarding-a-helm-app/) to Distr
 2. **Push Your Commercial Artifacts:** Upload your artifacts to your private registry
 3. **Invite Customers:** Invite new [customers](docs/guides/platform-management/onboarding-a-new-customer/) into your organization
-4. **Create Deployments:** Set up application deployments across different environments
-5. **Manage Licenses:** Use application [licenses](/docs/guides/platform-management/license-mgmt/) to control access at the application and version level, and artifact licenses to grant access to specific artifact tags.
 
-### Next, explore the Implementation Guides
+### Next, explore the Use cases section
 
-Head over to the [Implementation guides](/docs/guides/implementation/fully-self-managed-deployment-guide/) to start implementing the deployment model that best fits your end customer’s needs.
+Visit the [Use cases](/docs/use-cases/fully-self-managed/) section to identify the scenario that best fits your end customers and begin implementing the most appropriate deployment model for them.
 
 <Aside type="tip">
   Need more help? Join our [Community Discord Server](https://discord.gg/6qqBSAWZfW) for

@@ -4,8 +4,7 @@ description: For customers with highly restrictive environments isolated from ex
 sidebar:
   order: 4
 ---
-
-import {Aside} from '@astrojs/starlight/components';
+import {Aside, Steps, Tabs, TabItem} from '@astrojs/starlight/components';
 import ThemeImage from '../../../../components/ThemeImage.astro';
 
 Distr supports air-gapped environments where strict security requirements demand physical or logical isolation from public networks. The air-gapped deployment model serves organizations in regulated industries (defense, finance, critical infrastructure) that cannot allow external connectivity or agents in their environment.
@@ -20,9 +19,34 @@ Distr offers two approaches: **IP Whitelisting** for environments that can permi
   alt="Fully-Self-Managed diagram"
 />
 
-<Aside type="tip">
-  This approach allows you to serve security-conscious customers without
-  compromising their security posture or compliance requirements.
-</Aside>
+<Tabs>
+  <TabItem label="IP Whitelisting Approach">
+    <Steps>
+    1. **Set Up Your [Registry](/docs/guides/how-to-registry/)**
+    2. **Onboard Your [Application](/docs/guides/onboarding-a-helm-app/)**
+    3. **White-label the [Customer portal](/docs/product/branding/)**
+    4. **Onboard your first [customer](/docs/guides/onboarding-a-new-customer/)**
+    5. **Request IP Allowlist for Customer Access**
+    6. **Customer creates a [Personal Access token](/docs/integrations/personal-access-token/)**
+    7. **Customer can [access and pull](/docs/guides/end-customer-registry-view/#registry-quickstart-from-the-customer-portal) your private artifacts**
+    </Steps>
 
-[Read the implementation guide →](/docs/guides/implementation/air-gapped-guide)
+    <Aside type="tip">
+      This approach works for environments where limited external connectivity is permitted
+      and the Distr's IP addresses can be whitelisted for secure access.
+    </Aside>
+  </TabItem>
+  
+  <TabItem label="Physical Transfer Approach">
+    <Steps>
+    1. **End-customer [self host Distr](/docs/self-hosting/getting-started/) in their internal environment**
+    2. **Vendors deliver media to customer environment to be distributed internal via Distr**
+    3. **Reach out to support@glasskube.com more detailed information of how Distr can enable this end-customer use case**
+    </Steps>
+
+    <Aside type="tip">
+      This approach is ideal for completely isolated environments with no external network
+      connectivity, using cryptographically verified physical transfers instead.
+    </Aside>
+  </TabItem>
+</Tabs>

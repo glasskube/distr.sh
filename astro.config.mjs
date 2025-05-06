@@ -90,16 +90,7 @@ export default defineConfig({
         },
         {
           label: 'Guides',
-          items: [
-            {
-              label: 'Implementation',
-              autogenerate: {directory: 'docs/guides/implementation'},
-            },
-            {
-              label: 'Platform Management',
-              autogenerate: {directory: 'docs/guides/platform-management'},
-            },
-          ],
+          autogenerate: {directory: 'docs/guides'},
         },
         {
           label: 'Product',

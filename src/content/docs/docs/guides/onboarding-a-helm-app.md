@@ -23,7 +23,7 @@ In the Distr web interface, navigate to the **Applications** section in the side
 
 You will be asked to enter a name. Change the type of the application **Kubernetes**:
 
-![Add application](../../../../../assets/docs/guides/kubernetes_create.png)
+![Add application](../../../../assets/docs/guides/kubernetes_create.png)
 
 After you have clicked on the **Create** button, the list of applications will show your new app.
 
@@ -33,7 +33,7 @@ To add a new version to your Helm App, click on the **Manage versions** button i
 
 A modal will open where you can add a new version by entering a name and the corresponding data about the Helm chart:
 
-![Add version](../../../../../assets/docs/guides/kubernetes_version.png)
+![Add version](../../../../assets/docs/guides/kubernetes_version.png)
 
 **Base Values and Template**
 
@@ -51,7 +51,7 @@ Click on the **Create** button to add the version to your Helm App.
 
 After you have created the version, you can see it in the list of versions:
 
-![Version list](../../../../../assets/docs/guides/kubernets_version_manage.png)
+![Version list](../../../../assets/docs/guides/kubernets_version_manage.png)
 
 You can use the **Copy from** button to create a new version based on the existing one.
 
@@ -69,17 +69,17 @@ This will open a wizard that takes you through the process of creating a new dep
 
 The first step is to choose the deployment type (in this case `kubernetes`) and a name and the namespace, that the deployment should be created in:
 
-![Add deployment](../../../../../assets/docs/guides/kubernetes_deployment.png)
+![Add deployment](../../../../assets/docs/guides/kubernetes_deployment.png)
 
 On the next screen, you will find the instructions to connect your deployment environment to Distr, by installing the agent.
 Make sure that the given namespace exists in your cluster, before executing the shown command:
 
-![Install agent](../../../../../assets/docs/guides/kubernetes_connect.png)
+![Install agent](../../../../assets/docs/guides/kubernetes_connect.png)
 
 As the last step, you can deploy your newly onboarded Helm app to the new deployment environment.
 In this step you can also adjust the values of the Helm chart:
 
-![Deploy app](../../../../../assets/docs/guides/kubernetes_deploy.png)
+![Deploy app](../../../../assets/docs/guides/kubernetes_deploy.png)
 
 ### Use an existing deployment environment
 
