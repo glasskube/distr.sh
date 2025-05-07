@@ -8,9 +8,11 @@ sidebar:
 import {Aside, Steps} from '@astrojs/starlight/components';
 import ThemeImage from '../../../../components/ThemeImage.astro';
 
-Assisted Self-Managed deployment strikes the balance between customer control and vendor assistance. Applications run in customer-controlled infrastructure while lightweight Distr Agents help manage deployments and updates. This model is ideal for organizations that want to maintain their own infrastructure while minimizing operational overhead.
+The Assisted Self-Managed deployment model strikes a balance between customer control and vendor assistance. Applications run in customer-controlled infrastructure while lightweight [Distr Agents](docs/product/agents/) help manage deployments and updates. This model is ideal for organizations that want to maintain their own infrastructure while minimizing operational overhead.
 
-Distr's agents pull application definitions and artifacts from the Distr Hub, deploy them according to customer-defined policies, and report status back to the vendor. Updates can be configured to require explicit customer approval, ensuring customers maintain control while benefiting from automated processes.
+Distr agents pull application definitions and artifacts from the Distr Hub, deploy them using customer-defined configurations, and report status back to the vendor and customer portals.
+
+A key feature of the Distr agent is its ability to deploy either Docker Compose files or Helm charts that reference container images stored in the Distr registry, no additional authentication is required. The vendor provides pre-configured definition files that [automatically authenticate](/docs/guides/helm-chart-registry-auth/) and pull from the registry, making the deployment process seamless for end customers.
 
 ### Solution Architecture
 

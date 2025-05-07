@@ -77,13 +77,13 @@ This agent will be particularly valuable for fully managed deployments where ven
 
 ## Section Components
 
-The Deployment Agents section of Distr consists of three main components that work together to provide a complete deployment management solution.
+The Deployment Agents section of Distr consists of two main components that work together to provide a complete deployment management solution.
 
 ### Applications
 
 <ThemeImage
-  lightSrc="/src/assets/docs/product/deployment-agents/apps-light.png"
-  darkSrc="/src/assets/docs/product/deployment-agents/apps-dark.png"
+  lightSrc="/src/assets/docs/product/deployment-agents/agent-applications-light.png"
+  darkSrc="/src/assets/docs/product/deployment-agents/agent-applications-dark.png"
   alt="Applications interface"
 />
 
@@ -97,31 +97,35 @@ For detailed instructions on adding applications to Distr, see our platform mana
 ### Deployments
 
 <ThemeImage
-  lightSrc="/src/assets/docs/product/deployment-agents/deploy-light.png"
-  darkSrc="/src/assets/docs/product/deployment-agents/deploy-dark.png"
+  lightSrc="/src/assets/docs/product/deployment-agents/agent-deployment-light.png"
+  darkSrc="/src/assets/docs/product/deployment-agents/agent-deployment-dark.png"
   alt="Deployments interface"
 />
 
-The Deployments section serves as the operational hub for both vendors and customers, though with different perspectives and capabilities.
+### Deployments Overview
 
-Vendors use this section to monitor the health and status of all customer deployments, track performance metrics, and manage their own infrastructure deployments. They can view real-time status updates, deployment metadata, and performance indicators across all customer environments.
+The **Deployments** section acts as the central management and health dashboard for both vendor-managed and customer-controlled deployments.
 
-Customers, on the other hand, use this section to access and manage their purchased applications. Through the agent configuration panel, they can install agents in their infrastructure, customize application settings using the environment variables made available by vendors, and monitor their own deployments.
+Use this section to:
+- Monitor the real-time health and status of all deployments
+- View deployment metadata and logs
+- Track application states across all customer environments
 
-### Licenses
+### Color-Coded Health Status
 
-<ThemeImage
-  lightSrc="/src/assets/docs/product/deployment-agents/licenses-light.png"
-  darkSrc="/src/assets/docs/product/deployment-agents/licenses-dark.png"
-  alt="Licenses interface"
-/>
+Deployment health is indicated using color-coded status badges:
 
-The Licenses section provides granular control over application access through 1:1 binding between applications (or specific versions) and individual customers. This feature enables precise license management and access control, ensuring that only authorized customers can deploy specific applications or versions.
+- **🔴 Error (Red)**  
+  The deployed application has failed to deploy successfully. Error logs are available, and remediation is required.  
+  ➤ *New deployments cannot be created until the error state is resolved.*
 
-<Aside type="note">
-  The license binding feature is currently in beta. Contact us to request access
-  and learn more about its capabilities.
-</Aside>
+- **🟡 Stale (Yellow)**  
+  The agent has not made a `resource` request to Distr Hub within the last 60 seconds.  
+  ➤ *This indicates a communication issue. No new deployments can be made until the agent is healthy.*
+
+- **🟢 OK (Green)**  
+  The agent is actively communicating with Distr Hub and reporting a healthy application state.  
+  ➤ *New deployments are allowed. The **+ Deployment** button will be visible.*
 
 ## Agent Capabilities
 

@@ -8,14 +8,14 @@ sidebar:
 import {Aside, Steps} from '@astrojs/starlight/components';
 import ThemeImage from '../../../../components/ThemeImage.astro';
 
-As an end customer, you will be given access to a Customer Portal, through it you will have access to two key features: the artifact registry for downloading software distributed by your vendor, and the deployment section for managing applications with Distr agents. Depending on your use case, you might use only one or both of these features.
+As an end customer, you will be given access to a [Customer Portal](/docs/product/distr-hub/#what-customers-can-do-in-the-customer-portal), through it you will have access to two key features: the artifact registry for downloading software distributed by your vendor, and the deployment section for managing applications with Distr agents. Depending on your use case, you might use only one or both of these features.
 
 This guide walks you through using both of features.
 
 ## Registry quickstart from the customer portal
 
 <Aside type="note">
-  The registry is directly used by [Fully Self-Managed customers](/docs/use-cases/fully-self-managed/), these are customers that don't use the Distr deployment agent and manage and deploy the vendor artifacts themselves.
+  The registry is used directly by [Fully Self-Managed customers](/docs/use-cases/fully-self-managed/) and indirectly by the other deployment models, as Distr agents may need to fetch container images stored in the registry.
 </Aside>
 
 A typical onboarding journey looks like this:
@@ -24,6 +24,12 @@ A typical onboarding journey looks like this:
 1. **Access the Customer Portal Dashboard**
 
    Here you will view release notes and vendor-specific software information in your dashboard.
+
+   <ThemeImage
+    lightSrc="/src/assets/docs/product/vendor-portal/customer-portal-light.png"
+    darkSrc="/src/assets/docs/product/vendor-portal/customer-portal-dark.png"
+    alt="Deployments interface"
+   />
 
 2. **View Available Artifacts**
 
@@ -67,7 +73,7 @@ A typical onboarding journey looks like this:
 
 6. **Deploy the Artifacts**
 
-   Refer to the deployment instructions in your Customer Portal dashboard or coordinate directly with your vendor for specific deployment guidance.
+   Refer to the deployment instructions in your [Customer Portal](/docs/product/distr-hub/#what-customers-can-do-in-the-customer-portal) dashboard or coordinate directly with your vendor for specific deployment guidance.
 </Steps>
 
 ## Deployment Agent quickstart from the customer portal

@@ -7,9 +7,15 @@ sidebar:
 import {Aside, Steps, Tabs, TabItem} from '@astrojs/starlight/components';
 import ThemeImage from '../../../../components/ThemeImage.astro';
 
-Distr supports air-gapped environments where strict security requirements demand physical or logical isolation from public networks. The air-gapped deployment model serves organizations in regulated industries (defense, finance, critical infrastructure) that cannot allow external connectivity or agents in their environment.
+### Air-Gapped Deployments
 
-Distr offers two approaches: **IP Whitelisting** for environments that can permit limited external connections, and **Self-Hosted Registry with Physical Transfers** for completely isolated environments, where updates are delivered via encrypted physical media with cryptographic verification.
+Distr supports air-gapped environments where strict security requirements demand physical or logical isolation from public networks. This deployment model is ideal for organizations in regulated industries, such as defense, finance, and critical infrastructure, where external connectivity or the use of agents is not permitted.
+
+Distr offers two approaches to support these environments:
+
+1. **IP Whitelisting**: For environments that can allow limited outbound connections.
+
+2. **Self-Hosted Registry with Physical Transfers**: For fully isolated environments, Distr supports a workflow where updates are packaged, encrypted, and physically transferred (e.g., via USB or secure media). 
 
 ### Solution Architecture
 
@@ -39,9 +45,9 @@ Distr offers two approaches: **IP Whitelisting** for environments that can permi
   
   <TabItem label="Physical Transfer Approach">
     <Steps>
-    1. **End-customer [self host Distr](/docs/self-hosting/getting-started/) in their internal environment**
-    2. **Vendors deliver media to customer environment to be distributed internal via Distr**
-    3. **Reach out to support@glasskube.com more detailed information of how Distr can enable this end-customer use case**
+    1. **End-customer [self hosts Distr](/docs/self-hosting/getting-started/) in their internal environment**
+    2. **Vendors deliver media to customer environment to be deployed internally via Distr**
+    3. **Reach out to support@glasskube.com for more detailed information of how Distr can enable this end-customer use case**
     </Steps>
 
     <Aside type="tip">

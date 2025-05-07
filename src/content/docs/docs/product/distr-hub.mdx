@@ -4,52 +4,52 @@ description: Information about the vendor portal
 sidebar:
   order: 3
 ---
+import ThemeImage from '../../../../components/ThemeImage.astro';
 
-Distr Hub is made up of two user interfaces: One for Software and AI vendors and the other for their end-customers
+Distr Hub includes two user interfaces: the Vendor Portal, designed for software and AI vendors, and the Customer Portal, a self-service interface for their end customers.
 
-The Vendor portal is the primary interface for interacting with the Distr hub.
+<ThemeImage
+  lightSrc="/src/assets/docs/product/vendor-portal/comparison-light.png"
+  darkSrc="/src/assets/docs/product/vendor-portal/comparison-dark.png"
+  alt="Deployments interface"
+/>
 
-Since Distr is a platform specifically built for Software and AI companies, the vendor portal serves as the gateway to access all Distr features. In contrast, the [Customer Portal](/docs/product/customer-portal/) is a simplified version of the vendor portal, designed to provide end-customers with the ability to configure and control their distributions.
+The Vendor Portal serves as the control plane for vendors, providing access to all Distr features, including application configuration, artifact registry management, and monitoring of end-customer deployment states. In contrast, the [Customer Portal](/docs/guides/end-customer-registry-view/) offers a simplified interface for end customers, allowing them to configure and manage their deployments while centralizing release information and helpful instructions for operating the vendor’s software.
 
-![vendor-console](../../../../assets/docs/product/vendor-portal/vendor-portal.png)
+### What Vendors Can Do in the Vendor Portal
 
-The vendor portal offers:
+<ThemeImage
+  lightSrc="/src/assets/docs/product/vendor-portal/hub-light.png"
+  darkSrc="/src/assets/docs/product/vendor-portal/hub-dark.png"
+  alt="Deployments interface"
+/>
 
-1. A main dashboard featuring uptime metrics, graphs, and table widgets to monitor and manage applications and deployments.
-2. The `"Applications"` tab, where users can add multiple applications and host multiple versions simultaneously, allowing end customers to deploy different versions as needed.
-3. The `"Customers"` tab, for managing customer information.
-4. Deployment management, to oversee and control internally deployed applications.
-5. A section to manage the users on your team.
-6. The branding section
-7. A light/dark mode toggle button.
-8. An account setting section.
+1. **Access onboarding tutorials**: A great place to [start](/docs/getting-started/quickstart/#getting-started-with-platform-tutorials) your journey with Distr and get familiar with the platform’s capabilities.
 
-:::info
-If ever in doubt of which portal you are looking at, in the top left corner of the screen you can find the name of the portal you're currently in.
-:::
+2. **View the global dashboard**: Monitor the health status of both internal deployments and customer-managed applications and artifacts.
 
-The Customer Portal provides end-customers with the essential features they need to manage the deployment of the vendor's applications. Compared to the Vendor Portal, it is intentionally more basic, following a "less is more" approach. This design philosophy acknowledges that end-customer should only care about their deployments and should not have to deal with anything else cluttering their management console.
+3. **Onboard and configure applications**: Use the *Agent* section to register applications and the *Deployments* section to manage updates for internally deployed application and monitor the health of end-customer deployed workloads.
 
-The customer portal offers:
+4. **Manage the registry**: Browse and manage stored artifacts in the *Registry* section.
 
-#### 1. Management of all deployment from a single pane
+5. **Configure licenses**: Define application and artifact licenses to control access to specific versions or tags.
 
-![deployment](../../../../assets/docs/product/customer-portal/cus-portal.png)
+6. **Manage administrative settings**: Admin sections include tools to manage customer accounts, internal users, branding for the Customer Portal, and global platform settings.
 
-#### 2. Access to view current deployment logs
+### What Customers Can Do in the Customer Portal
 
-![deployment](../../../../assets/docs/product/customer-portal/logs.png)
+<ThemeImage
+  lightSrc="/src/assets/docs/product/vendor-portal/customer-portal-light.png"
+  darkSrc="/src/assets/docs/product/vendor-portal/customer-portal-dark.png"
+  alt="Deployments interface"
+/>
 
-#### 3. Ability to edit deployment configurations
+1. **Explore vendor-provided documentation**: The homepage serves as the end-customer’s landing pad, offering release notes, agent and registry instructions, helpful links, and support information. It’s the go-to place for understanding how to install and maintain the vendor’s software.
 
-![deployment](../../../../assets/docs/product/customer-portal/cp-edit.png)
+2. **Deploy and manage agents**: In the *Deployments* section, customers can deploy agents to their internal infrastructure. These agents can then be used to manage one or multiple deployments.
 
-#### 4. Ability to deploy new versions of an application
+3. **Access and consume artifacts**: The *Artifacts* section displays the software artifacts that have been enabled for the customer, along with instructions on how to pull and use them.
 
-![deployment](../../../../assets/docs/product/customer-portal/cp-version.png)
+4. **Generate access tokens**: In the top-right corner, the *Customer Settings* area allows users to generate Personal Access Tokens (PATs), which are required for authenticating with the registry.
 
-:::info
-If ever in doubt of which portal you are looking at, in the top left corner of the screen you can find the name of the portal you're currently in.
-:::
 
-The Customer Portal can be [customized](/docs/product/branding/) with the vendor's corporate logo and name, making Distr feel like an extension of the software company's product rather than just another tool for the end-customer to adopt and learn.

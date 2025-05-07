@@ -6,7 +6,6 @@ sidebar:
 ---
 
 import {Aside} from '@astrojs/starlight/components';
-import MermaidDiagram from '../../../../components/MermaidDiagram.astro';
 
 Distr is built around several key concepts that work together to enable flexible software distribution. Understanding these concepts will help you get the most out of the platform.
 
@@ -14,9 +13,9 @@ Distr is built around several key concepts that work together to enable flexible
 
 Distr supports five distinct deployment models to meet different customer requirements:
 
-- **[Fully Self-Managed](/docs/use-cases/fully-self-managed/)**: For customers who maintain complete control over their infrastructure, the Distr Registry for artifact distribution is the main feature used.
-- **[Assisted Self-Managed](/docs/use-cases/assisted-self-managed/)**: End customers retain full control over their environment access but delegate application deployment to Distr agents, which simplify initial installation, updates, and ongoing maintenance.
-- **[Bring Your Own Cloud (BYOC)](/docs/use-cases/byoc/)**: Fully vendor-managed deployments within customer-owned cloud accounts. Ideal for end customers who want to offload infrastructure and software maintenance to the vendor while keeping deployments within their own environment, for compliance, cost management, or use of pre-contracted cloud resources.
+- **[Fully Self-Managed](/docs/use-cases/fully-self-managed/)**: For customers who maintain complete control over their infrastructure, the Distr [Artifact Registry](/docs/product/registry/) for artifact distribution is the main feature used.
+- **[Assisted Self-Managed](/docs/use-cases/assisted-self-managed/)**: End customers retain full control over their environment access but delegate application deployment to [Distr agents](/docs/product/agents/), which simplify initial installation, updates, and ongoing maintenance.
+- **[Bring Your Own Cloud (BYOC)](/docs/use-cases/byoc/)**: Fully vendor-managed deployments within customer-owned environments. Ideal for end customers who want to offload infrastructure and software maintenance to the vendor while keeping deployments within their own environment, for compliance, cost management, or use of pre-contracted cloud resources.
 - **[Air-Gapped Environments](/docs/use-cases/air-gapped/)**: For high-security scenarios with physical or logical network isolation, offering secure artifact delivery through whitelisted connections or physical media.
 - **[Edge Deployments](/docs/use-cases/edge-deployments/)**: For vendor-controlled deployments to decentralized edge locations, IoT devices, or specialized hardware.
 
@@ -28,6 +27,13 @@ Each model leverages Distr’s flexible architecture to strike the right balance
 
 [Distr Hub](/docs/product/distr-hub/) serves as the central control plane for managing customers, users, applications, and registry configurations. It includes monitoring and observability features, integrates smoothly with your CI/CD pipelines, and allows you to customize the customer portal.
 
+#### Distr Hub's Portal System
+
+Two interfaces designed for different users:
+
+- **Vendor Portal**: Complete [vendor](docs/product/distr-hub/#what-vendors-can-do-in-the-vendor-portal) management console for software vendors
+- **Customer Portal**: Simplified, white-labeled interface for end [customers](/docs/product/distr-hub/#what-customers-can-do-in-the-customer-portal)
+
 ### Distr Registry
 
 [Distr Registry](/docs/product/registry/) is an OCI-compliant artifact registry that stores Docker images, Helm charts, and other OCI artifacts. It tracks artifact usage across customer environments and provides end customers with a private registry containing only the artifacts they’re licensed to use.
@@ -35,21 +41,6 @@ Each model leverages Distr’s flexible architecture to strike the right balance
 ### Distr Agents
 
 [Distr Agents](/docs/product/agents/) are lightweight deployment agents that run in the customer’s target environment. They pull configurations from Distr Hub, execute deployment operations locally, and report status back to the vendor portal.
-
-### Licenses
-
-Distr has two native license types:
-
-**Application Licenses:** These create a 1:1 binding between an artifact and a customer. Access can be granted down to the version level. An application license is required for an end customer to access the application via the customer portal.
-
-**Artifact Licenses:** These allow multiple artifacts to be bound to a single customer license. Access is granted at the artifact tag level. End customers will only be able to pull the specific artifact versions they’re licensed for.
-
-### Portal System
-
-Two interfaces designed for different users:
-
-- **Vendor Portal**: Complete management console for software vendors
-- **Customer Portal**: Simplified, white-labeled interface for end customers
 
 ## API and Extensibility
 
