@@ -4,6 +4,7 @@ description: For customers with highly restrictive environments isolated from ex
 sidebar:
   order: 4
 ---
+
 import {Aside, Steps, Tabs, TabItem} from '@astrojs/starlight/components';
 import ThemeImage from '../../../../components/ThemeImage.astro';
 
@@ -15,7 +16,7 @@ Distr offers two approaches to support these environments:
 
 1. **IP Whitelisting**: For environments that can allow limited outbound connections.
 
-2. **Self-Hosted Registry with Physical Transfers**: For fully isolated environments, Distr supports a workflow where updates are packaged, encrypted, and physically transferred (e.g., via USB or secure media). 
+2. **Self-Hosted Registry with Physical Transfers**: For fully isolated environments, Distr supports a workflow where updates are packaged, encrypted, and physically transferred (e.g., via USB or secure media).
 
 ### Solution Architecture
 
@@ -41,6 +42,7 @@ Distr offers two approaches to support these environments:
       This approach works for environments where limited external connectivity is permitted
       and the Distr's IP addresses can be whitelisted for secure access.
     </Aside>
+
   </TabItem>
   
   <TabItem label="Physical Transfer Approach">
@@ -54,5 +56,6 @@ Distr offers two approaches to support these environments:
       This approach is ideal for completely isolated environments with no external network
       connectivity, using cryptographically verified physical transfers instead.
     </Aside>
+
   </TabItem>
 </Tabs>

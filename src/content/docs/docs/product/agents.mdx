@@ -31,7 +31,11 @@ The Docker Compose agent is specifically designed for container-based deployment
 />
 
 <Aside type="note">
-  Unless you're using Distr to deploy your own applications internally, the Distr agent will always be configured and deployed by the end customer. Head over to the [end-customer agent guide](/docs/guides/end-customer-registry-view/#deployment-agent-quickstart-from-the-customer-portal) to learn how it should be installed.
+  Unless you're using Distr to deploy your own applications internally, the
+  Distr agent will always be configured and deployed by the end customer. Head
+  over to the [end-customer agent
+  guide](/docs/guides/end-customer-registry-view/#deployment-agent-quickstart-from-the-customer-portal)
+  to learn how it should be installed.
 </Aside>
 
 #### Configuration Steps
@@ -107,6 +111,7 @@ For detailed instructions on adding applications to Distr, see our platform mana
 The **Deployments** section acts as the central management and health dashboard for both vendor-managed and customer-controlled deployments.
 
 Use this section to:
+
 - Monitor the real-time health and status of all deployments
 - View deployment metadata and logs
 - Track application states across all customer environments
@@ -117,15 +122,15 @@ Deployment health is indicated using color-coded status badges:
 
 - **🔴 Error (Red)**  
   The deployed application has failed to deploy successfully. Error logs are available, and remediation is required.  
-  ➤ *New deployments cannot be created until the error state is resolved.*
+  ➤ _New deployments cannot be created until the error state is resolved._
 
 - **🟡 Stale (Yellow)**  
   The agent has not made a `resource` request to Distr Hub within the last 60 seconds.  
-  ➤ *This indicates a communication issue. No new deployments can be made until the agent is healthy.*
+  ➤ _This indicates a communication issue. No new deployments can be made until the agent is healthy._
 
 - **🟢 OK (Green)**  
   The agent is actively communicating with Distr Hub and reporting a healthy application state.  
-  ➤ *New deployments are allowed. The **+ Deployment** button will be visible.*
+  ➤ _New deployments are allowed. The **+ Deployment** button will be visible._
 
 ## Agent Capabilities
 

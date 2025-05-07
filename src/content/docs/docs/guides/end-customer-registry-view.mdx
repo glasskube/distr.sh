@@ -15,32 +15,34 @@ This guide walks you through using both of features.
 ## Registry quickstart from the customer portal
 
 <Aside type="note">
-  The registry is used directly by [Fully Self-Managed customers](/docs/use-cases/fully-self-managed/) and indirectly by the other deployment models, as Distr agents may need to fetch container images stored in the registry.
+  The registry is used directly by [Fully Self-Managed
+  customers](/docs/use-cases/fully-self-managed/) and indirectly by the other
+  deployment models, as Distr agents may need to fetch container images stored
+  in the registry.
 </Aside>
 
 A typical onboarding journey looks like this:
 
-<Steps>
 1. **Access the Customer Portal Dashboard**
 
    Here you will view release notes and vendor-specific software information in your dashboard.
 
    <ThemeImage
-    lightSrc="/src/assets/docs/product/vendor-portal/customer-portal-light.png"
-    darkSrc="/src/assets/docs/product/vendor-portal/customer-portal-dark.png"
-    alt="Deployments interface"
+     lightSrc="/src/assets/docs/product/vendor-portal/customer-portal-light.png"
+     darkSrc="/src/assets/docs/product/vendor-portal/customer-portal-dark.png"
+     alt="Deployments interface"
    />
 
 2. **View Available Artifacts**
 
    Browse the artifacts your vendor has made available to you in the artifacts section:
-   
+
    <ThemeImage
-    lightSrc="/src/assets/docs/guides/customer-view/registry-access-light.png"
-    darkSrc="/src/assets/docs/guides/customer-view/registry-access-dark.png"
-    alt="Registry artifacts view"
+     lightSrc="/src/assets/docs/guides/customer-view/registry-access-light.png"
+     darkSrc="/src/assets/docs/guides/customer-view/registry-access-dark.png"
+     alt="Registry artifacts view"
    />
-   
+
    In this example, the vendor made to a single artifact called hello-world available to the end-customer.
 
 3. **Explore Artifact Details**
@@ -48,9 +50,9 @@ A typical onboarding journey looks like this:
    Click on the artifact name to see details like available versions, creation date, and a download counter:
 
    <ThemeImage
-    lightSrc="/src/assets/docs/guides/customer-view/package-details-light.png"
-    darkSrc="/src/assets/docs/guides/customer-view/package-details-dark.png"
-    alt="Artifact details view"
+     lightSrc="/src/assets/docs/guides/customer-view/package-details-light.png"
+     darkSrc="/src/assets/docs/guides/customer-view/package-details-dark.png"
+     alt="Artifact details view"
    />
 
 4. **Authenticate with a Personal Access Token**
@@ -74,21 +76,25 @@ A typical onboarding journey looks like this:
 6. **Deploy the Artifacts**
 
    Refer to the deployment instructions in your [Customer Portal](/docs/product/distr-hub/#what-customers-can-do-in-the-customer-portal) dashboard or coordinate directly with your vendor for specific deployment guidance.
-</Steps>
 
 ## Deployment Agent quickstart from the customer portal
 
 <Aside type="note">
-  Deployment agents are used by [Assisted Self-Managed](/docs/use-cases/assisted-self-managed/) or [BYOC](/docs/use-cases/byoc/) customers. The Distr registry still plays an indirect role as application artifacts (Docker images, Helm charts) may reference private container images stored in the registry.
+  Deployment agents are used by [Assisted
+  Self-Managed](/docs/use-cases/assisted-self-managed/) or
+  [BYOC](/docs/use-cases/byoc/) customers. The Distr registry still plays an
+  indirect role as application artifacts (Docker images, Helm charts) may
+  reference private container images stored in the registry.
 </Aside>
 
-<Steps>
 1. **Create a New Agent**
 
    Navigate to the Deployments section and create a new agent. [Distr agents](/docs/product/agents/) are lightweight agent components deployed in your target environment (one per Docker network or Kubernetes namespace).
 
    <Aside type="tip">
-     Choose the Docker Compose agent for VM or non-Kubernetes environments, or the Helm agent for Kubernetes clusters. Your software vendor can advise on the best option for your use case.
+     Choose the Docker Compose agent for VM or non-Kubernetes environments, or
+     the Helm agent for Kubernetes clusters. Your software vendor can advise on
+     the best option for your use case.
    </Aside>
 
 2. **Name Your Agent**
@@ -96,9 +102,9 @@ A typical onboarding journey looks like this:
    Provide a descriptive name, optionally including environment or customer identifiers.
 
    <ThemeImage
-    lightSrc="/src/assets/docs/guides/customer-view/customer-agent-name-light.png"
-    darkSrc="/src/assets/docs/guides/customer-view/customer-agent-name-dark.png"
-    alt="Artifact details view"
+     lightSrc="/src/assets/docs/guides/customer-view/customer-agent-name-light.png"
+     darkSrc="/src/assets/docs/guides/customer-view/customer-agent-name-dark.png"
+     alt="Artifact details view"
    />
 
 3. **Configure Namespace (Helm only)**
@@ -106,9 +112,9 @@ A typical onboarding journey looks like this:
    If deploying the Helm agent, specify the existing Kubernetes namespace where it will be installed.
 
    <ThemeImage
-    lightSrc="/src/assets/docs/guides/customer-view/helm-ns-light.png"
-    darkSrc="/src/assets/docs/guides/customer-view/helm-ns-dark.png"
-    alt="Artifact details view"
+     lightSrc="/src/assets/docs/guides/customer-view/helm-ns-light.png"
+     darkSrc="/src/assets/docs/guides/customer-view/helm-ns-dark.png"
+     alt="Artifact details view"
    />
 
 4. **Install the Agent**
@@ -116,11 +122,13 @@ A typical onboarding journey looks like this:
    Run the provided installation command in your target environment:
 
    Docker:
+
    ```bash
    curl "https://app.distr.sh/api/v1/connect?targetId=6df4ddwa577-4c53-4e91-999d37fd1badde&targetSecret=959c44185c96bed8de489d143f10881e" | docker compose -f - up -d
    ```
 
    Helm:
+
    ```bash
    kubectl apply -n <NAMESPACE> -f "https://demo.distr.sh/api/v1/connect?targetId=62e5817bbc-46e4-a2a6-dfdb24e2c561&targetSecret=d44ac95abe6d5139ebd5addfe31a4ed88f"
    ```
@@ -136,9 +144,9 @@ A typical onboarding journey looks like this:
    Customize the configuration file exposed by the vendor with your specific requirements.
 
    <ThemeImage
-    lightSrc="/src/assets/docs/guides/customer-view/config-light.png"
-    darkSrc="/src/assets/docs/guides/customer-view/config-dark.png"
-    alt="Artifact details view"
+     lightSrc="/src/assets/docs/guides/customer-view/config-light.png"
+     darkSrc="/src/assets/docs/guides/customer-view/config-dark.png"
+     alt="Artifact details view"
    />
 
 7. **Monitor Deployment Status**
@@ -146,9 +154,9 @@ A typical onboarding journey looks like this:
    View real-time updates as your deployment initializes.
 
    <ThemeImage
-    lightSrc="/src/assets/docs/guides/customer-view/status-light.png"
-    darkSrc="/src/assets/docs/guides/customer-view/status-dark.png"
-    alt="Artifact details view"
+     lightSrc="/src/assets/docs/guides/customer-view/status-light.png"
+     darkSrc="/src/assets/docs/guides/customer-view/status-dark.png"
+     alt="Artifact details view"
    />
 
 8. **Access Environment Logs**
@@ -156,9 +164,9 @@ A typical onboarding journey looks like this:
    Click on the status button to view application logs directly from the portal.
 
    <ThemeImage
-    lightSrc="/src/assets/docs/guides/customer-view/logs-light.png"
-    darkSrc="/src/assets/docs/guides/customer-view/logs-dark.png"
-    alt="Artifact details view"
+     lightSrc="/src/assets/docs/guides/customer-view/logs-light.png"
+     darkSrc="/src/assets/docs/guides/customer-view/logs-dark.png"
+     alt="Artifact details view"
    />
 
 9. **Update Deployments**
@@ -166,13 +174,12 @@ A typical onboarding journey looks like this:
    Modify configuration values and update running deployments as needed.
 
    <ThemeImage
-    lightSrc="/src/assets/docs/guides/customer-view/update-deploy-light.png"
-    darkSrc="/src/assets/docs/guides/customer-view/update-deploy-dark.png"
-    alt="Artifact details view"
+     lightSrc="/src/assets/docs/guides/customer-view/update-deploy-light.png"
+     darkSrc="/src/assets/docs/guides/customer-view/update-deploy-dark.png"
+     alt="Artifact details view"
    />
 
 10. **Important Notes**
 
     - A single agent can manage multiple deployments in the same target environment
     - To remove a deployment, first **undeploy** it before **deletion**
-</Steps>
