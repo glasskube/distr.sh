@@ -8,6 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "lint": "prettier --check .",
     "format": "prettier --write ."
   },
   "dependencies": {
