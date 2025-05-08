@@ -8,11 +8,12 @@ sidebar:
 import {Aside, Steps} from '@astrojs/starlight/components';
 import ThemeImage from '../../../../components/ThemeImage.astro';
 
-The Assisted Self-Managed deployment model strikes a balance between customer control and vendor assistance. Applications run in customer-controlled infrastructure while lightweight [Distr Agents](docs/product/agents/) help manage deployments and updates. This model is ideal for organizations that want to maintain their own infrastructure while minimizing operational overhead.
+The Assisted Self-Managed deployment model offers a balance between customer infrastructure control and vendor assistance. Applications run in customer-owned environments such as virtual machines or Kubernetes clusters, with no direct vendor access to the infrastructure.
 
-Distr agents pull application definitions and artifacts from the Distr Hub, deploy them using customer-defined configurations, and report status back to the vendor and customer portals.
+Lightweight [Distr agents](/docs/product/agents/), installed by the customer in the target environment, handle deployments and updates. They pull application definitions and artifacts from Distr Hub, apply customer-defined configurations, and report deployment status, logs, and health to both the [vendor](/docs/product/vendor-portal/) and [customer](/docs/product/customer-portal/) portals, without exposing internal infrastructure.
 
-A key feature of the Distr agent is its ability to deploy either Docker Compose files or Helm charts that reference container images stored in the Distr registry, no additional authentication is required. The vendor provides pre-configured definition files that [automatically authenticate](/docs/guides/helm-chart-registry-auth/) and pull from the registry, making the deployment process seamless for end customers.
+The Customer Portal also allows end users, who may not be involved in initial deployment, to configure applications, monitor status, access logs, and trigger updates. This is especially useful in setups where a platform team deploys the application, but another team operates it day-to-day.
+
 
 ### Solution Architecture
 
@@ -25,13 +26,12 @@ A key feature of the Distr agent is its ability to deploy either Docker Compose 
 ### Implementation steps
 
 <Steps>
-  1. **Set Up Your [Registry](/docs/guides/how-to-registry/)** 2. **Onboard Your
-  [Application](/docs/guides/onboarding-a-helm-app/)** 3. **White-label the
-  [Customer portal](/docs/product/branding/)** 5. **Onboard your first
-  [customer](/docs/guides/onboarding-a-new-customer/)** 6. **Customer creates a
-  [Personal Access token](/docs/integrations/personal-access-token/)** 7.
-  **Customer can [deploy your application via the Dist
-  agents](/docs/guides/end-customer-registry-view/#deployment-agent-quickstart-from-the-customer-portal)**
+  1. **Onboard Your [Application](/docs/guides/onboarding-a-helm-app/)**
+  2. **(Optional) Set Up Your [Registry](/docs/guides/how-to-registry/)** 
+  3. **White-label the [Customer portal](/docs/product/branding/)** 
+  4. **Onboard your first [customer](/docs/guides/onboarding-a-new-customer/)** 
+  5. **Customer creates a [Personal Access token](/docs/integrations/personal-access-token/)** 
+  6. **Customer can [deploy your application via the Dist [agents](/docs/guides/end-customer-registry-view/#deployment-agent-quickstart-from-the-customer-portal)**
 </Steps>
 
 <Aside type="tip">

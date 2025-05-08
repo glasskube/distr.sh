@@ -38,17 +38,6 @@ The Docker Compose agent is specifically designed for container-based deployment
   to learn how it should be installed.
 </Aside>
 
-#### Configuration Steps
-
-1. Navigate to the Deployments panel in the Agents section
-2. Click "+ Add deployment"
-3. Provide a deployment name
-4. Install the agent
-5. Select the application and version to deploy
-6. Configure environment variables
-7. Deploy the application
-8. Monitor deployment status
-
 ### Helm Agent
 
 The Helm agent specializes in Kubernetes deployments, managing the complete lifecycle of Helm charts in customer environments. It handles chart installation and upgrades, monitors Kubernetes resource health, supports customer-specific value overrides, and provides rollback capabilities for failed deployments.
@@ -59,25 +48,17 @@ The Helm agent specializes in Kubernetes deployments, managing the complete life
   alt="Helm Agent interface"
 />
 
-#### Configuration Steps
-
-1. Access the Deployments panel in the Agents section
-2. Create a new deployment
-3. Install the Helm agent
-4. Select the target application and version
-5. Configure Helm values
-6. Deploy and monitor the application
-
 ### Terraform Agent (Coming Soon)
 
 <Aside type="note">
-  Our upcoming Terraform agent will unlock powerful infrastructure-as-code
-  capabilities, particularly for Bring Your Own Cloud (BYOC) scenarios.
+  The Terraform agent is designed for Bring Your Own Cloud (BYOC) deployments.
 </Aside>
 
-The Terraform agent will revolutionize infrastructure management by enabling the deployment of complete environments using Terraform modules stored in the Distr Registry. This agent will manage both infrastructure and applications, handle customer-specific cloud resource variables, and maintain infrastructure state tracking and versioning.
+The upcoming Terraform agent will support provisioning infrastructure using Terraform modules stored in the Distr Registry. It will handle infrastructure and application deployment, manage customer-specific variables, and track state and versioning, useful for cases where vendors need to set up cloud resources before deploying applications.
 
-This agent will be particularly valuable for fully managed deployments where vendors need to provision and configure the underlying infrastructure before deploying their applications.
+#### Configuration Steps
+
+Follow the configuration steps in the [Deployment Agent Quickstart Guide](/docs/guides/end-customer-registry-view/#deployment-agent-quickstart-from-the-customer-portal).
 
 ## Section Components
 
@@ -114,19 +95,41 @@ Use this section to:
 
 - Monitor the real-time health and status of all deployments
 - View deployment metadata and logs
-- Track application states across all customer environments
+- Track deployment states across all customer environments
 
 ### Color-Coded Health Status
 
-Deployment health is indicated using color-coded status badges:
+Deployment health is shown using color-coded status badges:
 
 - **🔴 Error (Red)**  
-  The deployed application has failed to deploy successfully. Error logs are available, and remediation is required.  
-  ➤ _New deployments cannot be created until the error state is resolved._
+  The deployment failed. Error logs are available, and remediation is required.  
+  ➤ _New deployments cannot be created until the error is resolved._
+
+  **Troubleshooting steps:**
+  - **Identify the issue:**
+    - Check agent logs via the **Status** button
+    - If possible, check the runtime logs (Container or Application logs)
+  - **If it's a connectivity issue:**
+    - Ensure the target environment is running
+    - Confirm the correct namespace exists (for Helm)
+    - If using Docker Desktop on macOS, follow this [guide](/docs/guides/distr-on-macos/)
+  - **If it's a config issue:**
+    - Follow the config style rules provided in the customer portal
+    - Check YAML indentation
+  - **If unresolved:**  
+    Contact the software vendor for support.
 
 - **🟡 Stale (Yellow)**  
-  The agent has not made a `resource` request to Distr Hub within the last 60 seconds.  
+  The agent hasn't made a `resource` request to Distr Hub in the last 60 seconds.  
   ➤ _This indicates a communication issue. No new deployments can be made until the agent is healthy._
+
+  **Troubleshooting steps:**
+  - Check environment connectivity:
+    - Ensure the target environment is online
+    - Confirm the agent is running
+    - Review agent logs
+  - **If unresolved:**  
+    Contact the software vendor for support.
 
 - **🟢 OK (Green)**  
   The agent is actively communicating with Distr Hub and reporting a healthy application state.  

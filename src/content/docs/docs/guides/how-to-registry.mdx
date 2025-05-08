@@ -43,31 +43,22 @@ echo "YOUR-ACCESS-TOKEN" | docker login registry.distr.sh:8585 --password-stdin 
 
 ## 3. Push Your First Artifact
 
-Tag and push your Docker image (or other OCI artifact) to your registry:
+Now that you're authenticated, you can start pushing artifacts to the registry.
 
+Before uploading, you need to tag your artifact using the correct registry slug and version.
+
+You can try it with a sample image:
 ```bash
 docker pull hello-world
 docker tag hello-world registry.distr.sh/slug/hello-world:1.0.0
 docker push registry.distr.sh/slug/hello-world:1.0.0
 ```
 
----
-
-## 4. Control Artifact Access through Licensing
-
-- Assign licenses to customers to control which artifacts and tags they can access.
-- Licenses can be scoped to all tags, specific tags, or a single tag.
-- Licenses can have expiration dates or remain valid indefinitely.
-
-<ThemeImage
-  lightSrc="/src/assets/docs/product/registry/artifact-license-light.png"
-  darkSrc="/src/assets/docs/product/registry/artifact-license-dark.png"
-  alt="Registry artifacts view"
-/>
+Replace slug with your configured registry slug, and 1.0.0 with your desired version tag.
 
 ---
 
-## 5. Monitor Usage
+## 4. Monitor Usage
 
 - Use the Distr dashboard to view artifact pull counts, customer usage, and download analytics.
 - Use the Downloads panel to view a chronological list of all downloaded artifacts, including which user downloaded them and from which IP address.
@@ -81,10 +72,10 @@ docker push registry.distr.sh/slug/hello-world:1.0.0
 
 ---
 
-## 6. Customer Access
+## 5. Customer Access
 
 - Customers should authenticate with their own [PAT](/docs/integrations/personal-access-token/) and can only pull artifacts they are licensed for.
-- The customer portal provides a simplified view, showing only accessible artifacts and versions.
+- The [customer portal](/docs/guides/end-customer-registry-view/#registry-quickstart-from-the-customer-portal) provides a simplified view, the registry UI only shows the artifacts and versions that are accessible to the user.
 
 <ThemeImage
   lightSrc="/src/assets/docs/product/registry/customer-artifact-view-light.png"

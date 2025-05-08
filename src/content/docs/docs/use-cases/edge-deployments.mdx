@@ -16,21 +16,34 @@ graph TD
     DR[Distr Registry] --> DH[Distr Hub]
     DH -.-> E1[Edge 1]
     DH -.-> E2[Edge 2]
-    DH -.-> E3[Edge 3]
-    E1 --> DA1[Agent]
-    E2 --> DA2[Agent]
-    E3 --> DA3[Agent]
-    DA1 --> D1[Device]
-    DA1 --> D2[Device]
-    DA2 --> D3[Device]
-    DA2 --> D4[Device]
-    DA3 --> D5[Device]
-    DA3 --> D6[Device]
+    
+    subgraph D1[Device 1]
+        DA1[Agent] --> DP1[Deployment]
+    end
+    
+    subgraph D2[Device 2]
+        DA2[Agent] --> DP2[Deployment]
+    end
+    
+    subgraph D3[Device 3]
+        DA3[Agent] --> DP3[Deployment 1]
+        DA3 --> DP4[Deployment 2]
+    end
+    
+    E1 --> D1
+    E1 --> D2
+    E2 --> D3
     
     style DR fill:#f9f,stroke:#333,stroke-width:2px
     style DH fill:#f9f,stroke:#333,stroke-width:2px
     style E1 fill:#bbf,stroke:#333,stroke-width:2px
     style E2 fill:#bbf,stroke:#333,stroke-width:2px
-    style E3 fill:#bbf,stroke:#333,stroke-width:2px
+    style DA1 fill:#dfd,stroke:#333,stroke-width:2px
+    style DA2 fill:#dfd,stroke:#333,stroke-width:2px
+    style DA3 fill:#dfd,stroke:#333,stroke-width:2px
+    style DP1 fill:#fdd,stroke:#333,stroke-width:2px
+    style DP2 fill:#fdd,stroke:#333,stroke-width:2px
+    style DP3 fill:#fdd,stroke:#333,stroke-width:2px
+    style DP4 fill:#fdd,stroke:#333,stroke-width:2px
 `}
 />

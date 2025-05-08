@@ -1,40 +1,38 @@
 ---
-title: White labeled Distr
-description: Information on white-labeling
+title: White-labeling the Customer Portal
+description: Configure the Customer Portal with your branding and content for end-user access.
 sidebar:
-  order: 4
+  order: 6
 ---
+import ThemeImage from '../../../../components/ThemeImage.astro';
 
-## Use Case for White-Labeling Distr
+The white-labeling section of the Vendor Portal allows you to apply your own branding to the UI that customers use to deploy and manage your software.
 
-A technical stack is like a delicate house of cards, carefully constructed over time to meet a company's evolving needs. It is created and maintained by internal engineers who work with the system daily. Most engineers, and rightly so, are cautious or have a high threshold when it comes to onboarding new tools.
-
-As software end-customers, they've already made the decision to adopt the vendor's tool and integrate it into their tech stack. However, they haven't agreed to adopt a third-party tool (Distr) to manage the distribution of that software. This is where white-labeling becomes essential.
-
-## What is White-Labeling?
-
-White-labeling is the process of rebranding a third-party tool, like Distr, to match the corporate identity of the software vendor. The primary goal is to reduce friction between the vendor and the end-customer. The end-customer shouldn't feel like they're adopting or learning an entirely new tool.
-
-By rebranding Distr, it can look and feel like an internal vendor portal, purpose-built to help end-customers manage their deployments. This approach makes Distr feel like an extension of the vendor company's offering, simplifying the experience for the end-customer.
-
-## What About the Forward-Deployed Distr Agents?
-
-To further reduce overhead for the end-customer, we can work with the vendor to bundle the lightweight Distr agents directly into their base Helm chart or Docker Compose file. This ensures the agents are installed alongside the application itself.
-
-Since end-customers will likely run vulnerability scans and other tests on the application files, the bundled agents will be included in the same process. This eliminates the need for a separate vetting process for the agents, further reducing the effort required by the end-customer while maintaining their trust.
+A well-configured Customer Portal should provide all the information your end users need to install, operate, and troubleshoot your software independently.
 
 ## How to White-label Distr
 
-1. In the Vendor Portal, navigate to the Branding tab in the left-hand sidebar.
-2. Fill out the form with your company's branding information.
-3. Review your changes before clicking Save.
+1. In the Vendor Portal, go to the Branding tab in the sidebar.
+2. Fill in your company's branding details:
+   - Recommended Content for the Customer Portal Dashboard:
+     - Release notes for the current version
+     - Installation, connection and upgrade instructions
+     - Troubleshooting tips
+     - Links to relevant documentation
+3. Review and save your changes.
 
-![branding form](../../../../assets/docs/product/branding/before-branding.png)
+Branding configuration view:
 
-Before saving, the Customer Portal will look like this:
+<ThemeImage
+  lightSrc="/src/assets/docs/product/branding/branding-config-light.png"
+  darkSrc="/src/assets/docs/product/branding/branding-config-dark.png"
+  alt="Helm Agent interface"
+/>
 
-![pre-brand](../../../../assets/docs/product/branding/branding-form.png)
+After saving, the [Customer Portal](/docs/product/customer-portal/) is rebranded for your end users:
 
-After saving, your end-customer will have a fully re-branded Customer Portal that looks something like this:
-
-![white-labeled-portal](../../../../assets/docs/product/branding/branding-after.png)
+<ThemeImage
+  lightSrc="/src/assets/docs/product/vendor-portal/customer-portal-light.png"
+  darkSrc="/src/assets/docs/product/vendor-portal/customer-portal-dark.png"
+  alt="Deployments interface"
+/>

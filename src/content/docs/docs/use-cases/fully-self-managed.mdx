@@ -8,9 +8,7 @@ sidebar:
 import {Aside, Steps} from '@astrojs/starlight/components';
 import ThemeImage from '../../../../components/ThemeImage.astro';
 
-The Fully Self-Managed deployment model gives security-conscious end-customers complete control over their infrastructure with no third-party agents or external access. This registry-centric model serves organizations with restrictive security policies, regulatory requirements, or internal policies prohibiting third-party access.
-
-Distr provides a [private artifact registry](/docs/product/registry/) that enables controlled software distribution while respecting customer autonomy. Customers pull updates on their own schedule, maintaining full control over when and how updates are deployed.
+The Fully Self-Managed deployment model is designed for environments where third-party access is not an option. It gives customers full control over their infrastructure, without the use of external agents. For this deployment model, Distr provides a [private artifact registry](/docs/product/registry/) with a [built-in UI](/docs/product/registry/#artifact-registry-ui) that enables customers to fetch and deploy software on their own schedule.
 
 ### Solution Architecture
 
@@ -23,14 +21,12 @@ Distr provides a [private artifact registry](/docs/product/registry/) that enabl
 ### Implementation steps
 
 <Steps>
-  1. **Set Up Your [Registry](/docs/guides/how-to-registry/)** 2. **Onboard Your
-  [Application](/docs/guides/onboarding-a-helm-app/)** 3. **White-label the
-  [Customer portal](/docs/product/branding/)** 5. **Onboard your first
-  [customer](/docs/guides/onboarding-a-new-customer/)** 6. **Customer creates a
-  [Personal Access token](/docs/integrations/personal-access-token/)** 7.
-  **Customer can [access and
-  pull](/docs/guides/end-customer-registry-view/#registry-quickstart-from-the-customer-portal)
-  your private artifacts**
+  1. **Set Up Your [Registry](/docs/guides/how-to-registry/)** 
+  2. **Onboard Your [Application](/docs/guides/onboarding-a-helm-app/)** 
+  3. **White-label the [Customer portal](/docs/product/branding/)** 
+  4. **Onboard your first [customer](/docs/guides/onboarding-a-new-customer/)** 
+  5. **Customer creates a [Personal Access token](/docs/integrations/personal-access-token/)** 
+  6. **Customer can [access and pull](/docs/guides/end-customer-registry-view/#registry-quickstart-from-the-customer-portal) your private artifacts**
 </Steps>
 
 <Aside type="tip">

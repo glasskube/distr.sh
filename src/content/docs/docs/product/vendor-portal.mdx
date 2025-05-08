@@ -1,0 +1,39 @@
+---
+title: Vendor Portal
+description: The central control plane for vendors to manage applications, artifacts, licenses, and customer environments, complete with application onboarding, deployment monitoring, and an artifact registry UI.
+sidebar:
+  order: 4
+---
+
+import ThemeImage from '../../../../components/ThemeImage.astro';
+
+The Vendor Portal serves as the control plane for vendors, providing access to all Distr features, including [application onboarding](/docs/guides/onboarding-a-helm-app/), [artifact registry](/docs/guides/how-to-registry/) management, and monitoring of end-customer deployment states. In contrast, the [Customer Portal](/docs/product/customer-portal/) offers a simplified interface for end customers, allowing them to configure and manage their deployments while centralizing release information and helpful instructions for operating the vendor’s software.
+
+<ThemeImage
+  lightSrc="/src/assets/docs/product/vendor-portal/hub-light.png"
+  darkSrc="/src/assets/docs/product/vendor-portal/hub-dark.png"
+  alt="Deployments interface"
+/>
+
+## Key Features
+
+1. **Onboarding Tutorials**: Start with the [Quickstart](/docs/getting-started/quickstart/#getting-started-with-platform-tutorials) to get familiar with the platform.
+
+2. **Global Dashboard**: View health status for agents and artifacts across all deployments.
+
+3. **Application Onboarding**: Use the _Agents_ section to add [applications](/docs/guides/onboarding-a-helm-app/) and the _Deployments_ section to manage internal deployments and monitor workload health.
+
+4. **Registry Management**: Browse and view consumption metrics of your [artifacts](/docs/product/registry/) in the _Registry_ section.
+
+5. **License Management**: Define license rules to control access to specific artifact and application versions or tags.
+
+6. **Customer Management**: Invite [customers](/docs/guides/onboarding-a-new-customer/) to your organization and update their profile details.
+
+7. **User Management**: Add and manage internal team members to your Distr account.
+
+8. **Customer Portal Customization**: [White-label](/docs/product/branding/) the portal with your branding and provide customers with self-service instructions and documentation.
+
+9. **Organization Settings**: Set your organization name and configure your registry [slug](/docs/guides/how-to-registry/#1-set-your-registry-slug) in the _Settings_ section.
+
+9. **Account button**: Use the account section to create create [Personal Access Tokens](docs/integrations/personal-access-token/) associated to your account for API, SKD and Registry authentication.
+   

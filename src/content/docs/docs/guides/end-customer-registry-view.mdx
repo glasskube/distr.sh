@@ -14,13 +14,6 @@ This guide walks you through using both of features.
 
 ## Registry quickstart from the customer portal
 
-<Aside type="note">
-  The registry is used directly by [Fully Self-Managed
-  customers](/docs/use-cases/fully-self-managed/) and indirectly by the other
-  deployment models, as Distr agents may need to fetch container images stored
-  in the registry.
-</Aside>
-
 A typical onboarding journey looks like this:
 
 1. **Access the Customer Portal Dashboard**
@@ -38,8 +31,8 @@ A typical onboarding journey looks like this:
    Browse the artifacts your vendor has made available to you in the artifacts section:
 
    <ThemeImage
-     lightSrc="/src/assets/docs/guides/customer-view/registry-access-light.png"
-     darkSrc="/src/assets/docs/guides/customer-view/registry-access-dark.png"
+     lightSrc="/src/assets/docs/guides/customer-view/artifact-ui-customer-light.png"
+     darkSrc="/src/assets/docs/guides/customer-view/artifact-ui-customer-dark.png"
      alt="Registry artifacts view"
    />
 
@@ -50,8 +43,8 @@ A typical onboarding journey looks like this:
    Click on the artifact name to see details like available versions, creation date, and a download counter:
 
    <ThemeImage
-     lightSrc="/src/assets/docs/guides/customer-view/package-details-light.png"
-     darkSrc="/src/assets/docs/guides/customer-view/package-details-dark.png"
+     lightSrc="/src/assets/docs/guides/customer-view/artifact-ui-details-light.png"
+     darkSrc="/src/assets/docs/guides/customer-view/artifact-ui-details-dark.png"
      alt="Artifact details view"
    />
 
@@ -78,14 +71,6 @@ A typical onboarding journey looks like this:
    Refer to the deployment instructions in your [Customer Portal](/docs/product/distr-hub/#what-customers-can-do-in-the-customer-portal) dashboard or coordinate directly with your vendor for specific deployment guidance.
 
 ## Deployment Agent quickstart from the customer portal
-
-<Aside type="note">
-  Deployment agents are used by [Assisted
-  Self-Managed](/docs/use-cases/assisted-self-managed/) or
-  [BYOC](/docs/use-cases/byoc/) customers. The Distr registry still plays an
-  indirect role as application artifacts (Docker images, Helm charts) may
-  reference private container images stored in the registry.
-</Aside>
 
 1. **Create a New Agent**
 
@@ -135,19 +120,21 @@ A typical onboarding journey looks like this:
 
    Once running, the agent gains access to the definition files configured by the vendor on the Distr platform. It is responsible for deploying the application, fetching updates, and reporting health metrics to both the customer and vendor portals.
 
-5. **Deploy an Application**
-
-   Select from available applications and versions in the Deploy panel.
-
 6. **Configure Your Deployment**
 
-   Customize the configuration file exposed by the vendor with your specific requirements.
+   Select an application and version from the Deploy panel.
+
+   Customize the configuration file provided by the vendor to fit your environment.
 
    <ThemeImage
      lightSrc="/src/assets/docs/guides/customer-view/config-light.png"
      darkSrc="/src/assets/docs/guides/customer-view/config-dark.png"
      alt="Artifact details view"
    />
+
+7. **Deploy the Application**
+
+   Once configured, you're ready to deploy.
 
 7. **Monitor Deployment Status**
 
