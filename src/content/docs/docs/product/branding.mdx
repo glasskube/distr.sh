@@ -4,7 +4,9 @@ description: Configure the Customer Portal with your branding and content for en
 sidebar:
   order: 6
 ---
+
 import ThemeImage from '../../../../components/ThemeImage.astro';
+import {Aside} from '@astrojs/starlight/components';
 
 The white-labeling section of the Vendor Portal allows you to apply your own branding to the UI that customers use to deploy and manage your software.
 
@@ -32,7 +34,11 @@ Branding configuration view:
 After saving, the [Customer Portal](/docs/product/customer-portal/) is rebranded for your end users:
 
 <ThemeImage
-  lightSrc="/src/assets/docs/product/vendor-portal/customer-portal-light.png"
-  darkSrc="/src/assets/docs/product/vendor-portal/customer-portal-dark.png"
+  lightSrc="/src/assets/docs/guides/customer-view/customer-portal-no-num-light.png"
+  darkSrc="/src/assets/docs/guides/customer-view/customer-portal-no-num-dark.png"
   alt="Deployments interface"
 />
+
+<Aside type="note">
+  Custom DNS is also supported. Contact us a support@glasskube.com for setup.
+</Aside>
