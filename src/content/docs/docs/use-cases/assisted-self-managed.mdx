@@ -1,0 +1,41 @@
+---
+title: Assisted Self-Managed Deployment
+description: A deployment model that balances customer control with vendor assistance
+sidebar:
+  order: 2
+---
+
+import {Aside, Steps} from '@astrojs/starlight/components';
+import ThemeImage from '../../../../components/ThemeImage.astro';
+
+The Assisted Self-Managed deployment model offers a balance between customer infrastructure control and vendor assistance. Applications run in customer-owned environments such as virtual machines or Kubernetes clusters, with no direct vendor access to the infrastructure.
+
+Lightweight [Distr agents](/docs/product/agents/), installed by the customer in the target environment, handle deployments and updates. They pull application definitions and artifacts from Distr Hub, apply customer-defined configurations, and report deployment status, logs, and health to both the [vendor](/docs/product/vendor-portal/) and [customer](/docs/product/customer-portal/) portals, without exposing internal infrastructure.
+
+The Customer Portal also allows end users, who may not be involved in initial deployment, to configure applications, monitor status, access logs, and trigger updates. This is especially useful in setups where a platform team deploys the application, but another team operates it day-to-day.
+
+### Solution Architecture
+
+<ThemeImage
+  lightSrc="/src/assets/docs/use-cases/assisted-self-managed/assisted-self-managed-light.png"
+  darkSrc="/src/assets/docs/use-cases/assisted-self-managed/assisted-self-managed-dark.png"
+  alt="Assisted-Self-Managed diagram"
+/>
+
+### Implementation steps
+
+<Steps>
+  1. **Onboard Your [Application](/docs/guides/onboarding-a-helm-app/)** 2.
+  **(Optional) Set Up Your [Registry](/docs/guides/how-to-registry/)** 3.
+  **White-label the [Customer portal](/docs/product/branding/)** 4. **Onboard
+  your first [customer](/docs/guides/onboarding-a-new-customer/)** 5. **Customer
+  creates a [Personal Access token](/docs/integrations/personal-access-token/)**
+  6. **Customer can [deploy your application via the Dist
+  [agents](/docs/guides/end-customer-registry-view/#deployment-agent-quickstart-from-the-customer-portal)**
+</Steps>
+
+<Aside type="tip">
+  The agent acts only as a facilitator, pulling updates and applying them
+  according to customer-defined policies. It does not provide vendor access to
+  customer infrastructure.
+</Aside>
