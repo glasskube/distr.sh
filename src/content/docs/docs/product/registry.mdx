@@ -1,0 +1,198 @@
+---
+title: Artifact Registry
+description: Distr OCI-compliant artifact registry to distribute Docker images and Helm Charts to self-managed customers with advanced tag-based control and download analytics.
+sidebar:
+  order: 2
+---
+
+import {Aside} from '@astrojs/starlight/components';
+import ThemeImage from '../../../../components/ThemeImage.astro';
+
+The Distr Artifact Registry is a built-in, [OCI-compliant](https://github.com/opencontainers/distribution-spec?tab=readme-ov-file) registry designed for AI and software companies
+to distribute Docker images and Helm Charts, SBOMs and other OCI artifacts to self-managed and BYOC environments.
+It features advanced tag-based access and licensing controls.
+The registry also provides detailed download analytics that let you monitor which versions of your software are being used by each customer.
+
+Use it to publish versioned artifacts, enforce licensing rules, and track consumption across your customer base.
+
+<Aside type="note">
+  The Distr Artifact registry is a private registry, meaning that only
+  authenticated users can push and pull artifacts. Unauthenticated users will
+  not be able to access your artifacts.
+</Aside>
+
+<ThemeImage
+  lightSrc="/src/assets/docs/product/registry/light-mode-registry.png"
+  darkSrc="/src/assets/docs/product/registry/dark-mode-registry.png"
+  alt="Registry diagram"
+/>
+
+### Core capabilities
+
+- **Multi-artifact support**: Distribute Docker Images, Helm Charts, Terraform Modules, and any OCI-compliant artifact
+- **Software supply chain security**: Store SBOMs and signatures for image verification
+- **Visibility**: Get insights into which customers are using which artifacts and versions
+- **Open standards**: Built on the OCI specification and compatible with existing tooling (Docker, ORAS, Helm, etc.)
+- **Built-in licensing (beta)**: Bind artifact (versions) to licenses for fine-grained customer access control
+
+## Quickstart
+
+1. To start using the registry, choose a registry slug and log in.
+2. Tag and push your artifacts to the registry, you can manage this from the Artifacts section.
+3. Once stored, your artifacts can be assigned by other users and end-customers via their favorite registry CLI tool (Docker, ORAS, Kubernetes, etc.).
+4. Use the Downloads section to get granular artifact consumption analytics.
+5. To control access, create licenses that grant end customers permission to specific artifacts and versions.
+
+Want a quick overview of how it works? Watch this short walkthrough:
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/gM9WCx61owQ?si=rWP7n4UR1liAKi_6"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen
+  style="width: 560px; height: 315px; max-width: 100%; aspect-ratio: 16/9; border-radius: 8px; margin: 2rem auto; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></iframe>
+
+<Aside type="note">
+  You can also find registry setup instructions in the On-Platform Tutorials
+  section.
+</Aside>
+
+## Registry Features
+
+### Artifacts List
+
+The Artifact List page lets you view all artifacts stored in your registry. It provides an overview of pull counts across all tags, along with insights into which users and customers are using each artifact.
+
+<ThemeImage
+  lightSrc="/src/assets/docs/product/registry/artifacts-list-light.png"
+  darkSrc="/src/assets/docs/product/registry/artifacts-list-dark.png"
+  alt="Registry artifacts view"
+/>
+
+### Artifact Details
+
+The artifact details page gives you a complete view of all tags associated with a specific artifact. You can see the OCI URL, upload date, and artifact size, along with pull counts for each tag.
+
+<ThemeImage
+  lightSrc="/src/assets/docs/product/registry/artifact-details-light.png"
+  darkSrc="/src/assets/docs/product/registry/artifact-details-dark.png"
+  alt="Registry artifacts view"
+/>
+
+<Aside type="note">
+  The Distr artifact registry only supports immutable tags. This means that once
+  a tag is pushed to the registry it can't be associated with another digest.
+</Aside>
+
+### Artifact Downloads
+
+The Downloads section shows a chronological list of all downloaded artifacts, including which user downloaded them and from which IP address.
+
+<ThemeImage
+  lightSrc="/src/assets/docs/product/registry/download-light.png"
+  darkSrc="/src/assets/docs/product/registry/download-dark.png"
+  alt="Registry artifacts view"
+/>
+
+<Aside type="note">
+  Using this information, you can see whether a user is running the latest
+  version of your software.
+</Aside>
+
+## Using the registry as a vendor
+
+### Getting started
+
+To enable the registry, you need to set a registry slug at the organization level. This only needs to be configured once in the Distr account settings.
+
+**Set Organization Slug**
+
+<ThemeImage
+  lightSrc="/src/assets/docs/product/registry/light-slug.png"
+  darkSrc="/src/assets/docs/product/registry/dark-slug.png"
+  alt="Registry artifacts view"
+/>
+
+The slug will be used as part of the url for artifact registry.
+
+<Aside type="caution">
+  The registry slug must start with a lower case letter or digit and consist
+  only of lowercase letters, digits, as well as the following special
+  characters: **".","_","__","-"**.
+</Aside>
+
+#### Registry login
+
+To login to the registry, you will have to create a [personal access token (PAT)](/docs/integrations/personal-access-token/) and use it in the following login command:
+
+<Aside type="note">
+  The Distr artifact registry does not require a username when login in. The PAT
+  is directly associated with your user account.
+</Aside>
+
+```bash
+echo "YOUR-ACCESS-TOKEN" | docker login registry.distr.sh:8585 --password-stdin -u -
+```
+
+Then you can start tagging and pushing images to your account level registry.
+
+For example, you can try the following commands to push your own `hello-world` image:
+
+```bash
+docker pull hello-world
+docker tag hello-world registry.distr.sh/slug/hello-world:1.0.0
+docker push registry.distr.sh/slug/hello-world:1.0.0
+```
+
+### Artifact Licenses
+
+<Aside type="note">
+  Registry Licenses is available in beta. Contact us to get early access!
+</Aside>
+
+Registry licenses control which artifacts end customers can access, down to specific versions. A single license can include multiple artifacts and versions, and each customer can be associated with multiple licenses. Licenses can also have an expiration date, if none is set, the license remains valid indefinitely.
+
+#### Creating a License:
+
+To create a license, you'll:
+
+1. Give it a **name**
+2. Set an **expiration date**
+3. **Select the artifacts** you want to include
+4. **Choose the scope**. All tags, specific tags, or just a single tag
+5. **Assign the owner** this is the end customer the license is tied to
+
+<ThemeImage
+  lightSrc="/src/assets/docs/product/registry/artifact-license-light.png"
+  darkSrc="/src/assets/docs/product/registry/artifact-license-dark.png"
+  alt="Registry artifacts view"
+/>
+
+<Aside type="note">
+  The scope of a license can't be reduced. So an artifact can't get unassigned
+  from a license.
+</Aside>
+
+## Using the registry as an end-customer
+
+The customer portal displays fewer details and icons, since end customers can only pull artifacts and view the versions they've been granted access to through their assigned artifact licenses. As noted above, once they [create a Personal Access Token and log in](#registry-login) to the registry, they'll be able to pull those artifacts.
+
+<ThemeImage
+  lightSrc="/src/assets/docs/product/registry/customer-artifact-view-light.png"
+  darkSrc="/src/assets/docs/product/registry/customer-artifact-view-dark.png"
+  alt="Registry artifacts view"
+/>
+
+## Global Dashboard Artifact View
+
+The main Distr dashboard also provides a global view of which artifacts each end customer has consumed, including version details and a health status. For more information, refer to the sections mentioned earlier.
+
+<ThemeImage
+  lightSrc="/src/assets/docs/product/registry/dashboard-artifact-view-light.png"
+  darkSrc="/src/assets/docs/product/registry/dashboard-artifact-view-dark.png"
+  alt="Registry artifacts view"
+/>
