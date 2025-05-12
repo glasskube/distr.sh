@@ -1,6 +1,7 @@
 ---
 title: Distr API
-description: Programmatically manage your software distribution with our RESTful API, featuring authentication and rate limits.
+description: Using the Distr REST API, you can programmatically manage every aspect of your software distribution, from publishing artifacts and creating customers to triggering deployment updates. Using the same API that's behind the Vendor and Customer Portals.
+
 sidebar:
   order: 1
 ---
@@ -13,7 +14,7 @@ that handle authentication and error handling for you, and provide types.
 
 ## Base URL
 
-Every Distr instance, no matter if self managed or the SaaS version, exposes this API under the `/api/v1` path.
+Every Distr instance, no matter if self-managed or the SaaS version, exposes this API under the `/api/v1` path.
 
 ## Authentication
 

@@ -1,6 +1,6 @@
 ---
 title: Self-hosting Distr
-description: Distr can be easily self-managed in your own environment to use it as a first party software distribution platform and artifact registry.
+description: Distr can be easily self-managed in your own environment to use it as an internal software distribution platform and artifact registry.
 sidebar:
   order: 0
 ---
