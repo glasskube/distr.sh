@@ -1,0 +1,105 @@
+---
+title: Artifact Registry
+description: The Artifact Registry is a private, OCI-compliant registry built into Distr for publishing container images, Helm charts, and other artifacts to self-managed environments. It offers tag-based access control, a registry UI and detailed usage insights per customer.
+sidebar:
+  order: 3
+---
+
+import {Aside} from '@astrojs/starlight/components';
+import ThemeImage from '../../../../components/ThemeImage.astro';
+
+The Distr Artifact Registry is a built-in, [OCI-compliant](https://github.com/opencontainers/distribution-spec?tab=readme-ov-file) registry designed for AI and software companies
+to distribute Docker images and Helm Charts, SBOMs and other OCI artifacts to self-managed and BYOC environments.
+It features advanced tag-based access and licensing controls.
+The registry also provides detailed download analytics that let you monitor which versions of your software are being used by each customer.
+
+Use it to publish versioned artifacts, enforce licensing rules, and track consumption across your customer base.
+
+<Aside type="note">
+  The Distr Artifact registry is a private registry, meaning that only
+  [authenticated](/docs/guides/container-registry/#2-authenticate-with-a-personal-access-token)
+  users via PAT can push and pull artifacts. Unauthenticated users will not be
+  able to access your artifacts.
+</Aside>
+
+<ThemeImage
+  lightSrc="/src/assets/docs/product/registry/light-mode-registry.png"
+  darkSrc="/src/assets/docs/product/registry/dark-mode-registry.png"
+  alt="Registry diagram"
+/>
+
+### Core capabilities
+
+- **Multi-artifact support**: Distribute Docker Images, Helm Charts, Terraform Modules, and any OCI-compliant artifact
+- **Software supply chain security**: Store SBOMs and signatures for image verification
+- **Visibility**: Get insights into which customers are using which artifacts and versions
+- **Open standards**: Built on the OCI specification and compatible with existing tooling (Docker, ORAS, Helm, etc.)
+- **Built-in licensing (beta)**: Bind artifact (versions) to licenses for fine-grained customer access control
+
+## Getting started
+
+<Aside type="note">
+  If you haven’t set up your registry yet, start with the [in-platform
+  tutorials](/docs/getting-started/quickstart/#getting-started-with-platform-tutorials)
+  or follow the [Quickstart Guide](/docs/guides/container-registry/).
+</Aside>
+
+Want a quick overview of how it works? Watch this short walkthrough:
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/gM9WCx61owQ?si=rWP7n4UR1liAKi_6"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen
+  style="width: 560px; height: 315px; max-width: 100%; aspect-ratio: 16/9; border-radius: 8px; margin: 2rem auto; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></iframe>
+
+## Artifact Registry UI
+
+### Artifact List
+
+The Artifact List page lets you view all artifacts stored in your registry. It provides an overview of pull counts across all tags, along with insights into which users and customers are using each artifact.
+
+<ThemeImage
+  lightSrc="/src/assets/docs/product/registry/artifacts-list-light.png"
+  darkSrc="/src/assets/docs/product/registry/artifacts-list-dark.png"
+  alt="Registry artifacts view"
+/>
+
+### Artifact Details
+
+The artifact details page gives you a complete view of all tags associated with a specific artifact. You can see the OCI URL, upload date, and artifact size, along with pull counts for each tag.
+
+<ThemeImage
+  lightSrc="/src/assets/docs/product/registry/artifact-details-light.png"
+  darkSrc="/src/assets/docs/product/registry/artifact-details-dark.png"
+  alt="Registry artifacts view"
+/>
+
+<Aside type="note">
+  The Distr artifact registry only supports immutable tags. This means that once
+  a tag is pushed to the registry it can't be associated with another digest.
+</Aside>
+
+### Artifact Downloads
+
+The Downloads section shows a chronological list of all downloaded artifacts, including which user downloaded them and from which IP address.
+
+<ThemeImage
+  lightSrc="/src/assets/docs/product/registry/download-light.png"
+  darkSrc="/src/assets/docs/product/registry/download-dark.png"
+  alt="Registry artifacts view"
+/>
+
+## Global Dashboard Artifact View
+
+The main Distr dashboard also provides a global view of which artifacts each end customer has consumed, including version details and a health status.
+
+<ThemeImage
+  lightSrc="/src/assets/docs/product/registry/dashboard-artifact-view-light.png"
+  darkSrc="/src/assets/docs/product/registry/dashboard-artifact-view-dark.png"
+  alt="Registry artifacts view"
+/>

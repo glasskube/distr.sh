@@ -1,6 +1,6 @@
 ---
 title: Docker Compose
-description: Self-hosting Distr with Docker Compose
+description: Deploy Distr in minutes using Docker Compose with minimal configuration and automatic database setup.
 sidebar:
   order: 1
 ---

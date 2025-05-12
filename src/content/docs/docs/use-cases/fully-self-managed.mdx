@@ -1,0 +1,43 @@
+---
+title: Fully Self-Managed Deployment
+description: In fully self-managed deployments, customers use access tokens to pull artifacts directly from Distr’s private OCI-compliant registry, with a built-in UI in the Customer Portal that displays all available artifacts, no agents or external dependencies required.
+sidebar:
+  order: 1
+---
+
+import {Aside, Steps} from '@astrojs/starlight/components';
+import ThemeImage from '../../../../components/ThemeImage.astro';
+
+The Fully Self-Managed deployment model is designed for environments where third-party access is not an option.
+It is best suited for customers wanting to have full control over their infrastructure and don't want to use external agents.
+For this deployment model, Distr provides a [private artifact registry](/docs/product/registry/).
+It comes with an [optimized UI](/docs/product/registry/#artifact-registry-ui) that enables customers
+to create access tokens, fetch the latest images and build custom automations on top if the registry.
+
+## Solution Architecture
+
+<ThemeImage
+  lightSrc="/src/assets/docs/use-cases/fully-self-managed/fully-self-managed-light.png"
+  darkSrc="/src/assets/docs/use-cases/fully-self-managed/fully-self-managed-dark.png"
+  alt="Fully-Self-Managed diagram"
+/>
+
+## Implementation steps
+
+<Aside type="note">
+  Ideal for customers with robust DevOps capabilities and strict security
+  requirements around third-party tool access.
+</Aside>
+
+<Steps>
+
+{/* steps can't be indented due to prettier */}
+
+1. Set Up Your [Registry](/docs/guides/container-registry/)
+2. Onboard Your [Application](/docs/guides/onboarding-a-helm-app/)
+3. White-label the [Customer portal](/docs/product/branding/)
+4. Onboard your first [customer](/docs/guides/onboarding-a-new-customer/)
+5. Customer creates a [Personal Access token](/docs/integrations/personal-access-token/)
+6. Customer can [access and pull](/docs/guides/container-registry-for-end-customers/#registry-quickstart-from-the-customer-portal) your private artifacts
+
+</Steps>

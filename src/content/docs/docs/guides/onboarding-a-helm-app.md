@@ -1,6 +1,6 @@
 ---
 title: Onboarding a Helm App
-description: Creating a new Helm App in Distr
+description: Package and deploy your Kubernetes applications to customer environments using Distr's Helm deployment agent.
 sidebar:
   order: 2
 ---

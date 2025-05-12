@@ -1,174 +1,58 @@
 ---
 title: Quickstart
-description: distr.sh is an Open Source software distribution platform?
+description: Complete three interactive tutorials to set up your registry, deploy your first application, and onboard your first customer.
 sidebar:
   order: 3
 ---
 
 import {Aside} from '@astrojs/starlight/components';
+import ThemeImage from '../../../../components/ThemeImage.astro';
 
-## Prerequisites
+## Getting Started with Platform Tutorials
 
-Distr is designed to help distribute "self-managed" ready software to [customer-controlled environments](https://glasskube.dev/blog/5-ways-to-succeed-without-access-to-customer-environments/). The key phrase here is ["self-managed ready"](https://glasskube.dev/white-paper/building-blocks/).
+The fastest way to learn how to use Distr is through the interactive tutorials available directly on the platform. When you first create an account, you'll have access to three guided tutorials that cover the core capabilities:
 
-### What does "self-managed ready" mean?
+<ThemeImage
+  lightSrc="/src/assets/docs/getting-started/quickstart/tutorials-light.png"
+  darkSrc="/src/assets/docs/getting-started/quickstart/tutorials-dark.png"
+  alt="Fully-Self-Managed diagram"
+/>
 
-#### Self-managed ready checklist:
+### 1. Artifact Registry
 
-- Your application is **fully containerized** (Docker or Helm)
-- You are using some sort of **consistent versioning**
-- If your application has dependencies, these should also be **standardized and declared**
+This tutorial walks you through setting up your organization's [registry](/docs/product/registry/) slug, creating a personal access token and logging in, pushing and pulling artifacts from your own private artifact registry.
 
-If you're a software company who has developed a SaaS product and later been approached by a customer requesting to use your product in a "self-managed" deployment, you've likely experienced the challenges of lacking self-managed readiness. Deploying to self-managed environments or complex customer-controlled environments requires deliberate decisions and architectural considerations made early in the development process to ensure such deployments are practical.
+### 2. Agents, Application and Deployments Tutorial
 
-Software built with self-managed readiness in mind from the start often reflects thoughtful design, focusing on maintainability and configurations suitable for future self-managed use cases. However, many software solutions aren't initially created with these scenarios in mind. As customer requirements evolve, SaaS products may need adjustments to support self-managed deployments. Ideally, your application should already be containerized, with a Docker Compose file or Helm chart prepared. If not, feel free to reach out for white-labeled onboarding assistance.
+In this tutorial, you'll learn how to download and install a [Distr agent](/docs/product/agents/), deploy a sample hello-distr application, verify and monitor deployment statuses, and automate future releases.
 
-#### What changes are needed for self-managed readiness?
+### 3. Invite Your First Customer Tutorial
 
-To bridge this gap, we've compiled a document outlining the foundational building blocks for achieving self-managed readiness. You can access this comprehensive [whitepaper here](https://glasskube.dev/white-paper/building-blocks/).
+This tutorial guides you through setting up your [Customer Portal](/docs/product/customer-portal/) and inviting a customer. You'll learn how to customize the portal name and welcome page with helpful instructions and release notes, send the customer invite email, and preview the portal from the end customer's perspective.
 
-## Quickstart
+## Accessing the Tutorials
 
-In this Quickstart guide, we'll walk through the primary workflow designed to help Distr users get the most value from the platform. Here's what we'll cover:
+To access these tutorials:
 
-- Open your **free** [Distr account](https://distr.sh/).
-- **Onboarding a sample application** to explore how Distr works.
-- **Choosing a deployment target setup**:
-- Onboard your first customer, or
-- Assign yourself as the owner of the deployment target environment.
-- **Creating a deployment** and verifying its installation using the Distr agent.
+1. Create your **free** [Distr account](https://app.distr.sh/login)
+2. Navigate to the Dashboard
+3. Go to the Tutorials section
+4. We recommend completing the tutorials in order for the best learning experience
 
-All of this can be easily accomplished by following the helpful Onboarding Wizard. Let's get started!
+## After Completing Tutorials
 
-## Follow the onboarding wizard to get started
+Upon completion, you'll be ready to:
 
-<Aside type="note">
-  The Onboarding Wizard will only appear if your Distr account has not yet
-  created its first application, customer, or deployment. If you've already used
-  the Onboarding Wizard but would like to add more applications, customers, or
-  deployments, please follow these
-  [instructions.](#onboard-more-applications-customers-and-deployments)
-</Aside>
+1. **Onboard Your Own Applications:** Add your [Docker Compose](/docs/guides/onboarding-a-docker-app/) or [Helm chart-based applications](/docs/guides/onboarding-a-helm-app/) to Distr
+2. **Push Your Artifacts:** Store your artifacts in your private [registry](/docs/product/registry/)
+3. **Invite Customers:** Invite new [customers](/docs/guides/onboarding-a-new-customer/) into your organization
 
-### Onboarding Wizard
+### Next, explore the Use cases section
 
-The Onboarding Wizard is a step-by-step guide that assists Distr users in uploading an application based on a Docker Compose file or a Helm chart, onboarding a customer if one is available, and adding a deployment that will be installed by the Distr agent.
-
-<Aside type="note">
-  The Onboarding Wizard also offers the option to onboard a sample app for
-  testing purposes. To gain a better understanding of how Distr works, we'll
-  begin by onboarding the [test app](https://github.com/go-shiori/shiori).
-</Aside>
-
-![wizard-start](../../../../assets/docs/getting-started/quickstart/wizard-start.png)
-
-### Let's Onboard a Sample Application
-
-Upon clicking "Continue" on the initial Onboarding Wizard screen, you'll be prompted to choose the type of app definition files you'd like to onboard. Distr users can select either Docker Compose files or Helm charts. Alternatively, you can click the "I don't know yet, please just let me test!" checkbox (shown in the image below) to deploy a sample bookmarking app, which is based on a Docker Compose file.
-
-At this stage, Distr handles the process of locating the app definition file, exposing the application version and preparing it for distribution.
-
-![test-app](../../../../assets/docs/getting-started/quickstart/wizard-test.png)
-
-### Define Ownership of Target Environment
-
-Next, you'll move to the stage where users are prompted to choose a name and define who is responsible for the target environment where the application will be deployed. Deployment targets can either be managed by the end-customer or directly by the Distr user. At this step, you'll find two checkboxes to choose from:
-
--- **"I Am"**: Select this if you are responsible for and have control over the deployment target, such as for IoT, edge, or internal use cases.
-
--- **"An employee of the customer"**: Select this when the end-user's team is responsible for managing deployments, and the Distr user does not have access to the deployment target. More suited towards the self-managed use case.
-
-![define-owner](../../../../assets/docs/getting-started/quickstart/customer-creation.png)
-
-<Aside type="note">
-  Once you click `Continue`, Distr will create a deployment named
-  `Test-Customer`. Since the target deployment environment hasn't been connected
-  yet, the deployment status will appear in the gray `initial` stage. To
-  complete the process and make the deployment of our test app healthy, we'll
-  need to connect the target environment to Distr.
-</Aside>
-
-Deployment with status: `initial`
-
-![deployment-check](../../../../assets/docs/getting-started/quickstart/app-created.png)
-
-### Connect the Target Environment with the Distr Agent
-
-To complete the final step and connect the target environment to Distr, you'll need to access the target environment and run the curl command displayed in the Onboarding Wizard console. In this test case, the agent will be installed in a local Docker Desktop environment. So make sure to have access to a local Docker desktop instance.
-
-Once the agent is installed, it will pull the deployment specifications and install the deployment into the target environment. After installation, the agent will communicate with the Distr hub to confirm that the deployment is up and running. This will update the status on the deployment page to `"OK"`.
-
-![run-agent](../../../../assets/docs/getting-started/quickstart/connection-command.png)
-
-Run the Distr agent in the target environment:
+Visit the [Use cases](/docs/use-cases/fully-self-managed/) section to identify the scenario that best fits your end customers and begin implementing the most appropriate deployment model for them.
 
 <Aside type="tip">
-  If you are running the agent on macOS, make sure to checkout the [macOS setup
-  guide](/docs/guides/distr-on-macos/) for additional steps.
+  Need more help? Join our [Community Discord
+  Server](https://discord.gg/6qqBSAWZfW) for assistance from our team and other
+  Distr users.
 </Aside>
-
-![run-agent](../../../../assets/docs/getting-started/quickstart/run-command.png)
-
-### The Test Deployment is Operational
-
-Check in the "Deployments" tab, to see if the test deployments health is _green_.
-
-Deployment with status: `OK`
-
-![agent-up](../../../../assets/docs/getting-started/quickstart/deployment-healthy.png)
-
-As mentioned earlier, the test bookmarking app is packaged in a Docker Compose file and runs locally on Docker Desktop. You can verify the deployment by checking the running Docker containers.
-
-To do this, run the command `docker ps` to view the active containers in your Docker environment.
-
-Here's what you'll find:
-
-1. The Distr agent was installed first.
-2. The agent then deployed two additional containers:
-
-- The Shiori app
-- The Shiori app's database container
-
-![docker-ps](../../../../assets/docs/getting-started/quickstart/docker-ps.png)
-
-You can also navigate to the main Dashboard page, where the widgets will update to display the latest uptime and deployment metrics currently available.
-
-![dashboard-view](../../../../assets/docs/getting-started/quickstart/dashboard-new-deploy.png)
-
-## Onboard more applications, customers and deployments.
-
-Distr users will only see the Onboarding Wizard once, and only if no applications have been onboarded. After completing the onboarding process by adding their first application, customer, and running the first deployment, all of these steps can be repeated individually as needed.
-
-### Add More Applications
-
-Head over to the `Applications` tab and in the top right corner click on the `+ Add Application` button. And simply follow the steps.
-
-![add-application](../../../../assets/docs/getting-started/quickstart/add-app.png)
-
-### Invite More Customers
-
-Head over to the `Customers` tab and in the top right corner click on the `+ Invite customer` button. And simply follow the steps.
-
-![invite-customer](../../../../assets/docs/getting-started/quickstart/add-customer.png)
-
-<Aside type="caution">
-  Once the customer's email address is submitted, the recipient will receive an
-  email containing login credentials for the Distr Customer Portal. Through this
-  portal, they can view and manage the deployments of the applications they have
-  purchased from the software company.
-</Aside>
-
-### Add More Deployments
-
-Head over to the `Deployments` tab and click on the `+ Add deployment` button and follow the steps.
-
-![Add deployments](../../../../assets/docs/getting-started/quickstart/add-deploy.png)
-
-- For more information on how to deploy a Docker compose packaged application, check out this [guide](/docs/guides/onboarding-a-docker-app/).
-- For more information on how to deploy a Helm chart packaged application, check out this [guide](/docs/guides/onboarding-a-helm-app/).
-
-### Create your first software license
-
-Easily manage customer access by associating specific applications and application versions with a license. Give the license a name, set an expiration date, and gain granular control over what each customer can access.
-
-For full details, check out the [License Management guide](/docs/guides/license-mgmt/).

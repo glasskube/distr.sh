@@ -1,6 +1,6 @@
 ---
 title: Creating a Personal Access Token
-description: How to create a personal access token
+description: Generate secure access tokens to authenticate with Distr's Registry, API and SDK.
 sidebar:
   order: 3
 ---

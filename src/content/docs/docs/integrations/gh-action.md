@@ -1,6 +1,6 @@
 ---
 title: GitHub Actions
-description: Distr offers GitHub Actions for easy integration with your CI/CD pipeline.
+description: Automatically create new application versions in Distr whenever you push a release to GitHub, supporting both Docker and Helm applications.
 sidebar:
   order: 4
 ---

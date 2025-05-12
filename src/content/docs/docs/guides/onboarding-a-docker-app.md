@@ -1,6 +1,6 @@
 ---
 title: Onboarding a Docker App
-description: Creating a new Docker App in Distr
+description: Package and deploy your Docker applications to customer environments using Distr's docker deployment agent.
 sidebar:
   order: 1
 ---
@@ -26,7 +26,7 @@ You will be asked to enter a name and select the type of the application:
 After you have clicked on the **Create Application** button, you will be redirected to the detailed view of this application.
 In this view you can manage the versions of the application.
 
-![Application Detail View](../../../../assets/docs/guides/docker_app_detail.png)
+![Application Detail View](../../../../assets/docs/guides/docker_add_application.png)
 
 ### Creating a first version
 

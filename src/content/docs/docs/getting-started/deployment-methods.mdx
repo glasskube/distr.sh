@@ -1,42 +1,49 @@
 ---
-title: Deployment Methods
-description: About distr
+title: Deployment methods
+description: 'Distr offers two deployment options: a managed SaaS platform hosted by Distr, and a self-managed option for teams that require full control, meet compliance requirements, or operate in air-gapped environments.'
 sidebar:
   order: 4
 ---
 
 import {Aside} from '@astrojs/starlight/components';
 
-Distr is a versatile platform designed to adapt to user preferences, thanks to its Open Source foundation. It offers two deployment methods: as a SaaS solution hosted, maintained by the Glasskube team or as a self-hosted option.
+As an Open Source platform, Distr offers two deployment methods to suit different organizational needs:
 
-Let’s explore the features of each deployment method:
+## SaaS (Hosted by Distr)
 
-## Distr as a SaaS
+The fastest way to get started. Our fully hosted offering includes:
 
-Features:
+All in the free tier:
 
-- **Maximum flexibility** with access to the latest **updates** and features.
-- Simplified **upgrade** paths.
-- Support for **unlimited applications**.
-- **Single Sign-On (SSO)**.
-- Advanced **credentials encryptio**n for enhanced security.
-- **No platform management responsibilities**.
+- Up to 3 users
+- Basic license management
+- Unlimited deployments
+- Helm, Docker, and Terraform agents _(Terraform coming soon)_
+- Private registry (100GB)
+- GitHub integration
+- Live metrics & logs (no retention)
+- Distr API access
+- Immediate access to new features
 
-<Aside type="note">
-  Get started by creating your Distr account [here](https://signup.distr.sh) and
-  then following the onboarding steps here.
+To view the other plans, visit [our pricing page](https://glasskube.dev/pricing/).
+
+<Aside type="tip">
+  Get started immediately by creating your free Distr account
+  [here](https://signup.distr.sh) and following the [onboarding
+  tutorials](/docs/getting-started/quickstart/#getting-started-with-platform-tutorials).
 </Aside>
 
-## Self-Hosted Distr
+## Self-Managed
 
-Features:
+Best for teams with the highest compliancy needs:
 
-- **Complete control** over the deployed version of Distr.
-- **Full responsibility for platform availability and maintenance**.
-- Ideal for users who **prefer to manage their environment** independently.
+- Deploy in your own cloud or on-prem
+- Full control over versioning and availability
+- Same features as SaaS
+- Ideal for data-sensitive or regulated environments
+- Experience using Distr for self-managing your own Distr deployment
 
 <Aside type="note">
-  To get started with the self-hosted option, follow our
-  [guide](/docs/self-hosting/getting-started/) to deploy Distr in your
-  environment.
+  If you want to ty out Distr completely by yourself, check out our
+  [Self-Hosting Guide](/docs/self-hosting/getting-started).
 </Aside>

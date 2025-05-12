@@ -1,21 +1,107 @@
 ---
-title: Distr Agents
-description: Information on the Distr agents
+title: Deployment Agents
+description: Distr deployment agents are lightweight components that run in customer environments to manage the full lifecycle of infrastructure and applications. This page covers how Docker, Helm, and Terraform agents work, how to configure them, and how they enable secure, customer-controlled deployments.
 sidebar:
-  order: 3
+  order: 2
 ---
 
 import {Aside} from '@astrojs/starlight/components';
+import ThemeImage from '../../../../components/ThemeImage.astro';
 
-Alongside the Distr Hub, what completes the core of the Distr platform are its lightweight agents, designed to be installed in the customer's environment alongside the software vendor's application. These agents provide the functionality necessary for managing application life cycles in decentralized and customer-controlled environments, without requiring direct access to the deployment target.
+Deployment Agents are a core component of the Distr platform, designed to run within customer environments alongside vendor applications. These lightweight agents bridge the gap between the Distr Hub and deployment targets, enabling comprehensive lifecycle management requiring minimal access to customer infrastructure.
 
-Distr offers two pre-built agent types, tailored for different deployment scenarios: one for Helm and another for Docker Compose. These agents handle critical lifecycle tasks, including guided installation, updates, and performing health checks. By automating these processes, the agents simplify the operational burden for end customers and reduce the need for the vendor's intervention.
+<Aside type="note">
+  Distr deployment agents are the key components that enable the [Assisted
+  Self-Managed Customer](/docs/use-cases/assisted-self-managed/) and
+  [BYOC](/docs/use-cases/byoc-bring-your-own-cloud/) use cases.
+</Aside>
 
-Beyond lifecycle management, the agents are equipped to collect and provide essential metrics such as application health status and version information. They also aggregate logs, ensuring that troubleshooting can proceed even if a deployment fails and cannot report the error itself.
+## Agent Types
+
+Distr offers specialized agents for different deployment tools, each designed to handle specific deployment scenarios while maintaining consistent core functionality.
+
+### Docker Compose Agent
+
+The Docker Compose agent is specifically designed for container-based deployments, providing comprehensive management of both single and multi-container applications. It handles application updates with minimal downtime, collects container health metrics and logs, and supports environment variable templating for flexible configuration.
+
+<ThemeImage
+  lightSrc="/src/assets/docs/product/deployment-agents/docker-agent-light.png"
+  darkSrc="/src/assets/docs/product/deployment-agents/docker-agent-dark.png"
+  alt="Docker Compose Agent interface"
+/>
+
+<Aside type="note">
+  Unless you're using Distr to deploy your own applications internally, the
+  Distr agent will always be configured and deployed by the end customer. Head
+  over to the [end-customer agent
+  guide](/docs/guides/container-registry-for-end-customers/#deployment-agent-quickstart-from-the-customer-portal)
+  to learn how it should be installed.
+</Aside>
+
+### Helm Agent
+
+The Helm agent specializes in Kubernetes deployments, managing the complete lifecycle of Helm charts in customer environments. It handles chart installation and upgrades, monitors Kubernetes resource health, supports customer-specific value overrides, and provides rollback capabilities for failed deployments.
+
+<ThemeImage
+  lightSrc="/src/assets/docs/product/deployment-agents/helm-agent-light.png"
+  darkSrc="/src/assets/docs/product/deployment-agents/helm-agent-dark.png"
+  alt="Helm Agent interface"
+/>
+
+### Terraform Agent (Coming Soon)
+
+<Aside type="caution" title="Currently in development">
+  The Terraform agent is designed for Bring Your Own Cloud (BYOC) deployments
+  and is currently in development.
+</Aside>
+
+#### Configuration Steps
+
+Follow the configuration steps in the [Deployment Agent Quickstart Guide](/docs/guides/container-registry-for-end-customers/#deployment-agent-quickstart-from-the-customer-portal).
+
+## Section Components
+
+The Deployment Agents section of Distr consists of two main components that work together to provide a complete deployment management solution.
+
+### Applications
+
+<ThemeImage
+  lightSrc="/src/assets/docs/product/deployment-agents/agent-applications-light.png"
+  darkSrc="/src/assets/docs/product/deployment-agents/agent-applications-dark.png"
+  alt="Applications interface"
+/>
+
+The Applications section provides vendors with a dedicated space to configure and manage their software offerings. Using either Docker Compose files or Helm charts, vendors can define their application templates, specify which environment variables are configurable by customers, and manage different versions of their applications. This section serves as the foundation for all subsequent deployment activities.
+
+For detailed instructions on adding applications to Distr, see our platform management guides:
+
+- [Onboarding a Docker Application](/docs/guides/onboarding-a-docker-app/)
+- [Onboarding a Helm Application](/docs/guides/onboarding-a-helm-app/)
+
+### Deployments
+
+<ThemeImage
+  lightSrc="/src/assets/docs/product/deployment-agents/agent-deployment-light.png"
+  darkSrc="/src/assets/docs/product/deployment-agents/agent-deployment-dark.png"
+  alt="Deployments interface"
+/>
+
+### Deployments Overview
+
+The **Deployments** section acts as the central management and health dashboard for all deployments.
+
+Use this section to:
+
+- Monitor the real-time health and status of all deployments
+- View deployment metadata and logs
+- Track deployment states across all customer environments
+
+## Agent Capabilities
+
+All Distr agents share a common set of core capabilities designed to ensure reliable and secure deployments. These include guided installation processes, automated application updates, comprehensive health monitoring, log aggregation for troubleshooting, and secure, outbound-only communication with the Distr Hub.
 
 <Aside>
-  We are currently working on an agent version that can be integrated into the
-  Software or AI companies' Helm chart or Docker Compose file. This will allow
-  for a more seamless deployment experience for the end customer. For more
-  information feel free to reach out.
+  We also working on read-only version of the Distr agent that will not be able
+  to alter a deployment, but just monitor the deployment status and report logs
+  and metrics.
 </Aside>

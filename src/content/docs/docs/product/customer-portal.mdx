@@ -1,32 +1,32 @@
 ---
 title: Customer Portal
-description: Information about the customer portal
+description: A simplified customer-facing UI for deploying Distr agents, pulling artifacts, managing tokens, and managing vendor applications.
 sidebar:
-  order: 2
+  order: 5
 ---
 
-The Customer Portal provides end-customers with the essential features they need to manage the deployment of the vendor's applications. Compared to the Vendor Portal, it is intentionally more basic, following a "less is more" approach. This design philosophy acknowledges that end-customer should only care about their deployments and should not have to deal with anything else cluttering their management console.
+import {Aside} from '@astrojs/starlight/components';
+import ThemeImage from '../../../../components/ThemeImage.astro';
 
-The customer portal offers:
+The customer portal is a simplified, white-labeled control plane UI built for end customers.
 
-#### 1. Management of all deployment from a single pane
+<ThemeImage
+  lightSrc="/src/assets/docs/product/vendor-portal/customer-portal-light.png"
+  darkSrc="/src/assets/docs/product/vendor-portal/customer-portal-dark.png"
+  alt="Deployments interface"
+/>
 
-![deployment](../../../../assets/docs/product/customer-portal/cus-portal.png)
+The Customer Portal enables end customer to:
 
-#### 2. Access to view current deployment logs
+1. **Explore vendor-provided documentation**: The homepage serves as the end-customer's landing pad, offering release notes, agent and registry instructions, helpful links, and support information.
+   It's the go-to place for understanding how to install and maintain the vendor's software.
+2. **Deploy and manage agents**: In the _Deployments_ section, customers can deploy [agents](/docs/product/agents/) to their internal infrastructure.
+   These agents can then be used to manage one or multiple deployments.
+3. **Access and consume artifacts**: The _Artifacts_ section displays the software artifacts that have been enabled for the customer, along with instructions on how to pull and use them.
+4. **Generate access tokens**: In the top-right corner, the _Customer Settings_ area allows users to generate [Personal Access Tokens (PATs)](/docs/integrations/personal-access-token/), which are required for authenticating with the registry.
 
-![deployment](../../../../assets/docs/product/customer-portal/logs.png)
-
-#### 3. Ability to edit deployment configurations
-
-![deployment](../../../../assets/docs/product/customer-portal/cp-edit.png)
-
-#### 4. Ability to deploy new versions of an application
-
-![deployment](../../../../assets/docs/product/customer-portal/cp-version.png)
-
-:::info
-If ever in doubt of which portal you are looking at, in the top left corner of the screen you can find the name of the portal you're currently in.
-:::
-
-The Customer Portal can be [customized](/docs/product/branding/) with the vendor's corporate logo and name, making Distr feel like an extension of the software company's product rather than just another tool for the end-customer to adopt and learn.
+<Aside type="note">
+  Understand what a typical user journey looks like in this
+  [guide](/docs/guides/container-registry-for-end-customers/) on using Distr
+  from the customer perspective.
+</Aside>

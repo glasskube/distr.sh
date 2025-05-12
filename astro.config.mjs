@@ -1,6 +1,7 @@
 // @ts-check
-import {defineConfig} from 'astro/config';
 import starlight from '@astrojs/starlight';
+import {defineConfig} from 'astro/config';
+import starlightLinksValidator from 'starlight-links-validator';
 
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
@@ -19,6 +20,26 @@ export default defineConfig({
         {
           tag: 'script',
           content: `window.addEventListener('load', () => document.querySelector('.site-title').href += 'docs/')`,
+        },
+        {
+          tag: 'script',
+          attrs: {
+            type: 'module',
+          },
+          content: `
+            document.addEventListener('DOMContentLoaded', async () => {
+              try {
+                const mermaid = await import('https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs');
+                mermaid.default.initialize({
+                  startOnLoad: true,
+                  theme: 'default',
+                  securityLevel: 'loose'
+                });
+              } catch (error) {
+                console.error('Failed to initialize Mermaid:', error);
+              }
+            });
+          `,
         },
         {
           tag: 'link',
@@ -65,12 +86,12 @@ export default defineConfig({
           autogenerate: {directory: 'docs/getting-started'},
         },
         {
-          label: 'Guides',
-          autogenerate: {directory: 'docs/guides'},
-        },
-        {
           label: 'Use cases',
           autogenerate: {directory: 'docs/use-cases'},
+        },
+        {
+          label: 'Guides',
+          autogenerate: {directory: 'docs/guides'},
         },
         {
           label: 'Product',
@@ -84,13 +105,28 @@ export default defineConfig({
           label: 'Integrations',
           autogenerate: {directory: 'docs/integrations'},
         },
+        {
+          label: 'FAQs',
+          link: '/docs/faqs',
+        },
       ],
       prerender: true,
+      plugins: [starlightLinksValidator()],
     }),
     sitemap(),
   ],
-
   vite: {
     plugins: [tailwindcss()],
+  },
+  redirects: {
+    '/': '/docs/getting-started/what-is-distr/',
+    '/docs/': '/docs/getting-started/what-is-distr/',
+    '/docs/getting-started/about/': '/docs/getting-started/what-is-distr/',
+    '/docs/getting-started/how-it-works/':
+      '/docs/getting-started/core-concepts/',
+    '/docs/product/distr-hub/': '/docs/product/vendor-portal/',
+    '/docs/use-cases/self-managed/': '/docs/use-cases/fully-self-managed/',
+    '/docs/use-cases/byoc/': '/docs/use-cases/byoc-bring-your-own-cloud/',
+    '/docs/product/faqs/': '/docs/faqs/',
   },
 });

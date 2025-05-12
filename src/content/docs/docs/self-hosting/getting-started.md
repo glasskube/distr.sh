@@ -1,6 +1,6 @@
 ---
 title: Self-hosting Distr
-description: Distr can be easily self-managed in your own environment to use it as a first party software distribution platform and artifact registry.
+description: Distr can be easily self-managed in your own environment to use it as an internal software distribution platform and artifact registry.
 sidebar:
   order: 0
 ---
@@ -11,7 +11,7 @@ and optional S3 compatible object storage if you want to use Distr artifacts reg
 
 Find out more information about the inner workings of Distr at [`github.com/glasskube/distr`](https://github.com/glasskube/distr/).
 
-Or checkout or [Docker Compose](./../docker) or [Kubernetes](./../kubernetes) deployment options.
+Or checkout or [Docker Compose](/docs/self-hosting/docker) or [Kubernetes](/docs/self-hosting/kubernetes) deployment options.
 
 ## Semantic Versioning
 
