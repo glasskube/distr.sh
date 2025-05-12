@@ -1,6 +1,7 @@
 ---
 title: Bring Your Own Cloud (BYOC)
 description: Fully vendor-managed deployments within customer-owned cloud subscriptions
+slug: docs/use-cases/byoc-bring-your-own-cloud
 sidebar:
   order: 3
 ---
@@ -8,11 +9,15 @@ sidebar:
 import {Aside, Steps} from '@astrojs/starlight/components';
 import ThemeImage from '../../../../components/ThemeImage.astro';
 
-Bring Your Own Cloud (BYOC) provides fully vendor-managed operations within customer-owned cloud resources. Perfect for organizations with strict data residency or compliance requirements that need to maintain ownership of their cloud infrastructure but are prepared to delegate it's management.
+Bring Your Own Cloud (BYOC) provides fully vendor-managed operations within customer-owned cloud resources.
+Perfect for organizations with strict data residency or compliance requirements that need to maintain ownership of their cloud infrastructure
+but are prepared to delegate its management.
 
-Distr handles the entire deployment lifecycle in the customer's cloud account through secure, limited access permissions. Agents deployed in the customer environment allow vendors to, deploy cloud infrastructure, manage applications centrally, while customers maintain control of their cloud resources and billing.
+Distr handles the entire deployment lifecycle in the customer's cloud account through secure, limited access permissions.
+Agents deployed in the customer environment allow vendors to deploy cloud infrastructure, manage applications centrally,
+while customers maintain control of their cloud resources, can audit call operations and take over the infrastructure with all data at any time.
 
-### Solution Architecture
+## Solution Architecture
 
 <ThemeImage
   lightSrc="/src/assets/docs/use-cases/byoc/byoc-light.png"
@@ -20,17 +25,22 @@ Distr handles the entire deployment lifecycle in the customer's cloud account th
   alt="Fully-Self-Managed diagram"
 />
 
-<Steps>
-  1. **Set Up Your [Registry](/docs/guides/how-to-registry/)** 2. **Onboard Your
-  [Application](/docs/guides/onboarding-a-helm-app/)** 3. **White-label the
-  [Customer portal](/docs/product/branding/)** 4. **Onboard your first
-  [customer](/docs/guides/onboarding-a-new-customer/)** 5. **Access the
-  customer's target environment** 6. **Manage deployments and updates of your
-  app directly for the customer using the [Distr
-  agents](/docs/product/agents/)**
-</Steps>
+## Implementation steps
 
-<Aside type="tip">
+<Aside type="note">
   BYOC offers SaaS-like operational simplicity with the compliance benefits of
   customer resource ownership.
 </Aside>
+
+<Steps>
+
+{/* steps can't be indented due to prettier */}
+
+1. Set Up Your [Registry](/docs/guides/container-registry/)
+2. Onboard Your [Application](/docs/guides/onboarding-a-helm-app/)
+3. White-label the [Customer portal](/docs/product/branding/)
+4. Onboard your first [customer](/docs/guides/onboarding-a-new-customer/)
+5. Reach out to the Distr team to connect the customer's target environment _(We are working hard on automating this step)_
+6. Manage deployments and updates of your app directly for the customer using the [Distr agents](/docs/product/agents/)
+
+</Steps>

@@ -1,6 +1,7 @@
 // @ts-check
 import {defineConfig} from 'astro/config';
 import starlight from '@astrojs/starlight';
+import starlightLinksValidator from 'starlight-links-validator';
 
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
@@ -29,7 +30,7 @@ export default defineConfig({
             document.addEventListener('DOMContentLoaded', async () => {
               try {
                 const mermaid = await import('https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs');
-                mermaid.default.initialize({ 
+                mermaid.default.initialize({
                   startOnLoad: true,
                   theme: 'default',
                   securityLevel: 'loose'
@@ -110,11 +111,22 @@ export default defineConfig({
         },
       ],
       prerender: true,
+      plugins: [starlightLinksValidator()],
     }),
     sitemap(),
   ],
-
   vite: {
     plugins: [tailwindcss()],
+  },
+  redirects: {
+    '/': '/docs/getting-started/what-is-distr/',
+    '/docs/': '/docs/getting-started/what-is-distr/',
+    '/docs/getting-started/about/': '/docs/getting-started/what-is-distr/',
+    '/docs/getting-started/how-it-works/':
+      '/docs/getting-started/core-concepts/',
+    '/docs/product/distr-hub/': '/docs/product/vendor-portal/',
+    '/docs/use-cases/self-managed/': '/docs/use-cases/fully-self-managed/',
+    '/docs/use-cases/byoc/': '/docs/use-cases/byoc-bring-your-own-cloud/',
+    '/docs/product/faqs/': '/docs/faqs/',
   },
 });

@@ -1,172 +1,188 @@
 ---
 title: End-customer view of Distr
 description: Guide for end customers on using the Customer Portal to access artifacts and deploy applications with Distr agents.
+slug: docs/guides/container-registry-for-end-customers
 sidebar:
   order: 7
 ---
 
-import {Aside, Steps} from '@astrojs/starlight/components';
+import {Aside, Code, TabItem, Tabs} from '@astrojs/starlight/components';
 import ThemeImage from '../../../../components/ThemeImage.astro';
 
-As an end customer, you will be given access to a [Customer Portal](/docs/product/distr-hub/#what-customers-can-do-in-the-customer-portal), through it you will have access to two key features: the artifact registry for downloading software distributed by your vendor, and the deployment section for managing applications with Distr agents. Depending on your use case, you might use only one or both of these features.
+As an end customer, you will be given access to a [Customer Portal](/docs/product/customer-portal/) by the software vendor.
+The portal you will have access to two key features:
 
-This guide walks you through using both of features.
+- The artifact registry for downloading software distributed by your vendor
+- The deployment section for managing applications with Distr agents.
+  Depending on your use case, you might use only one or both of these features.
+
+This guide walks you through using both of the features.
 
 ## Registry quickstart from the customer portal
 
 A typical onboarding journey looks like this:
 
-1. **Access the Customer Portal Dashboard**
+### 1. Access the Customer Portal Dashboard
 
-   Here you will view release notes and vendor-specific software information in your dashboard.
+Here you will view release notes and vendor-specific software information in your dashboard.
 
-   <ThemeImage
-     lightSrc="/src/assets/docs/guides/customer-view/customer-portal-no-num-light.png"
-     darkSrc="/src/assets/docs/guides/customer-view/customer-portal-no-num-dark.png"
-     alt="Deployments interface"
-   />
+<ThemeImage
+  lightSrc="/src/assets/docs/guides/customer-view/customer-portal-no-num-light.png"
+  darkSrc="/src/assets/docs/guides/customer-view/customer-portal-no-num-dark.png"
+  alt="Deployments interface"
+/>
 
-2. **View Available Artifacts**
+### 2. View Available Artifacts
 
-   Browse the artifacts your vendor has made available to you in the artifacts section:
+Browse the artifacts your vendor has made available to you in the artifacts section:
 
-   <ThemeImage
-     lightSrc="/src/assets/docs/guides/customer-view/artifact-ui-customer-light.png"
-     darkSrc="/src/assets/docs/guides/customer-view/artifact-ui-customer-dark.png"
-     alt="Registry artifacts view"
-   />
+<ThemeImage
+  lightSrc="/src/assets/docs/guides/customer-view/artifact-ui-customer-light.png"
+  darkSrc="/src/assets/docs/guides/customer-view/artifact-ui-customer-dark.png"
+  alt="Registry artifacts view"
+/>
 
-   In this example, the vendor made to a single artifact called hello-world available to the end-customer.
+In this example, the vendor made to a single artifact called hello-world available to the end-customer.
 
-3. **Explore Artifact Details**
+### 3. Explore Artifact Details
 
-   Click on the artifact name to see details like available versions, creation date, and a download counter:
+Click on the artifact name to see details like available versions, creation date, and a download counter:
 
-   <ThemeImage
-     lightSrc="/src/assets/docs/guides/customer-view/artifact-ui-details-light.png"
-     darkSrc="/src/assets/docs/guides/customer-view/artifact-ui-details-dark.png"
-     alt="Artifact details view"
-   />
+<ThemeImage
+  lightSrc="/src/assets/docs/guides/customer-view/artifact-ui-details-light.png"
+  darkSrc="/src/assets/docs/guides/customer-view/artifact-ui-details-dark.png"
+  alt="Artifact details view"
+/>
 
-4. **Authenticate with a Personal Access Token**
+### 4. Authenticate with a Personal Access Token
 
-   Generate a [Personal Access Token (PAT)](/docs/integrations/personal-access-token/) in your Distr account and use it to log in:
+Generate a [Personal Access Token (PAT)](/docs/integrations/personal-access-token/) in your Distr account and use it to log in:
 
-   ```bash
-   echo "YOUR-ACCESS-TOKEN" | docker login registry.distr.sh:8585 --password-stdin -u -
-   ```
+```bash
+echo "YOUR-ACCESS-TOKEN" | docker login registry.distr.sh:8585 --password-stdin -u -
+```
 
-5. **Pull Vendor Artifacts**
+### 5. Pull Vendor Artifacts
 
-   Once authenticated, you can pull the artifacts using Docker, [ORAS](https://oras.land/docs/installation) or Helm for example:
+Once authenticated, you can pull the artifacts using Docker, [ORAS](https://oras.land/docs/installation) or Helm for example:
 
-   ```bash
-   docker pull registry.distr.sh/slug/hello-world:1.0.0
-   oras pull registry.distr.sh/slug/vendor-artifact:1.0.0
-   helm pull registry.distr.sh/slug/vendor-helm-chart:1.0.0
-   ```
+<Aside type="tip">
+  You will find the exact commands in the Customer Portal.
+</Aside>
 
-6. **Deploy the Artifacts**
+```bash
+docker pull registry.distr.sh/slug/hello-world:1.0.0
+oras pull registry.distr.sh/slug/vendor-artifact:1.0.0
+helm pull registry.distr.sh/slug/vendor-helm-chart:1.0.0
+```
 
-   Refer to the deployment instructions in your [Customer Portal](/docs/product/distr-hub/#what-customers-can-do-in-the-customer-portal) dashboard or coordinate directly with your vendor for specific deployment guidance.
+### 6. Deploy the Artifacts
+
+Refer to the deployment instructions in your [Customer Portal](/docs/product/customer-portal/) dashboard or coordinate directly with your vendor for specific deployment guidance.
 
 ## Deployment Agent quickstart from the customer portal
 
-1. **Create a New Agent**
+### 1. Create a New Agent
 
-   Navigate to the Deployments section and create a new agent. [Distr agents](/docs/product/agents/) are lightweight agent components deployed in your target environment (one per Docker network or Kubernetes namespace).
+Navigate to the Deployments section and create a new agent.
+[Distr agents](/docs/product/agents/) are lightweight agent components deployed in your target environment (one per Docker Host or Kubernetes namespace)
+and can manage multiple deployed applications.
 
-   <Aside type="tip">
-     Choose the Docker Compose agent for VM or non-Kubernetes environments, or
-     the Helm agent for Kubernetes clusters. Your software vendor can advise on
-     the best option for your use case.
-   </Aside>
+<Aside type="tip">
+  Choose the Docker Compose agent for VM or non-Kubernetes environments, or the
+  Helm agent for Kubernetes clusters. Your software vendor can advise on the
+  best option for your use case.
+</Aside>
 
-2. **Name Your Agent**
+### 2. Name Your Agent
 
-   Provide a descriptive name, optionally including environment or customer identifiers.
+Provide a descriptive name, optionally including environment or customer identifiers.
 
-   <ThemeImage
-     lightSrc="/src/assets/docs/guides/customer-view/customer-agent-name-light.png"
-     darkSrc="/src/assets/docs/guides/customer-view/customer-agent-name-dark.png"
-     alt="Artifact details view"
-   />
+<ThemeImage
+  lightSrc="/src/assets/docs/guides/customer-view/customer-agent-name-light.png"
+  darkSrc="/src/assets/docs/guides/customer-view/customer-agent-name-dark.png"
+  alt="Artifact details view"
+/>
 
-3. **Configure Namespace (Helm only)**
+### 3. Configure Namespace (Helm only)
 
-   If deploying the Helm agent, specify the existing Kubernetes namespace where it will be installed.
+If deploying the Helm agent, specify the existing Kubernetes namespace where it will be installed.
 
-   <ThemeImage
-     lightSrc="/src/assets/docs/guides/customer-view/helm-ns-light.png"
-     darkSrc="/src/assets/docs/guides/customer-view/helm-ns-dark.png"
-     alt="Artifact details view"
-   />
+<ThemeImage
+  lightSrc="/src/assets/docs/guides/customer-view/helm-ns-light.png"
+  darkSrc="/src/assets/docs/guides/customer-view/helm-ns-dark.png"
+  alt="Artifact details view"
+/>
 
-4. **Install the Agent**
+### 4. Install the Agent
 
-   Run the provided installation command in your target environment:
+Run the provided installation command in your target environment:
 
-   Docker:
+<Aside type="tip">
+  You will find the exact commands in the Customer Portal.
+</Aside>
 
-   ```bash
-   curl "https://app.distr.sh/api/v1/connect?targetId=6df4ddwa577-4c53-4e91-999d37fd1badde&targetSecret=959c44185c96bed8de489d143f10881e" | docker compose -f - up -d
-   ```
+<Tabs>
+  <TabItem label="Docker">
+    ```bash curl
+    "https://app.distr.sh/api/v1/connect?targetId=...&targetSecret=..." | docker
+    compose -f - up -d ```
+  </TabItem>
+  <TabItem label="Helm">
+    ```bash kubectl apply -n ... -f
+    "https://demo.distr.sh/api/v1/connect?targetId=...&targetSecret=..." ```
+  </TabItem>
+</Tabs>
 
-   Helm:
+Once running, the agent gains access to the definition files configured by the vendor on the Distr platform. It is responsible for deploying the application, fetching updates, and reporting health metrics to both the customer and vendor portals.
 
-   ```bash
-   kubectl apply -n <NAMESPACE> -f "https://demo.distr.sh/api/v1/connect?targetId=62e5817bbc-46e4-a2a6-dfdb24e2c561&targetSecret=d44ac95abe6d5139ebd5addfe31a4ed88f"
-   ```
+### 5. Configure Your Deployment
 
-   Once running, the agent gains access to the definition files configured by the vendor on the Distr platform. It is responsible for deploying the application, fetching updates, and reporting health metrics to both the customer and vendor portals.
+Select an application and version from the Deploy panel.
 
-5. **Configure Your Deployment**
+Customize the configuration file provided by the vendor to fit your environment.
 
-   Select an application and version from the Deploy panel.
+<ThemeImage
+  lightSrc="/src/assets/docs/guides/customer-view/config-light.png"
+  darkSrc="/src/assets/docs/guides/customer-view/config-dark.png"
+  alt="Artifact details view"
+/>
 
-   Customize the configuration file provided by the vendor to fit your environment.
+### 6. Deploy the Application
 
-   <ThemeImage
-     lightSrc="/src/assets/docs/guides/customer-view/config-light.png"
-     darkSrc="/src/assets/docs/guides/customer-view/config-dark.png"
-     alt="Artifact details view"
-   />
+Once configured, you're ready to deploy.
 
-6. **Deploy the Application**
+### 7. Monitor Deployment Status
 
-   Once configured, you're ready to deploy.
+View real-time updates as your deployment initializes.
 
-7. **Monitor Deployment Status**
+<ThemeImage
+  lightSrc="/src/assets/docs/guides/customer-view/status-light.png"
+  darkSrc="/src/assets/docs/guides/customer-view/status-dark.png"
+  alt="Artifact details view"
+/>
 
-   View real-time updates as your deployment initializes.
+### 8. Access Environment Logs
 
-   <ThemeImage
-     lightSrc="/src/assets/docs/guides/customer-view/status-light.png"
-     darkSrc="/src/assets/docs/guides/customer-view/status-dark.png"
-     alt="Artifact details view"
-   />
+Click on the status button to view application logs directly from the portal.
 
-8. **Access Environment Logs**
+<ThemeImage
+  lightSrc="/src/assets/docs/guides/customer-view/logs-light.png"
+  darkSrc="/src/assets/docs/guides/customer-view/logs-dark.png"
+  alt="Artifact details view"
+/>
 
-   Click on the status button to view application logs directly from the portal.
+### 9. Update Deployments
 
-   <ThemeImage
-     lightSrc="/src/assets/docs/guides/customer-view/logs-light.png"
-     darkSrc="/src/assets/docs/guides/customer-view/logs-dark.png"
-     alt="Artifact details view"
-   />
+Modify configuration values and update running deployments as needed.
 
-9. **Update Deployments**
+<ThemeImage
+  lightSrc="/src/assets/docs/guides/customer-view/update-deploy-light.png"
+  darkSrc="/src/assets/docs/guides/customer-view/update-deploy-dark.png"
+  alt="Artifact details view"
+/>
 
-   Modify configuration values and update running deployments as needed.
+### 10. Important Notes
 
-   <ThemeImage
-     lightSrc="/src/assets/docs/guides/customer-view/update-deploy-light.png"
-     darkSrc="/src/assets/docs/guides/customer-view/update-deploy-dark.png"
-     alt="Artifact details view"
-   />
-
-10. **Important Notes**
-
-    - A single agent can manage multiple deployments in the same target environment
-    - To remove a deployment, first **undeploy** it before **deletion**
+- A single agent can manage multiple deployments in the same target environment
+- To remove a deployment, first **undeploy** it before **deletion**

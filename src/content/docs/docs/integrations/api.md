@@ -13,7 +13,7 @@ that handle authentication and error handling for you, and provide types.
 
 ## Base URL
 
-Every Distr instance, no matter if self hosted or the SaaS version, exposes this API under the `/api/v1` path.
+Every Distr instance, no matter if self managed or the SaaS version, exposes this API under the `/api/v1` path.
 
 ## Authentication
 

@@ -34,7 +34,7 @@ The Docker Compose agent is specifically designed for container-based deployment
   Unless you're using Distr to deploy your own applications internally, the
   Distr agent will always be configured and deployed by the end customer. Head
   over to the [end-customer agent
-  guide](/docs/guides/end-customer-registry-view/#deployment-agent-quickstart-from-the-customer-portal)
+  guide](/docs/guides/container-registry-for-end-customers/#deployment-agent-quickstart-from-the-customer-portal)
   to learn how it should be installed.
 </Aside>
 
@@ -58,7 +58,7 @@ The upcoming Terraform agent will support provisioning infrastructure using Terr
 
 #### Configuration Steps
 
-Follow the configuration steps in the [Deployment Agent Quickstart Guide](/docs/guides/end-customer-registry-view/#deployment-agent-quickstart-from-the-customer-portal).
+Follow the configuration steps in the [Deployment Agent Quickstart Guide](/docs/guides/container-registry-for-end-customers/#deployment-agent-quickstart-from-the-customer-portal).
 
 ## Section Components
 
@@ -101,8 +101,8 @@ Use this section to:
 
 Deployment health is shown using color-coded status badges:
 
-- **🔴 Error (Red)**  
-  The deployment failed. Error logs are available, and remediation is required.  
+- **🔴 Error (Red)**
+  The deployment failed. Error logs are available, and remediation is required.
   ➤ _New deployments cannot be created until the error is resolved._
 
   **Troubleshooting steps:**
@@ -117,11 +117,11 @@ Deployment health is shown using color-coded status badges:
   - **If it's a config issue:**
     - Follow the config style rules provided in the customer portal
     - Check YAML indentation
-  - **If unresolved:**  
+  - **If unresolved:**
     Contact the software vendor for support.
 
-- **🟡 Stale (Yellow)**  
-  The agent hasn't made a `resource` request to Distr Hub in the last 60 seconds.  
+- **🟡 Stale (Yellow)**
+  The agent hasn't made a `resource` request to Distr Hub in the last 60 seconds.
   ➤ _This indicates a communication issue. No new deployments can be made until the agent is healthy._
 
   **Troubleshooting steps:**
@@ -130,11 +130,11 @@ Deployment health is shown using color-coded status badges:
     - Ensure the target environment is online
     - Confirm the agent is running
     - Review agent logs
-  - **If unresolved:**  
+  - **If unresolved:**
     Contact the software vendor for support.
 
-- **🟢 OK (Green)**  
-  The agent is actively communicating with Distr Hub and reporting a healthy application state.  
+- **🟢 OK (Green)**
+  The agent is actively communicating with Distr Hub and reporting a healthy application state.
   ➤ _New deployments are allowed. The **+ Deployment** button will be visible._
 
 ## Agent Capabilities

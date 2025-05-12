@@ -16,26 +16,32 @@ Distr supports five distinct deployment models to meet different customer requir
 - **[Fully Self-Managed](/docs/use-cases/fully-self-managed/)**: For customers who maintain complete control over their infrastructure, the Distr [Artifact Registry](/docs/product/registry/) for artifact distribution is the main feature used.
 - **[Assisted Self-Managed](/docs/use-cases/assisted-self-managed/)**: End customers retain full control over their environment access but delegate application deployment to [Distr agents](/docs/product/agents/), which simplify initial installation, updates, and ongoing maintenance.
 - **[Bring Your Own Cloud (BYOC)](/docs/use-cases/byoc/)**: Fully vendor-managed deployments within customer-owned environments. Ideal for end customers who want to offload infrastructure and software maintenance to the vendor while keeping deployments within their own environment, for compliance, cost management, or use of pre-contracted cloud resources.
-- **[Air-Gapped Environments](/docs/use-cases/air-gapped/)**: For high-security scenarios with physical or logical network isolation, offering secure artifact delivery through whitelisted connections or physical media.
+- **[Air-Gapped Environments](/docs/use-cases/air-gapped/)**: For high-security scenarios with physical or logical network isolation, offering secure artifact delivery through whitelisted connections, jump servers or physical media.
 - **[Edge Deployments](/docs/use-cases/edge-deployments/)**: For vendor-controlled deployments to decentralized edge locations, IoT devices, or specialized hardware.
 
 ## Key Components
 
 ### Vendor Portal
 
-The [vendor portal](/docs/product/distr-hub/) is the central UI for the Distr control plane. It's where vendors manage customers, users, applications, and where you'll find the Artifacts Registry UI. The portal includes monitoring and observability features, integrates with your CI/CD pipelines, and lets you customize the customer portal.
+The [Vendor Portal](/docs/product/vendor-portal/) is the central UI for the Distr control plane.
+It's where vendors manage customers, users, applications, and where you'll find the Artifacts Registry UI.
+The portal includes monitoring and observability features, integrates with your CI/CD pipelines, and lets you customize the customer portal.
 
 ### Customer Portal
 
-The [customer portal](/docs/product/distr-hub/#what-customers-can-do-in-the-customer-portal) is a simplified, white-labeled UI built for end customers. It gives them control over deployments and access to the registry UI.
+The [Customer Portal](/docs/product/customer-portal/) is a simplified, white-labeled UI built for end customers.
+It gives them control over deployments and access to the registry UI.
 
 ### Distr Registry
 
-[Distr Registry](/docs/product/registry/) is an OCI-compliant artifact registry that stores Docker images, Helm charts, and other OCI artifacts. It tracks artifact usage across customer environments and provides end customers with a private registry containing only the artifacts they’re licensed to use. Unlike other artifact registries, Distr’s includes a [UI](docs/product/registry/#artifacts-list) available in both the vendor and customer portals, making it easy to browse artifacts and inspect versions.
+[Distr Registry](/docs/product/registry/) is an OCI-compliant artifact registry that stores Docker images, Helm charts, and other OCI artifacts.
+It tracks artifact usage across customer environments and provides end customers with a private registry containing only the artifacts they’re licensed to use.
+Unlike other artifact registries, Distr’s includes a [UI](/docs/product/registry/) available in both the vendor and customer portals, making it easy to browse artifacts and inspect versions.
 
 ### Distr Agents
 
-[Distr Agents](/docs/product/agents/) are lightweight deployment agents that run in the customer’s target environment. They pull configurations from Distr's control plane (Distr Hub), execute deployment operations locally, and report status back to the vendor portal.
+[Distr Agents](/docs/product/agents/) are lightweight deployment agents that run in the customer’s target environment.
+They pull configurations from Distr's control plane (Distr Hub), execute deployment operations locally, and report status back to the vendor and customer portal.
 
 ## API and Extensibility
 

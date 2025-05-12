@@ -5,10 +5,11 @@ sidebar:
   order: 5
 ---
 
-import {Aside} from '@astrojs/starlight/components';
 import MermaidDiagram from '../../../../components/MermaidDiagram.astro';
 
-Edge Deployments enable vendors to manage software on decentralized, often resource-constrained environments that operate outside traditional data centers. In this model, vendors maintain control of both the software and the deployment target, whether IoT devices, custom hardware, or edge infrastructure.
+Edge Deployments enable vendors to manage software on decentralized, often resource-constrained environments that operate outside traditional data centers.
+In this model, vendors maintain control of both the software and the deployment target, whether IoT devices, custom hardware, or edge infrastructure.
+The lightweight nature of the Distr agents introduces little to no overhead to IoT devices on edge that often have limited resources.
 
 <MermaidDiagram
   chart={`
@@ -16,24 +17,24 @@ graph TD
     DR[Distr Registry] --> DH[Distr Hub]
     DH -.-> E1[Edge 1]
     DH -.-> E2[Edge 2]
-    
+
     subgraph D1[Device 1]
         DA1[Agent] --> DP1[Deployment]
     end
-    
+
     subgraph D2[Device 2]
         DA2[Agent] --> DP2[Deployment]
     end
-    
+
     subgraph D3[Device 3]
         DA3[Agent] --> DP3[Deployment 1]
         DA3 --> DP4[Deployment 2]
     end
-    
+
     E1 --> D1
     E1 --> D2
     E2 --> D3
-    
+
     style DR fill:#f9f,stroke:#333,stroke-width:2px
     style DH fill:#f9f,stroke:#333,stroke-width:2px
     style E1 fill:#bbf,stroke:#333,stroke-width:2px
@@ -45,5 +46,6 @@ graph TD
     style DP2 fill:#fdd,stroke:#333,stroke-width:2px
     style DP3 fill:#fdd,stroke:#333,stroke-width:2px
     style DP4 fill:#fdd,stroke:#333,stroke-width:2px
+
 `}
 />
