@@ -124,13 +124,16 @@ Run the provided installation command in your target environment:
 
 <Tabs>
   <TabItem label="Docker">
-    ```bash curl
-    "https://app.distr.sh/api/v1/connect?targetId=...&targetSecret=..." | docker
-    compose -f - up -d ```
+    <Code
+      code="curl 'https://app.distr.sh/api/v1/connect?targetId=...&targetSecret=...' | docker compose -f - up -d"
+      lang="bash"
+    />
   </TabItem>
   <TabItem label="Helm">
-    ```bash kubectl apply -n ... -f
-    "https://demo.distr.sh/api/v1/connect?targetId=...&targetSecret=..." ```
+    <Code
+      code="kubectl apply -n ... -f 'https://demo.distr.sh/api/v1/connect?targetId=...&targetSecret=...'"
+      lang="bash"
+    />
   </TabItem>
 </Tabs>
 

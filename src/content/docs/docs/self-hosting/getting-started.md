@@ -11,7 +11,7 @@ and optional S3 compatible object storage if you want to use Distr artifacts reg
 
 Find out more information about the inner workings of Distr at [`github.com/glasskube/distr`](https://github.com/glasskube/distr/).
 
-Or checkout or [Docker Compose](./../docker) or [Kubernetes](./../kubernetes) deployment options.
+Or checkout or [Docker Compose](/docs/self-hosting/docker) or [Kubernetes](/docs/self-hosting/kubernetes) deployment options.
 
 ## Semantic Versioning
 
