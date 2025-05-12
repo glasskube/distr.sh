@@ -9,13 +9,18 @@ sidebar:
 import {Aside, Steps} from '@astrojs/starlight/components';
 import ThemeImage from '../../../../components/ThemeImage.astro';
 
-Bring Your Own Cloud (BYOC) provides fully vendor-managed operations within customer-owned cloud resources.
-Perfect for organizations with strict data residency or compliance requirements that need to maintain ownership of their cloud infrastructure
-but are prepared to delegate its management.
+<Aside type="caution" title="Currently in development">
+  We are still working on automating the BYOC integration process.
+  Please reach out to get early access.
+</Aside>
 
-Distr handles the entire deployment lifecycle in the customer's cloud account through secure, limited access permissions.
-Agents deployed in the customer environment allow vendors to deploy cloud infrastructure, manage applications centrally,
-while customers maintain control of their cloud resources, can audit call operations and take over the infrastructure with all data at any time.
+Bring Your Own Cloud (BYOC) provides fully vendor-managed operations within customer-owned cloud resources.
+Perfect for organizations with strict data residency or compliance requirements that need to maintain ownership of their cloud infrastructure.
+
+After connecting the end customers cloud account to Distr, the required infrastructure will be provisioned using the Terraform agent.
+In the next step the initial infrastructure will be set up, afterward the vendor application will get deployed.
+All further changes to the to applications or infrastructure will get applied by the Distr agents to ensure to all managed BYOC customers
+are running the same version of the infrastructure and application.
 
 ## Solution Architecture
 
