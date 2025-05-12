@@ -50,11 +50,10 @@ The Helm agent specializes in Kubernetes deployments, managing the complete life
 
 ### Terraform Agent (Coming Soon)
 
-<Aside type="note">
-  The Terraform agent is designed for Bring Your Own Cloud (BYOC) deployments.
+<Aside type="caution" title="Currently in development">
+  The Terraform agent is designed for Bring Your Own Cloud (BYOC) deployments
+  and is currently in development.
 </Aside>
-
-The upcoming Terraform agent will support provisioning infrastructure using Terraform modules stored in the Distr Registry. It will handle infrastructure and application deployment, manage customer-specific variables, and track state and versioning, useful for cases where vendors need to set up cloud resources before deploying applications.
 
 #### Configuration Steps
 
@@ -96,46 +95,6 @@ Use this section to:
 - Monitor the real-time health and status of all deployments
 - View deployment metadata and logs
 - Track deployment states across all customer environments
-
-### Color-Coded Health Status
-
-Deployment health is shown using color-coded status badges:
-
-- **🔴 Error (Red)**
-  The deployment failed. Error logs are available, and remediation is required.
-  ➤ _New deployments cannot be created until the error is resolved._
-
-  **Troubleshooting steps:**
-
-  - **Identify the issue:**
-    - Check agent logs via the **Status** button
-    - If possible, check the runtime logs (Container or Application logs)
-  - **If it's a connectivity issue:**
-    - Ensure the target environment is running
-    - Confirm the correct namespace exists (for Helm)
-    - If using Docker Desktop on macOS, follow this [guide](/docs/guides/distr-on-macos/)
-  - **If it's a config issue:**
-    - Follow the config style rules provided in the customer portal
-    - Check YAML indentation
-  - **If unresolved:**
-    Contact the software vendor for support.
-
-- **🟡 Stale (Yellow)**
-  The agent hasn't made a `resource` request to Distr Hub in the last 60 seconds.
-  ➤ _This indicates a communication issue. No new deployments can be made until the agent is healthy._
-
-  **Troubleshooting steps:**
-
-  - Check environment connectivity:
-    - Ensure the target environment is online
-    - Confirm the agent is running
-    - Review agent logs
-  - **If unresolved:**
-    Contact the software vendor for support.
-
-- **🟢 OK (Green)**
-  The agent is actively communicating with Distr Hub and reporting a healthy application state.
-  ➤ _New deployments are allowed. The **+ Deployment** button will be visible._
 
 ## Agent Capabilities
 
