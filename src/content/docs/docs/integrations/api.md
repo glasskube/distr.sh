@@ -1,6 +1,6 @@
 ---
 title: Distr API
-description: Distr API
+description: Programmatically manage your software distribution with our RESTful API, featuring authentication and rate limits.
 sidebar:
   order: 1
 ---

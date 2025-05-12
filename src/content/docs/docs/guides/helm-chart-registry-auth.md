@@ -1,5 +1,6 @@
 ---
 title: Configuring a Helm Chart to Support Distr Artifacts
+description: Configure your Helm charts to securely pull container images from your Distr registry.
 sidebar:
   order: 5
 ---

@@ -1,6 +1,6 @@
 ---
 title: Kubernetes
-description: Self-hosting Distr with Kubernetes
+description: Deploy Distr in your Kubernetes cluster using our Helm chart with built-in PostgreSQL and MinIO storage.
 sidebar:
   order: 2
 ---

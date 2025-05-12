@@ -1,6 +1,6 @@
 ---
 title: Feature Flags
-description: Enable or disable feature flags for you self-hosted Distr instance.
+description: Enable beta features and customize your Distr instance by managing feature flags in your PostgreSQL database.
 sidebar:
   order: 4
 ---

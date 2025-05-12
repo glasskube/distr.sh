@@ -1,6 +1,6 @@
 ---
 title: Onboarding a Docker App
-description: Creating a new Docker App in Distr
+description: Package and deploy your Docker applications to customer environments using Distr's docker deployment agent.
 sidebar:
   order: 1
 ---

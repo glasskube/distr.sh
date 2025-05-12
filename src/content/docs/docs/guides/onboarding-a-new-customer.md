@@ -1,6 +1,6 @@
 ---
 title: Onboarding a New Customer
-description: Guide to onboard a new customer in Distr
+description: Create a customer account, customize their portal, and grant access to your software artifacts and applications.
 sidebar:
   order: 3
 ---
