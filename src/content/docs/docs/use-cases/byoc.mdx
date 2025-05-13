@@ -7,7 +7,9 @@ sidebar:
 ---
 
 import {Aside, Steps} from '@astrojs/starlight/components';
-import ThemeImage from '../../../../components/ThemeImage.astro';
+import ThemedImage from '../../../../components/ThemedImage.astro';
+import byocLight from '../../../../assets/docs/use-cases/byoc/byoc-light.png';
+import byocDark from '../../../../assets/docs/use-cases/byoc/byoc-dark.png';
 
 <Aside type="caution" title="Currently in development">
   We are still working on automating the BYOC integration process. Please reach
@@ -24,9 +26,9 @@ are running the same version of the infrastructure and application.
 
 ## Solution Architecture
 
-<ThemeImage
-  lightSrc="/src/assets/docs/use-cases/byoc/byoc-light.png"
-  darkSrc="/src/assets/docs/use-cases/byoc/byoc-dark.png"
+<ThemedImage
+  lightSrc={byocLight}
+  darkSrc={byocDark}
   alt="Fully-Self-Managed diagram"
 />
 
