@@ -21,6 +21,8 @@
     "@tailwindcss/vite": "^4.1.6",
     "astro": "^5.7.12",
     "mermaid": "^11.6.0",
+    "playwright": "^1.52.0",
+    "rehype-mermaid": "^3.0.0",
     "sharp": "^0.34.0",
     "starlight-links-validator": "^0.16.0",
     "tailwindcss": "^4.1.6"
