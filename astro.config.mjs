@@ -5,7 +5,7 @@ import starlightLinksValidator from 'starlight-links-validator';
 
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
-import rehypeMermaid from "rehype-mermaid";
+import rehypeMermaid from 'rehype-mermaid';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://distr.sh',
@@ -97,7 +97,7 @@ export default defineConfig({
     sitemap(),
   ],
   markdown: {
-    rehypePlugins: [[rehypeMermaid, {strategy: "inline-svg"}]],
+    rehypePlugins: [[rehypeMermaid, {strategy: 'inline-svg'}]],
   },
   vite: {
     plugins: [tailwindcss()],
