@@ -6,7 +6,15 @@ sidebar:
 ---
 
 import {Aside} from '@astrojs/starlight/components';
-import ThemeImage from '../../../../components/ThemeImage.astro';
+import ThemedImage from '../../../../components/ThemedImage.astro';
+import helmAgentLight from '../../../../assets/docs/product/deployment-agents/helm-agent-light.png';
+import helmAgentDark from '../../../../assets/docs/product/deployment-agents/helm-agent-dark.png';
+import dockerAgentLight from '../../../../assets/docs/product/deployment-agents/docker-agent-light.png';
+import dockerAgentDark from '../../../../assets/docs/product/deployment-agents/docker-agent-dark.png';
+import agentApplicationsLight from '../../../../assets/docs/product/deployment-agents/agent-applications-light.png';
+import agentApplicationsDark from '../../../../assets/docs/product/deployment-agents/agent-applications-dark.png';
+import agentDeploymentLight from '../../../../assets/docs/product/deployment-agents/agent-deployment-light.png';
+import agentDeploymentDark from '../../../../assets/docs/product/deployment-agents/agent-deployment-dark.png';
 
 Deployment Agents are a core component of the Distr platform, designed to run within customer environments alongside vendor applications. These lightweight agents bridge the gap between the Distr Hub and deployment targets, enabling comprehensive lifecycle management requiring minimal access to customer infrastructure.
 
@@ -24,9 +32,9 @@ Distr offers specialized agents for different deployment tools, each designed to
 
 The Docker Compose agent is specifically designed for container-based deployments, providing comprehensive management of both single and multi-container applications. It handles application updates with minimal downtime, collects container health metrics and logs, and supports environment variable templating for flexible configuration.
 
-<ThemeImage
-  lightSrc="/src/assets/docs/product/deployment-agents/docker-agent-light.png"
-  darkSrc="/src/assets/docs/product/deployment-agents/docker-agent-dark.png"
+<ThemedImage
+  lightSrc={dockerAgentLight}
+  darkSrc={dockerAgentDark}
   alt="Docker Compose Agent interface"
 />
 
@@ -42,10 +50,10 @@ The Docker Compose agent is specifically designed for container-based deployment
 
 The Helm agent specializes in Kubernetes deployments, managing the complete lifecycle of Helm charts in customer environments. It handles chart installation and upgrades, monitors Kubernetes resource health, supports customer-specific value overrides, and provides rollback capabilities for failed deployments.
 
-<ThemeImage
-  lightSrc="/src/assets/docs/product/deployment-agents/helm-agent-light.png"
-  darkSrc="/src/assets/docs/product/deployment-agents/helm-agent-dark.png"
-  alt="Helm Agent interface"
+<ThemedImage
+  lightSrc={helmAgentLight}
+  darkSrc={helmAgentDark}
+  alt="Distr Helm Agent"
 />
 
 ### Terraform Agent (Coming Soon)
@@ -65,9 +73,9 @@ The Deployment Agents section of Distr consists of two main components that work
 
 ### Applications
 
-<ThemeImage
-  lightSrc="/src/assets/docs/product/deployment-agents/agent-applications-light.png"
-  darkSrc="/src/assets/docs/product/deployment-agents/agent-applications-dark.png"
+<ThemedImage
+  lightSrc={agentApplicationsLight}
+  darkSrc={agentApplicationsDark}
   alt="Applications interface"
 />
 
@@ -80,9 +88,9 @@ For detailed instructions on adding applications to Distr, see our platform mana
 
 ### Deployments
 
-<ThemeImage
-  lightSrc="/src/assets/docs/product/deployment-agents/agent-deployment-light.png"
-  darkSrc="/src/assets/docs/product/deployment-agents/agent-deployment-dark.png"
+<ThemedImage
+  lightSrc={agentDeploymentLight}
+  darkSrc={agentDeploymentDark}
   alt="Deployments interface"
 />
 

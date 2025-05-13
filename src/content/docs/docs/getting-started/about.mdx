@@ -7,7 +7,9 @@ sidebar:
 ---
 
 import {Aside} from '@astrojs/starlight/components';
-import ThemeImage from '../../../../components/ThemeImage.astro';
+import distrDiagramLight from '../../../../assets/docs/getting-started/what-is-distr/distr-diagram-light.png';
+import distrDiagramDark from '../../../../assets/docs/getting-started/what-is-distr/distr-diagram-dark.png';
+import ThemedImage from '../../../../components/ThemedImage.astro';
 
 Distr is an open source software distribution platform built for multiple [deployment scenarios](/docs/use-cases/fully-self-managed/). It enables software and AI companies to distribute applications and artifacts to self-managed environments.
 
@@ -16,9 +18,9 @@ and [edge deployments](/docs/use-cases/edge-deployments/) while giving vendors v
 
 ## Architecture
 
-<ThemeImage
-  lightSrc="/src/assets/docs/getting-started/what-is-distr/distr-diagram-light.png"
-  darkSrc="/src/assets/docs/getting-started/what-is-distr/distr-diagram-dark.png"
+<ThemedImage
+  lightSrc={distrDiagramLight}
+  darkSrc={distrDiagramDark}
   alt="Deployments interface"
 />
 

@@ -6,13 +6,15 @@ sidebar:
 ---
 
 import {Aside} from '@astrojs/starlight/components';
-import ThemeImage from '../../../../components/ThemeImage.astro';
+import ThemedImage from '../../../../components/ThemedImage.astro';
+import customerPortalLight from '../../../../assets/docs/product/vendor-portal/customer-portal-light.png';
+import customerPortalDark from '../../../../assets/docs/product/vendor-portal/customer-portal-dark.png';
 
 The customer portal is a simplified, white-labeled control plane UI built for end customers.
 
-<ThemeImage
-  lightSrc="/src/assets/docs/product/vendor-portal/customer-portal-light.png"
-  darkSrc="/src/assets/docs/product/vendor-portal/customer-portal-dark.png"
+<ThemedImage
+  lightSrc={customerPortalLight}
+  darkSrc={customerPortalDark}
   alt="Deployments interface"
 />
 

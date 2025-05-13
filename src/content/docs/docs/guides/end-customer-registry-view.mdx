@@ -7,7 +7,25 @@ sidebar:
 ---
 
 import {Aside, Code, TabItem, Tabs} from '@astrojs/starlight/components';
-import ThemeImage from '../../../../components/ThemeImage.astro';
+import ThemedImage from '../../../../components/ThemedImage.astro';
+import customerPortalLight from '../../../../assets/docs/guides/customer-view/customer-portal-no-num-light.png';
+import customerPortalDark from '../../../../assets/docs/guides/customer-view/customer-portal-no-num-dark.png';
+import artifactUICustomerLight from '../../../../assets/docs/guides/customer-view/artifact-ui-customer-light.png';
+import artifactUICustomerDark from '../../../../assets/docs/guides/customer-view/artifact-ui-customer-dark.png';
+import artifactUIDetailsLight from '../../../../assets/docs/guides/customer-view/artifact-ui-details-light.png';
+import artifactUIDetailsDark from '../../../../assets/docs/guides/customer-view/artifact-ui-details-dark.png';
+import customerAgentNameLight from '../../../../assets/docs/guides/customer-view/customer-agent-name-light.png';
+import customerAgentNameDark from '../../../../assets/docs/guides/customer-view/customer-agent-name-dark.png';
+import helmNSLight from '../../../../assets/docs/guides/customer-view/helm-ns-light.png';
+import helmNSDark from '../../../../assets/docs/guides/customer-view/helm-ns-dark.png';
+import configLight from '../../../../assets/docs/guides/customer-view/config-light.png';
+import configDark from '../../../../assets/docs/guides/customer-view/config-dark.png';
+import statusLight from '../../../../assets/docs/guides/customer-view/status-light.png';
+import statusDark from '../../../../assets/docs/guides/customer-view/status-dark.png';
+import logsLight from '../../../../assets/docs/guides/customer-view/logs-light.png';
+import logsDark from '../../../../assets/docs/guides/customer-view/logs-dark.png';
+import updateDeployLight from '../../../../assets/docs/guides/customer-view/update-deploy-light.png';
+import updateDeployDark from '../../../../assets/docs/guides/customer-view/update-deploy-dark.png';
 
 As an end customer, you will be given access to a [Customer Portal](/docs/product/customer-portal/) by the software vendor.
 The portal you will have access to two key features:
@@ -26,9 +44,9 @@ A typical onboarding journey looks like this:
 
 Here you will view release notes and vendor-specific software information in your dashboard.
 
-<ThemeImage
-  lightSrc="/src/assets/docs/guides/customer-view/customer-portal-no-num-light.png"
-  darkSrc="/src/assets/docs/guides/customer-view/customer-portal-no-num-dark.png"
+<ThemedImage
+  lightSrc={customerPortalLight}
+  darkSrc={customerPortalDark}
   alt="Deployments interface"
 />
 
@@ -36,9 +54,9 @@ Here you will view release notes and vendor-specific software information in you
 
 Browse the artifacts your vendor has made available to you in the artifacts section:
 
-<ThemeImage
-  lightSrc="/src/assets/docs/guides/customer-view/artifact-ui-customer-light.png"
-  darkSrc="/src/assets/docs/guides/customer-view/artifact-ui-customer-dark.png"
+<ThemedImage
+  lightSrc={artifactUICustomerLight}
+  darkSrc={artifactUICustomerDark}
   alt="Registry artifacts view"
 />
 
@@ -48,9 +66,9 @@ In this example, the vendor made to a single artifact called hello-world availab
 
 Click on the artifact name to see details like available versions, creation date, and a download counter:
 
-<ThemeImage
-  lightSrc="/src/assets/docs/guides/customer-view/artifact-ui-details-light.png"
-  darkSrc="/src/assets/docs/guides/customer-view/artifact-ui-details-dark.png"
+<ThemedImage
+  lightSrc={artifactUIDetailsLight}
+  darkSrc={artifactUIDetailsDark}
   alt="Artifact details view"
 />
 
@@ -98,9 +116,9 @@ and can manage multiple deployed applications.
 
 Provide a descriptive name, optionally including environment or customer identifiers.
 
-<ThemeImage
-  lightSrc="/src/assets/docs/guides/customer-view/customer-agent-name-light.png"
-  darkSrc="/src/assets/docs/guides/customer-view/customer-agent-name-dark.png"
+<ThemedImage
+  lightSrc={customerAgentNameLight}
+  darkSrc={customerAgentNameDark}
   alt="Artifact details view"
 />
 
@@ -108,9 +126,9 @@ Provide a descriptive name, optionally including environment or customer identif
 
 If deploying the Helm agent, specify the existing Kubernetes namespace where it will be installed.
 
-<ThemeImage
-  lightSrc="/src/assets/docs/guides/customer-view/helm-ns-light.png"
-  darkSrc="/src/assets/docs/guides/customer-view/helm-ns-dark.png"
+<ThemedImage
+  lightSrc={helmNSLight}
+  darkSrc={helmNSDark}
   alt="Artifact details view"
 />
 
@@ -145,9 +163,9 @@ Select an application and version from the Deploy panel.
 
 Customize the configuration file provided by the vendor to fit your environment.
 
-<ThemeImage
-  lightSrc="/src/assets/docs/guides/customer-view/config-light.png"
-  darkSrc="/src/assets/docs/guides/customer-view/config-dark.png"
+<ThemedImage
+  lightSrc={configLight}
+  darkSrc={configDark}
   alt="Artifact details view"
 />
 
@@ -159,9 +177,9 @@ Once configured, you're ready to deploy.
 
 View real-time updates as your deployment initializes.
 
-<ThemeImage
-  lightSrc="/src/assets/docs/guides/customer-view/status-light.png"
-  darkSrc="/src/assets/docs/guides/customer-view/status-dark.png"
+<ThemedImage
+  lightSrc={statusLight}
+  darkSrc={statusDark}
   alt="Artifact details view"
 />
 
@@ -169,9 +187,9 @@ View real-time updates as your deployment initializes.
 
 Click on the status button to view application logs directly from the portal.
 
-<ThemeImage
-  lightSrc="/src/assets/docs/guides/customer-view/logs-light.png"
-  darkSrc="/src/assets/docs/guides/customer-view/logs-dark.png"
+<ThemedImage
+  lightSrc={logsLight}
+  darkSrc={logsDark}
   alt="Artifact details view"
 />
 
@@ -179,9 +197,9 @@ Click on the status button to view application logs directly from the portal.
 
 Modify configuration values and update running deployments as needed.
 
-<ThemeImage
-  lightSrc="/src/assets/docs/guides/customer-view/update-deploy-light.png"
-  darkSrc="/src/assets/docs/guides/customer-view/update-deploy-dark.png"
+<ThemedImage
+  lightSrc={updateDeployLight}
+  darkSrc={updateDeployDark}
   alt="Artifact details view"
 />
 

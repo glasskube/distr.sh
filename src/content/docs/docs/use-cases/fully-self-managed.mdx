@@ -6,7 +6,9 @@ sidebar:
 ---
 
 import {Aside, Steps} from '@astrojs/starlight/components';
-import ThemeImage from '../../../../components/ThemeImage.astro';
+import ThemedImage from '../../../../components/ThemedImage.astro';
+import fullySelfManagedLight from '../../../../assets/docs/use-cases/fully-self-managed/fully-self-managed-light.png';
+import fullySelfManagedDark from '../../../../assets/docs/use-cases/fully-self-managed/fully-self-managed-dark.png';
 
 The Fully Self-Managed deployment model is designed for environments where third-party access is not an option.
 It is best suited for customers wanting to have full control over their infrastructure and don't want to use external agents.
@@ -16,9 +18,9 @@ to create access tokens, fetch the latest images and build custom automations on
 
 ## Solution Architecture
 
-<ThemeImage
-  lightSrc="/src/assets/docs/use-cases/fully-self-managed/fully-self-managed-light.png"
-  darkSrc="/src/assets/docs/use-cases/fully-self-managed/fully-self-managed-dark.png"
+<ThemedImage
+  lightSrc={fullySelfManagedLight}
+  darkSrc={fullySelfManagedDark}
   alt="Fully-Self-Managed diagram"
 />
 

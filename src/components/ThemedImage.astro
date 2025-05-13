@@ -1,0 +1,13 @@
+---
+import {Image} from 'astro:assets';
+
+export interface Props {
+  lightSrc: string;
+  darkSrc: string;
+  alt: string;
+}
+const {lightSrc, darkSrc, alt} = Astro.props;
+---
+
+<Image src={lightSrc} alt={alt} class="dark:sl-hidden" />
+<Image src={darkSrc} alt={alt} class="light:sl-hidden" />

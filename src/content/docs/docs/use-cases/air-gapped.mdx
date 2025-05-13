@@ -6,7 +6,9 @@ sidebar:
 ---
 
 import {Aside, Steps, Tabs, TabItem} from '@astrojs/starlight/components';
-import ThemeImage from '../../../../components/ThemeImage.astro';
+import ThemedImage from '../../../../components/ThemedImage.astro';
+import airgappedLight from '../../../../assets/docs/use-cases/airgapped/airgapped-light.png';
+import airgappedDark from '../../../../assets/docs/use-cases/airgapped/airgapped-dark.png';
 
 Distr supports air-gapped environments where strict security requirements demand physical or logical isolation from public networks.
 This deployment model is ideal for organizations in regulated industries, such as defense, finance, and critical infrastructure,
@@ -19,9 +21,9 @@ Distr offers two approaches to support these environments:
 
 ## Solution Architecture
 
-<ThemeImage
-  lightSrc="/src/assets/docs/use-cases/airgapped/airgapped-light.png"
-  darkSrc="/src/assets/docs/use-cases/airgapped/airgapped-dark.png"
+<ThemedImage
+  lightSrc={airgappedLight}
+  darkSrc={airgappedDark}
   alt="Fully-Self-Managed diagram"
 />
 

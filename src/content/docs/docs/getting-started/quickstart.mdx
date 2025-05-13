@@ -6,15 +6,17 @@ sidebar:
 ---
 
 import {Aside} from '@astrojs/starlight/components';
-import ThemeImage from '../../../../components/ThemeImage.astro';
+import ThemedImage from '../../../../components/ThemedImage.astro';
+import tutorialsLight from '../../../../assets/docs/getting-started/quickstart/tutorials-light.png';
+import tutorialsDark from '../../../../assets/docs/getting-started/quickstart/tutorials-dark.png';
 
 ## Getting Started with Platform Tutorials
 
 The fastest way to learn how to use Distr is through the interactive tutorials available directly on the platform. When you first create an account, you'll have access to three guided tutorials that cover the core capabilities:
 
-<ThemeImage
-  lightSrc="/src/assets/docs/getting-started/quickstart/tutorials-light.png"
-  darkSrc="/src/assets/docs/getting-started/quickstart/tutorials-dark.png"
+<ThemedImage
+  lightSrc={tutorialsLight}
+  darkSrc={tutorialsDark}
   alt="Fully-Self-Managed diagram"
 />
 
