@@ -106,7 +106,9 @@ The agent executes the following core logic in the interval defined by the `DIST
 
 1. Fetch the deployments from `DISTR_RESOURCE_ENDPOINT`
 2. Delete docker compose projects that are not in the fetched list of deployments anymore (i.e. got undeployed), with `docker compose down -v`
-3. Up docker compose projects that are in the fetched list of deployments, with `docker compose up -d`.
+3. Up docker compose projects that are in the fetched list of deployments, with `docker compose up -d`. The environment variables
+   of the deployment are also passed to this command. As this could take a while when images have to be pulled, the agent will send the status `PROGRESSING`
+   to the backend, to indicate that work is still in progress.
 4. Send each docker compose output to the Distr Hub via `DISTR_STATUS_ENDPOINT`, thereby reporting the deployment's status.
 
 All the requests against the Distr Hub are authenticated with a JWT token, which is obtained by the agent
@@ -127,8 +129,8 @@ For images from any other authenticated OCI registry, the agent mounts the docke
 such that authentication secrets can be reused.
 This means, that any registries that are accessible from the host system, will also be accessible for the agent container.
 
-Another option is to provide a username and a personal access token via an application license. If a deployment is then created with this license,
-the agent will login to the registry given in the license using the provided credentials.
+Another option is to provide a username and a personal access token via an application license (PRO Feature).
+If a deployment is then created with this license, the agent will login to the registry given in the license using the provided credentials.
 
 ##### Agent Self Updates
 
@@ -152,6 +154,7 @@ The reported metrics are:
 
 A deployment can be run in swarm mode. For that to work, the host running the Distr docker agent, must have Docker Swarm enabled and initialized.
 Instead of `docker compose up`, the agent will use `docker stack deploy` to deploy the deployment.
+As a difference to regular compose mode, `docker stack deploy` is not called in every cycle, but only whenever the deployment has changed.
 
 ### Helm Agent
 
