@@ -103,6 +103,7 @@ volumes:
 ##### Core Logic
 
 The agent executes the following core logic in the interval defined by the `DISTR_INTERVAL` (default 5 seconds) environment variable:
+
 1. Fetch the deployments from `DISTR_RESOURCE_ENDPOINT`
 2. Delete docker compose projects that are not in the fetched list of deployments anymore (i.e. got undeployed), with `docker compose down -v`
 3. Up docker compose projects that are in the fetched list of deployments, with `docker compose up -d`.
@@ -115,11 +116,42 @@ The compose project names of the deployments are of the structure `distr-<short-
 matches one docker compose project on the host.
 
 In order to be able to use the `docker` binary of the host system, the agent needs to have the docker socket mounted into the container.
-It also mounts the docker config directory of the host system into the container, so that authentication secrets can be reused.
+
+##### Authentication with OCI registries
+
+If a deployment uses images from the Distr registry, the agent automatically authenticates with the registry, as it
+is already authenticated with the Distr Hub anyway. That way, no additional steps are required for the customer.
+This authentication secret is stored inside a tmp directory of the docker container.
+
+For images from any other authenticated OCI registry, the agent mounts the docker config directory of the host system into the container,
+such that authentication secrets can be reused.
+This means, that any registries that are accessible from the host system, will also be accessible for the agent container.
+
+Another option is to provide a username and a personal access token via an application license. If a deployment is then created with this license,
+the agent will login to the registry given in the license using the provided credentials.
 
 ##### Agent Self Updates
 
+If the agent version of a deployment target is updated in the Distr Hub, the agent container will update itself in the next cycle.
+Since with a version update, also environment variables can change, the agent will fetch the manifest from `DISTR_MANIFEST_ENDPOINT`
+and then restart itself. For that to work, the `DISTR_AGENT_SCRATCH_DIR` and `scratch` volume mount is needed.
+
 ##### Metrics
+
+Metrics are optional but enabled by default. They can be switched on/off via the Distr Hub when editing the deployment target.
+The agent scrapes and reports the metrics to the `DISTR_METRICS_ENDPOINT` every 30 seconds.
+
+The reported metrics are:
+
+- amount of CPU cores of the host system
+- current overall CPU usage in percent
+- amount of memory of the host system
+- current overall memory usage in percent
+
+##### Docker Swarm
+
+A deployment can be run in swarm mode. For that to work, the host running the Distr docker agent, must have Docker Swarm enabled and initialized.
+Instead of `docker compose up`, the agent will use `docker stack deploy` to deploy the deployment.
 
 ### Helm Agent
 
