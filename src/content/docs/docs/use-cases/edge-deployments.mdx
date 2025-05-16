@@ -5,14 +5,11 @@ sidebar:
   order: 5
 ---
 
-import MermaidDiagram from '../../../../components/MermaidDiagram.astro';
-
 Edge Deployments enable vendors to manage software on decentralized, often resource-constrained environments that operate outside traditional data centers.
 In this model, vendors maintain control of both the software and the deployment target, whether IoT devices, custom hardware, or edge infrastructure.
 The lightweight nature of the Distr agents introduces little to no overhead to IoT devices on edge that often have limited resources.
 
-<MermaidDiagram
-  chart={`
+```mermaid
 graph TD
     DR[Distr Registry] --> DH[Distr Hub]
     DH -.-> E1[Edge 1]
@@ -34,18 +31,4 @@ graph TD
     E1 --> D1
     E1 --> D2
     E2 --> D3
-
-    style DR fill:#f9f,stroke:#333,stroke-width:2px
-    style DH fill:#f9f,stroke:#333,stroke-width:2px
-    style E1 fill:#bbf,stroke:#333,stroke-width:2px
-    style E2 fill:#bbf,stroke:#333,stroke-width:2px
-    style DA1 fill:#dfd,stroke:#333,stroke-width:2px
-    style DA2 fill:#dfd,stroke:#333,stroke-width:2px
-    style DA3 fill:#dfd,stroke:#333,stroke-width:2px
-    style DP1 fill:#fdd,stroke:#333,stroke-width:2px
-    style DP2 fill:#fdd,stroke:#333,stroke-width:2px
-    style DP3 fill:#fdd,stroke:#333,stroke-width:2px
-    style DP4 fill:#fdd,stroke:#333,stroke-width:2px
-
-`}
-/>
+```
