@@ -214,6 +214,31 @@ Use this section to:
 - View deployment metadata and logs
 - Track deployment states across all customer environments
 
+## Deployment Health
+
+The Deployments page shows status information on both deployment target and deployment level.
+
+The Distr agent, which is deployed once per deployment target, reconciles the state of the deployment target every 5 seconds,
+thereby also reporting the health of the deployment target and the contained deployments.
+
+### Deployment Target status list
+
+- ⚫ **Not connected**: the dot to the left of the deployment target name is grey.
+- 🟢 **Connected**: the dot is green.
+- 🟡 **Stale**, i.e. the agent has been connected before but did not report its health in the last 60 seconds:
+  the dot is yellow.
+  Only in this case, you can Reconnect the agent by creating new credentials for the agent.
+  Please note that this will invalidate the previous credentials.
+
+### Deployment Status list
+
+- ⚫ **No status**: The agent did not report anything regarding the deployment yet.
+- 🔴 **Error**: There is an error regarding the deployment.
+  Consider investing the errors via the Status logs.
+- 🟡 **Stale**: The agent has not reported the deployment health in the last 60 seconds.
+- 🔵 **Progressing**: The agent is currently installing or upgrading the deployment, due to your previous request.
+- 🟢 **OK**: The deployment is healthy and running.
+
 ## Agent Capabilities
 
 All Distr agents share a common set of core capabilities designed to ensure reliable and secure deployments. These include guided installation processes, automated application updates, comprehensive health monitoring, log aggregation for troubleshooting, and secure, outbound-only communication with the Distr Hub.

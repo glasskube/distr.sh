@@ -5,6 +5,7 @@ import starlightLinksValidator from 'starlight-links-validator';
 
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+import rehypeMermaid from 'rehype-mermaid';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://distr.sh',
@@ -20,26 +21,6 @@ export default defineConfig({
         {
           tag: 'script',
           content: `window.addEventListener('load', () => document.querySelector('.site-title').href += 'docs/')`,
-        },
-        {
-          tag: 'script',
-          attrs: {
-            type: 'module',
-          },
-          content: `
-            document.addEventListener('DOMContentLoaded', async () => {
-              try {
-                const mermaid = await import('https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs');
-                mermaid.default.initialize({
-                  startOnLoad: true,
-                  theme: 'default',
-                  securityLevel: 'loose'
-                });
-              } catch (error) {
-                console.error('Failed to initialize Mermaid:', error);
-              }
-            });
-          `,
         },
         {
           tag: 'link',
@@ -115,6 +96,9 @@ export default defineConfig({
     }),
     sitemap(),
   ],
+  markdown: {
+    rehypePlugins: [[rehypeMermaid, {strategy: 'inline-svg'}]],
+  },
   vite: {
     plugins: [tailwindcss()],
   },
