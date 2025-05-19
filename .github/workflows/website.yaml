@@ -32,7 +32,7 @@ jobs:
       - name: Lint with prettier
         run: npm run lint
       - name: Install playwright browser
-        if: steps.playwright-cache.outputs.cache-hit == 'false'
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps chromium
       - name: Install playwright browser from cache
         if: steps.playwright-cache.outputs.cache-hit == 'true'
