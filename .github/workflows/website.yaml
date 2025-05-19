@@ -34,9 +34,9 @@ jobs:
       - name: Install playwright browser
         if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps chromium
-      - name: Install playwright browser from cache
+      - name: Install playwright browser with cache
         if: steps.playwright-cache.outputs.cache-hit == 'true'
-        run: npx playwright install
+        run: npx playwright install-deps
       - name: Build website
         run: npm run build
       - uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502 # v4
