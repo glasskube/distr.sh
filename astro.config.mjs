@@ -91,6 +91,10 @@ export default defineConfig({
           link: '/docs/faqs',
         },
       ],
+      tableOfContents: {
+        minHeadingLevel: 2,
+        maxHeadingLevel: 6,
+      },
       prerender: true,
       plugins: [starlightLinksValidator()],
     }),
