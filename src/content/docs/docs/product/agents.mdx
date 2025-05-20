@@ -138,7 +138,7 @@ If the agent version of a deployment target is updated in the Distr Hub, the age
 Since with a version update, environment variables can also change, the agent will fetch the manifest from `DISTR_MANIFEST_ENDPOINT`
 and then restart itself. For that to work, the `DISTR_AGENT_SCRATCH_DIR` and `scratch` volume mount are needed.
 
-### Metrics
+### Docker Metrics
 
 Metrics are optional but enabled by default. They can be switched on or off via the Distr Hub when editing the deployment target.
 The agent scrapes and reports the metrics to the `DISTR_METRICS_ENDPOINT` every 30 seconds.
@@ -262,6 +262,20 @@ The agent executes the following core logic at the interval defined by the `DIST
 All requests to the Distr Hub are authenticated with a JWT token, which is obtained by the agent
 by calling the `DISTR_LOGIN_ENDPOINT` with the `DISTR_TARGET_ID` and `DISTR_TARGET_SECRET` credentials.
 
+### Altering the Helm Release
+
+The Distr Helm agent uses the Helm API to perform Helm releases in the Kubernetes cluster similar to how the
+[Flux Helm Controller](https://fluxcd.io/flux/components/helm/) works.
+
+This allows you to also inspect the status of the Helm release with `helm ls -a -n <namespace>`.
+
+<Aside type="danger">
+  Manually altering the Helm release with `helm upgrade` or `helm rollback` will
+  stop the Distr agent from performing any future changes. It is currently not
+  easily possible to "resync" the revision id to let the Distr agent pick up the
+  release again.
+</Aside>
+
 ### Authentication with OCI registries
 
 If a deployment uses images from the Distr registry, the agent automatically authenticates with the registry, as it
@@ -281,7 +295,7 @@ If the agent version of a deployment target is updated in the Distr Hub, the age
 Since with a version update, environment variables can also change, the agent will fetch the manifest from `DISTR_MANIFEST_ENDPOINT`
 and then restart itself.
 
-### Metrics
+### Kubernetes Metrics
 
 Metrics are optional but enabled by default for cluster-scoped agents. Metrics can be switched on or off via the Distr Hub when editing the deployment target.
 The agent scrapes and reports the metrics to the `DISTR_METRICS_ENDPOINT` every 30 seconds.
