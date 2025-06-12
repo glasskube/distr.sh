@@ -15,6 +15,10 @@ import agentApplicationsLight from '../../../../assets/docs/product/deployment-a
 import agentApplicationsDark from '../../../../assets/docs/product/deployment-agents/agent-applications-dark.png';
 import agentDeploymentLight from '../../../../assets/docs/product/deployment-agents/agent-deployment-light.png';
 import agentDeploymentDark from '../../../../assets/docs/product/deployment-agents/agent-deployment-dark.png';
+import agentContLogsDark from '../../../../assets/docs/product/deployment-agents/container-logs-dark.png';
+import agentContLogsLight from '../../../../assets/docs/product/deployment-agents/container-logs-light.png';
+import agentContLogsEnableLight from '../../../../assets/docs/product/deployment-agents/enable-cont-logs-light.png';
+import agentContLogsEnableDark from '../../../../assets/docs/product/deployment-agents/enable-cont-logs-dark.png';
 
 Deployment Agents are a core component of the Distr platform, designed to run within customer environments alongside vendor applications. These lightweight agents bridge the gap between the Distr Hub and deployment targets, enabling comprehensive lifecycle management while requiring minimal access to customer infrastructure.
 
@@ -390,6 +394,30 @@ thereby also reporting the health of the deployment target and the contained dep
 - 🟡 **Stale**: The agent has not reported the deployment health in the last 60 seconds.
 - 🔵 **Progressing**: The agent is currently installing or upgrading the deployment, due to your previous request.
 - 🟢 **OK**: The deployment is healthy and running.
+
+### Container Logs
+
+Container logs can be enabled per deployment and will appear alongside agent status logs through the deployment interface. 
+
+To enable them, select the deployment and click on the vertical ellipsis button (⋮). Then click `Enable log collection`. The first logs should appear within 30 seconds.
+
+<ThemedImage
+  lightSrc={agentContLogsEnableLight}
+  darkSrc={agentContLogsEnableDark}
+  alt="Distr Agent Container Logs"
+/>
+
+When enabled, logs are collected and updated every 30 seconds. This provides real-time visibility into internal container processes and valuable troubleshooting information.
+
+<ThemedImage
+  lightSrc={agentContLogsLight}
+  darkSrc={agentContLogsDark}
+  alt="Distr Agent Container Logs"
+/>
+
+:::note
+Make sure that your application actually produces logs. If it doesn't, the container logs tab won't appear.
+:::
 
 ## Agent Capabilities
 
