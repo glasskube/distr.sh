@@ -1,0 +1,94 @@
+---
+title: Distr MCP Server
+description: The Distr MCP Server can be configured as tool to manage Kubernetes and Docker deployments.
+sidebar:
+  order: 3
+---
+
+import {Code, TabItem, Tabs} from '@astrojs/starlight/components';
+import {Image} from 'astro:assets';
+import mcpConfig from './mcp/mcp.json?raw';
+import distrMCPConfig from '../../../../assets/docs/integrations/mcp/distr-mcp-tools.png';
+
+Distr also exposes its endpoints via the [model context protocol](https://modelcontextprotocol.io/introduction)
+to allow LLM-powered agents to interact with the Distr tools.
+
+Common use cases include:
+
+- Investigate which deployments are failing and why
+- Update deployments, for example, as part of n8n workflows
+- Interact with the Distr Platform through natural language prompts
+
+## Getting Started With the Distr MCP Server
+
+The Distr MCP Server is a [separate go command](https://github.com/glasskube/distr/tree/main/cmd/mcp)
+that can be compiled locally.
+
+### Build the Distr MCP Server
+
+Make sure you have downloaded the Distr source code and have Go installed.
+Then, you can build the Distr MCP Server with the following command:
+
+```shell
+make build-mcp-server
+```
+
+After compilation, the MCP server binary will be available in the `./dist/` directory.
+Which can be verified with `./dist/mcp-server --help`.
+
+### Configure the Distr MCP Server Tools
+
+The Distr MCP Server exposes its executable functions via [tools](https://modelcontextprotocol.io/docs/concepts/tools).
+
+If you want to use all tools, you can extend your `mcp.json` configuration file in your MCP client:
+
+<Code code={mcpConfig} lang="json" title="mcp.json" />
+
+You can also configure the optional environment variable `DISTR_HOST`
+to point the MCP server against a different Distr instance.
+
+If configured correctly, your MCP client will list the available tools:
+
+<Image src={distrMCPConfig} alt="Sucessfull Distr MCP Server confguration" />
+
+## Interact with the Distr MCP Server
+
+After configuring the Distr MCP Server, you can perform prompts that gather additional
+information from Distr via the Distr MCP Sever.
+
+### Get all deployments and group them by their status
+
+<Tabs>
+  <TabItem label="Prompt">
+    > Show me all distr deployments and group them by status.
+  </TabItem>
+  <TabItem label="Response">
+    > Here are all distr deployments grouped by status: > > **Status: Running /
+    OK** > - Local: On-Prem LLM App 2 (nginx:1.27.4) > - Local: On-Prem LLM App
+    2 (1.28.0) > - kcd: Podinfo (6.7.1) > - ACME, Inc.: Hello Distr (0.1.6) > -
+    Compliance Company: Podinfo (6.7.1) > - Edision: Security Agent (0.4.20) > -
+    Gov: Podinfo (6.7.1) > > **Status: Error** > - ACME, Inc.: Hello Distr
+    (0.1.9) — missing environment variable > - Pear, Inc.: On-Prem LLM App 2
+    (error) — image not found > ...
+  </TabItem>
+</Tabs>
+
+### Investigate failed deployments
+
+<Tabs>
+  <TabItem label="Prompt">
+    > Why do the deployments are in the status error, show the latest log.
+  </TabItem>
+  <TabItem label="Response">
+    > Here are the deployments in error status and the reason why, including
+    their latest log: > > **1. ACME, Inc.: Hello Distr (version 0.1.9)** > > -
+    Reason: Missing environment variable. > - Latest log: error while
+    interpolating services.postgres.environment.POSTGRES_DB: required variable
+    HELLO_DISTR_DB_NAME is missing a value: error > > **2. Pear, Inc.: On-Prem
+    LLM App 2 (version error)** > > - Reason: Image not found. > - Latest log:
+    nginx Pulling nginx Error manifest for nginx:error not found: manifest
+    unknown: manifest unknown Error response from daemon: manifest for
+    nginx:error not found: manifest unknown: manifest unknown > > > If you need
+    more detailed logs or troubleshooting steps, let me know!
+  </TabItem>
+</Tabs>

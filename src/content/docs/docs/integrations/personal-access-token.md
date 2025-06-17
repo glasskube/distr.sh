@@ -2,7 +2,7 @@
 title: Creating a Personal Access Token
 description: Generate secure access tokens to authenticate with Distr's Registry, API and SDK.
 sidebar:
-  order: 3
+  order: 4
 ---
 
 In integration scenarios, you need to authenticate with the Distr API using a Personal Access Token (PAT).

@@ -2,7 +2,7 @@
 title: GitHub Actions
 description: Automatically create new application versions in Distr whenever you push a release to GitHub, supporting both Docker and Helm applications.
 sidebar:
-  order: 4
+  order: 5
 ---
 
 ## distr-create-version
