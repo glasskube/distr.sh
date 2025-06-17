@@ -63,14 +63,26 @@ information from Distr via the Distr MCP Sever.
     > Show me all distr deployments and group them by status.
   </TabItem>
   <TabItem label="Response">
-    > Here are all distr deployments grouped by status: > > **Status: Running /
-    OK** > - Local: On-Prem LLM App 2 (nginx:1.27.4) > - Local: On-Prem LLM App
-    2 (1.28.0) > - kcd: Podinfo (6.7.1) > - ACME, Inc.: Hello Distr (0.1.6) > -
-    Compliance Company: Podinfo (6.7.1) > - Edision: Security Agent (0.4.20) > -
-    Gov: Podinfo (6.7.1) > > **Status: Error** > - ACME, Inc.: Hello Distr
-    (0.1.9) — missing environment variable > - Pear, Inc.: On-Prem LLM App 2
-    (error) — image not found > ...
-  </TabItem>
+    Here are all distr deployments grouped by status:
+
+    **Status: Running / OK**
+
+    - Local: On-Prem LLM App 2 (nginx:1.27.4)
+    - Local: On-Prem LLM App 2 (1.28.0)
+    - kcd: Podinfo (6.7.1)
+    - ACME, Inc.: Hello Distr (0.1.6)
+    - Compliance Company: Podinfo (6.7.1)
+    - Edision: Security Agent (0.4.20)
+    - Gov: Podinfo (6.7.1)
+
+    **Status: Error**
+
+    - ACME, Inc.: Hello Distr (0.1.9) — missing environment variable
+    - Pear, Inc.: On-Prem LLM App 2 (error) — image not found
+      ...
+
+    </TabItem>
+
 </Tabs>
 
 ### Investigate failed deployments
@@ -80,15 +92,19 @@ information from Distr via the Distr MCP Sever.
     > Why do the deployments are in the status error, show the latest log.
   </TabItem>
   <TabItem label="Response">
-    > Here are the deployments in error status and the reason why, including
-    their latest log: > > **1. ACME, Inc.: Hello Distr (version 0.1.9)** > > -
-    Reason: Missing environment variable. > - Latest log: error while
-    interpolating services.postgres.environment.POSTGRES_DB: required variable
-    HELLO_DISTR_DB_NAME is missing a value: error > > **2. Pear, Inc.: On-Prem
-    LLM App 2 (version error)** > > - Reason: Image not found. > - Latest log:
-    nginx Pulling nginx Error manifest for nginx:error not found: manifest
-    unknown: manifest unknown Error response from daemon: manifest for
-    nginx:error not found: manifest unknown: manifest unknown > > > If you need
-    more detailed logs or troubleshooting steps, let me know!
+    Here are the deployments in error status and the reason why, including their latest log:
+
+    **1. ACME, Inc.: Hello Distr (version 0.1.9)**
+
+    - Reason: Missing environment variable.
+    - Latest log: error while interpolating services.postgres.environment.POSTGRES_DB: required variable HELLO_DISTR_DB_NAME is missing a value: error
+
+    **2. Pear, Inc.: On-Prem LLM App 2 (version error)**
+
+    - Reason: Image not found.
+    - Latest log: nginx Pulling nginx Error manifest for nginx:error not found: manifest unknown: manifest unknown Error response from daemon: manifest for nginx:error not found: manifest unknown: manifest unknown
+
+    If you need more detailed logs or troubleshooting steps, let me know!
+
   </TabItem>
 </Tabs>
