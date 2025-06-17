@@ -1,0 +1,12 @@
+{
+  "servers": {
+    "distr": {
+      "command": "/home/pmig/dev/glasskube/github/distr/dist/mcp-server",
+      "args": ["serve"],
+      "tools": ["*"],
+      "env": {
+        "DISTR_TOKEN": "distr-..."
+      }
+    }
+  }
+}
