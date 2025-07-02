@@ -90,6 +90,10 @@ export default defineConfig({
           label: 'FAQs',
           link: '/docs/faqs',
         },
+        {
+          label: 'Privacy Policy',
+          link: '/docs/privacy-policy',
+        },
       ],
       tableOfContents: {
         minHeadingLevel: 2,
