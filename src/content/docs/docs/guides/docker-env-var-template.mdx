@@ -59,7 +59,7 @@ The environment file can be kustomize for each deployment
 You can execute this example with the following command:
 
 ```shell
-docker compose up --env .env
+docker compose --env-file .env up
 ```
 
 ## Referencing environment variables in multiple services
@@ -86,7 +86,7 @@ If multiple services need the same environment variables, you can define them in
 You can execute this example with the following command:
 
 ```shell
-docker compose up --env .env
+docker compose --env-file .env up
 ```
 
 When running the docker compose file you will be able to see following output for the webservers `/env` endpoint:
