@@ -19,7 +19,7 @@
     "@fontsource/inter": "^5.2.5",
     "@fontsource/poppins": "^5.2.5",
     "@tailwindcss/vite": "^4.1.6",
-    "astro": "^5.7.12",
+    "astro": "^5.12.8",
     "mermaid": "^11.6.0",
     "playwright": "^1.52.0",
     "rehype-mermaid": "^3.0.0",
