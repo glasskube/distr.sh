@@ -17,6 +17,7 @@ export default defineConfig({
       editLink: {
         baseUrl: 'https://github.com/glasskube/distr.sh/tree/main',
       },
+      lastUpdated: true,
       head: [
         {
           tag: 'script',
