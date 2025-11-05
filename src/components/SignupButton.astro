@@ -1,0 +1,35 @@
+---
+interface Props {
+  class?: string;
+}
+
+const {class: className = ''} = Astro.props;
+---
+
+<a
+  href="https://signup.distr.sh"
+  class={`inline-flex items-center justify-center px-6 py-3 text-base font-medium border-2 border-current rounded-lg hover:bg-white/10 transition-colors ${className}`}
+  target="_blank"
+  rel="noopener noreferrer">
+  Get started for free
+</a>
+
+<script>
+  // Add PostHog ID to signup link if available
+  document.addEventListener('DOMContentLoaded', () => {
+    const link = document.querySelector('a[href^="https://signup.distr.sh"]');
+    if (link && typeof window !== 'undefined' && (window as any).posthog) {
+      try {
+        const id = (window as any).posthog.get_distinct_id();
+        if (id) {
+          link.setAttribute(
+            'href',
+            `https://signup.distr.sh/signup.html?id=${id}`,
+          );
+        }
+      } catch (e) {
+        // Silently fail if PostHog is not available
+      }
+    }
+  });
+</script>

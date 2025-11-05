@@ -1,0 +1,63 @@
+---
+const logos = [
+  'https://github.com/user-attachments/assets/5e08ab88-1cfd-4854-8e8d-c9dc0c75c0b7',
+  'https://github.com/user-attachments/assets/c4e055e2-4a12-48e6-91a7-5b812a775881',
+  'https://github.com/user-attachments/assets/5104fce0-b156-456f-83ac-480cedb42516',
+  'https://github.com/user-attachments/assets/69532438-7ca7-4085-9fa2-9f20b1ea7a60',
+  'https://github.com/user-attachments/assets/7e94c101-2b63-4432-ac80-a00ceeca8309',
+  'https://github.com/user-attachments/assets/59a281a7-651b-43fd-93ea-6ad5a0661ccb',
+  'https://github.com/user-attachments/assets/bfd56186-2538-41ab-b2a9-3d3fb64b878f',
+  'https://github.com/user-attachments/assets/ad8628e4-b866-4d31-992c-3b12633b3538',
+  'https://github.com/user-attachments/assets/a7648681-0145-4ee3-a94c-b0b596d81979',
+  'https://github.com/user-attachments/assets/e3cf517a-add2-47cb-81fc-b7bd136f08dc',
+  'https://github.com/user-attachments/assets/008137ed-ee3a-43b9-be8b-8c96aaefc170',
+  'https://github.com/user-attachments/assets/4bc5298d-6b14-4d56-ba1b-c82c27711bdc',
+];
+---
+
+<div class="bg-gray-900 dark:bg-[#174c76] py-8 md:py-12">
+  <div class="overflow-hidden max-w-screen-2xl mx-auto mb-8 md:mb-12">
+    <div
+      class="inline-flex overflow-hidden whitespace-nowrap relative hover:[&>*]:pause">
+      <div class="flex animate-[slide_50s_linear_infinite]">
+        {
+          logos.map(logo => (
+            <img
+              src={logo}
+              width={200}
+              alt="Company logo"
+              class="h-auto max-w-none object-contain ml-12 md:ml-[50px]"
+            />
+          ))
+        }
+      </div>
+      <div class="flex animate-[slide_50s_linear_infinite]" aria-hidden="true">
+        {
+          logos.map(logo => (
+            <img
+              src={logo}
+              width={200}
+              alt="Company logo"
+              class="h-auto max-w-none object-contain ml-12 md:ml-[50px]"
+            />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes slide {
+    from {
+      transform: translateX(0%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  .pause {
+    animation-play-state: paused !important;
+  }
+</style>
