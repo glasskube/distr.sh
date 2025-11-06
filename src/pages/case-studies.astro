@@ -4,6 +4,11 @@ import CaseStudyCard from '../components/case-studies/CaseStudyCard.astro';
 import CaseStudyTracker from '../components/case-studies/CaseStudyTracker.astro';
 import CTASection from '../components/home/CTASection.astro';
 import NewsletterSection from '../components/home/NewsletterSection.astro';
+import type {ImageMetadata} from 'astro';
+
+// Import images from assets
+import sophrisLogo from '../assets/case-studies/sophris/sophris-ai-logo.png';
+import anshGupta from '../assets/case-studies/sophris/ansh-gupta.jpeg';
 
 const title = 'Case Studies';
 const description = 'Customer success stories using Distr';
@@ -17,8 +22,8 @@ interface CaseStudyData {
   ctoName: string;
   ctoTitle: string;
   ctoQuote: string;
-  logo: string;
-  ctoImage: string;
+  logo: ImageMetadata;
+  ctoImage: ImageMetadata;
   slug: string;
   challenge: string;
   solution: string;
@@ -34,8 +39,8 @@ const sophrisCase: CaseStudyData = {
   ctoTitle: 'CTO',
   ctoQuote:
     'Distr eliminated nearly all deployment headaches. Updates that used to take days now take minutes.',
-  logo: '/img/case-studies/sophris/sophris-ai-logo.png',
-  ctoImage: '/img/case-studies/sophris/ansh-gupta.jpeg',
+  logo: sophrisLogo,
+  ctoImage: anshGupta,
   slug: 'sophris-ai',
   challenge: `<a href="https://www.sophris.ai/" target="_blank" rel="noopener noreferrer">Sophris</a> uses AI to automate error detection in circuit board schematics. Their platform automates what traditionally is a highly manual and error-prone process of verifying hundreds of intricate components against complex data sheets.
 

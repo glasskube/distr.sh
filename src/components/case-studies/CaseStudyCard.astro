@@ -1,4 +1,7 @@
 ---
+import {Image} from 'astro:assets';
+import type {ImageMetadata} from 'astro';
+
 export interface Props {
   company: string;
   industry: string;
@@ -7,8 +10,8 @@ export interface Props {
   solution: string;
   result: string;
   ctoQuote: string;
-  logo: string;
-  ctoImage: string;
+  logo: ImageMetadata;
+  ctoImage: ImageMetadata;
   ctoName: string;
   ctoTitle: string;
   slug: string;
@@ -36,10 +39,12 @@ const {
   <!-- Header with Logo and Info -->
   <div
     class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 mb-8">
-    <img
+    <Image
       src={logo}
       alt={`${company} Logo`}
       class="h-24 w-auto rounded-xl object-contain"
+      width={200}
+      height={96}
     />
     <div class="flex flex-row gap-8">
       <div class="text-center md:text-left">
@@ -116,10 +121,12 @@ const {
 
         <!-- CTO Info -->
         <div class="flex items-center gap-4">
-          <img
+          <Image
             src={ctoImage}
             alt={ctoName}
             class="w-16 h-16 rounded-full object-cover border-2 border-[#00b5eb]"
+            width={64}
+            height={64}
           />
           <div>
             <div class="font-semibold text-gray-900 dark:text-white text-lg">
