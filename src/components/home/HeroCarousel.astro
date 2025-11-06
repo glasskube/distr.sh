@@ -31,12 +31,12 @@ const slides = [
 ];
 ---
 
-<div class="relative" id="heroCarousel">
-  <div class="overflow-hidden">
-    <div class="flex gap-4">
+<div class="embla" id="heroCarousel">
+  <div class="embla__viewport overflow-hidden">
+    <div class="embla__container flex">
       {
         slides.map(slide => (
-          <div class="flex-[0_0_100%] min-w-0">
+          <div class="embla__slide flex-[0_0_100%] min-w-0">
             <figure class="m-0">
               <div class="rounded-xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.3)] bg-[#1a1a1a] border border-white/10">
                 <ThemedImage
@@ -55,10 +55,10 @@ const slides = [
     </div>
   </div>
 
-  <div class="flex flex-col items-center gap-4 mt-6">
-    <div class="flex gap-2">
+  <div class="embla__controls flex flex-col items-center gap-4 mt-6">
+    <div class="embla__buttons flex gap-2">
       <button
-        class="w-12 h-12 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed embla__button--prev"
+        class="embla__button embla__button--prev w-12 h-12 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed"
         type="button"
         aria-label="Previous slide">
         <svg class="w-6 h-6" viewBox="0 0 24 24">
@@ -72,7 +72,7 @@ const slides = [
         </svg>
       </button>
       <button
-        class="w-12 h-12 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed embla__button--next"
+        class="embla__button embla__button--next w-12 h-12 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center cursor-pointer transition-all duration-300 hover:bg-white/20 disabled:opacity-30 disabled:cursor-not-allowed"
         type="button"
         aria-label="Next slide">
         <svg class="w-6 h-6" viewBox="0 0 24 24">
@@ -87,7 +87,7 @@ const slides = [
       </button>
     </div>
 
-    <div class="flex gap-2 embla__dots"></div>
+    <div class="embla__dots flex gap-2"></div>
   </div>
 </div>
 
@@ -95,9 +95,9 @@ const slides = [
   import EmblaCarousel from 'embla-carousel';
   import Autoplay from 'embla-carousel-autoplay';
 
-  const emblaNode = document
-    .getElementById('heroCarousel')
-    ?.querySelector('.embla__viewport') as HTMLElement;
+  const emblaNode = document.querySelector(
+    '#heroCarousel .embla__viewport',
+  ) as HTMLElement;
   if (emblaNode) {
     const emblaApi = EmblaCarousel(emblaNode, {loop: true}, [
       Autoplay({delay: 5000}),
