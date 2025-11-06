@@ -1,0 +1,47 @@
+---
+import {PricingFAQs} from '../../data/pricingFaq';
+---
+
+<section class="py-8 md:py-16">
+  <div class="container mx-auto px-4 max-w-7xl">
+    <h2 class="text-center mb-8 text-3xl font-bold">FAQ</h2>
+    <div class="max-w-4xl mx-auto space-y-6">
+      {
+        PricingFAQs.map(faq => (
+          <div
+            id={faq.id}
+            class="bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 -mt-12 pt-12">
+            <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+              <h3 class="text-xl font-semibold m-0">
+                <a
+                  href={`#${faq.id}`}
+                  class="no-underline text-gray-900 dark:text-white hover:text-[#00b5eb] transition-colors">
+                  {faq.question}
+                </a>
+              </h3>
+            </div>
+            <div class="p-6">
+              <div
+                class="prose dark:prose-invert max-w-none"
+                set:html={faq.answer}
+              />
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Ensure prose styles work correctly */
+  :global(.prose strong) {
+    font-weight: 600;
+  }
+
+  :global(.prose br) {
+    display: block;
+    content: '';
+    margin-top: 0.5em;
+  }
+</style>

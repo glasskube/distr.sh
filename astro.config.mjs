@@ -3,6 +3,7 @@ import starlight from '@astrojs/starlight';
 import {defineConfig} from 'astro/config';
 import starlightLinksValidator from 'starlight-links-validator';
 
+import preact from '@astrojs/preact';
 import sitemap from '@astrojs/sitemap';
 import starlightUtils from '@lorenzo_lewis/starlight-utils';
 import tailwindcss from '@tailwindcss/vite';
@@ -101,6 +102,7 @@ export default defineConfig({
       ],
     }),
     sitemap(),
+    preact(),
   ],
   markdown: {
     rehypePlugins: [[rehypeMermaid, {strategy: 'inline-svg'}]],
