@@ -25,10 +25,6 @@ export default defineConfig({
       head: [
         {
           tag: 'script',
-          content: `window.addEventListener('load', () => document.querySelector('.site-title').href += 'docs/')`,
-        },
-        {
-          tag: 'script',
           attrs: {
             type: 'text/partytown',
           },
@@ -117,7 +113,9 @@ export default defineConfig({
       },
       prerender: true,
       plugins: [
-        starlightLinksValidator(),
+        starlightLinksValidator({
+          exclude: ['/glossary/**', '/blog/**', '/', '/pricing/'],
+        }),
         starlightUtils({
           navLinks: {
             leading: {useSidebarLabelled: 'Navbar'},
