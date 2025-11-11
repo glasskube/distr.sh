@@ -516,12 +516,12 @@ Always read the current progress in @TASK.md and store the tasks. Specific conte
 
 ### Pages Migrated
 
-| Page | Status | Components | Notes |
-|------|--------|------------|-------|
-| Home | ✅ Complete | 12 components | Carousel, features, testimonials, newsletter |
-| Pricing | ✅ Complete | 3 components + data | Interactive calculator, comparison table, FAQ |
-| Contact | ✅ Complete | 2 components | Form with HubSpot, office info |
-| Case Studies | ✅ Complete | 2 components | 1 case study, tracker sidebar, optimized images |
+| Page         | Status      | Components          | Notes                                           |
+| ------------ | ----------- | ------------------- | ----------------------------------------------- |
+| Home         | ✅ Complete | 12 components       | Carousel, features, testimonials, newsletter    |
+| Pricing      | ✅ Complete | 3 components + data | Interactive calculator, comparison table, FAQ   |
+| Contact      | ✅ Complete | 2 components        | Form with HubSpot, office info                  |
+| Case Studies | ✅ Complete | 2 components        | 1 case study, tracker sidebar, optimized images |
 
 ### Assets Optimization
 
@@ -533,16 +533,19 @@ Always read the current progress in @TASK.md and store the tasks. Specific conte
 ### Technical Stack
 
 **New Dependencies Added:**
+
 - `@astrojs/preact@^4.1.2` - For interactive components
 - `preact@^10.27.2` - Lightweight React alternative
 - `embla-carousel@8.6.0` - Carousel functionality
 - `embla-carousel-autoplay@8.6.0` - Autoplay plugin
 
 **Layouts:**
+
 - `StarlightLayout` - Used for pricing, contact, case studies (consistent with docs)
 - `StandaloneLayout` - Used for home page
 
 **Component Architecture:**
+
 - Static sections: Pure Astro components
 - Interactive elements: Preact components with `client:load`
 - Reusable: DemoButton, SignupButton, NewsletterSection
@@ -550,6 +553,7 @@ Always read the current progress in @TASK.md and store the tasks. Specific conte
 ### Quality Assurance
 
 All migrations included:
+
 - ✅ `pnpm format` - Code formatting
 - ✅ `pnpm build` - Build validation
 - ✅ Playwright tests - Visual and functional testing
