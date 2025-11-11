@@ -2,27 +2,35 @@
 import {PricingFAQs} from '../../data/pricingFaq';
 ---
 
-<section class="py-8 md:py-16">
+<section class="py-16 md:py-24">
   <div class="container mx-auto px-4 max-w-7xl">
-    <h2 class="text-center mb-8 text-3xl font-bold">FAQ</h2>
-    <div class="max-w-4xl mx-auto space-y-6">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">
+        Frequently Asked Questions
+      </h2>
+      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        Everything you need to know about Distr pricing and features
+      </p>
+    </div>
+    <div class="max-w-4xl mx-auto space-y-4">
       {
         PricingFAQs.map(faq => (
           <div
-            id={faq.id}
-            class="bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 -mt-12 pt-12">
-            <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-              <h3 class="text-xl font-semibold m-0">
+            class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow scroll-mt-24"
+            id={faq.id}>
+            <div class="p-6 md:p-8">
+              <h3 class="text-xl md:text-2xl font-semibold mb-4 m-0">
                 <a
                   href={`#${faq.id}`}
-                  class="no-underline text-gray-900 dark:text-white hover:text-[#00b5eb] transition-colors">
+                  class="no-underline text-gray-900 dark:text-white hover:text-[#00b5eb] dark:hover:text-[#00b5eb] transition-colors group">
+                  <span class="inline-block -ml-7 w-6 text-[#00b5eb] opacity-0 group-hover:opacity-100 transition-opacity">
+                    #
+                  </span>
                   {faq.question}
                 </a>
               </h3>
-            </div>
-            <div class="p-6">
               <div
-                class="prose dark:prose-invert max-w-none"
+                class="prose prose-lg dark:prose-invert max-w-none prose-p:text-gray-600 dark:prose-p:text-gray-300 prose-p:leading-relaxed"
                 set:html={faq.answer}
               />
             </div>
@@ -34,14 +42,41 @@ import {PricingFAQs} from '../../data/pricingFaq';
 </section>
 
 <style>
-  /* Ensure prose styles work correctly */
+  /* Enhanced prose styles */
   :global(.prose strong) {
     font-weight: 600;
+    color: rgb(17 24 39);
+  }
+
+  :global(.dark .prose strong) {
+    color: rgb(243 244 246);
+  }
+
+  :global(.prose p) {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  :global(.prose p:first-child) {
+    margin-top: 0;
+  }
+
+  :global(.prose p:last-child) {
+    margin-bottom: 0;
   }
 
   :global(.prose br) {
     display: block;
     content: '';
     margin-top: 0.5em;
+  }
+
+  :global(.prose a) {
+    color: #00b5eb;
+    text-decoration: underline;
+  }
+
+  :global(.prose a:hover) {
+    color: #0099cc;
   }
 </style>

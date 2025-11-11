@@ -1,20 +1,22 @@
 ---
+import {Icon} from 'astro-icon/components';
+
 const features = [
   {
     title: 'Container Registry',
-    icon: 'docker',
+    icon: 'lucide:container',
     description:
       'OCI compliant container registry with granular access control, security scanning and detailed analytics.',
   },
   {
     title: 'License Management',
-    icon: 'key',
+    icon: 'lucide:key',
     description:
       'Restrict access based on custom software licenses with expiration dates, custom entitlements and usage.',
   },
   {
     title: 'Deployment Agents',
-    icon: 'lightbulb',
+    icon: 'lucide:lightbulb',
     description:
       'Optional Docker Compose and Helm agents manage deployments, collect logs and metrics and allow remote troubleshooting.',
   },
@@ -36,20 +38,7 @@ const features = [
           <div class="text-center px-4 md:px-6">
             <div class="relative inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 mb-6 rounded-full bg-gradient-to-br from-[#00b5eb] to-[#63c5e3] p-1">
               <div class="w-full h-full rounded-full bg-white dark:bg-gray-900 flex items-center justify-center">
-                <svg
-                  class="w-10 h-10 md:w-12 md:h-12 text-[#00b5eb]"
-                  fill="currentColor"
-                  viewBox="0 0 24 24">
-                  {feature.icon === 'docker' && (
-                    <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338 0-.676.03-1.01.09-.808-2.602-3.04-2.826-3.114-2.826H3.538C2.655 6.644 2 7.3 2 8.183v9.978h.03c.088 1.117.967 2.004 2.078 2.004h15.784c1.117 0 2.007-.895 2.007-2.006v-.978c1.295-.279 2.33-1.117 2.33-2.832 0-.593-.104-1.104-.466-1.459z" />
-                  )}
-                  {feature.icon === 'key' && (
-                    <path d="M7 10l5 5-1.41 1.41L9 15V20H7v-5H5l1.59-1.41L5 12l5-5m12-2l-1.41-1.41L16 8.17V6h-2v2.17l-1.59-1.58L11 8l1.41 1.41L11 11h2v-2.17l1.59 1.58L16 9V7h2v2l1.59-1.59L21 6z" />
-                  )}
-                  {feature.icon === 'lightbulb' && (
-                    <path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6C7.8 12.16 7 10.63 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z" />
-                  )}
-                </svg>
+                <Icon name={feature.icon} class="text-4xl" />
               </div>
             </div>
             <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4">
