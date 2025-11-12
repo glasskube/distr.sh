@@ -29,7 +29,7 @@ This action creates a new version of a [Distr](https://github.com/glasskube/dist
 
 Here is an example of how to use it to create a new version of a Docker based application
 
-![docker-based-image](https://github.com/user-attachments/assets/df1d10f8-35c9-4d88-822f-e3fd2cb40d54)
+![docker-based-image](/src/assets/blog/2025-02-17-distr-1-1-release/docker-github-action.png)
 
 ### 2. Feature: Docker environment variable Management
 
@@ -39,7 +39,7 @@ This feature enables and simplifies the management of environment variables in y
 
 - **How to get started:** Check out the [guide](https://distr.sh/docs/guides/docker-env-var-template/) on how to manage environment variables in Docker Compose files.
 
-![env-management](https://github.com/user-attachments/assets/411d8d1f-d17a-4c95-b57e-2d8e79e09ab7)
+![env-management](/src/assets/blog/2025-02-17-distr-1-1-release/docker-env-management.png)
 
 Have questions or feedback? Share your thoughts on [Discord](https://discord.gg/STk5Z3nFmT) or join request a [demo call](https://cal.glasskube.com/team/gk/demo?duration=30) here!
 
