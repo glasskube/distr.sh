@@ -4,9 +4,13 @@ import {defineConfig} from 'astro/config';
 import starlightLinksValidator from 'starlight-links-validator';
 
 import partytown from '@astrojs/partytown';
+import preact from '@astrojs/preact';
 import sitemap from '@astrojs/sitemap';
+import starlightUtils from '@lorenzo_lewis/starlight-utils';
 import tailwindcss from '@tailwindcss/vite';
 import rehypeMermaid from 'rehype-mermaid';
+
+import icon from 'astro-icon';
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,7 +18,7 @@ export default defineConfig({
 
   integrations: [
     starlight({
-      title: 'Distr Docs',
+      title: 'Distr',
       customCss: ['./src/styles/global.css'],
       editLink: {
         baseUrl: 'https://github.com/glasskube/distr.sh/tree/main',
@@ -23,24 +27,20 @@ export default defineConfig({
       head: [
         {
           tag: 'script',
-          content: `window.addEventListener('load', () => document.querySelector('.site-title').href += 'docs/')`,
-        },
-        {
-          tag: 'script',
           attrs: {
             type: 'text/partytown',
           },
           content: `(function (w, d, s, l, i) {
-              w[l] = w[l] || [];
-              w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
-              var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s),
-                dl = l != 'dataLayer' ? '&l=' + l : '';
-              j.async = true;
-              j.src = 'https://distr.sh/ggg/gtm.js?id=' + i + dl;
-              f.parentNode.insertBefore(j, f);
-            })(window, document, 'script', 'dataLayer', 'GTM-T58STPCJ');
-            `,
+            w[l] = w[l] || [];
+            w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+            var f = d.getElementsByTagName(s)[0],
+              j = d.createElement(s),
+              dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://distr.sh/ggg/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+          })(window, document, 'script', 'dataLayer', 'GTM-T58STPCJ');
+          `,
         },
       ],
       description: 'Open Source Software Distribution Platform',
@@ -60,10 +60,22 @@ export default defineConfig({
         },
       ],
       components: {
-        // Override the default `SocialIcons` component.
-        SocialIcons: './src/components/NavBarCta.astro',
+        // Components can be overwritten here
+        PageTitle: './src/components/overwrites/PageTitle.astro',
+        ContentPanel: './src/components/overwrites/ContentPanel.astro',
+        Footer: './src/components/overwrites/Footer.astro',
+        SocialIcons: './src/components/overwrites/SocialIcons.astro',
       },
       sidebar: [
+        {
+          label: 'Navbar',
+          items: [
+            {label: 'Home', link: '/'},
+            {label: 'Pricing', link: '/pricing/'},
+            {label: 'Docs', link: '/docs/getting-started/what-is-distr/'},
+            {label: 'Blog', link: '/blog/'},
+          ],
+        },
         {
           label: 'Getting started',
           autogenerate: {directory: 'docs/getting-started'},
@@ -102,7 +114,26 @@ export default defineConfig({
         maxHeadingLevel: 6,
       },
       prerender: true,
-      plugins: [starlightLinksValidator()],
+      plugins: [
+        starlightLinksValidator({
+          exclude: [
+            '/',
+            '/blog/',
+            '/blog/**',
+            '/pricing/',
+            '/contact/',
+            '/case-studies/',
+            '/glossary/',
+            '/glossary/**',
+            '/whitepaper/',
+          ],
+        }),
+        starlightUtils({
+          navLinks: {
+            leading: {useSidebarLabelled: 'Navbar'},
+          },
+        }),
+      ],
     }),
     sitemap(),
     partytown({
@@ -110,6 +141,8 @@ export default defineConfig({
         forward: ['dataLayer.push'],
       },
     }),
+    preact(),
+    icon({include: {lucide: ['*']}}),
   ],
   markdown: {
     rehypePlugins: [[rehypeMermaid, {strategy: 'inline-svg'}]],
@@ -118,7 +151,6 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   redirects: {
-    '/': '/docs/getting-started/what-is-distr/',
     '/docs/': '/docs/getting-started/what-is-distr/',
     '/docs/getting-started/about/': '/docs/getting-started/what-is-distr/',
     '/docs/getting-started/how-it-works/':

@@ -1,0 +1,44 @@
+---
+import 'virtual:starlight/user-css';
+
+// Starlight nested cascade layers definitions which specify the default order of internal layers.
+import '../../node_modules/@astrojs/starlight/style/layers.css';
+
+// Built-in CSS styles.
+import '../../node_modules/@astrojs/starlight/style/props.css';
+import '../../node_modules/@astrojs/starlight/style/reset.css';
+import '../../node_modules/@astrojs/starlight/style/asides.css';
+import '../../node_modules/@astrojs/starlight/style/util.css';
+import 'virtual:starlight/optional-css';
+
+export interface Props {
+  title: string;
+  description: string;
+}
+
+const {title, description} = Astro.props;
+const ogUrl = Astro.url.href;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={ogUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

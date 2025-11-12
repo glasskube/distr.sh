@@ -1,11 +1,16 @@
 ---
 import type {Props} from '@astrojs/starlight/props';
 import Default from '@astrojs/starlight/components/SocialIcons.astro';
+import GitHubStarButton from '../common/GitHubStarButton.astro';
 ---
 
 <Default {...Astro.props}>
   <slot />
 </Default>
+
+<div class="hidden lg:block pt-2">
+  <GitHubStarButton repo="glasskube/distr" />
+</div>
 <a
   href="https://cal.glasskube.com/team/gk/demo"
   target="_blank"

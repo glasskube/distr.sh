@@ -1,0 +1,37 @@
+---
+import StarlightLayout from '../layouts/StarlightLayout.astro';
+import PricingCalculator from '../components/pricing/PricingCalculator';
+import PricingComparisonTable from '../components/pricing/PricingComparisonTable.astro';
+import PricingFAQ from '../components/pricing/PricingFAQ.astro';
+import NewsletterSection from '../components/home/NewsletterSection.astro';
+
+const title = 'Pricing';
+const description = 'Software Distribution Platform';
+---
+
+<StarlightLayout title={title} description={description}>
+  <div class="py-8 md:py-16">
+    <section class="mb-8 md:mb-16 text-center">
+      <div class="container mx-auto px-4">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">{title}</h1>
+        <p class="text-lg md:text-xl font-semibold">
+          {description}
+        </p>
+      </div>
+    </section>
+
+    <PricingCalculator client:load />
+
+    <div class="my-16 md:my-24"></div>
+
+    <PricingComparisonTable />
+
+    <div class="my-16 md:my-24"></div>
+
+    <PricingFAQ />
+
+    <div class="my-16 md:my-24"></div>
+
+    <NewsletterSection />
+  </div>
+</StarlightLayout>
