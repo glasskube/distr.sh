@@ -158,14 +158,12 @@ Tag deletion succeeds when all of these conditions are met:
 
 **Scenario 3: Blocked deletion - last tag**
 
-```
-Artifact: myapp
-Tags: v1.0.0 (only tag remaining)
-No licenses
-
-Action: Delete tag "v1.0.0"
-Result: Blocked (409) - At least one tag must remain
-```
+> Artifact: myapp
+> Tags: v1.0.0 (only tag remaining)
+> No licenses
+>
+> Action: Delete tag "v1.0.0"
+> Result: Blocked (409) - At least one tag must remain
 
 ### Deleting Artifacts
 
