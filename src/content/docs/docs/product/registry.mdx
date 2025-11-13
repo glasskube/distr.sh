@@ -113,3 +113,76 @@ The main Distr dashboard also provides a global view of which artifacts each end
   darkSrc={dashboardArtifactViewDark}
   alt="Registry artifacts view"
 />
+
+## Artifact Deletion
+
+The Distr registry includes sophisticated deletion logic to protect artifacts and tags that are actively referenced in licenses, ensuring customers maintain access to their licensed software.
+
+### Deleting Artifact Tags
+
+You can delete individual tags from an artifact through the API and UI. However, the system enforces several validation rules to prevent breaking customer access.
+
+#### When Tag Deletion is Allowed
+
+Tag deletion succeeds when all of these conditions are met:
+
+- The tag exists and is not referenced in any artifact license
+- If the underlying manifest digest is referenced in licenses, other non-SHA tags must exist for that digest
+
+<Aside type="tip">
+  The system distinguishes between regular tags (like `v1.0.0`, `latest`) and
+  SHA digest tags (like `sha256:abc123...`). As artifact version access is
+  always checked by the underlying digest, it is possible to untag a licensed
+  version, if multiple tags point to it.
+</Aside>
+
+#### Example: Tag Deletion Scenarios
+
+**Scenario 1: Safe deletion**
+
+> Artifact: myapp
+> Tags: v1.0.0, v1.0.1, latest (all point to different digests)
+> License: References sha256:abc123 (v1.0.0's digest)
+>
+> Action: Delete tag "v1.0.1"
+> Result: Success - v1.0.1 is not licensed and not the last tag
+
+**Scenario 2: Blocked deletion - licensed digest**
+
+> Artifact: myapp
+> Tags: v1.0.0 (points to sha256:abc123)
+> License: References sha256:abc123
+>
+> Action: Delete tag "v1.0.0"
+> Result: Blocked (400) - Cannot delete last non-SHA tag for licensed digest
+
+**Scenario 3: Blocked deletion - last tag**
+
+> Artifact: myapp
+> Tags: v1.0.0 (only tag remaining)
+> No licenses
+>
+> Action: Delete tag "v1.0.0"
+> Result: Blocked (409) - At least one tag must remain
+
+### Deleting Artifacts
+
+You can delete entire artifacts from your registry, which will cascade to all associated versions,
+tags and historical download data.
+
+#### When Artifact Deletion is Allowed
+
+Artifacts can be deleted when they are not referenced in any active licenses.
+
+<Aside type="caution">
+  Deleting an artifact is a cascade operation that automatically removes all
+  associated artifact versions, tags, and parts. This action cannot be undone.
+  Ensure the artifact is not referenced in any licenses before deletion.
+</Aside>
+
+#### Best Practices
+
+- **Check licenses first**: Before deleting artifacts or tags, verify they are not referenced in customer licenses
+- **Use caution with tags**: Deleting tags can affect customer access if not done carefully
+- **Monitor usage**: Review the Downloads section to understand which artifacts and versions are actively used
+- **Keep at least one tag**: The system requires at least one non-SHA tag per artifact to maintain discoverability
