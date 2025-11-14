@@ -9,6 +9,10 @@ interface WhitePaperRequest {
   companyName: string;
 }
 
+interface WhitePaperFormProps {
+  formsServerBaseUrl: string;
+}
+
 function loadScript() {
   if (typeof window === 'undefined') {
     return;
@@ -24,7 +28,7 @@ function loadScript() {
   }
 }
 
-export default function WhitePaperForm() {
+export default function WhitePaperForm({formsServerBaseUrl}: WhitePaperFormProps) {
   const [formData, setFormData] = useState<WhitePaperRequest>({
     firstName: '',
     lastName: '',
@@ -50,7 +54,7 @@ export default function WhitePaperForm() {
 
     try {
       const response = await fetch(
-        'https://forms.glasskube.com/api/v1/white-paper',
+        `${formsServerBaseUrl}/white-paper`,
         {
           method: 'POST',
           headers: {

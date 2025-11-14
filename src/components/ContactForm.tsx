@@ -10,6 +10,10 @@ interface ContactRequest {
   useCase: string;
 }
 
+interface ContactFormProps {
+  formsServerBaseUrl: string;
+}
+
 // Load HubSpot script
 function loadHubSpotScript() {
   if (typeof window === 'undefined') {
@@ -26,7 +30,7 @@ function loadHubSpotScript() {
   }
 }
 
-export default function ContactForm() {
+export default function ContactForm({formsServerBaseUrl}: ContactFormProps) {
   const [formData, setFormData] = useState<ContactRequest>({
     firstName: '',
     lastName: '',
@@ -62,7 +66,7 @@ export default function ContactForm() {
 
     try {
       const response = await fetch(
-        'https://forms.glasskube.com/api/v1/contact',
+        `${formsServerBaseUrl}/contact`,
         {
           method: 'POST',
           headers: {
