@@ -114,14 +114,9 @@ export default defineConfig({
         starlightLinksValidator({
           exclude: [
             '/',
-            '/blog/',
-            '/blog/**',
             '/pricing/',
-            '/contact/',
-            '/case-studies/',
-            '/glossary/',
+            '/blog/**',
             '/glossary/**',
-            '/whitepaper/',
           ],
         }),
         starlightUtils({
