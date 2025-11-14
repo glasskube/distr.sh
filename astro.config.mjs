@@ -104,10 +104,6 @@ export default defineConfig({
           label: 'FAQs',
           link: '/docs/faqs',
         },
-        {
-          label: 'Privacy Policy',
-          link: '/docs/privacy-policy',
-        },
       ],
       tableOfContents: {
         minHeadingLevel: 2,
@@ -159,5 +155,6 @@ export default defineConfig({
     '/docs/use-cases/self-managed/': '/docs/use-cases/fully-self-managed/',
     '/docs/use-cases/byoc/': '/docs/use-cases/byoc-bring-your-own-cloud/',
     '/docs/product/faqs/': '/docs/faqs/',
+    '/docs/privacy-policy/': '/privacy-policy/',
   },
 });
