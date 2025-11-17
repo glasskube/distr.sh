@@ -21,14 +21,16 @@ const caseStudies: CaseStudyMeta[] = [
     slug: 'sophris',
     industry: 'AI/Engineering Tools',
     useCase: 'Circuit Board Validation',
-    excerpt: 'Distr eliminated nearly all deployment headaches. Updates that used to take days now take minutes.',
+    excerpt:
+      'Distr eliminated nearly all deployment headaches. Updates that used to take days now take minutes.',
   },
   {
     company: 'Lerian',
     slug: 'lerian',
     industry: 'Banking/Financial Infrastructure',
     useCase: 'Lifecycle Management Platform',
-    excerpt: 'Our main goal is to simplify the daily operations. No more manual installations, updates, or rollbacks — everything can now be handled with a single click with Distr.',
+    excerpt:
+      'Our main goal is to simplify the daily operations. No more manual installations, updates, or rollbacks — everything can now be handled with a single click with Distr.',
   },
 ];
 ---
@@ -50,43 +52,43 @@ const caseStudies: CaseStudyMeta[] = [
     <section class="mb-16">
       <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {caseStudies.map(caseStudy => (
-            <a
-              href={`/case-studies/${caseStudy.slug}/`}
-              class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow hover:border-[#00b5eb] dark:hover:border-[#00b5eb]">
-              <div class="mb-4">
-                <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                  {caseStudy.company}
-                </h3>
-                <div class="flex flex-wrap gap-4 text-sm">
-                  <div>
-                    <span
-                      class="text-[#00b5eb] font-semibold uppercase tracking-wide">
-                      Industry:
-                    </span>
-                    <span class="text-gray-700 dark:text-gray-300 ml-2">
-                      {caseStudy.industry}
-                    </span>
-                  </div>
-                  <div>
-                    <span
-                      class="text-[#00b5eb] font-semibold uppercase tracking-wide">
-                      Use Case:
-                    </span>
-                    <span class="text-gray-700 dark:text-gray-300 ml-2">
-                      {caseStudy.useCase}
-                    </span>
+          {
+            caseStudies.map(caseStudy => (
+              <a
+                href={`/case-studies/${caseStudy.slug}/`}
+                class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow hover:border-[#00b5eb] dark:hover:border-[#00b5eb]">
+                <div class="mb-4">
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                    {caseStudy.company}
+                  </h3>
+                  <div class="flex flex-wrap gap-4 text-sm">
+                    <div>
+                      <span class="text-[#00b5eb] font-semibold uppercase tracking-wide">
+                        Industry:
+                      </span>
+                      <span class="text-gray-700 dark:text-gray-300 ml-2">
+                        {caseStudy.industry}
+                      </span>
+                    </div>
+                    <div>
+                      <span class="text-[#00b5eb] font-semibold uppercase tracking-wide">
+                        Use Case:
+                      </span>
+                      <span class="text-gray-700 dark:text-gray-300 ml-2">
+                        {caseStudy.useCase}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <p class="text-gray-600 dark:text-gray-400 italic">
-                "{caseStudy.excerpt}"
-              </p>
-              <div class="mt-4 text-[#00b5eb] font-semibold">
-                Read case study →
-              </div>
-            </a>
-          ))}
+                <p class="text-gray-600 dark:text-gray-400 italic">
+                  "{caseStudy.excerpt}"
+                </p>
+                <div class="mt-4 text-[#00b5eb] font-semibold">
+                  Read case study →
+                </div>
+              </a>
+            ))
+          }
         </div>
       </div>
     </section>
