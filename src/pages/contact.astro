@@ -3,6 +3,8 @@ import StarlightLayout from '../layouts/StarlightLayout.astro';
 import DemoButton from '../components/DemoButton.astro';
 import ContactForm from '../components/ContactForm';
 
+const formsServerBaseUrl = import.meta.env.FORMS_SERVER;
+
 const TITLE = 'Get in touch';
 const DESCRIPTION =
   "Want to get in touch? We'd love to hear from you. Here's how you can reach us.";
@@ -116,7 +118,7 @@ const DESCRIPTION =
             We will follow up as soon as possible.
           </p>
         </div>
-        <ContactForm client:load />
+        <ContactForm client:load formsServerBaseUrl={formsServerBaseUrl} />
       </div>
     </section>
   </div>

@@ -104,10 +104,6 @@ export default defineConfig({
           label: 'FAQs',
           link: '/docs/faqs',
         },
-        {
-          label: 'Privacy Policy',
-          link: '/docs/privacy-policy',
-        },
       ],
       tableOfContents: {
         minHeadingLevel: 2,
@@ -116,17 +112,7 @@ export default defineConfig({
       prerender: true,
       plugins: [
         starlightLinksValidator({
-          exclude: [
-            '/',
-            '/blog/',
-            '/blog/**',
-            '/pricing/',
-            '/contact/',
-            '/case-studies/',
-            '/glossary/',
-            '/glossary/**',
-            '/whitepaper/',
-          ],
+          exclude: ['/', '/pricing/', '/blog/**', '/glossary/**'],
         }),
         starlightUtils({
           navLinks: {
@@ -159,5 +145,6 @@ export default defineConfig({
     '/docs/use-cases/self-managed/': '/docs/use-cases/fully-self-managed/',
     '/docs/use-cases/byoc/': '/docs/use-cases/byoc-bring-your-own-cloud/',
     '/docs/product/faqs/': '/docs/faqs/',
+    '/docs/privacy-policy/': '/privacy-policy/',
   },
 });
