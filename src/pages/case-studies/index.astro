@@ -3,52 +3,11 @@ import StarlightLayout from '~/layouts/StarlightLayout.astro';
 import CTASection from '~/components/home/CTASection.astro';
 import NewsletterSection from '~/components/home/NewsletterSection.astro';
 import {Icon} from 'astro-icon/components';
-import type {ImageMetadata} from 'astro';
-
-// Import images
-import anshGuptaImage from '~/assets/case-studies/sophris/ansh-gupta.jpeg';
-import jeffersonImage from '~/assets/testimonials/testimonial-7.jpg';
 import MetricsSection from '~/components/home/MetricsSection.astro';
+import {caseStudies} from '~/data/caseStudies';
 
 const title = 'Case Studies';
 const description = 'Customer success stories using Distr';
-
-// Case study metadata for the index page
-interface CaseStudyMeta {
-  company: string;
-  slug: string;
-  industry: string;
-  useCase: string;
-  excerpt: string;
-  personName: string;
-  personRole: string;
-  personImage: ImageMetadata;
-}
-
-const caseStudies: CaseStudyMeta[] = [
-  {
-    company: 'Sophris.ai',
-    slug: 'sophris',
-    industry: 'AI/Engineering Tools',
-    useCase: 'Circuit Board Validation',
-    excerpt:
-      'Distr eliminated nearly all deployment headaches. Updates that used to take days now take minutes.',
-    personName: 'Ansh Gupta',
-    personRole: 'CTO',
-    personImage: anshGuptaImage,
-  },
-  {
-    company: 'Lerian',
-    slug: 'lerian',
-    industry: 'Banking/Financial Infrastructure',
-    useCase: 'Lifecycle Management Platform',
-    excerpt:
-      'Our main goal is to simplify the daily operations. No more manual installations, updates, or rollbacks — everything can now be handled with a single click with Distr.',
-    personName: 'Jefferson Rodrigues',
-    personRole: 'Co-Founder & CTO',
-    personImage: jeffersonImage,
-  },
-];
 ---
 
 <StarlightLayout title={title} description={description}>
@@ -72,7 +31,7 @@ const caseStudies: CaseStudyMeta[] = [
           caseStudies.map(caseStudy => (
             <a
               href={`/case-studies/${caseStudy.slug}/`}
-              class="bg-white dark:bg-gray-900 rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col h-full">
+              class="bg-white dark:bg-gray-900 rounded-xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col h-full border border-gray-200 dark:border-gray-700">
               <div class="mb-4">
                 <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
                   {caseStudy.company}
@@ -97,20 +56,20 @@ const caseStudies: CaseStudyMeta[] = [
                 </div>
               </div>
               <p class="text-base md:text-lg mb-6 italic leading-relaxed text-gray-700 dark:text-gray-300 flex-grow">
-                "{caseStudy.excerpt}"
+                "{caseStudy.ctoQuote}"
               </p>
               <div class="flex items-center gap-4 mt-auto">
                 <img
-                  src={caseStudy.personImage.src}
-                  alt={caseStudy.personName}
+                  src={caseStudy.ctoImage.src}
+                  alt={caseStudy.ctoName}
                   class="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover flex-shrink-0"
                 />
                 <div class="flex-grow">
                   <p class="font-bold text-gray-900 dark:text-white">
-                    {caseStudy.personName}
+                    {caseStudy.ctoName}
                   </p>
                   <p class="text-sm text-gray-600 dark:text-gray-400">
-                    {caseStudy.personRole}, {caseStudy.company}
+                    {caseStudy.ctoTitle}, {caseStudy.company}
                   </p>
                 </div>
                 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-br from-[#00b5eb] to-[#63c5e3] text-white font-medium text-sm hover:shadow-lg transition-all duration-300 hover:scale-105 whitespace-nowrap">
