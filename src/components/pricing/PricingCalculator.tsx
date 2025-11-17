@@ -151,7 +151,7 @@ export default function PricingCalculator() {
     <section>
       <div class="container mx-auto px-4 max-w-7xl">
         {/* Internal users, external customers, billing cycle and currency selection */}
-        <div class="flex flex-col lg:flex-row justify-between items-start gap-4 mb-8 p-6 border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm">
+        <div class="flex flex-col lg:flex-row justify-between items-start gap-4 mb-8 p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
           <div class="flex-1 flex flex-col items-start justify-between min-w-0">
             <div class="w-full min-h-[4rem] flex flex-col justify-start mb-5">
               <h3 class="mb-1 text-lg leading-tight">Internal Users</h3>
@@ -223,7 +223,7 @@ export default function PricingCalculator() {
             </div>
             <div class="inline-flex bg-gray-200 dark:bg-gray-700 rounded-full p-1 w-full justify-center">
               <button
-                class={`px-4 py-1.5 border-none rounded-3xl cursor-pointer font-medium transition-all text-sm flex-1 text-center flex items-center justify-center gap-2 relative text-gray-900 ${
+                class={`px-4 py-1.5 border-none rounded-3xl cursor-pointer font-medium transition-all text-sm flex-1 text-center flex items-center justify-center gap-2 relative text-gray-900 dark:text-white ${
                   billingCycle === 'monthly'
                     ? 'bg-white dark:bg-gray-800 shadow-md'
                     : 'bg-transparent'
@@ -232,7 +232,7 @@ export default function PricingCalculator() {
                 Monthly
               </button>
               <button
-                class={`px-4 py-1.5 border-none rounded-3xl cursor-pointer font-medium transition-all text-sm flex-1 text-center flex items-center justify-center gap-2 relative text-gray-900 ${
+                class={`px-4 py-1.5 border-none rounded-3xl cursor-pointer font-medium transition-all text-sm flex-1 text-center flex items-center justify-center gap-2 relative text-gray-900 dark:text-white ${
                   billingCycle === 'yearly'
                     ? 'bg-white dark:bg-gray-800 shadow-md'
                     : 'bg-transparent'
@@ -255,7 +255,7 @@ export default function PricingCalculator() {
             </div>
             <div class="inline-flex bg-gray-200 dark:bg-gray-700 rounded-full p-1 w-full justify-center">
               <button
-                class={`px-4 py-1.5 border-none rounded-3xl cursor-pointer font-medium transition-all text-sm flex-1 text-center flex items-center justify-center gap-2 relative text-gray-900 ${
+                class={`px-4 py-1.5 border-none rounded-3xl cursor-pointer font-medium transition-all text-sm flex-1 text-center flex items-center justify-center gap-2 relative text-gray-900 dark:text-white ${
                   currency === '$'
                     ? 'bg-white dark:bg-gray-800 shadow-md'
                     : 'bg-transparent'
@@ -264,7 +264,7 @@ export default function PricingCalculator() {
                 USD
               </button>
               <button
-                class={`px-4 py-1.5 border-none rounded-3xl cursor-pointer font-medium transition-all text-sm flex-1 text-center flex items-center justify-center gap-2 relative text-gray-900 ${
+                class={`px-4 py-1.5 border-none rounded-3xl cursor-pointer font-medium transition-all text-sm flex-1 text-center flex items-center justify-center gap-2 relative text-gray-900 dark:text-white ${
                   currency === '€'
                     ? 'bg-white dark:bg-gray-800 shadow-md'
                     : 'bg-transparent'
