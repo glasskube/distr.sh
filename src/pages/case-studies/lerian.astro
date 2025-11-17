@@ -70,20 +70,12 @@ Today, Lerian's customers benefit from the transparency, control, and collaborat
 ---
 
 <StarlightLayout title={title} description={description}>
-  <div class="py-8 md:py-16">
-    <!-- Case Study Content -->
-    <section class="mb-16">
-      <div class="container mx-auto px-4">
-        <CaseStudyCard {...lerianCase} />
-      </div>
-    </section>
+  <section class="py-8 md:py-16 lg:py-24 bg-gray-50 dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+      <CaseStudyCard {...lerianCase} />
+    </div>
+  </section>
+  <CTASection />
 
-    <!-- CTA Section -->
-    <CTASection />
-
-    <div class="my-16 md:my-24"></div>
-
-    <!-- Newsletter Section -->
-    <NewsletterSection />
-  </div>
+  <NewsletterSection />
 </StarlightLayout>

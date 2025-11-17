@@ -1,5 +1,5 @@
 ---
-import type {ImageMetadata} from 'astro';
+import {Icon} from 'astro-icon/components';
 import jeffersonImage from '../../assets/testimonials/testimonial-7.jpg';
 import anshGuptaImage from '../../assets/case-studies/sophris/ansh-gupta.jpeg';
 import chrisLoImage from '../../assets/testimonials/testimonial-5.png';
@@ -12,6 +12,7 @@ const testimonials = [
     company: 'Lerian',
     image: jeffersonImage,
     text: 'Our main goal is to simplify the daily operations. No more manual installations, updates, or rollbacks — everything can now be handled with a single click with Distr.',
+    caseStudyUrl: '/case-studies/lerian/',
   },
   {
     name: 'Ansh Gupta',
@@ -19,6 +20,7 @@ const testimonials = [
     company: 'Sophris.ai',
     image: anshGuptaImage,
     text: 'Distr eliminated nearly all deployment headaches. Updates that used to take days now take minutes.',
+    caseStudyUrl: '/case-studies/sophris/',
   },
   {
     name: 'Chris Lo',
@@ -57,7 +59,7 @@ const testimonials = [
                 alt={testimonial.name}
                 class="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover flex-shrink-0"
               />
-              <div>
+              <div class="flex-grow">
                 <p class="font-bold text-gray-900 dark:text-white">
                   {testimonial.name}
                 </p>
@@ -65,6 +67,14 @@ const testimonials = [
                   {testimonial.role}, {testimonial.company}
                 </p>
               </div>
+              {testimonial.caseStudyUrl && (
+                <a
+                  href={testimonial.caseStudyUrl}
+                  class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-br from-[#00b5eb] to-[#63c5e3] text-white font-medium text-sm hover:shadow-lg transition-all duration-300 hover:scale-105 whitespace-nowrap">
+                  Read case study
+                  <Icon name="lucide:arrow-right" class="w-4 h-4" />
+                </a>
+              )}
             </div>
           </div>
         ))
