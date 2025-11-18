@@ -3,6 +3,7 @@ import Layout from '~/layouts/StarlightLayout.astro';
 import CTASection from '~/components/home/CTASection.astro';
 import {Icon} from '@astrojs/starlight/components';
 import Image from '~/components/common/Image.astro';
+import comparisonThumbnail from '~/assets/blog/2025-02-26-replicated-comparison/comparison-thumbnail.png';
 
 export async function getStaticPaths() {
   return [
@@ -14,8 +15,7 @@ export async function getStaticPaths() {
         description:
           'A comprehensive comparison of Distr and Replicated for software distribution. Compare deployment models, pricing, features, and architecture to make an informed decision.',
         competitor: 'Replicated',
-        heroImage:
-          '/src/assets/blog/2025-02-26-replicated-comparison/comparison-thumbnail.png',
+        heroImage: comparisonThumbnail,
       },
     },
   ];
