@@ -1,7 +1,7 @@
 ---
-import Layout from '../../layouts/StarlightLayout.astro';
-import Grid from '../../components/blog/Grid.astro';
-import {getSortedPosts} from '../../utils/blog';
+import Layout from '~/layouts/StarlightLayout.astro';
+import Grid from '~/components/blog/Grid.astro';
+import {getSortedPosts} from '~/utils/blog';
 
 const posts = await getSortedPosts();
 const title = 'Blog';

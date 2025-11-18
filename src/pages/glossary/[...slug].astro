@@ -1,8 +1,8 @@
 ---
 import {getCollection, render} from 'astro:content';
-import Layout from '../../layouts/StarlightLayout.astro';
-import CTASection from '../../components/home/CTASection.astro';
-import type {GlossaryEntryConfig} from '../../content.config';
+import Layout from '~/layouts/StarlightLayout.astro';
+import CTASection from '~/components/home/CTASection.astro';
+import type {GlossaryEntryConfig} from '~/content.config';
 
 export async function getStaticPaths() {
   const glossaryEntries = await getCollection('glossary');

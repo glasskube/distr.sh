@@ -1,9 +1,9 @@
 ---
-import Layout from '../../layouts/StarlightLayout.astro';
-import SinglePost from '../../components/blog/SinglePost.astro';
-import CTASection from '../../components/home/CTASection.astro';
-import {getSortedPosts} from '../../utils/blog';
-import type {Post} from '../../types';
+import Layout from '~/layouts/StarlightLayout.astro';
+import SinglePost from '~/components/blog/SinglePost.astro';
+import CTASection from '~/components/home/CTASection.astro';
+import {getSortedPosts} from '~/utils/blog';
+import type {Post} from '~/types';
 
 export async function getStaticPaths() {
   let posts = await getSortedPosts();
