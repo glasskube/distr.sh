@@ -1,0 +1,12 @@
+---
+import StandaloneLayout from '../layouts/StandaloneLayout.astro';
+import MultiStepForm from '../components/signup/MultiStepForm.astro';
+
+const pageTitle = 'Onboarding - Book a Meeting | Distr';
+const pageDescription =
+  'Complete our onboarding questionnaire to help us understand your needs and schedule a personalized demo of the Distr platform.';
+---
+
+<StandaloneLayout title={pageTitle} description={pageDescription}>
+  <MultiStepForm flowType="onboarding" />
+</StandaloneLayout>

@@ -1,0 +1,883 @@
+---
+import {
+  signupSteps,
+  installationOptions,
+  deploymentTypes,
+  roleOptions,
+  expertiseOptions,
+  companySizeOptions,
+  discoveryOptions,
+  timelineOptions,
+  featureHighlights,
+} from '~/data/signupFormData.ts';
+
+interface Props {
+  flowType: 'onboarding' | 'signup';
+}
+
+const {flowType} = Astro.props;
+---
+
+<div
+  class="relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-16 sm:py-24">
+  <div class="container mx-auto px-4 max-w-[1600px]">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Left Column: Features -->
+      <div class="lg:col-span-1">
+        <div class="flex flex-col items-center lg:items-start">
+          <img
+            src="/favicon.svg"
+            alt="Distr"
+            class="w-80 h-20 mb-8 object-contain"
+          />
+        </div>
+        <ul class="list-none space-y-5">
+          {
+            featureHighlights.map(feature => (
+              <li class="flex gap-3">
+                <svg
+                  class="w-6 h-6 text-green-600 flex-shrink-0 mt-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20">
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <div class="flex flex-col">
+                  <h6 class="font-semibold text-gray-900 dark:text-white m-0">
+                    {feature.title}
+                  </h6>
+                  <p class="text-gray-600 dark:text-gray-400 text-sm m-0">
+                    {feature.description}
+                  </p>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Right Column: Form -->
+      <div class="lg:col-span-1">
+        <div
+          class="bg-white dark:bg-gray-800 border border-accent-600 rounded-xl p-6 lg:p-10 shadow-2xl">
+          <!-- Step Indicators -->
+          <div id="stepIndicators" class="mb-8 hidden">
+            <div class="flex items-center">
+              {
+                signupSteps.map((s, index) => (
+                  <>
+                    <div
+                      class={`step-indicator ${index === 0 ? 'active' : 'inactive'}`}
+                      data-step={s.step}>
+                      {s.step}
+                    </div>
+                    {index < signupSteps.length - 1 && (
+                      <div class="step-line inactive" />
+                    )}
+                  </>
+                ))
+              }
+            </div>
+            <div
+              class="flex justify-between mt-2 text-xs text-gray-500 dark:text-gray-400">
+              {
+                signupSteps.map(s => (
+                  <span class="flex-1 text-center">{s.label}</span>
+                ))
+              }
+            </div>
+          </div>
+
+          <!-- Step 1: Basic Info (Initial Signup) -->
+          <div id="step1" class="step-content">
+            <div>
+              <h3 class="mb-4 text-gray-900 dark:text-white">
+                The easiest way<br />
+                to distribute software
+              </h3>
+              <div class="text-gray-600 dark:text-gray-400 mb-2">
+                You will gain automatic access to our platform upon completing
+                the form.
+              </div>
+              <div
+                class="text-center text-sm italic text-gray-500 dark:text-gray-500 mb-6">
+                (No credit card required.)
+              </div>
+            </div>
+            <form id="signup" class="space-y-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label
+                    for="firstName"
+                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    First Name*
+                  </label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    placeholder="First name"
+                    autocomplete="given-name"
+                    required
+                    class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-accent-600"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="lastName"
+                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    Last Name*
+                  </label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    placeholder="Last name"
+                    autocomplete="family-name"
+                    required
+                    class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-accent-600"
+                  />
+                </div>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label
+                    for="jobTitle"
+                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    Job Title*
+                  </label>
+                  <input
+                    type="text"
+                    id="jobTitle"
+                    name="jobTitle"
+                    placeholder="Job Title"
+                    autocomplete="organization-title"
+                    required
+                    class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-accent-600"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="companyName"
+                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    Company Name*
+                  </label>
+                  <input
+                    type="text"
+                    id="companyName"
+                    name="companyName"
+                    placeholder="Company Name"
+                    autocomplete="organization"
+                    required
+                    class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-accent-600"
+                  />
+                </div>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label
+                    for="email"
+                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    Work Email*
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Work Email"
+                    autocomplete="email"
+                    required
+                    class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-accent-600"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="phone"
+                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    Work Phone
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="Work Phone"
+                    autocomplete="mobile tel"
+                    class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-accent-600"
+                  />
+                </div>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label
+                    for="password"
+                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    Password*
+                  </label>
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                    autocomplete="new-password"
+                    minlength="8"
+                    required
+                    class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-accent-600"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="confirmPassword"
+                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    Confirm Password*
+                  </label>
+                  <input
+                    type="password"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    placeholder="Confirm Password"
+                    autocomplete="new-password"
+                    minlength="8"
+                    required
+                    class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-accent-600"
+                  />
+                </div>
+              </div>
+              <input
+                type="hidden"
+                name="type"
+                value="platform_signup"
+                readonly
+                required
+              />
+              <button
+                type="submit"
+                id="submit-signup"
+                class="w-full py-3 px-6 bg-accent-600 hover:bg-accent-900 disabled:bg-gray-400 text-white font-semibold rounded-md transition-colors">
+                Continue
+              </button>
+            </form>
+          </div>
+
+          <!-- Step 2: Details -->
+          <div id="step2" class="step-content hidden">
+            <div class="mb-6">
+              <h3 class="mb-2 text-gray-900 dark:text-white">Tell us more</h3>
+              <div class="text-gray-600 dark:text-gray-400">
+                Help us understand your deployment needs
+              </div>
+            </div>
+            <form id="details" class="space-y-4">
+              <div>
+                <label
+                  for="installations"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Number of self-managed installations*
+                </label>
+                <select
+                  id="installations"
+                  name="installations"
+                  required
+                  class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-accent-600">
+                  <option value="">Select...</option>
+                  {
+                    installationOptions.map(option => (
+                      <option value={option.value}>{option.label}</option>
+                    ))
+                  }
+                </select>
+              </div>
+              <div>
+                <div
+                  class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Deployment Types:
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                  {
+                    deploymentTypes.map(type => (
+                      <label class="flex items-center space-x-2 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          name="target"
+                          value={type.value}
+                          class="w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-600"
+                        />
+                        <span class="text-sm text-gray-700 dark:text-gray-300">
+                          {type.label}
+                        </span>
+                      </label>
+                    ))
+                  }
+                </div>
+              </div>
+              <div>
+                <label
+                  for="use-case"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Use case
+                </label>
+                <textarea
+                  id="use-case"
+                  name="use-case"
+                  rows="4"
+                  class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-accent-600"
+                ></textarea>
+              </div>
+              <input
+                type="hidden"
+                name="type"
+                value="platform_signup_detail"
+                readonly
+                required
+              />
+              <button
+                type="submit"
+                id="submit-details"
+                class="w-full py-3 px-6 bg-accent-600 hover:bg-accent-900 text-white font-semibold rounded-md transition-colors">
+                Continue
+              </button>
+            </form>
+          </div>
+
+          <!-- Step 3: Experience -->
+          <div id="step3" class="step-content hidden">
+            <div class="mb-6 text-center">
+              <h3 class="mb-2 text-gray-900 dark:text-white">
+                Tell us about yourself
+              </h3>
+              <div class="text-gray-600 dark:text-gray-400">
+                Help us understand your background
+              </div>
+            </div>
+            <form id="experience" class="space-y-4">
+              <div>
+                <label
+                  for="role"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  What describes you best? *
+                </label>
+                <select
+                  id="role"
+                  name="role"
+                  required
+                  class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-accent-600">
+                  <option value="">Select your role...</option>
+                  {
+                    roleOptions.map(option => (
+                      <option value={option.value}>{option.label}</option>
+                    ))
+                  }
+                </select>
+              </div>
+              <div>
+                <div
+                  class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Area of expertise *
+                </div>
+                <div class="space-y-2">
+                  {
+                    expertiseOptions.map(option => (
+                      <label class="flex items-center space-x-2 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          name="expertise"
+                          value={option.value}
+                          class="w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-600"
+                        />
+                        <span class="text-sm text-gray-700 dark:text-gray-300">
+                          {option.label}
+                        </span>
+                      </label>
+                    ))
+                  }
+                </div>
+              </div>
+              <div>
+                <label
+                  for="companySize"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Company Size *
+                </label>
+                <select
+                  id="companySize"
+                  name="companySize"
+                  required
+                  class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-accent-600">
+                  <option value="">Select company size...</option>
+                  {
+                    companySizeOptions.map(option => (
+                      <option value={option.value}>{option.label}</option>
+                    ))
+                  }
+                </select>
+              </div>
+              <button
+                type="submit"
+                id="submit-experience"
+                class="w-full py-3 px-6 bg-accent-600 hover:bg-accent-900 text-white font-semibold rounded-md transition-colors">
+                Continue
+              </button>
+            </form>
+          </div>
+
+          <!-- Step 4: Discovery -->
+          <div id="step4" class="step-content hidden">
+            <div class="mb-6 text-center">
+              <h3 class="mb-2 text-gray-900 dark:text-white">
+                How did you discover us?
+              </h3>
+              <div class="text-gray-600 dark:text-gray-400">
+                Select all that apply
+              </div>
+            </div>
+            <form id="discovery" class="space-y-4">
+              <div class="space-y-2">
+                {
+                  discoveryOptions.map(option => (
+                    <label class="flex items-center space-x-2 p-3 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        name="discovery"
+                        value={option.value}
+                        class="w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-600"
+                      />
+                      <span class="text-sm text-gray-700 dark:text-gray-300">
+                        {option.label}
+                      </span>
+                    </label>
+                  ))
+                }
+                <div id="discovery-other-input" class="hidden">
+                  <input
+                    type="text"
+                    name="discoveryOtherText"
+                    placeholder="Please specify..."
+                    class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-accent-600"
+                  />
+                </div>
+              </div>
+              <button
+                type="submit"
+                id="submit-discovery"
+                class="w-full py-3 px-6 bg-accent-600 hover:bg-accent-900 text-white font-semibold rounded-md transition-colors">
+                Continue
+              </button>
+            </form>
+          </div>
+
+          <!-- Step 5: Timeline -->
+          <div id="step5" class="step-content hidden">
+            <div class="mb-6 text-center">
+              <h3 class="mb-2 text-gray-900 dark:text-white">
+                When do you want to get started?
+              </h3>
+              <div class="text-gray-600 dark:text-gray-400">
+                Help us prioritize your onboarding
+              </div>
+            </div>
+            <form id="timeline" class="space-y-4">
+              <div class="space-y-3">
+                {
+                  timelineOptions.map(option => (
+                    <label class="flex items-start p-4 border-2 border-gray-200 dark:border-gray-600 rounded-lg hover:border-accent-600 dark:hover:border-accent-600 cursor-pointer transition-colors">
+                      <input
+                        type="radio"
+                        name="timeline"
+                        value={option.value}
+                        required
+                        class="w-4 h-4 mt-1 text-accent-600 border-gray-300 focus:ring-accent-600"
+                      />
+                      <div class="ml-3">
+                        <div class="font-semibold text-gray-900 dark:text-white">
+                          {option.label}
+                        </div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">
+                          {option.description}
+                        </div>
+                      </div>
+                    </label>
+                  ))
+                }
+              </div>
+              <button
+                type="submit"
+                id="submit-timeline"
+                class="w-full py-3 px-6 bg-accent-600 hover:bg-accent-900 text-white font-semibold rounded-md transition-colors">
+                Complete Sign Up
+              </button>
+            </form>
+          </div>
+
+          <!-- Success Message -->
+          <div id="successMessage" class="hidden text-center py-12">
+            <div
+              class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30 mb-6">
+              <svg
+                class="h-6 w-6 text-green-600"
+                fill="currentColor"
+                viewBox="0 0 20 20">
+                <path
+                  fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </div>
+            {
+              flowType === 'onboarding' ? (
+                <div>
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                    Book a meeting
+                  </h3>
+                  <p class="text-gray-600 dark:text-gray-400">
+                    Thank you for your interest! Our team will reach out to you
+                    shortly to schedule an onboarding session.
+                  </p>
+                </div>
+              ) : (
+                <div>
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                    Thank you!
+                  </h3>
+                  <p class="text-gray-600 dark:text-gray-400">
+                    Please check your mailbox to confirm your email and log into
+                    Distr.
+                  </p>
+                </div>
+              )
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .step-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.3s;
+  }
+
+  .step-indicator.active {
+    background-color: #0073aa;
+    color: white;
+  }
+
+  .step-indicator.completed {
+    background-color: #198754;
+    color: white;
+  }
+
+  .step-indicator.inactive {
+    background-color: #e7eff2;
+    color: #7b8f96;
+  }
+
+  .step-line {
+    height: 2px;
+    flex: 1;
+    transition: all 0.3s;
+  }
+
+  .step-line.completed {
+    background-color: #198754;
+  }
+
+  .step-line.inactive {
+    background-color: #e7eff2;
+  }
+
+  .step-content {
+    animation: fadeIn 0.3s ease-in;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script define:vars={{flowType}}>
+  // Store user data across steps
+  let userData = {};
+  let currentStep = 1;
+
+  // Track events for analytics
+  function trackEvent(eventName, properties = {}) {
+    // Send to Google Tag Manager
+    if (window.dataLayer) {
+      window.dataLayer.push({
+        event: eventName,
+        ...properties,
+      });
+    }
+  }
+
+  // Update URL with step parameter
+  function updateURL(step) {
+    const url = new URL(window.location.href);
+    url.searchParams.set('step', step.toString());
+    window.history.pushState({step}, '', url);
+
+    // Track page view for analytics
+    trackEvent('page_view', {
+      page_title: `Signup - Step ${step}`,
+      page_location: url.href,
+    });
+  }
+
+  // Show specific step
+  function showStep(step) {
+    document.querySelectorAll('.step-content').forEach(el => {
+      el.classList.add('hidden');
+    });
+
+    const stepEl = document.getElementById(`step${step}`);
+    if (stepEl) {
+      stepEl.classList.remove('hidden');
+    }
+
+    updateStepIndicators(step);
+    currentStep = step;
+    updateURL(step);
+  }
+
+  // Update step indicators
+  function updateStepIndicators(step) {
+    const indicators = document.querySelectorAll('.step-indicator');
+    const lines = document.querySelectorAll('.step-line');
+
+    indicators.forEach((indicator, index) => {
+      const stepNum = index + 1;
+      indicator.classList.remove('active', 'completed', 'inactive');
+
+      if (stepNum < step) {
+        indicator.classList.add('completed');
+        indicator.innerHTML =
+          '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>';
+      } else if (stepNum === step) {
+        indicator.classList.add('active');
+        indicator.textContent = stepNum.toString();
+      } else {
+        indicator.classList.add('inactive');
+        indicator.textContent = stepNum.toString();
+      }
+    });
+
+    lines.forEach((line, index) => {
+      line.classList.remove('completed', 'inactive');
+      if (index < step - 1) {
+        line.classList.add('completed');
+      } else {
+        line.classList.add('inactive');
+      }
+    });
+  }
+
+  // Initialize form from URL parameter
+  function initializeFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const stepParam = urlParams.get('step');
+
+    if (stepParam) {
+      const step = parseInt(stepParam, 10);
+      if (step >= 1 && step <= 5) {
+        // Only allow navigation to later steps if we've completed earlier ones
+        // For now, we'll just start at step 1
+        currentStep = 1;
+      }
+    }
+  }
+
+  // Handle browser back/forward
+  window.addEventListener('popstate', event => {
+    if (event.state && event.state.step) {
+      showStep(event.state.step);
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initializeFromURL();
+
+    // Step 1: Basic signup
+    const signupForm = document.getElementById('signup');
+    signupForm?.addEventListener('submit', async e => {
+      e.preventDefault();
+
+      const formData = new FormData(signupForm);
+      const password = formData.get('password');
+      const confirmPassword = formData.get('confirmPassword');
+
+      if (password !== confirmPassword) {
+        alert('Passwords do not match');
+        return;
+      }
+
+      const data = {
+        firstName: formData.get('firstName'),
+        lastName: formData.get('lastName'),
+        jobTitle: formData.get('jobTitle'),
+        companyName: formData.get('companyName'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        password: formData.get('password'),
+        type: formData.get('type'),
+      };
+
+      userData = {...userData, ...data};
+
+      trackEvent('signup_step_1_completed', {email: data.email});
+
+      // Show step indicators and move to step 2
+      document.getElementById('stepIndicators').classList.remove('hidden');
+      showStep(2);
+    });
+
+    // Step 2: Details
+    const detailsForm = document.getElementById('details');
+    detailsForm?.addEventListener('submit', async e => {
+      e.preventDefault();
+
+      const formData = new FormData(detailsForm);
+      const targetBoxes = detailsForm.querySelectorAll(
+        'input[name="target"]:checked',
+      );
+      const targets = Array.from(targetBoxes).map(cb => cb.value);
+
+      const data = {
+        installations: formData.get('installations'),
+        target: targets,
+        useCase: formData.get('use-case'),
+        type: formData.get('type'),
+      };
+
+      userData = {...userData, ...data};
+
+      trackEvent('signup_step_2_completed');
+
+      showStep(3);
+    });
+
+    // Step 3: Experience
+    const experienceForm = document.getElementById('experience');
+    experienceForm?.addEventListener('submit', async e => {
+      e.preventDefault();
+
+      const formData = new FormData(experienceForm);
+      const expertiseBoxes = experienceForm.querySelectorAll(
+        'input[name="expertise"]:checked',
+      );
+      const expertise = Array.from(expertiseBoxes).map(cb => cb.value);
+
+      if (expertise.length === 0) {
+        alert('Please select at least one area of expertise');
+        return;
+      }
+
+      const data = {
+        role: formData.get('role'),
+        expertise: expertise,
+        companySize: formData.get('companySize'),
+      };
+
+      userData = {...userData, ...data};
+
+      trackEvent('signup_step_3_completed');
+
+      showStep(4);
+    });
+
+    // Handle "Other" checkbox for discovery
+    const discoveryForm = document.getElementById('discovery');
+    const discoveryCheckboxes = discoveryForm?.querySelectorAll(
+      'input[name="discovery"]',
+    );
+    discoveryCheckboxes?.forEach(checkbox => {
+      if (checkbox.value === 'other') {
+        checkbox.addEventListener('change', () => {
+          const otherInput = document.getElementById('discovery-other-input');
+          if (checkbox.checked) {
+            otherInput.classList.remove('hidden');
+          } else {
+            otherInput.classList.add('hidden');
+          }
+        });
+      }
+    });
+
+    // Step 4: Discovery
+    discoveryForm?.addEventListener('submit', async e => {
+      e.preventDefault();
+
+      const discoveryBoxes = discoveryForm.querySelectorAll(
+        'input[name="discovery"]:checked',
+      );
+      const discovery = Array.from(discoveryBoxes).map(cb => cb.value);
+
+      if (discovery.length === 0) {
+        alert('Please select at least one option');
+        return;
+      }
+
+      const otherText =
+        discoveryForm.querySelector('input[name="discoveryOtherText"]')
+          ?.value || '';
+
+      if (discovery.includes('other') && !otherText.trim()) {
+        alert('Please specify what "Other" refers to');
+        return;
+      }
+
+      const data = {
+        discovery: discovery,
+        discoveryOtherText: otherText,
+      };
+
+      userData = {...userData, ...data};
+
+      trackEvent('signup_step_4_completed');
+
+      showStep(5);
+    });
+
+    // Step 5: Timeline
+    const timelineForm = document.getElementById('timeline');
+    timelineForm?.addEventListener('submit', async e => {
+      e.preventDefault();
+
+      const formData = new FormData(timelineForm);
+      const data = {
+        timeline: formData.get('timeline'),
+      };
+
+      userData = {...userData, ...data};
+
+      trackEvent('signup_step_5_completed', {flow_type: flowType});
+
+      // Show success message
+      document.querySelectorAll('.step-content').forEach(el => {
+        el.classList.add('hidden');
+      });
+      document.getElementById('successMessage').classList.remove('hidden');
+      document.getElementById('stepIndicators').classList.add('hidden');
+
+      // TODO: Submit data to backend
+      console.log('Final signup data:', userData);
+    });
+  });
+</script>
