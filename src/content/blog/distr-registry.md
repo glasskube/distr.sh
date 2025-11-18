@@ -16,13 +16,11 @@ tags:
   - distr-launch-week
 ---
 
-![registry-thumbnail](/src/assets/blog/2025-05-22-distr-registry/registry-thumbnail.png)
-
 Today, we are happy to announce that the Distr [artifact registry](https://distr.sh/docs/product/registry/) is now Generally Available (GA).
 
 Manage and distribute container images, Helm charts, and other OCI artifacts with license-based access control, audit logs, and a visual UI that makes self-managed software distribution pretty darn simple if we do say so ourselves, built for both you and your customers.
 
-{/_ truncate _/}
+<hr>
 
 ## Why we built a registry into Distr
 

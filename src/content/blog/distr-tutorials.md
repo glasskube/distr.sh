@@ -23,8 +23,6 @@ In fact, we are declaring every day to be international onboarding day, because 
 Since the early days of Distr we have been strongly opinionated about onboarding.
 And now we improve our onboarding experience even further with the release of Distr Tutorials. We just love onboarding!
 
-![thumbnail](/src/assets/blog/2025-05-19-tutorials/tutorials-thumbnail.png)
-
 ## What is changing?
 
 So far we had an onboarding wizard popping up on the dashboard of new users.

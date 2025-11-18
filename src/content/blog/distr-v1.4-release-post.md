@@ -15,8 +15,6 @@ tags:
   - Releases
 ---
 
-![thumbnail](/src/assets/blog/2025-03-25-distr-1-4-release/thumb.png)
-
 # Distr v1.4 is Live!
 
 Hey there! We listened to your feedback, and we're back with a massive new feature.

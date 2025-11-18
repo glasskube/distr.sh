@@ -22,9 +22,7 @@ We build an Open Source Software Distribution platform called Distr ([`github.co
 
 Adding support for multiple deployments per target and introducing metrics forced us to rethink our current dashboard and led to redesigning it from scratch.
 
-{/_ truncate _/}
-
-![thumbnail](/src/assets/blog/2025-05-21-dashboard/distr-dashboard-announcement.png)
+<hr>
 
 ## Previous version of the Distr Dashboard
 
