@@ -51,13 +51,7 @@ We split up the onboarding process into smaller, more manageable steps, based on
 - Getting started with Distr Agents and Release Automation
 - Getting started with the Registry
 
-<ThemedImage
-alt="Distr Onboarding Tutorials"
-sources={{
-    light: '/src/assets/blog/2025-05-19-tutorials/tutorials-light.png',
-    dark: '/src/assets/blog/2025-05-19-tutorials/tutorials-dark.png',
-  }}
-/>
+![Distr Onboarding Tutorials](/src/assets/blog/2025-05-19-tutorials/tutorials-dark.png)
 
 Find more information about the tutorials in the [Distr quickstart](https://distr.sh/docs/getting-started/quickstart/).
 

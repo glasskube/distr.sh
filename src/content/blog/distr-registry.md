@@ -73,13 +73,9 @@ Vendors can restrict access by using Artifacts licenses. Grant or revoke permiss
 <div
   className="app-frame mac dark borderless shadow--tl"
   data-url="app.distr.sh">
-  <ThemedImage
-    alt="Distr Onboarding Tutorials"
-    sources={{
-      light: '/src/assets/blog/2025-05-22-distr-registry/lw-license-light.png',
-      dark: '/src/assets/blog/2025-05-22-distr-registry/lw-license-dark.png',
-    }}
-  />
+
+![Distr Onboarding Tutorials](/src/assets/blog/2025-05-22-distr-registry/lw-license-dark.png)
+
 </div>
 
 ### Visual management
@@ -95,24 +91,14 @@ Use any OCI compliant CLI for pushing and pulling, and use the Distr Registry UI
 <div
   className="app-frame mac dark borderless shadow--tl"
   data-url="app.distr.sh">
-  <ThemedImage
-    alt="General Artifact UI"
-    sources={{
-      light: '/src/assets/blog/2025-05-22-distr-registry/lw-artifacts-ui-light.png',
-      dark: '/src/assets/blog/2025-05-22-distr-registry/lw-artifacts-ui-dark.png',
-    }}
-  />
+
+![General Artifact UI](/src/assets/blog/2025-05-22-distr-registry/lw-artifacts-ui-dark.png)
+
 </div>
 
 **Deployment tracking UI**
 
-<ThemedImage
-alt="Deployment tracking UI"
-sources={{
-    light: '/src/assets/blog/2025-05-22-distr-registry/lw-artifacts-light.png',
-    dark: '/src/assets/blog/2025-05-22-distr-registry/lw-artifacts-dark.png',
-  }}
-/>
+![Deployment tracking UI](/src/assets/blog/2025-05-22-distr-registry/lw-artifacts-dark.png)
 
 The Downloads page gives granular artifact consumption logs
 
@@ -121,13 +107,9 @@ The Downloads page gives granular artifact consumption logs
 <div
   className="app-frame mac dark borderless shadow--tl"
   data-url="app.distr.sh">
-  <ThemedImage
-    alt="Download audit logs UI"
-    sources={{
-      light: '/src/assets/blog/2025-05-22-distr-registry/lw-deploy-logs-light.png',
-      dark: '/src/assets/blog/2025-05-22-distr-registry/lw-deploy-logs-dark.png',
-    }}
-  />
+
+![Download audit logs UI](/src/assets/blog/2025-05-22-distr-registry/lw-deploy-logs-dark.png)
+
 </div>
 ## What's next for the Registry?
 

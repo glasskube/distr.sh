@@ -33,13 +33,9 @@ To be quite frank, our users didn't mind having these components on our old dash
 <div
   className="app-frame mac dark borderless shadow--tl"
   data-url="app.distr.sh">
-  <ThemedImage
-    alt="Previous Distr Dashboard"
-    sources={{
-      light: '/src/assets/blog/2025-05-21-dashboard/distr-dashboard-light-old.webp',
-      dark: '/src/assets/blog/2025-05-21-dashboard/distr-dashboard-dark-old.webp',
-    }}
-  />
+
+![Previous Distr Dashboard](/src/assets/blog/2025-05-21-dashboard/distr-dashboard-dark-old.webp)
+
 </div>
 <center>
   <small>
@@ -60,13 +56,9 @@ Our new dashboard is a unified view for software vendors to check all their cust
 <div
   className="app-frame mac dark borderless shadow--tl"
   data-url="app.distr.sh">
-  <ThemedImage
-    alt="Previous Distr Dashboard"
-    sources={{
-      light: '/src/assets/blog/2025-05-21-dashboard/distr-dashboard-light.webp',
-      dark: '/src/assets/blog/2025-05-21-dashboard/distr-dashboard-dark.webp',
-    }}
-  />
+
+![Previous Distr Dashboard](/src/assets/blog/2025-05-21-dashboard/distr-dashboard-dark.webp)
+
 </div>
 <center>
   <small>
