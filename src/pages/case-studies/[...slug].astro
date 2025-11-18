@@ -1,9 +1,9 @@
 ---
-import StarlightLayout from '../../layouts/StarlightLayout.astro';
-import CaseStudyCard from '../../components/case-studies/CaseStudyCard.astro';
-import CTASection from '../../components/home/CTASection.astro';
-import NewsletterSection from '../../components/home/NewsletterSection.astro';
-import {caseStudies} from '../../data/caseStudies';
+import StarlightLayout from '~/layouts/StarlightLayout.astro';
+import CaseStudyCard from '~/components/case-studies/CaseStudyCard.astro';
+import CTASection from '~/components/home/CTASection.astro';
+import NewsletterSection from '~/components/home/NewsletterSection.astro';
+import {caseStudies} from '~/data/caseStudies';
 
 export async function getStaticPaths() {
   return caseStudies.map(caseStudy => ({
