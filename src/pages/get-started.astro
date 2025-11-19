@@ -12,6 +12,7 @@ import {
   timelineOptions,
   featureHighlights,
 } from '~/data/signupFormData.ts';
+import CalBooking from '~/components/booking/CalBooking.tsx';
 
 const pageTitle = 'Get Started with Distr - Sign Up for Free';
 const pageDescription =
@@ -20,6 +21,7 @@ const pageDescription =
 
 <StandaloneLayout title={pageTitle} description={pageDescription}>
   <MultiStepForm
+    flowType="get-started"
     heading="The easiest way to distribute software"
     subheading="You will gain automatic access to our platform upon completing the form."
     ctaNote="(No credit card required.)"
@@ -37,4 +39,5 @@ const pageDescription =
     successMessage="Please check your mailbox to confirm your email and log into Distr."
     submitButtonText="Complete Sign Up"
   />
+  <CalBooking></CalBooking>
 </StandaloneLayout>
