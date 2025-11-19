@@ -1,5 +1,41 @@
 ---
-import {
+import type {
+  SignupFormStep,
+  InstallationOption,
+  DeploymentType,
+  RoleOption,
+  ExpertiseOption,
+  CompanySizeOption,
+  DiscoveryOption,
+  TimelineOption,
+  FeatureHighlight,
+} from '~/data/signupFormData.ts';
+
+interface Props {
+  heading: string;
+  subheading: string;
+  ctaNote: string;
+  requirePassword: boolean;
+  signupSteps: SignupFormStep[];
+  installationOptions: InstallationOption[];
+  deploymentTypes: DeploymentType[];
+  roleOptions: RoleOption[];
+  expertiseOptions: ExpertiseOption[];
+  companySizeOptions: CompanySizeOption[];
+  discoveryOptions: DiscoveryOption[];
+  timelineOptions: TimelineOption[];
+  featureHighlights: FeatureHighlight[];
+  successTitle: string;
+  successMessage: string;
+  submitButtonText: string;
+}
+
+const {
+  flowType,
+  heading,
+  subheading,
+  ctaNote,
+  requirePassword,
   signupSteps,
   installationOptions,
   deploymentTypes,
@@ -9,13 +45,10 @@ import {
   discoveryOptions,
   timelineOptions,
   featureHighlights,
-} from '~/data/signupFormData.ts';
-
-interface Props {
-  flowType: 'onboarding' | 'signup';
-}
-
-const {flowType} = Astro.props;
+  successTitle,
+  successMessage,
+  submitButtonText,
+} = Astro.props;
 ---
 
 <div
@@ -62,7 +95,7 @@ const {flowType} = Astro.props;
       <!-- Right Column: Form -->
       <div class="lg:col-span-1">
         <div
-          class="bg-white dark:bg-gray-800 border border-accent-600 rounded-xl p-6 lg:p-10 shadow-2xl">
+          class="bg-white dark:bg-gray-900 border border-accent-600 rounded-xl p-6 lg:p-10 shadow-2xl">
           <!-- Step Indicators -->
           <div id="stepIndicators" class="mb-8 hidden">
             <div class="flex items-center">
@@ -95,16 +128,14 @@ const {flowType} = Astro.props;
           <div id="step1" class="step-content">
             <div>
               <h3 class="mb-4 text-gray-900 dark:text-white">
-                The easiest way<br />
-                to distribute software
+                {heading}
               </h3>
               <div class="text-gray-600 dark:text-gray-400 mb-2">
-                You will gain automatic access to our platform upon completing
-                the form.
+                {subheading}
               </div>
               <div
                 class="text-center text-sm italic text-gray-500 dark:text-gray-500 mb-6">
-                (No credit card required.)
+                {ctaNote}
               </div>
             </div>
             <form id="signup" class="space-y-4">
@@ -209,42 +240,46 @@ const {flowType} = Astro.props;
                   />
                 </div>
               </div>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label
-                    for="password"
-                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Password*
-                  </label>
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Password"
-                    autocomplete="new-password"
-                    minlength="8"
-                    required
-                    class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-accent-600"
-                  />
-                </div>
-                <div>
-                  <label
-                    for="confirmPassword"
-                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Confirm Password*
-                  </label>
-                  <input
-                    type="password"
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    placeholder="Confirm Password"
-                    autocomplete="new-password"
-                    minlength="8"
-                    required
-                    class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-accent-600"
-                  />
-                </div>
-              </div>
+              {
+                requirePassword && (
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label
+                        for="password"
+                        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                        Password*
+                      </label>
+                      <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Password"
+                        autocomplete="new-password"
+                        minlength="8"
+                        required
+                        class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-accent-600"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        for="confirmPassword"
+                        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                        Confirm Password*
+                      </label>
+                      <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        placeholder="Confirm Password"
+                        autocomplete="new-password"
+                        minlength="8"
+                        required
+                        class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-accent-600"
+                      />
+                    </div>
+                  </div>
+                )
+              }
               <input
                 type="hidden"
                 name="type"
@@ -255,7 +290,7 @@ const {flowType} = Astro.props;
               <button
                 type="submit"
                 id="submit-signup"
-                class="w-full py-3 px-6 bg-accent-600 hover:bg-accent-900 disabled:bg-gray-400 text-white font-semibold rounded-md transition-colors">
+                class="w-full mt-6 py-3 px-6 bg-accent-600 hover:bg-accent-900 disabled:bg-gray-400 text-white font-semibold rounded-md transition-colors">
                 Continue
               </button>
             </form>
@@ -505,7 +540,7 @@ const {flowType} = Astro.props;
                 type="submit"
                 id="submit-timeline"
                 class="w-full py-3 px-6 bg-accent-600 hover:bg-accent-900 text-white font-semibold rounded-md transition-colors">
-                Complete Sign Up
+                {submitButtonText}
               </button>
             </form>
           </div>
@@ -524,29 +559,14 @@ const {flowType} = Astro.props;
                   clip-rule="evenodd"></path>
               </svg>
             </div>
-            {
-              flowType === 'onboarding' ? (
-                <div>
-                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                    Book a meeting
-                  </h3>
-                  <p class="text-gray-600 dark:text-gray-400">
-                    Thank you for your interest! Our team will reach out to you
-                    shortly to schedule an onboarding session.
-                  </p>
-                </div>
-              ) : (
-                <div>
-                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                    Thank you!
-                  </h3>
-                  <p class="text-gray-600 dark:text-gray-400">
-                    Please check your mailbox to confirm your email and log into
-                    Distr.
-                  </p>
-                </div>
-              )
-            }
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                {successTitle}
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400">
+                {successMessage}
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -612,7 +632,7 @@ const {flowType} = Astro.props;
   }
 </style>
 
-<script define:vars={{flowType}}>
+<script define:vars={{flowType, requirePassword}}>
   // Store user data across steps
   let userData = {};
   let currentStep = 1;
@@ -720,12 +740,15 @@ const {flowType} = Astro.props;
       e.preventDefault();
 
       const formData = new FormData(signupForm);
-      const password = formData.get('password');
-      const confirmPassword = formData.get('confirmPassword');
 
-      if (password !== confirmPassword) {
-        alert('Passwords do not match');
-        return;
+      if (requirePassword) {
+        const password = formData.get('password');
+        const confirmPassword = formData.get('confirmPassword');
+
+        if (password !== confirmPassword) {
+          alert('Passwords do not match');
+          return;
+        }
       }
 
       const data = {
@@ -735,7 +758,7 @@ const {flowType} = Astro.props;
         companyName: formData.get('companyName'),
         email: formData.get('email'),
         phone: formData.get('phone'),
-        password: formData.get('password'),
+        ...(requirePassword && {password: formData.get('password')}),
         type: formData.get('type'),
       };
 

@@ -24,26 +24,41 @@ const ogUrl = Astro.url.href;
 
 <!doctype html>
 <html lang="en" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={ogUrl} />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
+  <main>
+    <slot />
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>{title}</title>
+      <meta name="description" content={description} />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={ogUrl} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
-  </head>
-  <body class="bg-gray-50 dark:bg-gray-900 min-h-screen">
-    <main>
-      <slot />
-    </main>
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      <link rel="sitemap" href="/sitemap-index.xml" />
+      <!-- Google tag (gtag.js) -->
+      <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-PH8R3YE606"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-PH8R3YE606');
+      </script>
+      <!-- HubSpot -->
+      <script src="https://js-eu1.hs-scripts.com/144345473.js" async></script>
+    </head>
+    <body class="bg-gray-50 dark:bg-gray-900 min-h-screen"> </body>
     <StandaloneFooter />
-  </body>
+  </main>
+
 </html>

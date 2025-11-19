@@ -1,6 +1,17 @@
 ---
 import StandaloneLayout from '../layouts/StandaloneLayout.astro';
 import MultiStepForm from '../components/signup/MultiStepForm.astro';
+import {
+  signupSteps,
+  installationOptions,
+  deploymentTypes,
+  roleOptions,
+  expertiseOptions,
+  companySizeOptions,
+  discoveryOptions,
+  timelineOptions,
+  featureHighlights,
+} from '~/data/signupFormData.ts';
 
 const pageTitle = 'Onboarding - Book a Meeting | Distr';
 const pageDescription =
@@ -8,5 +19,22 @@ const pageDescription =
 ---
 
 <StandaloneLayout title={pageTitle} description={pageDescription}>
-  <MultiStepForm flowType="onboarding" />
+  <MultiStepForm
+    heading="The easiest way to distribute software"
+    subheading="You will get a free 30 day trial access to our platform."
+    ctaNote="(No credit card required.)"
+    requirePassword={false}
+    signupSteps={signupSteps}
+    installationOptions={installationOptions}
+    deploymentTypes={deploymentTypes}
+    roleOptions={roleOptions}
+    expertiseOptions={expertiseOptions}
+    companySizeOptions={companySizeOptions}
+    discoveryOptions={discoveryOptions}
+    timelineOptions={timelineOptions}
+    featureHighlights={featureHighlights}
+    successTitle="Book a meeting"
+    successMessage="Thank you for your interest! Our team will reach out to you shortly to schedule an onboarding session."
+    submitButtonText="Complete Sign Up"
+  />
 </StandaloneLayout>

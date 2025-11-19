@@ -23,7 +23,16 @@ export default defineConfig({
       },
     }),
     preact(),
-    sitemap(),
+    sitemap({
+      filter: page => {
+        // Exclude specific pages by slug
+        const excludedSlugs = ['/onboarding/', '/get-started/'];
+        const url = new URL(page);
+        const pathname = url.pathname;
+
+        return !excludedSlugs.some(slug => slug === pathname);
+      },
+    }),
     serviceWorker(),
     starlight({
       title: 'Distr',
