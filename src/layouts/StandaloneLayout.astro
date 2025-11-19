@@ -24,42 +24,44 @@ const ogUrl = Astro.url.href;
 
 <!doctype html>
 <html lang="en" class="scroll-smooth">
-  <main>
-    <slot />
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content={ogUrl} />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={ogUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
 
-      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-      <link rel="sitemap" href="/sitemap-index.xml" />
-      <!--&lt;!&ndash; Google tag (gtag.js) &ndash;&gt;-->
-      <!--<script-->
-      <!--  async-->
-      <!--  src="https://www.googletagmanager.com/gtag/js?id=G-PH8R3YE606"></script>-->
-      <!--<script>-->
-      <!--  window.dataLayer = window.dataLayer || [];-->
-      <!--  function gtag() {-->
-      <!--    dataLayer.push(arguments);-->
-      <!--  }-->
-      <!--  gtag('js', new Date());-->
-
-      <!--  gtag('config', 'G-PH8R3YE606');-->
-      <!--</script>-->
-      <!--&lt;!&ndash; HubSpot &ndash;&gt;-->
-      <!--<script src="https://js-eu1.hs-scripts.com/144345473.js" async></script>-->
-    </head>
-    <body class="bg-gray-50 dark:bg-gray-900 min-h-screen"> </body>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <!--&lt;!&ndash; Google Tag Manager &ndash;&gt;-->
+    <!--<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':-->
+    <!--    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],-->
+    <!--  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=-->
+    <!--  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);-->
+    <!--})(window,document,'script','dataLayer','GTM-T58STPCJ');</script>-->
+    <!--&lt;!&ndash; End Google Tag Manager &ndash;&gt;-->
+    <!--&lt;!&ndash; HubSpot &ndash;&gt;-->
+    <!--<script src="https://js-eu1.hs-scripts.com/144345473.js" async></script>-->
+  </head>
+  <body class="bg-gray-50 dark:bg-gray-900 min-h-screen">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-T58STPCJ"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe></noscript
+    >
+    <!-- End Google Tag Manager (noscript) -->
+    <main>
+      <slot />
+    </main>
     <StandaloneFooter />
-  </main>
-
-
+  </body>
 </html>

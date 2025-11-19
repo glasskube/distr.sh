@@ -77,7 +77,15 @@ export default function CalBooking({
       hideEventTypeDetails: hideEventTypeDetails,
       layout: layout,
     });
-  }, [namespace, embedJsUrl, calOrigin, layout, calLink, hideEventTypeDetails, elementId]);
+  }, [
+    namespace,
+    embedJsUrl,
+    calOrigin,
+    layout,
+    calLink,
+    hideEventTypeDetails,
+    elementId,
+  ]);
 
   return (
     <div
