@@ -332,7 +332,7 @@ It also comes with a [customer portal](https://distr.sh/docs/product/customer-po
 - Built specifically for commercial self-managed deployment options for software and AI companies.
 - Advanced features: artifact tag restrictions, usage tracking, and granular access controls
 - It can be consumed as a managed service (SaaS).
-  (Sign up at [signup.distr.sh](https://signup.distr.sh/)) or [self-managed](https://distr.sh/docs/self-hosting/getting-started/).
+  (Sign up at [signup.distr.sh](/get-started/)) or [self-managed](https://distr.sh/docs/self-hosting/getting-started/).
 - Open Source and free to use
 
 **Who it's for:**

@@ -1,4 +1,5 @@
 ---
+import {Icon} from 'astro-icon/components';
 import distrBrandLogo from '~/assets/distr-brand.svg';
 import CalComIFrame from '~/components/booking/CalComIFrame.astro';
 
@@ -94,122 +95,93 @@ const signupSteps = [
         </div>
         <ul class="list-none space-y-5">
           <li class="flex gap-3">
-            <svg
+            <Icon
+              name="lucide:check-circle"
               class="w-6 h-6 text-green-600 flex-shrink-0 mt-1"
-              fill="currentColor"
-              viewBox="0 0 20 20">
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"
-              />
-            </svg>
+            />
             <div class="flex flex-col">
               <h6 class="font-semibold text-gray-900 dark:text-white m-0">
                 Centralized Management
               </h6>
               <p class="text-gray-600 dark:text-gray-400 text-sm m-0">
-                View & manage all deployments, artifacts, connected agents, self-managed & BYOC customers.
+                View & manage all deployments, artifacts, connected agents,
+                self-managed & BYOC customers.
               </p>
             </div>
           </li>
           <li class="flex gap-3">
-            <svg
+            <Icon
+              name="lucide:check-circle"
               class="w-6 h-6 text-green-600 flex-shrink-0 mt-1"
-              fill="currentColor"
-              viewBox="0 0 20 20">
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"
-              />
-            </svg>
+            />
             <div class="flex flex-col">
               <h6 class="font-semibold text-gray-900 dark:text-white m-0">
                 Deployment Automation
               </h6>
               <p class="text-gray-600 dark:text-gray-400 text-sm m-0">
-                Helm and Docker agents manage deployments, collect logs and metrics, and remote troubleshooting.
+                Helm and Docker agents manage deployments, collect logs and
+                metrics, and remote troubleshooting.
               </p>
             </div>
           </li>
           <li class="flex gap-3">
-            <svg
+            <Icon
+              name="lucide:check-circle"
               class="w-6 h-6 text-green-600 flex-shrink-0 mt-1"
-              fill="currentColor"
-              viewBox="0 0 20 20">
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"
-              />
-            </svg>
+            />
             <div class="flex flex-col">
               <h6 class="font-semibold text-gray-900 dark:text-white m-0">
                 White-label customer portal
               </h6>
               <p class="text-gray-600 dark:text-gray-400 text-sm m-0">
-                Let your customers control their deployments or download your artifacts.
+                Let your customers control their deployments or download your
+                artifacts.
               </p>
             </div>
           </li>
           <li class="flex gap-3">
-            <svg
+            <Icon
+              name="lucide:check-circle"
               class="w-6 h-6 text-green-600 flex-shrink-0 mt-1"
-              fill="currentColor"
-              viewBox="0 0 20 20">
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"
-              />
-            </svg>
+            />
             <div class="flex flex-col">
               <h6 class="font-semibold text-gray-900 dark:text-white m-0">
                 Container registry
               </h6>
               <p class="text-gray-600 dark:text-gray-400 text-sm m-0">
-                Distribute OCI-compatible artifacts (Docker images, Helm charts, Terraform modules) with built-in granular access control and analytics.
+                Distribute OCI-compatible artifacts (Docker images, Helm charts,
+                Terraform modules) with built-in granular access control and
+                analytics.
               </p>
             </div>
           </li>
           <li class="flex gap-3">
-            <svg
+            <Icon
+              name="lucide:check-circle"
               class="w-6 h-6 text-green-600 flex-shrink-0 mt-1"
-              fill="currentColor"
-              viewBox="0 0 20 20">
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"
-              />
-            </svg>
+            />
             <div class="flex flex-col">
               <h6 class="font-semibold text-gray-900 dark:text-white m-0">
                 License Management
               </h6>
               <p class="text-gray-600 dark:text-gray-400 text-sm m-0">
-                Distribute specific versions of your application to specific customers.
+                Distribute specific versions of your application to specific
+                customers.
               </p>
             </div>
           </li>
           <li class="flex gap-3">
-            <svg
+            <Icon
+              name="lucide:check-circle"
               class="w-6 h-6 text-green-600 flex-shrink-0 mt-1"
-              fill="currentColor"
-              viewBox="0 0 20 20">
-              <path
-                fill-rule="evenodd"
-                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                clip-rule="evenodd"
-              />
-            </svg>
+            />
             <div class="flex flex-col">
               <h6 class="font-semibold text-gray-900 dark:text-white m-0">
                 API & SDK
               </h6>
               <p class="text-gray-600 dark:text-gray-400 text-sm m-0">
-                Programmatically integrate external systems or embed Distr into your own application.
+                Programmatically integrate external systems or embed Distr into
+                your own application.
               </p>
             </div>
           </li>
@@ -909,15 +881,10 @@ const signupSteps = [
             <div class="text-center mb-8">
               <div
                 class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30 mb-6">
-                <svg
+                <Icon
+                  name="lucide:check-circle"
                   class="h-6 w-6 text-green-600"
-                  fill="currentColor"
-                  viewBox="0 0 20 20">
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"></path>
-                </svg>
+                />
               </div>
               <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
                 {successTitle}
@@ -934,15 +901,10 @@ const signupSteps = [
             id="errorMessage"
             class="hidden mt-6 p-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-md">
             <div class="flex items-center">
-              <svg
+              <Icon
+                name="lucide:alert-circle"
                 class="h-5 w-5 text-red-600 mr-2"
-                fill="currentColor"
-                viewBox="0 0 20 20">
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                  clip-rule="evenodd"></path>
-              </svg>
+              />
               <p
                 class="text-sm font-medium text-red-800 dark:text-red-200"
                 id="errorMessageText">

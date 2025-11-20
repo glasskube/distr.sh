@@ -381,7 +381,7 @@ export default function PricingCalculator() {
             </div>
             <div class="p-6 pt-0">
               <a
-                href="https://signup.distr.sh/"
+                href="/get-started/"
                 class="inline-block w-full px-6 py-3 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-900 dark:text-white font-medium rounded-lg text-center transition-colors no-underline">
                 Get Started →
               </a>
@@ -535,7 +535,7 @@ export default function PricingCalculator() {
             </div>
             <div class="p-6 pt-0">
               <a
-                href="https://signup.distr.sh/"
+                href="/contact/"
                 class="inline-block w-full px-6 py-3 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-900 dark:text-white font-medium rounded-lg text-center transition-colors no-underline">
                 Contact Us →
               </a>
