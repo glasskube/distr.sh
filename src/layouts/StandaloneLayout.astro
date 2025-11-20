@@ -39,21 +39,31 @@ const ogUrl = Astro.url.href;
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <!-- Google Tag Manager -->
-    <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, 'script', 'dataLayer', 'GTM-T58STPCJ');
-    </script>
-    <!-- HubSpot -->
-    <script src="https://js-eu1.hs-scripts.com/144345473.js" async></script>
+
+    {
+      import.meta.env.PROD && (
+        <>
+          <!-- Google Tag Manager -->
+          <script is:inline>
+            (function (w, d, s, l, i) {
+              w[l] = w[l] || [];
+              w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+              var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+              j.async = true;
+              j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+              f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-T58STPCJ');
+          </script>
+          <!-- HubSpot -->
+          <script
+            is:inline
+            src="https://js-eu1.hs-scripts.com/144345473.js"
+            async></script>
+        </>
+      )
+    }
   </head>
   <body class="bg-gray-50 dark:bg-gray-900 min-h-screen">
     <main>
