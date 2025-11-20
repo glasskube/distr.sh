@@ -455,7 +455,7 @@ export default function PricingCalculator() {
               </p>
               <ul class="list-none pl-0 mt-4 mb-0">
                 <li class="pl-6 relative mb-3 before:content-['✓'] before:absolute before:left-0 before:text-green-600">
-                  Up to 50 customer installs
+                  Up to 100 customer installs
                 </li>
                 <li class="pl-6 relative mb-3 before:content-['✓'] before:absolute before:left-0 before:text-green-600">
                   3 deployments per customer
