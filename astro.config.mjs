@@ -129,7 +129,14 @@ export default defineConfig({
       prerender: true,
       plugins: [
         starlightLinksValidator({
-          exclude: ['/', '/pricing/', '/blog/**', '/glossary/**', '/get-started/', '/onboarding/'],
+          exclude: [
+            '/',
+            '/pricing/',
+            '/blog/**',
+            '/glossary/**',
+            '/get-started/',
+            '/onboarding/',
+          ],
         }),
         starlightUtils({
           navLinks: {
