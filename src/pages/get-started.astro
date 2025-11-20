@@ -1,18 +1,6 @@
 ---
 import StandaloneLayout from '../layouts/StandaloneLayout.astro';
 import MultiStepForm from '../components/signup/MultiStepForm.astro';
-import {
-  signupSteps,
-  installationOptions,
-  deploymentTypes,
-  roleOptions,
-  expertiseOptions,
-  companySizeOptions,
-  discoveryOptions,
-  timelineOptions,
-  featureHighlights,
-} from '~/data/signupFormData.ts';
-import CalBooking from '~/components/booking/CalComIFrame.astro';
 
 const pageTitle = 'Get Started with Distr - Sign Up for Free';
 const pageDescription =
@@ -26,18 +14,8 @@ const pageDescription =
     subheading="You will gain automatic access to our platform upon completing the form."
     ctaNote="(No credit card required.)"
     requirePassword={true}
-    signupSteps={signupSteps}
-    installationOptions={installationOptions}
-    deploymentTypes={deploymentTypes}
-    roleOptions={roleOptions}
-    expertiseOptions={expertiseOptions}
-    companySizeOptions={companySizeOptions}
-    discoveryOptions={discoveryOptions}
-    timelineOptions={timelineOptions}
-    featureHighlights={featureHighlights}
     successTitle="Thank you!"
-    successMessage="Please check your mailbox to confirm your email and log into Distr."
+    successMessage="Please check your mailbox to confirm your email and log into Distr. You can also directly schedule a personal onboarding if a Distr team member."
     submitButtonText="Complete Sign Up"
   />
-  <CalBooking />
 </StandaloneLayout>

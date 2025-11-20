@@ -1,17 +1,8 @@
 ---
-import type {
-  SignupFormStep,
-  InstallationOption,
-  DeploymentType,
-  RoleOption,
-  ExpertiseOption,
-  CompanySizeOption,
-  DiscoveryOption,
-  TimelineOption,
-  FeatureHighlight,
-} from '~/data/signupFormData.ts';
 import distrBrandLogo from '~/assets/distr-brand.svg';
 import CalComIFrame from '~/components/booking/CalComIFrame.astro';
+
+const formsServerBaseUrl = import.meta.env.FORMS_SERVER;
 
 interface Props {
   flowType: string;
@@ -19,15 +10,6 @@ interface Props {
   subheading: string;
   ctaNote: string;
   requirePassword: boolean;
-  signupSteps: SignupFormStep[];
-  installationOptions: InstallationOption[];
-  deploymentTypes: DeploymentType[];
-  roleOptions: RoleOption[];
-  expertiseOptions: ExpertiseOption[];
-  companySizeOptions: CompanySizeOption[];
-  discoveryOptions: DiscoveryOption[];
-  timelineOptions: TimelineOption[];
-  featureHighlights: FeatureHighlight[];
   successTitle: string;
   successMessage: string;
   submitButtonText: string;
@@ -39,20 +21,100 @@ const {
   subheading,
   ctaNote,
   requirePassword,
-  signupSteps,
-  installationOptions,
-  deploymentTypes,
-  roleOptions,
-  expertiseOptions,
-  companySizeOptions,
-  discoveryOptions,
-  timelineOptions,
-  featureHighlights,
   successTitle,
   successMessage,
   submitButtonText,
 } = Astro.props;
+
+// Inline all form data
+const signupSteps = [
+  {step: 1, label: 'Basic'},
+  {step: 2, label: 'Details'},
+  {step: 3, label: 'Experience'},
+  {step: 4, label: 'Discovery'},
+  {step: 5, label: 'Timeline'},
+];
+
+const featureHighlights = [
+  {
+    title: 'Centralized Management',
+    description:
+      'View & manage all deployments, artifacts, connected agents, self-managed & BYOC customers.',
+  },
+  {
+    title: 'Deployment Automation',
+    description:
+      'Helm and Docker agents manage deployments, collect logs and metrics, and remote troubleshooting.',
+  },
+  {
+    title: 'White-label customer portal',
+    description:
+      'Let your customers control their deployments or download your artifacts.',
+  },
+  {
+    title: 'Container registry',
+    description:
+      'Distribute OCI-compatible artifacts (Docker images, Helm charts, Terraform modules) with built-in granular access control and analytics.',
+  },
+  {
+    title: 'License Management',
+    description:
+      'Distribute specific versions of your application to specific customers.',
+  },
+  {
+    title: 'API & SDK',
+    description:
+      'Programmatically integrate external systems or embed Distr into your own application.',
+  },
+];
 ---
+
+<style>
+  @reference 'tailwindcss';
+
+  .step-indicator {
+    @apply flex items-center justify-center w-8 h-8 rounded-full text-sm font-medium transition-all duration-300;
+  }
+
+  .step-indicator.active {
+    @apply bg-blue-600 text-white;
+  }
+
+  .step-indicator.completed {
+    @apply bg-green-600 text-white;
+  }
+
+  .step-indicator.inactive {
+    @apply bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400;
+  }
+
+  .step-line {
+    @apply h-0.5 flex-1 transition-all duration-300;
+  }
+
+  .step-line.completed {
+    @apply bg-green-600;
+  }
+
+  .step-line.inactive {
+    @apply bg-gray-200 dark:bg-gray-700;
+  }
+
+  .step-content {
+    animation: fadeIn 0.3s ease-in;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
 
 <div
   class="relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-16 sm:py-24">
@@ -290,7 +352,8 @@ const {
                 type="submit"
                 id="submit-signup"
                 class="w-full mt-6 py-3 px-6 bg-accent-600 hover:bg-accent-900 disabled:bg-gray-400 text-white font-semibold rounded-md transition-colors cursor-pointer">
-                Continue
+                <span id="signup-text">Continue</span>
+                <span id="signup-loading" class="hidden">Submitting...</span>
               </button>
             </form>
           </div>
@@ -316,11 +379,12 @@ const {
                   required
                   class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-accent-600">
                   <option value="">Select...</option>
-                  {
-                    installationOptions.map(option => (
-                      <option value={option.value}>{option.label}</option>
-                    ))
-                  }
+                  <option value="0">0</option>
+                  <option value="1-4">1-4</option>
+                  <option value="5-10">5-10</option>
+                  <option value="11-50">11-50</option>
+                  <option value="51-100">51-100</option>
+                  <option value="100+">100+</option>
                 </select>
               </div>
               <div>
@@ -329,21 +393,50 @@ const {
                   Deployment Types:
                 </div>
                 <div class="grid grid-cols-2 gap-2">
-                  {
-                    deploymentTypes.map(type => (
-                      <label class="flex items-center space-x-2 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          name="target"
-                          value={type.value}
-                          class="w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-600"
-                        />
-                        <span class="text-sm text-gray-700 dark:text-gray-300">
-                          {type.label}
-                        </span>
-                      </label>
-                    ))
-                  }
+                  <label class="flex items-center space-x-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      name="target"
+                      value="docker"
+                      class="w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-600"
+                    />
+                    <span class="text-sm text-gray-700 dark:text-gray-300">
+                      Docker
+                    </span>
+                  </label>
+                  <label class="flex items-center space-x-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      name="target"
+                      value="kubernetes"
+                      class="w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-600"
+                    />
+                    <span class="text-sm text-gray-700 dark:text-gray-300">
+                      Kubernetes
+                    </span>
+                  </label>
+                  <label class="flex items-center space-x-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      name="target"
+                      value="airGapped"
+                      class="w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-600"
+                    />
+                    <span class="text-sm text-gray-700 dark:text-gray-300">
+                      Air-gapped
+                    </span>
+                  </label>
+                  <label class="flex items-center space-x-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      name="target"
+                      value="onPremise"
+                      class="w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-600"
+                    />
+                    <span class="text-sm text-gray-700 dark:text-gray-300">
+                      On-Premises
+                    </span>
+                  </label>
                 </div>
               </div>
               <div>
@@ -369,8 +462,9 @@ const {
               <button
                 type="submit"
                 id="submit-details"
-                class="w-full py-3 px-6 bg-accent-600 hover:bg-accent-900 text-white font-semibold rounded-md transition-colors cursor-pointer">
-                Continue
+                class="w-full py-3 px-6 bg-accent-600 hover:bg-accent-900 disabled:bg-gray-400 text-white font-semibold rounded-md transition-colors cursor-pointer">
+                <span id="details-text">Continue</span>
+                <span id="details-loading" class="hidden">Saving...</span>
               </button>
             </form>
           </div>
@@ -398,11 +492,14 @@ const {
                   required
                   class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-accent-600">
                   <option value="">Select your role...</option>
-                  {
-                    roleOptions.map(option => (
-                      <option value={option.value}>{option.label}</option>
-                    ))
-                  }
+                  <option value="founder">Founder / Co-Founder</option>
+                  <option value="executive">Executive (C-Level / VP)</option>
+                  <option value="director">Director / Head of Department</option
+                  >
+                  <option value="senior">Senior (5+ years experience)</option>
+                  <option value="mid">Mid-Level (2-5 years experience)</option>
+                  <option value="junior">Junior / Entry Level</option>
+                  <option value="intern">Intern / Student</option>
                 </select>
               </div>
               <div>
@@ -411,21 +508,72 @@ const {
                   Area of expertise *
                 </div>
                 <div class="space-y-2">
-                  {
-                    expertiseOptions.map(option => (
-                      <label class="flex items-center space-x-2 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          name="expertise"
-                          value={option.value}
-                          class="w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-600"
-                        />
-                        <span class="text-sm text-gray-700 dark:text-gray-300">
-                          {option.label}
-                        </span>
-                      </label>
-                    ))
-                  }
+                  <label class="flex items-center space-x-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      name="expertise"
+                      value="software-engineer"
+                      class="w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-600"
+                    />
+                    <span class="text-sm text-gray-700 dark:text-gray-300">
+                      Software Engineer / Developer
+                    </span>
+                  </label>
+                  <label class="flex items-center space-x-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      name="expertise"
+                      value="product-manager"
+                      class="w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-600"
+                    />
+                    <span class="text-sm text-gray-700 dark:text-gray-300">
+                      Product Manager
+                    </span>
+                  </label>
+                  <label class="flex items-center space-x-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      name="expertise"
+                      value="marketing-growth"
+                      class="w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-600"
+                    />
+                    <span class="text-sm text-gray-700 dark:text-gray-300">
+                      Marketing / Growth
+                    </span>
+                  </label>
+                  <label class="flex items-center space-x-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      name="expertise"
+                      value="sales-bd"
+                      class="w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-600"
+                    />
+                    <span class="text-sm text-gray-700 dark:text-gray-300">
+                      Sales / Business Development
+                    </span>
+                  </label>
+                  <label class="flex items-center space-x-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      name="expertise"
+                      value="data-scientist"
+                      class="w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-600"
+                    />
+                    <span class="text-sm text-gray-700 dark:text-gray-300">
+                      Data Scientist / Analyst
+                    </span>
+                  </label>
+                  <label class="flex items-center space-x-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      name="expertise"
+                      value="operations-admin"
+                      class="w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-600"
+                    />
+                    <span class="text-sm text-gray-700 dark:text-gray-300">
+                      Operations / Admin
+                    </span>
+                  </label>
                 </div>
               </div>
               <div>
@@ -440,18 +588,21 @@ const {
                   required
                   class="w-full px-4 py-3 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-accent-600">
                   <option value="">Select company size...</option>
-                  {
-                    companySizeOptions.map(option => (
-                      <option value={option.value}>{option.label}</option>
-                    ))
-                  }
+                  <option value="2000+">2,000+ employees</option>
+                  <option value="501-2000">501-2,000 employees</option>
+                  <option value="201-500">201-500 employees</option>
+                  <option value="51-200">51-200 employees</option>
+                  <option value="11-50">11-50 employees</option>
+                  <option value="2-10">2-10 employees</option>
+                  <option value="solo">Just me / Solo</option>
                 </select>
               </div>
               <button
                 type="submit"
                 id="submit-experience"
-                class="w-full py-3 px-6 bg-accent-600 hover:bg-accent-900 text-white font-semibold rounded-md transition-colors cursor-pointer">
-                Continue
+                class="w-full py-3 px-6 bg-accent-600 hover:bg-accent-900 disabled:bg-gray-400 text-white font-semibold rounded-md transition-colors cursor-pointer">
+                <span id="experience-text">Continue</span>
+                <span id="experience-loading" class="hidden">Saving...</span>
               </button>
             </form>
           </div>
@@ -468,21 +619,114 @@ const {
             </div>
             <form id="discovery" class="space-y-4">
               <div class="space-y-2">
-                {
-                  discoveryOptions.map(option => (
-                    <label class="flex items-center space-x-2 p-3 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        name="discovery"
-                        value={option.value}
-                        class="w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-600"
-                      />
-                      <span class="text-sm text-gray-700 dark:text-gray-300">
-                        {option.label}
-                      </span>
-                    </label>
-                  ))
-                }
+                <label
+                  class="flex items-center space-x-2 p-3 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    name="discovery"
+                    value="google"
+                    class="w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-600"
+                  />
+                  <span class="text-sm text-gray-700 dark:text-gray-300">
+                    Google
+                  </span>
+                </label>
+                <label
+                  class="flex items-center space-x-2 p-3 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    name="discovery"
+                    value="reddit"
+                    class="w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-600"
+                  />
+                  <span class="text-sm text-gray-700 dark:text-gray-300">
+                    Reddit
+                  </span>
+                </label>
+                <label
+                  class="flex items-center space-x-2 p-3 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    name="discovery"
+                    value="hackernews"
+                    class="w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-600"
+                  />
+                  <span class="text-sm text-gray-700 dark:text-gray-300">
+                    Hacker News
+                  </span>
+                </label>
+                <label
+                  class="flex items-center space-x-2 p-3 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    name="discovery"
+                    value="linkedin"
+                    class="w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-600"
+                  />
+                  <span class="text-sm text-gray-700 dark:text-gray-300">
+                    LinkedIn
+                  </span>
+                </label>
+                <label
+                  class="flex items-center space-x-2 p-3 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    name="discovery"
+                    value="twitter"
+                    class="w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-600"
+                  />
+                  <span class="text-sm text-gray-700 dark:text-gray-300">
+                    Twitter
+                  </span>
+                </label>
+                <label
+                  class="flex items-center space-x-2 p-3 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    name="discovery"
+                    value="recommendation"
+                    class="w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-600"
+                  />
+                  <span class="text-sm text-gray-700 dark:text-gray-300">
+                    Recommendation (friend, co-worker, community)
+                  </span>
+                </label>
+                <label
+                  class="flex items-center space-x-2 p-3 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    name="discovery"
+                    value="llms"
+                    class="w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-600"
+                  />
+                  <span class="text-sm text-gray-700 dark:text-gray-300">
+                    LLMs (ChatGPT, Claude, etc.)
+                  </span>
+                </label>
+                <label
+                  class="flex items-center space-x-2 p-3 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    name="discovery"
+                    value="offline-events"
+                    class="w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-600"
+                  />
+                  <span class="text-sm text-gray-700 dark:text-gray-300">
+                    Offline Events / Meetups
+                  </span>
+                </label>
+                <label
+                  class="flex items-center space-x-2 p-3 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    name="discovery"
+                    value="other"
+                    class="w-4 h-4 text-accent-600 border-gray-300 rounded focus:ring-accent-600"
+                  />
+                  <span class="text-sm text-gray-700 dark:text-gray-300">
+                    Other
+                  </span>
+                </label>
                 <div id="discovery-other-input" class="hidden">
                   <input
                     type="text"
@@ -495,8 +739,9 @@ const {
               <button
                 type="submit"
                 id="submit-discovery"
-                class="w-full py-3 px-6 bg-accent-600 hover:bg-accent-900 text-white font-semibold rounded-md transition-colors cursor-pointer">
-                Continue
+                class="w-full py-3 px-6 bg-accent-600 hover:bg-accent-900 disabled:bg-gray-400 text-white font-semibold rounded-md transition-colors cursor-pointer">
+                <span id="discovery-text">Continue</span>
+                <span id="discovery-loading" class="hidden">Saving...</span>
               </button>
             </form>
           </div>
@@ -513,33 +758,85 @@ const {
             </div>
             <form id="timeline" class="space-y-4">
               <div class="space-y-3">
-                {
-                  timelineOptions.map(option => (
-                    <label class="flex items-start p-4 border-2 border-gray-200 dark:border-gray-600 rounded-lg hover:border-accent-600 dark:hover:border-accent-600 cursor-pointer transition-colors">
-                      <input
-                        type="radio"
-                        name="timeline"
-                        value={option.value}
-                        required
-                        class="w-4 h-4 mt-1 text-accent-600 border-gray-300 focus:ring-accent-600"
-                      />
-                      <div class="ml-3">
-                        <div class="font-semibold text-gray-900 dark:text-white">
-                          {option.label}
-                        </div>
-                        <div class="text-sm text-gray-500 dark:text-gray-400">
-                          {option.description}
-                        </div>
-                      </div>
-                    </label>
-                  ))
-                }
+                <label
+                  class="flex items-start p-4 border-2 border-gray-200 dark:border-gray-600 rounded-lg hover:border-accent-600 dark:hover:border-accent-600 cursor-pointer transition-colors">
+                  <input
+                    type="radio"
+                    name="timeline"
+                    value="asap"
+                    required
+                    class="w-4 h-4 mt-1 text-accent-600 border-gray-300 focus:ring-accent-600"
+                  />
+                  <div class="ml-3">
+                    <div class="font-semibold text-gray-900 dark:text-white">
+                      ASAP
+                    </div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                      Ready to start immediately
+                    </div>
+                  </div>
+                </label>
+                <label
+                  class="flex items-start p-4 border-2 border-gray-200 dark:border-gray-600 rounded-lg hover:border-accent-600 dark:hover:border-accent-600 cursor-pointer transition-colors">
+                  <input
+                    type="radio"
+                    name="timeline"
+                    value="next-weeks"
+                    required
+                    class="w-4 h-4 mt-1 text-accent-600 border-gray-300 focus:ring-accent-600"
+                  />
+                  <div class="ml-3">
+                    <div class="font-semibold text-gray-900 dark:text-white">
+                      In the next weeks
+                    </div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                      Planning to start soon
+                    </div>
+                  </div>
+                </label>
+                <label
+                  class="flex items-start p-4 border-2 border-gray-200 dark:border-gray-600 rounded-lg hover:border-accent-600 dark:hover:border-accent-600 cursor-pointer transition-colors">
+                  <input
+                    type="radio"
+                    name="timeline"
+                    value="1-3-months"
+                    required
+                    class="w-4 h-4 mt-1 text-accent-600 border-gray-300 focus:ring-accent-600"
+                  />
+                  <div class="ml-3">
+                    <div class="font-semibold text-gray-900 dark:text-white">
+                      In 1-3 months
+                    </div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                      Getting ready for implementation
+                    </div>
+                  </div>
+                </label>
+                <label
+                  class="flex items-start p-4 border-2 border-gray-200 dark:border-gray-600 rounded-lg hover:border-accent-600 dark:hover:border-accent-600 cursor-pointer transition-colors">
+                  <input
+                    type="radio"
+                    name="timeline"
+                    value="exploring"
+                    required
+                    class="w-4 h-4 mt-1 text-accent-600 border-gray-300 focus:ring-accent-600"
+                  />
+                  <div class="ml-3">
+                    <div class="font-semibold text-gray-900 dark:text-white">
+                      Not sure yet, just exploring
+                    </div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">
+                      Learning about Distr
+                    </div>
+                  </div>
+                </label>
               </div>
               <button
                 type="submit"
                 id="submit-timeline"
-                class="w-full py-3 px-6 bg-accent-600 hover:bg-accent-900 text-white font-semibold rounded-md transition-colors cursor-pointer">
-                {submitButtonText}
+                class="w-full py-3 px-6 bg-accent-600 hover:bg-accent-900 disabled:bg-gray-400 text-white font-semibold rounded-md transition-colors cursor-pointer">
+                <span id="timeline-text">{submitButtonText}</span>
+                <span id="timeline-loading" class="hidden">Completing...</span>
               </button>
             </form>
           </div>
@@ -566,7 +863,29 @@ const {
                 {successMessage}
               </p>
             </div>
-            {flowType === 'onboarding' && <CalComIFrame />}
+            <CalComIFrame />
+          </div>
+
+          <!-- Error Message -->
+          <div
+            id="errorMessage"
+            class="hidden mt-6 p-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-md">
+            <div class="flex items-center">
+              <svg
+                class="h-5 w-5 text-red-600 mr-2"
+                fill="currentColor"
+                viewBox="0 0 20 20">
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              <p
+                class="text-sm font-medium text-red-800 dark:text-red-200"
+                id="errorMessageText">
+                Something went wrong. Please try again later.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -574,68 +893,20 @@ const {
   </div>
 </div>
 
-<style>
-  .step-indicator {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    font-size: 0.875rem;
-    font-weight: 500;
-    transition: all 0.3s;
-  }
-
-  .step-indicator.active {
-    background-color: #0073aa;
-    color: white;
-  }
-
-  .step-indicator.completed {
-    background-color: #198754;
-    color: white;
-  }
-
-  .step-indicator.inactive {
-    background-color: #e7eff2;
-    color: #7b8f96;
-  }
-
-  .step-line {
-    height: 2px;
-    flex: 1;
-    transition: all 0.3s;
-  }
-
-  .step-line.completed {
-    background-color: #198754;
-  }
-
-  .step-line.inactive {
-    background-color: #e7eff2;
-  }
-
-  .step-content {
-    animation: fadeIn 0.3s ease-in;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-</style>
-
-<script define:vars={{flowType, requirePassword}}>
+<script define:vars={{flowType, requirePassword, formsServerBaseUrl}}>
   // Store user data across steps
   let userData = {};
   let currentStep = 1;
+
+  // Determine API endpoints based on flowType
+  const apiPath = `/distr/${flowType}`;
+  const initEndpoint = `${formsServerBaseUrl}${apiPath}/init`;
+  const submitEndpoint = `${formsServerBaseUrl}${apiPath}/submit`;
+  const telemetryEndpoint = `${formsServerBaseUrl}${apiPath}/telemetry`;
+
+  // Declare global variables for analytics
+  const dataLayer = window.dataLayer || [];
+  window.dataLayer = dataLayer;
 
   // Track events for analytics
   function trackEvent(eventName, properties = {}) {
@@ -717,10 +988,65 @@ const {
     if (stepParam) {
       const step = parseInt(stepParam, 10);
       if (step >= 1 && step <= 5) {
-        // Only allow navigation to later steps if we've completed earlier ones
-        // For now, we'll just start at step 1
         currentStep = 1;
       }
+    }
+  }
+
+  // Loading state management
+  function setLoadingState(buttonId, loading) {
+    const button = document.getElementById(`submit-${buttonId}`);
+    const text = document.getElementById(`${buttonId}-text`);
+    const loadingText = document.getElementById(`${buttonId}-loading`);
+
+    if (button && text && loadingText) {
+      button.disabled = loading;
+      if (loading) {
+        text.classList.add('hidden');
+        loadingText.classList.remove('hidden');
+      } else {
+        text.classList.remove('hidden');
+        loadingText.classList.add('hidden');
+      }
+    }
+  }
+
+  // Error handling
+  function showError(message) {
+    const errorMessage = document.getElementById('errorMessage');
+    const errorMessageText = document.getElementById('errorMessageText');
+
+    if (errorMessage && errorMessageText) {
+      errorMessageText.textContent = message;
+      errorMessage.classList.remove('hidden');
+      setTimeout(() => {
+        errorMessage.classList.add('hidden');
+      }, 5000);
+    }
+  }
+
+  function hideMessages() {
+    const successMessage = document.getElementById('successMessage');
+    const errorMessage = document.getElementById('errorMessage');
+    successMessage?.classList.add('hidden');
+    errorMessage?.classList.add('hidden');
+  }
+
+  // Send telemetry for steps 2-5
+  async function sendTelemetry(stepData) {
+    try {
+      await fetch(telemetryEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...userData,
+          notes: JSON.stringify(stepData),
+        }),
+      });
+    } catch (error) {
+      console.error('Telemetry error:', error);
     }
   }
 
@@ -731,8 +1057,23 @@ const {
     }
   });
 
+  // Initialize tracking when page loads
+  async function initTracking() {
+    try {
+      await fetch(initEndpoint, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    } catch (error) {
+      console.error('Init tracking error:', error);
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     initializeFromURL();
+    initTracking();
 
     // Step 1: Basic signup
     const signupForm = document.getElementById('signup');
@@ -746,7 +1087,7 @@ const {
         const confirmPassword = formData.get('confirmPassword');
 
         if (password !== confirmPassword) {
-          alert('Passwords do not match');
+          showError('Passwords do not match');
           return;
         }
       }
@@ -764,11 +1105,37 @@ const {
 
       userData = {...userData, ...data};
 
-      trackEvent('signup_step_1_completed', {email: data.email});
+      trackEvent('signup_step_1_completed', {
+        email: data.email,
+      });
 
-      // Show step indicators and move to step 2
-      document.getElementById('stepIndicators').classList.remove('hidden');
-      showStep(2);
+      // Show loading state
+      setLoadingState('signup', true);
+      hideMessages();
+
+      try {
+        const response = await fetch(submitEndpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+          // Show step indicators and move to step 2
+          document.getElementById('stepIndicators').classList.remove('hidden');
+          showStep(2);
+        } else {
+          const errorData = await response.json().catch(() => ({}));
+          showError(errorData.message || 'Failed to submit. Please try again.');
+        }
+      } catch (error) {
+        console.error('Network error:', error);
+        showError('Network error. Please check your connection and try again.');
+      } finally {
+        setLoadingState('signup', false);
+      }
     });
 
     // Step 2: Details
@@ -793,6 +1160,12 @@ const {
 
       trackEvent('signup_step_2_completed');
 
+      setLoadingState('details', true);
+
+      // Send telemetry
+      await sendTelemetry(data);
+
+      setLoadingState('details', false);
       showStep(3);
     });
 
@@ -808,7 +1181,7 @@ const {
       const expertise = Array.from(expertiseBoxes).map(cb => cb.value);
 
       if (expertise.length === 0) {
-        alert('Please select at least one area of expertise');
+        showError('Please select at least one area of expertise');
         return;
       }
 
@@ -822,6 +1195,12 @@ const {
 
       trackEvent('signup_step_3_completed');
 
+      setLoadingState('experience', true);
+
+      // Send telemetry
+      await sendTelemetry(data);
+
+      setLoadingState('experience', false);
       showStep(4);
     });
 
@@ -853,7 +1232,7 @@ const {
       const discovery = Array.from(discoveryBoxes).map(cb => cb.value);
 
       if (discovery.length === 0) {
-        alert('Please select at least one option');
+        showError('Please select at least one option');
         return;
       }
 
@@ -862,7 +1241,7 @@ const {
           ?.value || '';
 
       if (discovery.includes('other') && !otherText.trim()) {
-        alert('Please specify what "Other" refers to');
+        showError('Please specify what "Other" refers to');
         return;
       }
 
@@ -875,6 +1254,12 @@ const {
 
       trackEvent('signup_step_4_completed');
 
+      setLoadingState('discovery', true);
+
+      // Send telemetry
+      await sendTelemetry(data);
+
+      setLoadingState('discovery', false);
       showStep(5);
     });
 
@@ -890,32 +1275,33 @@ const {
 
       userData = {...userData, ...data};
 
-      trackEvent('signup_step_5_completed', {flow_type: flowType});
+      trackEvent('signup_step_5_completed', {
+        flow_type: flowType,
+      });
+
+      setLoadingState('timeline', true);
+
+      // Send telemetry
+      await sendTelemetry(data);
+
+      setLoadingState('timeline', false);
+
+      console.log('Final signup data:', userData);
 
       // Show success message
       document.querySelectorAll('.step-content').forEach(el => {
         el.classList.add('hidden');
       });
+      document.getElementById('successMessage').classList.remove('hidden');
+      document.getElementById('stepIndicators').classList.add('hidden');
 
       // Hide left column on step 5 for onboarding flow
       const leftColumn = document.getElementById('leftColumn');
       const rightColumn = document.getElementById('rightColumn');
 
-      if (flowType === 'onboarding') {
-        leftColumn?.classList.add('hidden');
-        rightColumn?.classList.remove('lg:col-span-1');
-        rightColumn?.classList.add('lg:col-span-2');
-      } else {
-        leftColumn?.classList.remove('hidden');
-        rightColumn?.classList.remove('lg:col-span-2');
-        rightColumn?.classList.add('lg:col-span-1');
-      }
-
-      document.getElementById('successMessage').classList.remove('hidden');
-      document.getElementById('stepIndicators').classList.add('hidden');
-
-      // TODO: Submit data to backend
-      console.log('Final signup data:', userData);
+      leftColumn?.classList.add('hidden');
+      rightColumn?.classList.remove('lg:col-span-1');
+      rightColumn?.classList.add('lg:col-span-2');
     });
   });
 </script>

@@ -1,18 +1,6 @@
 ---
 import StandaloneLayout from '../layouts/StandaloneLayout.astro';
 import MultiStepForm from '../components/signup/MultiStepForm.astro';
-import {
-  signupSteps,
-  installationOptions,
-  deploymentTypes,
-  roleOptions,
-  expertiseOptions,
-  companySizeOptions,
-  discoveryOptions,
-  timelineOptions,
-  featureHighlights,
-} from '~/data/signupFormData.ts';
-import CalComIFrame from '~/components/booking/CalComIFrame.astro';
 
 const pageTitle = 'Onboarding - Book a Meeting | Distr';
 const pageDescription =
@@ -26,16 +14,7 @@ const pageDescription =
     subheading="You will get a free 30 day trial access to our platform."
     ctaNote="(No credit card required.)"
     requirePassword={false}
-    signupSteps={signupSteps}
-    installationOptions={installationOptions}
-    deploymentTypes={deploymentTypes}
-    roleOptions={roleOptions}
-    expertiseOptions={expertiseOptions}
-    companySizeOptions={companySizeOptions}
-    discoveryOptions={discoveryOptions}
-    timelineOptions={timelineOptions}
-    featureHighlights={featureHighlights}
-    successTitle="Book a meeting"
+    successTitle="Finalize onboarding"
     successMessage="Thank you for your interest! We will pesonally guide you through the platform and provide you access to Distr in a short onboarding call."
     submitButtonText="Schedule onboarding"
   />
