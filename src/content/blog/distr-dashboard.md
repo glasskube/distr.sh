@@ -157,7 +157,7 @@ Removing globe.js and our charting library allowed us to reduce the bundle size 
 ## Conclusion
 
 **Is anything missing?**
-You can try out our new dashboard yourself by signing up for a free Distr account at [**_signup.distr.sh_**](/get-started/).
+You can try out our new dashboard yourself by signing up for a free Distr account at [Get Started](/get-started/).
 
 We are very excited about this new dashboard and hope you also like what we built.
 If you have any other feedback, please let us know!
