@@ -34,39 +34,6 @@ const signupSteps = [
   {step: 4, label: 'Discovery'},
   {step: 5, label: 'Timeline'},
 ];
-
-const featureHighlights = [
-  {
-    title: 'Centralized Management',
-    description:
-      'View & manage all deployments, artifacts, connected agents, self-managed & BYOC customers.',
-  },
-  {
-    title: 'Deployment Automation',
-    description:
-      'Helm and Docker agents manage deployments, collect logs and metrics, and remote troubleshooting.',
-  },
-  {
-    title: 'White-label customer portal',
-    description:
-      'Let your customers control their deployments or download your artifacts.',
-  },
-  {
-    title: 'Container registry',
-    description:
-      'Distribute OCI-compatible artifacts (Docker images, Helm charts, Terraform modules) with built-in granular access control and analytics.',
-  },
-  {
-    title: 'License Management',
-    description:
-      'Distribute specific versions of your application to specific customers.',
-  },
-  {
-    title: 'API & SDK',
-    description:
-      'Programmatically integrate external systems or embed Distr into your own application.',
-  },
-];
 ---
 
 <style>
@@ -126,30 +93,126 @@ const featureHighlights = [
           <img src={distrBrandLogo.src} alt="Distr" class="h-12 w-auto" />
         </div>
         <ul class="list-none space-y-5">
-          {
-            featureHighlights.map(feature => (
-              <li class="flex gap-3">
-                <svg
-                  class="w-6 h-6 text-green-600 flex-shrink-0 mt-1"
-                  fill="currentColor"
-                  viewBox="0 0 20 20">
-                  <path
-                    fill-rule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                <div class="flex flex-col">
-                  <h6 class="font-semibold text-gray-900 dark:text-white m-0">
-                    {feature.title}
-                  </h6>
-                  <p class="text-gray-600 dark:text-gray-400 text-sm m-0">
-                    {feature.description}
-                  </p>
-                </div>
-              </li>
-            ))
-          }
+          <li class="flex gap-3">
+            <svg
+              class="w-6 h-6 text-green-600 flex-shrink-0 mt-1"
+              fill="currentColor"
+              viewBox="0 0 20 20">
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <div class="flex flex-col">
+              <h6 class="font-semibold text-gray-900 dark:text-white m-0">
+                Centralized Management
+              </h6>
+              <p class="text-gray-600 dark:text-gray-400 text-sm m-0">
+                View & manage all deployments, artifacts, connected agents, self-managed & BYOC customers.
+              </p>
+            </div>
+          </li>
+          <li class="flex gap-3">
+            <svg
+              class="w-6 h-6 text-green-600 flex-shrink-0 mt-1"
+              fill="currentColor"
+              viewBox="0 0 20 20">
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <div class="flex flex-col">
+              <h6 class="font-semibold text-gray-900 dark:text-white m-0">
+                Deployment Automation
+              </h6>
+              <p class="text-gray-600 dark:text-gray-400 text-sm m-0">
+                Helm and Docker agents manage deployments, collect logs and metrics, and remote troubleshooting.
+              </p>
+            </div>
+          </li>
+          <li class="flex gap-3">
+            <svg
+              class="w-6 h-6 text-green-600 flex-shrink-0 mt-1"
+              fill="currentColor"
+              viewBox="0 0 20 20">
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <div class="flex flex-col">
+              <h6 class="font-semibold text-gray-900 dark:text-white m-0">
+                White-label customer portal
+              </h6>
+              <p class="text-gray-600 dark:text-gray-400 text-sm m-0">
+                Let your customers control their deployments or download your artifacts.
+              </p>
+            </div>
+          </li>
+          <li class="flex gap-3">
+            <svg
+              class="w-6 h-6 text-green-600 flex-shrink-0 mt-1"
+              fill="currentColor"
+              viewBox="0 0 20 20">
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <div class="flex flex-col">
+              <h6 class="font-semibold text-gray-900 dark:text-white m-0">
+                Container registry
+              </h6>
+              <p class="text-gray-600 dark:text-gray-400 text-sm m-0">
+                Distribute OCI-compatible artifacts (Docker images, Helm charts, Terraform modules) with built-in granular access control and analytics.
+              </p>
+            </div>
+          </li>
+          <li class="flex gap-3">
+            <svg
+              class="w-6 h-6 text-green-600 flex-shrink-0 mt-1"
+              fill="currentColor"
+              viewBox="0 0 20 20">
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <div class="flex flex-col">
+              <h6 class="font-semibold text-gray-900 dark:text-white m-0">
+                License Management
+              </h6>
+              <p class="text-gray-600 dark:text-gray-400 text-sm m-0">
+                Distribute specific versions of your application to specific customers.
+              </p>
+            </div>
+          </li>
+          <li class="flex gap-3">
+            <svg
+              class="w-6 h-6 text-green-600 flex-shrink-0 mt-1"
+              fill="currentColor"
+              viewBox="0 0 20 20">
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <div class="flex flex-col">
+              <h6 class="font-semibold text-gray-900 dark:text-white m-0">
+                API & SDK
+              </h6>
+              <p class="text-gray-600 dark:text-gray-400 text-sm m-0">
+                Programmatically integrate external systems or embed Distr into your own application.
+              </p>
+            </div>
+          </li>
         </ul>
       </div>
 
