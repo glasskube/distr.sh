@@ -11,7 +11,7 @@ import type {
   FeatureHighlight,
 } from '~/data/signupFormData.ts';
 import distrBrandLogo from '~/assets/distr-brand.svg';
-import CalBooking from '~/components/booking/CalBooking';
+import CalComIFrame from '~/components/booking/CalComIFrame.astro';
 
 interface Props {
   flowType: string;
@@ -59,7 +59,7 @@ const {
   <div class="container mx-auto px-4 max-w-[1200px]">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
       <!-- Left Column: Features -->
-      <div class="lg:col-span-1">
+      <div id="leftColumn" class="lg:col-span-1">
         <div class="flex flex-col items-start mb-8">
           <img src={distrBrandLogo.src} alt="Distr" class="h-12 w-auto" />
         </div>
@@ -92,7 +92,7 @@ const {
       </div>
 
       <!-- Right Column: Form -->
-      <div class="lg:col-span-1">
+      <div id="rightColumn" class="lg:col-span-1">
         <div
           class="bg-white dark:bg-gray-900 border border-accent-600 rounded-xl p-6 lg:p-10 shadow-2xl">
           <!-- Step Indicators -->
@@ -546,62 +546,27 @@ const {
 
           <!-- Success Message -->
           <div id="successMessage" class="hidden py-12">
-            {
-              flowType === 'onboarding' ? (
-                <div>
-                  <div class="text-center mb-8">
-                    <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30 mb-6">
-                      <svg
-                        class="h-6 w-6 text-green-600"
-                        fill="currentColor"
-                        viewBox="0 0 20 20">
-                        <path
-                          fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                      {successTitle}
-                    </h3>
-                    <p class="text-gray-600 dark:text-gray-400 mb-8">
-                      {successMessage}
-                    </p>
-                  </div>
-                  <div style="height: 600px;">
-                    <CalBooking
-                      client:load
-                      calLink="team/gk/demo"
-                      namespace="demo"
-                      layout="week_view"
-                      hideEventTypeDetails={true}
-                    />
-                  </div>
-                </div>
-              ) : (
-                <div class="text-center">
-                  <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30 mb-6">
-                    <svg
-                      class="h-6 w-6 text-green-600"
-                      fill="currentColor"
-                      viewBox="0 0 20 20">
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                    {successTitle}
-                  </h3>
-                  <p class="text-gray-600 dark:text-gray-400">
-                    {successMessage}
-                  </p>
-                </div>
-              )
-            }
+            <div class="text-center mb-8">
+              <div
+                class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30 mb-6">
+                <svg
+                  class="h-6 w-6 text-green-600"
+                  fill="currentColor"
+                  viewBox="0 0 20 20">
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                {successTitle}
+              </h3>
+              <p class="text-gray-600 dark:text-gray-400 mb-8">
+                {successMessage}
+              </p>
+            </div>
+            {flowType === 'onboarding' && <CalComIFrame />}
           </div>
         </div>
       </div>
@@ -931,6 +896,21 @@ const {
       document.querySelectorAll('.step-content').forEach(el => {
         el.classList.add('hidden');
       });
+
+      // Hide left column on step 5 for onboarding flow
+      const leftColumn = document.getElementById('leftColumn');
+      const rightColumn = document.getElementById('rightColumn');
+
+      if (flowType === 'onboarding') {
+        leftColumn?.classList.add('hidden');
+        rightColumn?.classList.remove('lg:col-span-1');
+        rightColumn?.classList.add('lg:col-span-2');
+      } else {
+        leftColumn?.classList.remove('hidden');
+        rightColumn?.classList.remove('lg:col-span-2');
+        rightColumn?.classList.add('lg:col-span-1');
+      }
+
       document.getElementById('successMessage').classList.remove('hidden');
       document.getElementById('stepIndicators').classList.add('hidden');
 
