@@ -1,8 +1,7 @@
 ---
 import {Icon} from '@astrojs/starlight/components';
 import ThemedImage from './util/ThemedImage.astro';
-import hyprmcpBlack from '../assets/distr.svg';
-import hyprmcpWhite from '../assets/distr.svg';
+import distr from '../assets/distr-brand.svg';
 ---
 
 <footer
@@ -14,8 +13,8 @@ import hyprmcpWhite from '../assets/distr.svg';
       <div class="col-span-2 lg:col-span-2">
         <div class="flex flex-col items-start mb-4">
           <ThemedImage
-            lightSrc={hyprmcpBlack}
-            darkSrc={hyprmcpWhite}
+            lightSrc={distr}
+            darkSrc={distr}
             alt="Distr Logo"
             class="w-48 mb-2"
             width={24}

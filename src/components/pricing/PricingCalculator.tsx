@@ -381,7 +381,7 @@ export default function PricingCalculator() {
             </div>
             <div class="p-6 pt-0">
               <a
-                href="https://signup.distr.sh/"
+                href="/get-started/"
                 class="inline-block w-full px-6 py-3 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-900 dark:text-white font-medium rounded-lg text-center transition-colors no-underline">
                 Get Started →
               </a>
@@ -455,7 +455,7 @@ export default function PricingCalculator() {
               </p>
               <ul class="list-none pl-0 mt-4 mb-0">
                 <li class="pl-6 relative mb-3 before:content-['✓'] before:absolute before:left-0 before:text-green-600">
-                  Up to 50 customer installs
+                  Up to 100 customer installs
                 </li>
                 <li class="pl-6 relative mb-3 before:content-['✓'] before:absolute before:left-0 before:text-green-600">
                   3 deployments per customer
@@ -535,7 +535,7 @@ export default function PricingCalculator() {
             </div>
             <div class="p-6 pt-0">
               <a
-                href="https://signup.distr.sh/"
+                href="/contact/"
                 class="inline-block w-full px-6 py-3 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-900 dark:text-white font-medium rounded-lg text-center transition-colors no-underline">
                 Contact Us →
               </a>

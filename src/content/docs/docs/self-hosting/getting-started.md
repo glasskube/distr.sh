@@ -5,9 +5,7 @@ sidebar:
   order: 0
 ---
 
-While the easiest way to use Distr is to use our [hosted version](https://signup.distr.sh/).
-Distr is written in the Go programming language with minimal dependencies on a Postgres Database
-and optional S3 compatible object storage if you want to use Distr artifacts registry.
+While the easiest way to use Distr is to use our [hosted version](/get-started/), Distr is written in the Go programming language with minimal dependencies on a Postgres Database and optional S3 compatible object storage if you want to use Distr artifacts registry.
 
 Find out more information about the inner workings of Distr at [`github.com/glasskube/distr`](https://github.com/glasskube/distr/).
 

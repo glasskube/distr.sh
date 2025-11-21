@@ -240,7 +240,7 @@ export default function ContactForm({formsServerBaseUrl}: ContactFormProps) {
       <button
         type="submit"
         disabled={isSubmitting}
-        class="w-full md:w-auto px-8 py-4 text-lg font-medium text-white bg-accent-600 hover:bg-accent-700 disabled:bg-gray-400 disabled:cursor-not-allowed rounded-lg transition-colors">
+        class="w-full md:w-auto px-8 py-4 text-lg font-medium text-white bg-accent-600 hover:bg-accent-700 disabled:bg-gray-400 disabled:cursor-not-allowed rounded-lg transition-colors cursor-pointer">
         {isSubmitting ? 'Submitting...' : 'Submit'}
       </button>
     </form>

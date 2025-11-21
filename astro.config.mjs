@@ -23,7 +23,16 @@ export default defineConfig({
       },
     }),
     preact(),
-    sitemap(),
+    sitemap({
+      filter: page => {
+        // Exclude specific pages by slug
+        const excludedSlugs = ['/onboarding/', '/get-started/'];
+        const url = new URL(page);
+        const pathname = url.pathname;
+
+        return !excludedSlugs.some(slug => slug === pathname);
+      },
+    }),
     serviceWorker(),
     starlight({
       title: 'Distr',
@@ -32,13 +41,15 @@ export default defineConfig({
         baseUrl: 'https://github.com/glasskube/distr.sh/tree/main',
       },
       lastUpdated: true,
-      head: [
-        {
-          tag: 'script',
-          attrs: {
-            type: 'text/partytown',
-          },
-          content: `(function (w, d, s, l, i) {
+      head:
+        process.env.NODE_ENV === 'production'
+          ? [
+              {
+                tag: 'script',
+                attrs: {
+                  type: 'text/partytown',
+                },
+                content: `(function (w, d, s, l, i) {
             w[l] = w[l] || [];
             w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
             var f = d.getElementsByTagName(s)[0],
@@ -49,8 +60,9 @@ export default defineConfig({
             f.parentNode.insertBefore(j, f);
           })(window, document, 'script', 'dataLayer', 'GTM-T58STPCJ');
           `,
-        },
-      ],
+              },
+            ]
+          : [],
       description: 'Open Source Software Distribution Platform',
       logo: {
         src: './src/assets/distr.svg',
@@ -120,7 +132,14 @@ export default defineConfig({
       prerender: true,
       plugins: [
         starlightLinksValidator({
-          exclude: ['/', '/pricing/', '/blog/**', '/glossary/**'],
+          exclude: [
+            '/',
+            '/pricing/',
+            '/blog/**',
+            '/glossary/**',
+            '/get-started/',
+            '/onboarding/',
+          ],
         }),
         starlightUtils({
           navLinks: {
