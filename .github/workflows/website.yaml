@@ -51,12 +51,6 @@ jobs:
           aws s3 sync dist/_astro s3://distr.sh/_astro/
           --cache-control "max-age=31536000, public, immutable"
           --acl=public-read
-      - name: Deploy telemetry
-        if: github.ref == 'refs/heads/main'
-        run: >-
-          aws s3 sync dist/~partytown s3://distr.sh/~partytown/
-          --cache-control "max-age=604800, public"
-          --acl=public-read
       - name: Deploy dynamic content
         if: github.ref == 'refs/heads/main'
         run: >-

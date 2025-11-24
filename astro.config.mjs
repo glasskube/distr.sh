@@ -1,5 +1,4 @@
 // @ts-check
-import partytown from '@astrojs/partytown';
 import preact from '@astrojs/preact';
 import sitemap from '@astrojs/sitemap';
 import starlight from '@astrojs/starlight';
@@ -17,11 +16,6 @@ export default defineConfig({
 
   integrations: [
     icon({include: {lucide: ['*']}}),
-    partytown({
-      config: {
-        forward: ['dataLayer.push'],
-      },
-    }),
     preact(),
     sitemap({
       filter: page => {
@@ -47,7 +41,7 @@ export default defineConfig({
               {
                 tag: 'script',
                 attrs: {
-                  type: 'text/partytown',
+                  type: 'text/javascript',
                 },
                 content: `(function (w, d, s, l, i) {
             w[l] = w[l] || [];
