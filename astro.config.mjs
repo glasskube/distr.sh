@@ -20,7 +20,7 @@ export default defineConfig({
     sitemap({
       filter: page => {
         // Exclude specific pages by slug
-        const excludedSlugs = ['/onboarding/', '/get-started/'];
+        const excludedSlugs = ['/onboarding/', '/get-started/', '/docs/'];
         const url = new URL(page);
         const pathname = url.pathname;
 
