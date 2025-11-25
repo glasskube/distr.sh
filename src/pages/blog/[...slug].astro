@@ -33,5 +33,16 @@ const {post} = Astro.props;
   <div class="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
     <SinglePost post={post} url={slug} />
   </div>
-  <CTASection />
+  <CTASection
+    title="Want to learn more?"
+    description=""
+    primaryButton={{
+      text: 'Download Whitepaper',
+      href: '/white-paper/building-blocks/',
+    }}
+    secondaryButton={{
+      text: 'Book Demo',
+      href: 'https://cal.glasskube.com/team/gk/demo',
+    }}
+  />
 </Layout>

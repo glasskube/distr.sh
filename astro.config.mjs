@@ -84,10 +84,10 @@ export default defineConfig({
         {
           label: 'Navbar',
           items: [
-            {label: 'Home', link: '/'},
-            {label: 'Pricing', link: '/pricing/'},
             {label: 'Docs', link: '/docs/getting-started/what-is-distr/'},
+            {label: 'Pricing', link: '/pricing/'},
             {label: 'Blog', link: '/blog/'},
+            {label: 'Case Studies', link: '/case-studies/'},
           ],
         },
         {
