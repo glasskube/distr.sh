@@ -1,6 +1,7 @@
 ---
 import {Icon} from '@astrojs/starlight/components';
 import Image from '../common/Image.astro';
+import CTASection from '../home/CTASection.astro';
 import type {Post} from '~/types.ts';
 
 export interface Props {
@@ -20,6 +21,47 @@ const formatDate = (date: Date) => {
     year: 'numeric',
   }).format(new Date(date));
 };
+
+// Function to find insertion point for CTA in the middle of content
+function findCTASectionInsertionPoint(html: string): {before: string; after: string} | null {
+  // Find all h2 and h3 opening tags with their positions
+  const headingRegex = /<h[23][^>]*>/gi;
+  const matches: Array<{index: number}> = [];
+  let match;
+  
+  while ((match = headingRegex.exec(html)) !== null) {
+    matches.push({
+      index: match.index,
+    });
+  }
+  
+  if (matches.length === 0) {
+    return null;
+  }
+  
+  // Find the heading closest to the middle
+  const middlePoint = html.length / 2;
+  let bestMatch = matches[0];
+  let bestDistance = Math.abs(matches[0].index - middlePoint);
+  
+  for (const m of matches) {
+    const distance = Math.abs(m.index - middlePoint);
+    if (distance < bestDistance) {
+      bestDistance = distance;
+      bestMatch = m;
+    }
+  }
+  
+  // Split the content before the selected heading
+  const before = html.substring(0, bestMatch.index);
+  const after = html.substring(bestMatch.index);
+  
+  return {before, after};
+}
+
+// Process the HTML content to find insertion point
+const contentHtml = post.rendered.html;
+const splitContent = findCTASectionInsertionPoint(contentHtml);
 ---
 
 <style>
@@ -160,23 +202,76 @@ const formatDate = (date: Date) => {
     </header>
 
     <!-- Article content -->
-    <div
-      class="prose prose-lg prose-gray dark:prose-invert max-w-none
-             prose-headings:font-bold prose-headings:tracking-tight
-             prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
-             prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
-             prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed
-             prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
-             prose-strong:text-gray-900 dark:prose-strong:text-gray-100
-             prose-code:text-sm prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
-             prose-pre:bg-gray-900 dark:prose-pre:bg-gray-950 prose-pre:border prose-pre:border-gray-800
-             prose-blockquote:border-l-4 prose-blockquote:border-gray-300 dark:prose-blockquote:border-gray-700
-             prose-blockquote:pl-4 prose-blockquote:italic
-             prose-img:rounded-xl prose-img:shadow-md
-             prose-ul:list-disc prose-ol:list-decimal
-             prose-li:marker:text-gray-400 dark:prose-li:marker:text-gray-600"
-      set:html={post.rendered.html}
-    />
+    {splitContent ? (
+      <>
+        <div
+          class="prose prose-lg prose-gray dark:prose-invert max-w-none
+                 prose-headings:font-bold prose-headings:tracking-tight
+                 prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
+                 prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
+                 prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed
+                 prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
+                 prose-strong:text-gray-900 dark:prose-strong:text-gray-100
+                 prose-code:text-sm prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
+                 prose-pre:bg-gray-900 dark:prose-pre:bg-gray-950 prose-pre:border prose-pre:border-gray-800
+                 prose-blockquote:border-l-4 prose-blockquote:border-gray-300 dark:prose-blockquote:border-gray-700
+                 prose-blockquote:pl-4 prose-blockquote:italic
+                 prose-img:rounded-xl prose-img:shadow-md
+                 prose-ul:list-disc prose-ol:list-decimal
+                 prose-li:marker:text-gray-400 dark:prose-li:marker:text-gray-600"
+          set:html={splitContent.before}
+        />
+        <div class="my-0 -mx-6 sm:-mx-8">
+          <CTASection
+            title="Want to learn more?"
+            description=""
+            primaryButton={{
+              text: 'Download Whitepaper',
+              href: '/white-paper/building-blocks/',
+            }}
+            secondaryButton={{
+              text: 'Book Demo',
+              href: 'https://cal.glasskube.com/team/gk/demo',
+            }}
+          />
+        </div>
+        <div
+          class="prose prose-lg prose-gray dark:prose-invert max-w-none
+                 prose-headings:font-bold prose-headings:tracking-tight
+                 prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
+                 prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
+                 prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed
+                 prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
+                 prose-strong:text-gray-900 dark:prose-strong:text-gray-100
+                 prose-code:text-sm prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
+                 prose-pre:bg-gray-900 dark:prose-pre:bg-gray-950 prose-pre:border prose-pre:border-gray-800
+                 prose-blockquote:border-l-4 prose-blockquote:border-gray-300 dark:prose-blockquote:border-gray-700
+                 prose-blockquote:pl-4 prose-blockquote:italic
+                 prose-img:rounded-xl prose-img:shadow-md
+                 prose-ul:list-disc prose-ol:list-decimal
+                 prose-li:marker:text-gray-400 dark:prose-li:marker:text-gray-600"
+          set:html={splitContent.after}
+        />
+      </>
+    ) : (
+      <div
+        class="prose prose-lg prose-gray dark:prose-invert max-w-none
+               prose-headings:font-bold prose-headings:tracking-tight
+               prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
+               prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
+               prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed
+               prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
+               prose-strong:text-gray-900 dark:prose-strong:text-gray-100
+               prose-code:text-sm prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
+               prose-pre:bg-gray-900 dark:prose-pre:bg-gray-950 prose-pre:border prose-pre:border-gray-800
+               prose-blockquote:border-l-4 prose-blockquote:border-gray-300 dark:prose-blockquote:border-gray-700
+               prose-blockquote:pl-4 prose-blockquote:italic
+               prose-img:rounded-xl prose-img:shadow-md
+               prose-ul:list-disc prose-ol:list-decimal
+               prose-li:marker:text-gray-400 dark:prose-li:marker:text-gray-600"
+        set:html={post.rendered.html}
+      />
+    )}
   </article>
 </section>
 
