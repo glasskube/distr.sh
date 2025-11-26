@@ -5,17 +5,17 @@ sidebar:
   order: 2
 ---
 
-In this guide, we will walk you through the process of onboarding a new Helm (Kubernetes) App in Distr.
+In this guide, we will walk you through the process of onboarding a new [Helm](/glossary/helm-chart/) ([Kubernetes](/glossary/kubernetes/)) App in Distr.
 
 For demonstration purposes, we will deploy the [podinfo](https://github.com/stefanprodan/podinfo) chart.
 Please note that this is just an example and you can onboard any Helm chart you like.
 
 ## Prerequisites
 
-In Distr, a Helm app consists of versions, each defined by a publicly available Helm chart.
+In Distr, a Helm app consists of versions, each defined by a publicly available [Helm chart](/glossary/helm-chart/).
 Therefore, if you want to onboard a new Docker App, you need to have a Helm chart of your software ready.
 
-You should also have access to a Kubernetes cluster and a namespace where you can deploy the Helm chart.
+You should also have access to a [Kubernetes](/glossary/kubernetes/) cluster and a namespace where you can deploy the Helm chart.
 
 ## Creating a new Helm App
 
@@ -37,7 +37,7 @@ A modal will open where you can add a new version by entering a name and the cor
 
 **Base Values and Template**
 
-You can provide a base values file and a template file for the Helm chart.
+You can provide a base values file and a template file for the [Helm chart](/glossary/helm-chart/).
 The base values file is a YAML file that contains the default values for the Helm chart.
 The template file is a file that contains the template for the Helm chart.
 

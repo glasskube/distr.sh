@@ -42,9 +42,9 @@ But first, let's define a few key terms.
 - **Manifest**: Metadata that defines how blobs are combined to form a container image.
   It can also reference other manifests in the case of a multi-arch image.
 - **Blob**: The actual data of an artifact, most commonly an archive of files.
-- **SBOM (Software Bill of Materials)**: A list of components and dependencies used in a software build. It is most common to directly add it as a layer to the OCI image.
+- **[SBOM (Software Bill of Materials)](/glossary/sbom-software-bill-of-materials/)**: A list of components and dependencies used in a software build. It is most common to directly add it as a layer to the OCI image.
 - **Image Signing**: A cryptographic process that ensures the integrity and authenticity of container images. The signature can also be directly integrated into the OCI image.
-- **OCI Compliance**: Adherence to the Open Container Initiative standards, ensuring OCI-compliant containers can be used across different platforms.
+- **[OCI Compliance](/glossary/oci-container-artifact-registry/)**: Adherence to the Open Container Initiative standards, ensuring OCI-compliant containers can be used across different platforms.
 
 ## What Is a Container Registry?
 
@@ -85,10 +85,10 @@ This affects which artifact types you can store and distribute.
 **Security & Access Controls**
 For internal use, integration with your existing IAM may be sufficient.
 For external distribution, you'll need granular controls over which artifacts are visible to which customers.
-Vulnerability scanning is also an important consideration.
+[Vulnerability scanning](/glossary/vulnerability-scanning/) is also an important consideration.
 
 **Deployment Flexibility**
-Can the registry be deployed where you need it—cloud, on-prem, or air-gapped environments?
+Can the registry be deployed where you need it—cloud, [on-premises](/glossary/on-premises-definition/), or [air-gapped](/glossary/air-gapped-meaning/) environments?
 
 **Support**
 Does the registry have a strong support community or a commercial vendor backing?

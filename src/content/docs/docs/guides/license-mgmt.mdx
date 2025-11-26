@@ -7,7 +7,7 @@ sidebar:
 
 import {Aside, Code, TabItem, Tabs} from '@astrojs/starlight/components';
 
-In this guide, we'll walk you through how to use the license management feature to control which application versions your end-customers can access.
+In this guide, we'll walk you through how to use the [license management](/glossary/software-license-management/) feature to control which application versions your end-customers can access.
 
 <Aside type="tip">
   The license management feature is currently in Beta. To request access, reach
@@ -29,7 +29,7 @@ With the licensing feature, you can link a license to a customer, allowing acces
 
 ## Use case
 
-Many vendors offer tiered pricing plans with different features and functionality. For those serving on-prem environments, granular control over version access is crucial, whether it's delivering a specific feature set, pointed hotfixes to select customers or offering early access to new application versions. This level of precision is exactly what our first beta release of the licensing feature aims to deliver.
+Many vendors offer tiered pricing plans with different features and functionality. For those serving [on-premises](/glossary/on-premises-definition/) environments, granular control over version access is crucial, whether it's delivering a specific feature set, pointed hotfixes to select customers or offering early access to new application versions. This level of precision is exactly what our first beta release of the licensing feature aims to deliver.
 
 ## License features
 
@@ -58,7 +58,7 @@ The customer can now access and deploy the assigned application version/s direct
 
 ## OCI registry authentication
 
-If your images are stored in a private OCI registry, you'll need to provide access credentials. You can configure these credentials in the lower section of the license configuration panel. Once set, the application versions will be available at the deployment target for as long as the license is valid.
+If your images are stored in a private [OCI registry](/glossary/oci-container-artifact-registry/), you'll need to provide access credentials. You can configure these credentials in the lower section of the license configuration panel. Once set, the application versions will be available at the deployment target for as long as the license is valid.
 
 ![OCI-registry-auth](../../../../assets/docs/guides/OCI-Registry-auth.png)
 
