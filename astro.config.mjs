@@ -117,7 +117,7 @@ export default defineConfig({
         },
         {
           label: 'FAQs',
-          link: '/docs/faqs',
+          link: '/docs/faqs/',
         },
       ],
       tableOfContents: {
