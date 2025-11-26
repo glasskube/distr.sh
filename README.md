@@ -7,7 +7,11 @@
 All commands are run from the root of the project, from a terminal:
 
 | Command                    | Action                                           |
+<<<<<<< HEAD
 |:---------------------------| :----------------------------------------------- |
+=======
+| :------------------------- | :----------------------------------------------- |
+>>>>>>> 303b863 (docs: add regex to fix markdown links whichout a trailing slash)
 | `pnpm install`             | Installs dependencies                            |
 | `pnpm run dev`             | Starts local dev server at `localhost:4321`      |
 | `pnpm run lint`            | Checks the prettier rules                        |
