@@ -1,4 +1,5 @@
 // @ts-check
+import mdx from '@astrojs/mdx';
 import preact from '@astrojs/preact';
 import sitemap from '@astrojs/sitemap';
 import starlight from '@astrojs/starlight';
@@ -142,6 +143,7 @@ export default defineConfig({
         }),
       ],
     }),
+    mdx(),
   ],
   markdown: {
     rehypePlugins: [[rehypeMermaid, {strategy: 'inline-svg'}]],

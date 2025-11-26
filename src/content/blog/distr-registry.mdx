@@ -16,11 +16,21 @@ tags:
   - distr-launch-week
 ---
 
+import ThemedImage from '~/components/util/ThemedImage.astro';
+import licenseLight from '../../assets/blog/2025-05-22-distr-registry/lw-license-light.png';
+import licenseDark from '../../assets/blog/2025-05-22-distr-registry/lw-license-dark.png';
+import artifactsUiLight from '../../assets/blog/2025-05-22-distr-registry/lw-artifacts-ui-light.png';
+import artifactsUiDark from '../../assets/blog/2025-05-22-distr-registry/lw-artifacts-ui-dark.png';
+import artifactsLight from '../../assets/blog/2025-05-22-distr-registry/lw-artifacts-light.png';
+import artifactsDark from '../../assets/blog/2025-05-22-distr-registry/lw-artifacts-dark.png';
+import deployLogsLight from '../../assets/blog/2025-05-22-distr-registry/lw-deploy-logs-light.png';
+import deployLogsDark from '../../assets/blog/2025-05-22-distr-registry/lw-deploy-logs-dark.png';
+
 Today, we are happy to announce that the Distr [artifact registry](https://distr.sh/docs/product/registry/) is now Generally Available (GA).
 
 Manage and distribute container images, Helm charts, and other OCI artifacts with license-based access control, audit logs, and a visual UI that makes self-managed software distribution pretty darn simple if we do say so ourselves, built for both you and your customers.
 
-<hr>
+<hr />
 
 ## Why we built a registry into Distr
 
@@ -37,8 +47,8 @@ Contracts signed.
 Excitement is high.
 But then you get a flurry of messages from your end customers along the lines of…
 
-> "We can't access your registry."  
-> "Is our firewall blocking the pull?"  
+> "We can't access your registry."
+> "Is our firewall blocking the pull?"
 > "Which version are we supposed to use?"
 
 Sound familiar?
@@ -55,7 +65,7 @@ Built for software vendors who serve end-customer with different [deployment app
 
 Here are a few of its key features:
 
-![registry-diagram](/src/assets/blog/2025-05-22-distr-registry/registry-diagram.png)
+![registry-diagram](../../assets/blog/2025-05-22-distr-registry/registry-diagram.png)
 
 ### OCI-compliant & format-flexible
 
@@ -74,7 +84,11 @@ Vendors can restrict access by using Artifacts licenses. Grant or revoke permiss
   className="app-frame mac dark borderless shadow--tl"
   data-url="app.distr.sh">
 
-![Distr Onboarding Tutorials](/src/assets/blog/2025-05-22-distr-registry/lw-license-dark.png)
+<ThemedImage
+  alt="Distr License Management"
+  lightSrc={licenseLight}
+  darkSrc={licenseDark}
+/>
 
 </div>
 
@@ -92,13 +106,21 @@ Use any OCI compliant CLI for pushing and pulling, and use the Distr Registry UI
   className="app-frame mac dark borderless shadow--tl"
   data-url="app.distr.sh">
 
-![General Artifact UI](/src/assets/blog/2025-05-22-distr-registry/lw-artifacts-ui-dark.png)
+<ThemedImage
+  alt="General Artifact UI"
+  lightSrc={artifactsUiLight}
+  darkSrc={artifactsUiDark}
+/>
 
 </div>
 
 **Deployment tracking UI**
 
-![Deployment tracking UI](/src/assets/blog/2025-05-22-distr-registry/lw-artifacts-dark.png)
+<ThemedImage
+  alt="Deployment tracking UI"
+  lightSrc={artifactsLight}
+  darkSrc={artifactsDark}
+/>
 
 The Downloads page gives granular artifact consumption logs
 
@@ -108,7 +130,11 @@ The Downloads page gives granular artifact consumption logs
   className="app-frame mac dark borderless shadow--tl"
   data-url="app.distr.sh">
 
-![Download audit logs UI](/src/assets/blog/2025-05-22-distr-registry/lw-deploy-logs-dark.png)
+<ThemedImage
+  alt="Download audit logs UI"
+  lightSrc={deployLogsLight}
+  darkSrc={deployLogsDark}
+/>
 
 </div>
 ## What's next for the Registry?

@@ -17,12 +17,19 @@ tags:
   - metrics
 ---
 
+import ThemedImage from '~/components/util/ThemedImage.astro';
+import dashboardOldLight from '../../assets/blog/2025-05-21-dashboard/distr-dashboard-light-old.webp';
+import dashboardOldDark from '../../assets/blog/2025-05-21-dashboard/distr-dashboard-dark-old.webp';
+import dashboardLight from '../../assets/blog/2025-05-21-dashboard/distr-dashboard-light.webp';
+import dashboardDark from '../../assets/blog/2025-05-21-dashboard/distr-dashboard-dark.webp';
+import {TabItem, Tabs} from '@astrojs/starlight/components';
+
 I am Philip—an engineer working at Glasskube, which helps software and AI companies distribute their applications to self-managed environments.
 We build an Open Source Software Distribution platform called Distr ([`github.com/glasskube/distr`](https://github.com/glasskube/distr)).
 
 Adding support for multiple deployments per target and introducing metrics forced us to rethink our current dashboard and led to redesigning it from scratch.
 
-<hr>
+<hr />
 
 ## Previous version of the Distr Dashboard
 
@@ -34,7 +41,11 @@ To be quite frank, our users didn't mind having these components on our old dash
   className="app-frame mac dark borderless shadow--tl"
   data-url="app.distr.sh">
 
-![Previous Distr Dashboard](/src/assets/blog/2025-05-21-dashboard/distr-dashboard-dark-old.webp)
+<ThemedImage
+  alt="Previous Distr Dashboard"
+  lightSrc={dashboardOldLight}
+  darkSrc={dashboardOldDark}
+/>
 
 </div>
 <center>
@@ -57,7 +68,11 @@ Our new dashboard is a unified view for software vendors to check all their cust
   className="app-frame mac dark borderless shadow--tl"
   data-url="app.distr.sh">
 
-![Previous Distr Dashboard](/src/assets/blog/2025-05-21-dashboard/distr-dashboard-dark.webp)
+<ThemedImage
+  alt="Current Distr Dashboard"
+  lightSrc={dashboardLight}
+  darkSrc={dashboardDark}
+/>
 
 </div>
 <center>
@@ -103,7 +118,7 @@ Removing globe.js and our charting library allowed us to reduce the bundle size 
     ```shell
     # @glasskube/distr@1.9.1 build
     ng build --configuration=production --source-map=true
-    
+
     ❯ Building...
     ✔ Building...
     Initial chunk files   | Names                |  Raw size | Estimated transfer size
@@ -114,21 +129,22 @@ Removing globe.js and our charting library allowed us to reduce the bundle size 
     chunk-THV5RBBS.js     | -                    | 107.63 kB |                25.78 kB
     polyfills-Q763KACN.js | polyfills            |  34.57 kB |                11.36 kB
     chunk-LFJUVAQA.js     | -                    |   1.03 kB |               471 bytes
-        
+
                             Initial total        |   1.08 MB |               270.49 kB
-    
+
     Lazy chunk files      | Names                |  Raw size | Estimated transfer size
     chunk-RMHGQFCR.js     | app-logged-in-routes | 704.54 kB |               154.39 kB
     chunk-5L57ZTDX.js     | browser              |  63.98 kB |                17.13 kB
     chunk-YLK7DU7V.js     | nav-shell-component  |  23.30 kB |                 5.43 kB
     chunk-JISBMPPF.js     | -                    |   4.30 kB |                 1.48 kB
     ```
+
   </TabItem>
   <TabItem value="old" label="Previous Distr Dashboard">
     ```shell
     # @glasskube/distr@1.4.5 build
     ng build --configuration=production
-    
+
     ❯ Building...
     ✔ Building...
     Initial chunk files   | Names                |  Raw size | Estimated transfer size
@@ -141,9 +157,9 @@ Removing globe.js and our charting library allowed us to reduce the bundle size 
     chunk-XGBYAQK4.js     | -                    |  47.58 kB |                13.69 kB
     polyfills-FFHMD2TL.js | polyfills            |  34.52 kB |                11.28 kB
     chunk-7BXBZ5JU.js     | -                    |   1.91 kB |               840 bytes
-        
+
                             Initial total        |   2.16 MB |               524.93 kB
-    
+
     Lazy chunk files      | Names                |  Raw size | Estimated transfer size
     chunk-3HCZJOWX.js     | dashboard--component |   1.76 MB |               360.09 kB
     chunk-3OFHP4XL.js     | apexcharts-esm       | 571.10 kB |               127.67 kB
