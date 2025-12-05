@@ -18,4 +18,4 @@ We are using [semantic versioning](https://semver.org/) for the releases of Dist
 ## Enterprise Support
 
 We also offer enterprise support for self-hosting Distr in your own environment.
-If you are interested, make sure [to get in touch](https://distr.sh/contact/).
+If you are interested, make sure [to get in touch](/contact/).
