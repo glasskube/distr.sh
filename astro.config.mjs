@@ -163,6 +163,7 @@ export default defineConfig({
     '/docs/getting-started/how-it-works/': '/docs/core-concepts/',
     '/docs/getting-started/core-concepts/': '/docs/core-concepts/',
     '/docs/getting-started/quickstart/': '/docs/quickstart/',
+    '/docs/getting-started/deployment-methods/': '/docs/subscription/',
     '/docs/product/distr-hub/': '/docs/product/vendor-portal/',
     '/docs/use-cases/self-managed/': '/docs/use-cases/fully-self-managed/',
     '/docs/use-cases/byoc/': '/docs/use-cases/byoc-bring-your-own-cloud/',
