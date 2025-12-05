@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'preact/hooks';
+import {useEffect, useState} from 'preact/hooks';
 
 export default function PricingCalculator() {
   const [internalUsers, setInternalUsers] = useState(1);
@@ -63,14 +63,14 @@ export default function PricingCalculator() {
   // Check if plans are within limits
   const isStarterAvailable = externalCustomers <= starterMaxExternalCustomers;
   const isProAvailable = externalCustomers <= proMaxExternalCustomers;
-  
+
   // Check if more than 100 customers (Enterprise only)
   const isEnterpriseOnly = externalCustomers > proMaxExternalCustomers;
-  
+
   // Check if plans should be blurred based on currency or customer count
   const shouldBlurStarter = !isStarterAvailable || currency === '€';
   const shouldBlurPro = !isProAvailable || currency === '€' || isEnterpriseOnly;
-  
+
   // Force yearly billing when Enterprise only (more than 100 customers) or EUR selected
   const shouldForceYearly = isEnterpriseOnly || currency === '€';
 
@@ -191,7 +191,7 @@ export default function PricingCalculator() {
       setBillingCycle('yearly');
     }
   };
-  
+
   // Auto-switch to yearly when customer count exceeds Pro limit
   useEffect(() => {
     if (isEnterpriseOnly && billingCycle === 'monthly') {
@@ -344,9 +344,7 @@ export default function PricingCalculator() {
           {/* Starter Plan */}
           <div
             class={`mt-10 min-h-[55rem] flex flex-col bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 transition-all ${
-              shouldBlurStarter
-                ? 'opacity-50 blur-sm pointer-events-none'
-                : ''
+              shouldBlurStarter ? 'opacity-50 blur-sm pointer-events-none' : ''
             }`}>
             <div class="flex justify-center items-center flex-col p-6 text-center min-h-[18rem]">
               <h3 class="text-xl font-semibold">Starter</h3>
@@ -359,7 +357,8 @@ export default function PricingCalculator() {
                 {currency}
                 {formatPrice(starterInternalUserPrice)}/internal user +{' '}
                 {currency}
-                {formatPrice(starterExternalCustomerPrice)}/customer organization
+                {formatPrice(starterExternalCustomerPrice)}/customer
+                organization
                 <br />
                 <span class="text-xs text-gray-600 dark:text-gray-400 font-normal">
                   Up to {starterMaxExternalCustomers} customer organizations
@@ -442,8 +441,8 @@ export default function PricingCalculator() {
                   <>
                     <br />
                     {currency}
-                    {formatPrice(proExternalCustomerPrice)}/customer organization
-                    (first 50) + {currency}
+                    {formatPrice(proExternalCustomerPrice)}/customer
+                    organization (first 50) + {currency}
                     {formatPrice(
                       billingCycle === 'monthly'
                         ? proExternalCustomerPriceMonthlyTier2
@@ -455,7 +454,8 @@ export default function PricingCalculator() {
                   <>
                     {' '}
                     + {currency}
-                    {formatPrice(proExternalCustomerPrice)}/customer organization
+                    {formatPrice(proExternalCustomerPrice)}/customer
+                    organization
                   </>
                 )}
                 <br />

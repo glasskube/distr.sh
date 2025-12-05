@@ -43,7 +43,7 @@ export const PricingFAQs: PricingFAQ[] = [
     answer:
       'A customer represents one of your end customers organizations who will install and use your software in their own environment. Each customer organization gets access to their own Customer Portal where they can view deployments, download artifacts, and manage their installation. Customer users (multiple users per customer organization with role-based access control) are only available in Pro, Enterprise, and Pro Trial plans. In the Starter plan, each customer organization is limited to one user. Learn more about <a href="/docs/product/roles-and-user-management/" class="text-[#00b5eb] hover:underline">customer roles and user management</a>.',
   },
-  
+
   {
     id: 'how-long-to-integrate',
     question: 'How long does it take to integrate Distr?',
@@ -70,7 +70,8 @@ export const PricingFAQs: PricingFAQ[] = [
   },
   {
     id: 'change-billing-cycle',
-    question: 'Can I change my billing cycle from monthly to yearly (or vice versa)?',
+    question:
+      'Can I change my billing cycle from monthly to yearly (or vice versa)?',
     answer:
       'To change your billing cycle (e.g., from monthly to yearly or yearly to monthly), please contact us via email at support@glasskube.com. Our team will help you switch between billing cycles.',
   },
