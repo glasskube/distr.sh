@@ -34,14 +34,15 @@
   --color-accent-950: #00273d;
 
   /* Distr.sh color palette - Gray colors */
-  --color-gray-100: #f3f7f9;
-  --color-gray-200: #e7eff2;
-  --color-gray-300: #bac4c8;
-  --color-gray-400: #7b8f96;
-  --color-gray-500: #495c62;
-  --color-gray-700: #2a3b41;
-  --color-gray-800: #182a2f;
-  --color-gray-900: #121a1c;
+  --color-gray-100: oklch(96.7% 0.003 264.542);
+  --color-gray-200: oklch(92.8% 0.006 264.531);
+  --color-gray-300: oklch(87.2% 0.01 258.338);
+  --color-gray-400: oklch(70.7% 0.022 261.325);
+  --color-gray-500: oklch(55.1% 0.027 264.364);
+  --color-gray-600: oklch(44.6% 0.03 256.802);
+  --color-gray-700: oklch(37.3% 0.034 259.733);
+  --color-gray-800: oklch(27.8% 0.033 256.848);
+  --color-gray-900: oklch(21% 0.034 264.665);
 }
 
 /*Add additional Tailwind styles to this file:*/
