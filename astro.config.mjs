@@ -92,7 +92,7 @@ export default defineConfig({
           items: [
             {label: 'Home', link: '/'},
             {label: 'Pricing', link: '/pricing/'},
-            {label: 'Docs', link: '/docs/getting-started/what-is-distr/'},
+            {label: 'Docs', link: '/docs/'},
             {label: 'Blog', link: '/blog/'},
           ],
         },
@@ -157,14 +157,17 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   redirects: {
-    '/docs/': '/docs/getting-started/what-is-distr/',
-    '/docs/getting-started/about/': '/docs/getting-started/what-is-distr/',
-    '/docs/getting-started/how-it-works/':
-      '/docs/getting-started/core-concepts/',
+    '/docs/getting-started/': '/docs/',
+    '/docs/getting-started/about/': '/docs/',
+    '/docs/getting-started/what-is-distr/': '/docs/',
+    '/docs/getting-started/how-it-works/': '/docs/core-concepts/',
+    '/docs/getting-started/core-concepts/': '/docs/core-concepts/',
+    '/docs/getting-started/quickstart/': '/docs/quickstart/',
     '/docs/product/distr-hub/': '/docs/product/vendor-portal/',
     '/docs/use-cases/self-managed/': '/docs/use-cases/fully-self-managed/',
     '/docs/use-cases/byoc/': '/docs/use-cases/byoc-bring-your-own-cloud/',
     '/docs/product/faqs/': '/docs/faqs/',
     '/docs/privacy-policy/': '/privacy-policy/',
+    '/docs/guides/license-mgmt/': '/docs/guides/application-licenses/',
   },
 });
