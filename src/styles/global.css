@@ -27,13 +27,13 @@
   --font-display: 'Poppins', 'Inter', 'system-ui', 'sans-serif';
   --font-mono: 'monospace';
 
-  /* Glasskube.dev color palette - Accent colors */
+  /* Distr.sh color palette - Accent colors */
   --color-accent-200: #92d1fe;
   --color-accent-600: #0073aa;
   --color-accent-900: #003653;
   --color-accent-950: #00273d;
 
-  /* Glasskube.dev color palette - Gray colors */
+  /* Distr.sh color palette - Gray colors */
   --color-gray-100: oklch(96.7% 0.003 264.542);
   --color-gray-200: oklch(92.8% 0.006 264.531);
   --color-gray-300: oklch(87.2% 0.01 258.338);
