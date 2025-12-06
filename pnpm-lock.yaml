@@ -31,7 +31,7 @@ importers:
         version: 5.2.7
       '@iconify-json/lucide':
         specifier: ^1.2.73
-        version: 1.2.78
+        version: 1.2.79
       '@lorenzo_lewis/starlight-utils':
         specifier: ^0.3.2
         version: 0.3.2(@astrojs/starlight@0.36.3(astro@5.16.0(@types/node@22.15.19)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@2.79.2)(terser@5.44.1)(typescript@5.8.3)))(astro@5.16.0(@types/node@22.15.19)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@2.79.2)(terser@5.44.1)(typescript@5.8.3))
@@ -863,8 +863,8 @@ packages:
     resolution: {integrity: sha512-JUOtgFW6k9u4Y+xeIaEiLr3+cjoUPiAuLXoyKOJSia6Duzb7pq+A76P9ZdPDoAoxHdHzq6gE9/jKBGXlZT8FbA==}
     engines: {node: '>=6'}
 
-  '@iconify-json/lucide@1.2.78':
-    resolution: {integrity: sha512-TqIzEzBCjs1IOUre/NBKhg29DkL6+Vqh93SD9V189TwIEl5Kl2dBSL7OZ0pjjF1ru8HQ1bllBo/oS0YYVUTPgA==}
+  '@iconify-json/lucide@1.2.79':
+    resolution: {integrity: sha512-CcwoXfC2Y7UVW0PXopmXtB4Do/eUJkhAqQqOnVENEiw3FwU707TK4uyIUqdo9tlvBaFBl95wnJf3smqsTnSyKA==}
 
   '@iconify/tools@4.1.4':
     resolution: {integrity: sha512-s6BcNUcCxQ3S6cvhlsoWzOuBt8qKXdVyXB9rT57uSJ/ARHD7dVM43+5ERBWn3tmkMWXeJ/s9DPVc3dUasayzeA==}
@@ -5265,7 +5265,7 @@ snapshots:
 
   '@fortawesome/fontawesome-free@6.7.2': {}
 
-  '@iconify-json/lucide@1.2.78':
+  '@iconify-json/lucide@1.2.79':
     dependencies:
       '@iconify/types': 2.0.0
 
