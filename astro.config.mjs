@@ -165,5 +165,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     '/docs/product/faqs/': '/docs/faqs/',
     '/docs/privacy-policy/': '/privacy-policy/',
     '/docs/guides/license-mgmt/': '/docs/guides/application-licenses/',
+    '/docs/guides/onboarding-a-new-customer/': '/docs/product/rbac/',
   },
 });
