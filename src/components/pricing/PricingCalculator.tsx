@@ -343,7 +343,7 @@ export default function PricingCalculator() {
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Starter Plan */}
           <div
-            class={`mt-10 min-h-[55rem] flex flex-col bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 transition-all ${
+            class={`mt-10 min-h-[50rem] flex flex-col bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 transition-all ${
               shouldBlurStarter ? 'opacity-50 blur-sm pointer-events-none' : ''
             }`}>
             <div class="flex justify-center items-center flex-col p-6 text-center min-h-[18rem]">
@@ -421,7 +421,7 @@ export default function PricingCalculator() {
 
           {/* Pro Plan */}
           <div
-            class={`mt-5 min-h-[60rem] flex flex-col bg-white dark:bg-gray-900 rounded-lg shadow-lg border-2 border-[#00b5eb] relative pt-4 transition-all ${
+            class={`mt-5 min-h-[55rem] flex flex-col bg-white dark:bg-gray-900 rounded-lg shadow-lg border-2 border-[#00b5eb] relative pt-4 transition-all ${
               shouldBlurPro ? 'opacity-50 blur-sm pointer-events-none' : ''
             }`}>
             <div class="absolute top-0 left-0 right-0 bg-[#00b5eb] text-white py-1.5 text-base font-medium z-10 shadow-md text-center w-full">
@@ -526,7 +526,7 @@ export default function PricingCalculator() {
           </div>
 
           {/* Enterprise Plan */}
-          <div class="mt-10 min-h-[55rem] flex flex-col bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
+          <div class="mt-10 min-h-[50rem] flex flex-col bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
             <div class="flex justify-center items-center flex-col p-6 text-center min-h-[18rem]">
               <h3 class="text-xl font-semibold">Enterprise</h3>
               <div class="text-4xl font-bold my-2">Get a Demo</div>
@@ -573,6 +573,31 @@ export default function PricingCalculator() {
               </a>
             </div>
           </div>
+        </div>
+
+        {/* Self-Hosting Info Box */}
+        <div class="mt-20 w-2/3 mx-auto p-6 bg-gradient-to-r from-[#00b5eb]/10 to-[#174c76]/10 dark:from-[#00b5eb]/20 dark:to-[#174c76]/20 rounded-lg border-2 border-[#00b5eb]/30 dark:border-[#00b5eb]/50">
+          <h3 class="text-2xl font-bold mb-3 text-gray-900 dark:text-white">
+            Self-Hosting Distr?
+          </h3>
+          <p class="text-base leading-relaxed text-gray-700 dark:text-gray-300 mb-0">
+            Use our{' '}
+            <a
+              href="https://github.com/glasskube/distr"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-[#00b5eb] hover:text-[#174c76] dark:text-[#00b5eb] dark:hover:text-[#4ec9f0] font-medium underline">
+              community edition
+            </a>{' '}
+            with unlimited users and customer organizations for free with all
+            Starter features included. For self-hosting our Pro edition, please{' '}
+            <a
+              href="/contact/"
+              class="text-[#00b5eb] hover:text-[#174c76] dark:text-[#00b5eb] dark:hover:text-[#4ec9f0] font-medium underline">
+              contact us
+            </a>
+            .
+          </p>
         </div>
       </div>
     </section>
