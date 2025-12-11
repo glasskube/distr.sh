@@ -32,7 +32,7 @@ I'll admit upfront, this blog post may include a few opinionated takes. Since th
 
 Throughout the article, we'll reference the following terms multiple times. Defining them upfront will help avoid any confusion.
 
-- **Software Vendor**: A company that creates a software product, providing it to customers who use it within their own operations.
+- **[Software Vendor](/glossary/isv-meaning/)**: A company that creates a software product, providing it to customers who use it within their own operations. For more on what ISVs are, see our [ISV definition](/glossary/isv-meaning/).
 - **Software Customer**: A company that has a contractual agreement to purchase and use a vendor's software.
 - **Infrastructure Management**: This is the process of configuring, maintaining, troubleshooting, and provisioning the infrastructure on which a given software runs.
 - **Infrastructure Ownership**: Refers to the entity that owns the infrastructure itself. Ownership is distinct from management, in some cases, customer-owned infrastructure may still be managed by the vendor.
@@ -72,7 +72,7 @@ BYOC is usually used by **large enterprises and organizations operating in highl
 
 There's also a strong case for users who may not have the strictest compliance requirements but have invested in bulk cloud resources at a discounted rate. Many companies purchase reserved instances or commit to bulk cloud usage for preferential pricing, and BYOC allows them to make the most of these resources, maximizing the value of their cloud savings.
 
-> **Note:** The elephant in the BYOC room is that, while some companies may appreciate the convenience of having their infrastructure managed by a software provider—even within an isolated Kubernetes cluster or a dedicated set of VMs—many others will never be comfortable granting infrastructure management permissions or allowing a vendor any level of access to push software into their environments. Making BYOC a non-viable option for many.
+> **Note:** The elephant in the BYOC room is that, while some companies may appreciate the convenience of having their infrastructure managed by a software provider—even within an isolated [Kubernetes](/glossary/kubernetes/) cluster or a dedicated set of VMs—many others will never be comfortable granting infrastructure management permissions or allowing a vendor any level of access to push software into their environments. Making BYOC a non-viable option for many. Learn more about [Kubernetes](/glossary/kubernetes/) and container orchestration.
 
 ### Self-managed
 
@@ -134,7 +134,7 @@ Self-Managed provides the highest level of security for organizations that need 
 
 In SaaS, the vendor takes on nearly all responsibilities, from security to infrastructure management, leaving the customer to manage only access. BYOC shifts some of this responsibility back to the customer, who owns and secures their cloud environment. Customers are assured that data remains within their domain, while the vendor manages the software and parts of the infrastructure within those boundaries.
 
-Self-managed, on the other hand, places full responsibility on the customer, granting them complete control but requiring substantial internal resources. However, software vendors can still play a significant role in supporting successful self-managed deployments. This includes designing self-managed-ready software, securing the underlying images it's built on, providing image-serving registries (via proxies or archive files for air-gapped environments), and ensuring simple, clear upgrade processes. While the responsibility for deploying and managing the software ultimately lies with the customer, vendors can significantly improve the chances of a smooth and healthy deployment by removing unnecessary complexity and avoiding dependency on vendor involvement at every step.
+Self-managed, on the other hand, places full responsibility on the customer, granting them complete control but requiring substantial internal resources. However, software vendors can still play a significant role in supporting successful self-managed deployments. This includes designing self-managed-ready software, securing the underlying images it's built on, providing image-serving registries (via proxies or archive files for [air-gapped](/glossary/air-gapped-meaning/) environments), and ensuring simple, clear upgrade processes. For a complete guide to [air-gapped deployments](/glossary/air-gapped-meaning/), see our glossary. While the responsibility for deploying and managing the software ultimately lies with the customer, vendors can significantly improve the chances of a smooth and healthy deployment by removing unnecessary complexity and avoiding dependency on vendor involvement at every step.
 
 The spectrum from SaaS to Self-Managed reflects the trade-off between control and operational burden, with customers weighing vendor support against the autonomy they seek.
 

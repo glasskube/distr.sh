@@ -24,7 +24,7 @@ tags:
 
 In recent years, companies of all sizes have faced a wave of new regulations and compliance demands, reshaping the landscape of software procurement. Enterprise customers now face heightened scrutiny over the tools they integrate, with each new application needing to meet strict security, regulatory, and data protection standards. It's no longer just about onboarding any awl technology in-house, it's about ensuring that every new piece of software can withstand regulatory scrutiny.
 
-For Software and AI companies, this shift means the days of simply convincing a single decision-maker with a product demo and only needing a credit card number are gone. Today's enterprise customers have to deal with internal controls, legal reviews, and compliance checks before they can approve any new software. As a vendor, understanding exactly in which ways their end-customers hands are tied and preparing for their specific constraints is crucial if you want to sell software they can actually adopt.
+For [Software and AI companies](/glossary/isv-meaning/), this shift means the days of simply convincing a single decision-maker with a product demo and only needing a credit card number are gone. These [Independent Software Vendors (ISVs)](/glossary/isv-meaning/) face unique distribution challenges. Today's enterprise customers have to deal with internal controls, legal reviews, and compliance checks before they can approve any new software. As a vendor, understanding exactly in which ways their end-customers hands are tied and preparing for their specific constraints is crucial if you want to sell software they can actually adopt.
 
 In industries like healthcare, banking, and government, customers can't just [hand over a credit card](/glossary/saas-definition/) and grant access to their infrastructure. Vendor have to offer a more thoughtful approach to software delivery.
 
@@ -76,7 +76,7 @@ Security is paramount in [self-managed](/glossary/self-managed-software/) enviro
 Have security in mind a the deepest base level of your software. Start with secure, minimal base images:
 
 - Use **distroless images** to reduce attack surfaces.
-- Apply **cryptographic signatures** to ensure image integrity.
+- Apply **cryptographic signatures** to ensure image integrity. Learn more about [image signing and verification](/glossary/oci-container-artifact-registry/#image-signing-and-verification) in our container registry guide.
 - Regularly scan images for vulnerabilities and host them in trusted registries.
 
 ## 2. Perform Deployment Target Validations
@@ -100,12 +100,12 @@ To provide this level of assurance, vendors need to rigorously test their softwa
 
 ![Licensing](../../assets/blog/2025-01-02-5-ways-to-succeed/licensing.jpg)
 
-Licensing is the mechanism through which vendors control the access and define the feature set of the software that is sold to end-customers. A well-designed licensing system codifies software contracts and integrates seamlessly with the application, often via a license server during startup or runtime. For self-managed deployments, this system has to account for the fact that vendors won't have direct access to the end customer's environment. This makes it essential for licensing to be built-in, unobtrusive, and highly targeted.
+[Licensing](/glossary/software-license-management/) is the mechanism through which vendors control the access and define the feature set of the software that is sold to end-customers. For a comprehensive guide to [software license management](/glossary/software-license-management/), see our glossary. A well-designed licensing system codifies software contracts and integrates seamlessly with the application, often via a license server during startup or runtime. For self-managed deployments, this system has to account for the fact that vendors won't have direct access to the end customer's environment. This makes it essential for licensing to be built-in, unobtrusive, and highly targeted.
 
 ### Two Primary Approaches to Licensing
 
 1.  **Simple On/Off Licensing**:
-    This straightforward approach uses a license key to activate or deactivate an entire deployment or by simply giving access to a private container registry. While it's easy to implement and manage, it offers limited flexibility. Essentially, the license acts as a switch, either granting or denying access to the entire application.
+    This straightforward approach uses a license key to activate or deactivate an entire deployment or by simply giving access to a private [container registry](/glossary/oci-container-artifact-registry/). While it's easy to implement and manage, it offers limited flexibility. Essentially, the license acts as a switch, either granting or denying access to the entire application. Learn more about [container registries](/glossary/oci-container-artifact-registry/) and how they work.
 
 2.  **Feature-Flag Licensing**:
     This approach uses a more granular licensing system, where individual features within an application deployment can be unlocked or restricted via feature flags, this method also allows for dynamic pricing based on users, data usage or storage. While this method provides greater flexibility to tailor features to customer needs, it requires more effort to implement and maintain due to the complexity of managing feature states and dependencies.
