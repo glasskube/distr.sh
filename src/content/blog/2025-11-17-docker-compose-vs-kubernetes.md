@@ -7,7 +7,7 @@ slug: 'docker-compose-vs-kubernetes'
 authors:
   - name: 'Louis Weston'
     role: 'Co-Founder'
-    image: '/src/assets/blog/authors/Louis.png'
+    image: '/src/assets/blog/authors/louis.jpg'
     linkedIn: https://www.linkedin.com/in/louisnweston/
     gitHub: https://github.com/thekubernaut
 image: '/src/assets/blog/2025-11-17-docker-compose-vs-kubernetes/hero.png'
@@ -122,8 +122,8 @@ Docker Compose gets you from zero to deployed in hours. A simple `docker-compose
 When customers have issues, Docker Compose debugging is straightforward:
 
 ```bash
-docker-compose logs
-docker-compose ps
+docker compose logs
+docker compose ps
 docker exec -it container_name bash
 ```
 
@@ -182,11 +182,8 @@ This simple structure handles 80% of distribution use cases.
 Docker Compose doesn't mean you're limited to single nodes. Progressive scaling options:
 
 1. **Single Node**: Standard Docker Compose
-
 2. **High Availability**: Docker Compose with external load balancer
-
 3. **Multi-Node**: Docker Swarm mode (minimal changes required)
-
 4. **Migration Path**: Convert to Kubernetes when needed
 
 ## Kubernetes: When Complexity Pays Off
@@ -263,17 +260,14 @@ The most successful distribution strategies often support both:
    - Faster initial development
    - Simpler testing
    - Quick customer validation
-
 2. **Extract configuration patterns**
    - Identify common environment variables
    - Standardize volume mounts
    - Document networking requirements
-
 3. **Create Helm charts that mirror Docker Compose structure**
    - Same environment variables
    - Similar service names
    - Compatible networking
-
 4. **Maintain parity**
    - Test both deployment methods
    - Keep documentation synchronized
@@ -364,21 +358,15 @@ If you're selling $100k+ deals exclusively to Global 2000 companies, they expect
 ### Docker Compose Mistakes
 
 1. **No resource limits** - Always set memory and CPU limits
-
 2. **Hardcoded configurations** - Use environment variables
-
 3. **Missing health checks** - Add them for automated recovery
-
 4. **No backup strategy** - Document volume backup procedures
 
 ### Kubernetes Mistakes
 
 1. **Over-engineering** - Start with simple deployments
-
 2. **Ignoring RBAC** - Security matters in enterprise environments
-
 3. **Complex Helm charts** - Keep them maintainable
-
 4. **No resource requests/limits** - Prevents cluster stability issues
 
 ## Practical Next Steps
@@ -386,37 +374,25 @@ If you're selling $100k+ deals exclusively to Global 2000 companies, they expect
 ### If You Choose Docker Compose:
 
 1. Create a reference `docker-compose.yml`
-
 2. Document environment variables
-
 3. Test on different Docker versions
-
 4. Plan for eventual scaling needs
-
 5. Build monitoring and logging strategy
 
 ### If You Choose Kubernetes:
 
 1. Start with basic Helm charts
-
 2. Test on different Kubernetes versions
-
 3. Document minimum cluster requirements
-
 4. Create pre-flight check scripts
-
 5. Build kubectl-free management tools
 
 ### If You Choose Both:
 
 1. Maintain configuration parity
-
 2. Automate testing for both
-
 3. Create clear customer guidance
-
 4. Plan resource allocation
-
 5. Document migration paths
 
 ## Conclusion: Start Simple, Scale Smart
