@@ -34,7 +34,7 @@ Let's explore five ways software vendors can succeed without direct access to th
 
 ## 1. Build Software that is "self-managed Ready"
 
-![self-managed ready software](/src/assets/blog/2025-01-02-5-ways-to-succeed/self-managed-ready.jpg)
+![self-managed ready software](../../assets/blog/2025-01-02-5-ways-to-succeed/self-managed-ready.jpg)
 
 The first key consideration to keep in mind is that you have to build software that, for lack of a better way of putting it, is "[self-managed ready](/glossary/self-managed-software/)". End-customer's should not be expected to have more than the minimal knowledge of how your software works, they should be given a set of installation steps to get up and running that simply work. Beyond installation, your software must be architected for easy updates, seamless rollbacks, and compliance with modern safety, performance, and reliability standards. Let's break down what "self-managed ready" entails and the components that make it possible.
 
@@ -53,7 +53,7 @@ A consistent, and what many consider to be a software versioning best practice i
 Examples across varied environments of optimized packaging prepared for each potential target:
 
 - Use **multi-architecture Docker images** to support diverse systems.
-- Provide **metadata-rich Helm charts** with versioning and repository links for transparency.
+- Provide **metadata-rich [Helm charts](/glossary/helm-chart/)** with versioning and repository links for transparency.
 
 ### Cloud-Native Portability
 
@@ -61,14 +61,14 @@ Portability as mentioned before is hugely beneficial as application might be dyn
 
 - Externalize configurations using environment variables.
 - Treat backing services like databases as replaceable resources.
-- Offer deployment methods compatible with VMs, bare-metal, and Kubernetes.
+- Offer deployment methods compatible with VMs, bare-metal, and [Kubernetes](/glossary/kubernetes/).
 
 ### SBOM (Software Bill of Materials)
 
-Security is paramount in self-managed environments and any environment for that matter. So, generate an SBOM during building your application in your CI/CD pipeline to:
+Security is paramount in [self-managed](/glossary/self-managed-software/) environments and any environment for that matter. So, generate an [SBOM](/glossary/sbom-software-bill-of-materials/) during building your application in your CI/CD pipeline to:
 
 - Document dependencies and licensing for compliance.
-- Identify vulnerabilities through automated CVE scans.
+- Identify vulnerabilities through automated [CVE](/glossary/cve-common-vulnerabilities-and-exposures/) scans.
 - Build trust by providing customers with transparent software component details.
 
 ### Secure Base Images
@@ -81,7 +81,7 @@ Have security in mind a the deepest base level of your software. Start with secu
 
 ## 2. Perform Deployment Target Validations
 
-![Deployment target validations](/src/assets/blog/2025-01-02-5-ways-to-succeed/deployment-target.jpg)
+![Deployment target validations](../../assets/blog/2025-01-02-5-ways-to-succeed/deployment-target.jpg)
 
 What makes a sommelier such a valuable resource at a restaurant? When they stand at your table, describing the rolling hills of Tuscany or the ancient open-air vats of Georgian natural wine producers, they're speaking from experience. That's why you're willing to pay for their expertise: they've tested what they're recommending so you don't have to.
 
@@ -98,7 +98,7 @@ To provide this level of assurance, vendors need to rigorously test their softwa
 
 ## 3. Simplify Licensing
 
-![Licensing](/src/assets/blog/2025-01-02-5-ways-to-succeed/licensing.jpg)
+![Licensing](../../assets/blog/2025-01-02-5-ways-to-succeed/licensing.jpg)
 
 Licensing is the mechanism through which vendors control the access and define the feature set of the software that is sold to end-customers. A well-designed licensing system codifies software contracts and integrates seamlessly with the application, often via a license server during startup or runtime. For self-managed deployments, this system has to account for the fact that vendors won't have direct access to the end customer's environment. This makes it essential for licensing to be built-in, unobtrusive, and highly targeted.
 
@@ -145,7 +145,7 @@ Initially, customers may be reluctant to update their software too often. They k
 
 ## 5. Focus on High-Quality Communication
 
-![Communication](/src/assets/blog/2025-01-02-5-ways-to-succeed/communication.jpg)
+![Communication](../../assets/blog/2025-01-02-5-ways-to-succeed/communication.jpg)
 
 When vendors are dealing with end-customers who are not at liberty to grant access to their infrastructure. You must be able to build out or leverage software distribution platforms that bridge the gap between you and them. "Bridging the gap" is a saying at times admittedly overused, but really what are we referring to? We are talking about processes and platforms that are conducive to one thing, **clear communication**.
 Communication, just to clarify isn't only jumping on a call and chatting directly to each other. If it were that simple, exchanging phone numbers would solve all your problems. Here are the elements I believe lead to truly effective communication with end-customers:

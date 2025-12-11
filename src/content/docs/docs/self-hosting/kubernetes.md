@@ -5,8 +5,8 @@ sidebar:
   order: 2
 ---
 
-Distr is available as a Helm chart distributed via ghcr.io.
-To install Distr in Kubernetes, simply run:
+Distr is available as a [Helm chart](/glossary/helm-chart/) distributed via ghcr.io.
+To install Distr in [Kubernetes](/glossary/kubernetes/), simply run:
 
 ```shell
 helm upgrade --install --wait --namespace distr --create-namespace \

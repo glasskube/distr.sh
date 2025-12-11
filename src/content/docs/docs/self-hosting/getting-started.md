@@ -9,7 +9,7 @@ While the easiest way to use Distr is to use our [hosted version](/get-started/)
 
 Find out more information about the inner workings of Distr at [`github.com/glasskube/distr`](https://github.com/glasskube/distr/).
 
-Or checkout or [Docker Compose](/docs/self-hosting/docker) or [Kubernetes](/docs/self-hosting/kubernetes) deployment options.
+Or checkout or [Docker Compose](/docs/self-hosting/docker/) or [Kubernetes](/docs/self-hosting/kubernetes/) deployment options.
 
 ## Semantic Versioning
 
@@ -18,4 +18,4 @@ We are using [semantic versioning](https://semver.org/) for the releases of Dist
 ## Enterprise Support
 
 We also offer enterprise support for self-hosting Distr in your own environment.
-If you are interested, make sure [to get in touch](https://glasskube.dev/contact/).
+If you are interested, make sure [to get in touch](/contact/).

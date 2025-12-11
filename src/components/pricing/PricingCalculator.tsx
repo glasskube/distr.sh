@@ -1,4 +1,4 @@
-import {useState} from 'preact/hooks';
+import {useEffect, useState} from 'preact/hooks';
 
 export default function PricingCalculator() {
   const [internalUsers, setInternalUsers] = useState(1);
@@ -8,7 +8,7 @@ export default function PricingCalculator() {
   );
   const [currency, setCurrency] = useState<'$' | '€'>('$');
 
-  // Base pricing per internal user and external customer
+  // Base pricing per internal user and customer organization
   // Monthly billing prices
   const starterInternalUserPriceMonthly = 19;
   const starterExternalCustomerPriceMonthly = 29;
@@ -21,7 +21,7 @@ export default function PricingCalculator() {
   const proInternalUserPriceYearly = 24;
   const proExternalCustomerPriceYearly = 56;
 
-  // Tiered pricing for Pro external customers (51+ licenses)
+  // Tiered pricing for Pro customer organizations (51+ licenses)
   const proExternalCustomerPriceMonthlyTier2 = 48;
   const proExternalCustomerPriceYearlyTier2 = 39;
 
@@ -64,6 +64,16 @@ export default function PricingCalculator() {
   const isStarterAvailable = externalCustomers <= starterMaxExternalCustomers;
   const isProAvailable = externalCustomers <= proMaxExternalCustomers;
 
+  // Check if more than 100 customers (Enterprise only)
+  const isEnterpriseOnly = externalCustomers > proMaxExternalCustomers;
+
+  // Check if plans should be blurred based on currency or customer count
+  const shouldBlurStarter = !isStarterAvailable || currency === '€';
+  const shouldBlurPro = !isProAvailable || currency === '€' || isEnterpriseOnly;
+
+  // Force yearly billing when Enterprise only (more than 100 customers) or EUR selected
+  const shouldForceYearly = isEnterpriseOnly || currency === '€';
+
   // Calculate total monthly prices (capped at plan limits)
   const calculateStarterMonthlyPrice = () => {
     const cappedCustomers = Math.min(
@@ -82,7 +92,7 @@ export default function PricingCalculator() {
       proMaxExternalCustomers,
     );
 
-    // Calculate tiered pricing for external customers
+    // Calculate tiered pricing for customer organizations
     let externalCustomerCost = 0;
     if (cappedCustomers <= 50) {
       // All customers at tier 1 price
@@ -147,9 +157,8 @@ export default function PricingCalculator() {
   };
 
   const incrementExternalCustomers = () => {
-    if (externalCustomers < proMaxExternalCustomers) {
-      setExternalCustomers(externalCustomers + 1);
-    }
+    // Allow unlimited customers (no max limit)
+    setExternalCustomers(externalCustomers + 1);
   };
 
   const handleExternalCustomersChange = (e: any) => {
@@ -158,12 +167,12 @@ export default function PricingCalculator() {
       return; // Allow empty input temporarily
     }
     const numValue = parseInt(value, 10);
-    if (
-      !isNaN(numValue) &&
-      numValue >= 1 &&
-      numValue <= proMaxExternalCustomers
-    ) {
+    if (!isNaN(numValue) && numValue >= 1) {
       setExternalCustomers(numValue);
+      // Auto-switch to yearly when more than 100 customers
+      if (numValue > proMaxExternalCustomers) {
+        setBillingCycle('yearly');
+      }
     }
   };
 
@@ -171,15 +180,29 @@ export default function PricingCalculator() {
     const value = parseInt(e.target.value, 10);
     if (isNaN(value) || value < 1) {
       setExternalCustomers(1);
-    } else if (value > proMaxExternalCustomers) {
-      setExternalCustomers(proMaxExternalCustomers);
+    }
+    // Allow values above 100, no cap
+  };
+
+  const handleCurrencyChange = (newCurrency: '$' | '€') => {
+    setCurrency(newCurrency);
+    // When EUR is selected, automatically switch to yearly billing
+    if (newCurrency === '€') {
+      setBillingCycle('yearly');
     }
   };
+
+  // Auto-switch to yearly when customer count exceeds Pro limit
+  useEffect(() => {
+    if (isEnterpriseOnly && billingCycle === 'monthly') {
+      setBillingCycle('yearly');
+    }
+  }, [isEnterpriseOnly, billingCycle]);
 
   return (
     <section>
       <div class="container mx-auto px-4 max-w-7xl">
-        {/* Internal users, external customers, billing cycle and currency selection */}
+        {/* Internal users, customer organizations, billing cycle and currency selection */}
         <div class="flex flex-col lg:flex-row justify-between items-start gap-4 mb-8 p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
           <div class="flex-1 flex flex-col items-start justify-between min-w-0">
             <div class="w-full min-h-[4rem] flex flex-col justify-start mb-5">
@@ -214,9 +237,9 @@ export default function PricingCalculator() {
 
           <div class="flex-1 flex flex-col items-start justify-between min-w-0">
             <div class="w-full min-h-[4rem] flex flex-col justify-start mb-5">
-              <h3 class="mb-1 text-lg leading-tight">External Customers</h3>
+              <h3 class="mb-1 text-lg leading-tight">Customers</h3>
               <p class="mb-0 text-sm text-gray-600 dark:text-gray-400 leading-snug">
-                Select how many external customers you have
+                Select how many customer organizations you have
               </p>
             </div>
             <div class="flex items-center justify-start gap-3 w-full">
@@ -229,7 +252,6 @@ export default function PricingCalculator() {
               <input
                 type="number"
                 min="1"
-                max={proMaxExternalCustomers}
                 value={externalCustomers}
                 onInput={handleExternalCustomersChange}
                 onBlur={handleExternalCustomersBlur}
@@ -237,9 +259,8 @@ export default function PricingCalculator() {
                 style="appearance: textfield; -moz-appearance: textfield; -webkit-appearance: none;"
               />
               <button
-                class="w-8 h-8 rounded-full border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xl flex items-center justify-center cursor-pointer transition-all hover:bg-[#00b5eb] hover:text-white hover:border-[#00b5eb] disabled:opacity-50 disabled:cursor-not-allowed leading-none p-0"
-                onClick={incrementExternalCustomers}
-                disabled={externalCustomers >= proMaxExternalCustomers}>
+                class="w-8 h-8 rounded-full border border-gray-400 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xl flex items-center justify-center cursor-pointer transition-all hover:bg-[#00b5eb] hover:text-white hover:border-[#00b5eb] leading-none p-0"
+                onClick={incrementExternalCustomers}>
                 +
               </button>
             </div>
@@ -254,12 +275,21 @@ export default function PricingCalculator() {
             </div>
             <div class="inline-flex bg-gray-200 dark:bg-gray-700 rounded-full p-1 w-full justify-center">
               <button
-                class={`px-4 py-1.5 border-none rounded-3xl cursor-pointer font-medium transition-all text-sm flex-1 text-center flex items-center justify-center gap-2 relative text-gray-900 dark:text-white ${
+                class={`px-4 py-1.5 border-none rounded-3xl font-medium transition-all text-sm flex-1 text-center flex items-center justify-center gap-2 relative ${
+                  shouldForceYearly
+                    ? 'opacity-50 cursor-not-allowed text-gray-500 dark:text-gray-500'
+                    : 'cursor-pointer text-gray-900 dark:text-white'
+                } ${
                   billingCycle === 'monthly'
                     ? 'bg-white dark:bg-gray-800 shadow-md'
                     : 'bg-transparent'
                 }`}
-                onClick={() => setBillingCycle('monthly')}>
+                onClick={() => {
+                  if (!shouldForceYearly) {
+                    setBillingCycle('monthly');
+                  }
+                }}
+                disabled={shouldForceYearly}>
                 Monthly
               </button>
               <button
@@ -270,9 +300,11 @@ export default function PricingCalculator() {
                 }`}
                 onClick={() => setBillingCycle('yearly')}>
                 <span>Yearly</span>
-                <span class="inline-block bg-[#00b5eb]/20 text-[#174c76] dark:text-[#00b5eb] px-2 py-0.5 rounded-xl text-[0.7rem] font-semibold whitespace-nowrap leading-tight">
-                  Save 20%
-                </span>
+                {!shouldForceYearly && (
+                  <span class="inline-block bg-[#00b5eb]/20 text-[#174c76] dark:text-[#00b5eb] px-2 py-0.5 rounded-xl text-[0.7rem] font-semibold whitespace-nowrap leading-tight">
+                    Save 20%
+                  </span>
+                )}
               </button>
             </div>
           </div>
@@ -291,7 +323,7 @@ export default function PricingCalculator() {
                     ? 'bg-white dark:bg-gray-800 shadow-md'
                     : 'bg-transparent'
                 }`}
-                onClick={() => setCurrency('$')}>
+                onClick={() => handleCurrencyChange('$')}>
                 USD
               </button>
               <button
@@ -300,7 +332,7 @@ export default function PricingCalculator() {
                     ? 'bg-white dark:bg-gray-800 shadow-md'
                     : 'bg-transparent'
                 }`}
-                onClick={() => setCurrency('€')}>
+                onClick={() => handleCurrencyChange('€')}>
                 EUR
               </button>
             </div>
@@ -311,10 +343,8 @@ export default function PricingCalculator() {
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Starter Plan */}
           <div
-            class={`mt-10 min-h-[55rem] flex flex-col bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 transition-all ${
-              !isStarterAvailable
-                ? 'opacity-50 blur-sm pointer-events-none'
-                : ''
+            class={`mt-10 min-h-[50rem] flex flex-col bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 transition-all ${
+              shouldBlurStarter ? 'opacity-50 blur-sm pointer-events-none' : ''
             }`}>
             <div class="flex justify-center items-center flex-col p-6 text-center min-h-[18rem]">
               <h3 class="text-xl font-semibold">Starter</h3>
@@ -327,10 +357,11 @@ export default function PricingCalculator() {
                 {currency}
                 {formatPrice(starterInternalUserPrice)}/internal user +{' '}
                 {currency}
-                {formatPrice(starterExternalCustomerPrice)}/external customer
+                {formatPrice(starterExternalCustomerPrice)}/customer
+                organization
                 <br />
                 <span class="text-xs text-gray-600 dark:text-gray-400 font-normal">
-                  Up to {starterMaxExternalCustomers} external customers
+                  Up to {starterMaxExternalCustomers} customer organizations
                 </span>
               </p>
               <p class="mb-0 mt-2 text-sm">
@@ -338,8 +369,8 @@ export default function PricingCalculator() {
                 {internalUsers === 1 ? 'internal user' : 'internal users'} •{' '}
                 {externalCustomers}{' '}
                 {externalCustomers === 1
-                  ? 'external customer'
-                  : 'external customers'}{' '}
+                  ? 'customer organization'
+                  : 'customer organizations'}{' '}
                 •
                 {billingCycle === 'monthly'
                   ? ' Billed monthly'
@@ -390,8 +421,8 @@ export default function PricingCalculator() {
 
           {/* Pro Plan */}
           <div
-            class={`mt-5 min-h-[60rem] flex flex-col bg-white dark:bg-gray-900 rounded-lg shadow-lg border-2 border-[#00b5eb] relative pt-4 transition-all ${
-              !isProAvailable ? 'opacity-50 blur-sm pointer-events-none' : ''
+            class={`mt-5 min-h-[55rem] flex flex-col bg-white dark:bg-gray-900 rounded-lg shadow-lg border-2 border-[#00b5eb] relative pt-4 transition-all ${
+              shouldBlurPro ? 'opacity-50 blur-sm pointer-events-none' : ''
             }`}>
             <div class="absolute top-0 left-0 right-0 bg-[#00b5eb] text-white py-1.5 text-base font-medium z-10 shadow-md text-center w-full">
               Most popular
@@ -410,25 +441,26 @@ export default function PricingCalculator() {
                   <>
                     <br />
                     {currency}
-                    {formatPrice(proExternalCustomerPrice)}/external customer
-                    (first 50) + {currency}
+                    {formatPrice(proExternalCustomerPrice)}/customer
+                    organization (first 50) + {currency}
                     {formatPrice(
                       billingCycle === 'monthly'
                         ? proExternalCustomerPriceMonthlyTier2
                         : proExternalCustomerPriceYearlyTier2,
                     )}
-                    /external customer (51+)
+                    /customer organization (51+)
                   </>
                 ) : (
                   <>
                     {' '}
                     + {currency}
-                    {formatPrice(proExternalCustomerPrice)}/external customer
+                    {formatPrice(proExternalCustomerPrice)}/customer
+                    organization
                   </>
                 )}
                 <br />
                 <span class="text-xs text-gray-600 dark:text-gray-400 font-normal">
-                  Up to {proMaxExternalCustomers} total external customers
+                  Up to {proMaxExternalCustomers} total customer organizations
                 </span>
               </p>
               <p class="mb-0 mt-2 text-sm">
@@ -436,8 +468,8 @@ export default function PricingCalculator() {
                 {internalUsers === 1 ? 'internal user' : 'internal users'} •{' '}
                 {externalCustomers}{' '}
                 {externalCustomers === 1
-                  ? 'external customer'
-                  : 'external customers'}{' '}
+                  ? 'customer organization'
+                  : 'customer organizations'}{' '}
                 •
                 {billingCycle === 'monthly'
                   ? ' Billed monthly'
@@ -494,7 +526,7 @@ export default function PricingCalculator() {
           </div>
 
           {/* Enterprise Plan */}
-          <div class="mt-10 min-h-[55rem] flex flex-col bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
+          <div class="mt-10 min-h-[50rem] flex flex-col bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
             <div class="flex justify-center items-center flex-col p-6 text-center min-h-[18rem]">
               <h3 class="text-xl font-semibold">Enterprise</h3>
               <div class="text-4xl font-bold my-2">Book Demo</div>
@@ -541,6 +573,31 @@ export default function PricingCalculator() {
               </a>
             </div>
           </div>
+        </div>
+
+        {/* Self-Hosting Info Box */}
+        <div class="mt-20 w-2/3 mx-auto p-6 bg-gradient-to-r from-[#00b5eb]/10 to-[#174c76]/10 dark:from-[#00b5eb]/20 dark:to-[#174c76]/20 rounded-lg border-2 border-[#00b5eb]/30 dark:border-[#00b5eb]/50">
+          <h3 class="text-2xl font-bold mb-3 text-gray-900 dark:text-white">
+            Self-Hosting Distr?
+          </h3>
+          <p class="text-base leading-relaxed text-gray-700 dark:text-gray-300 mb-0">
+            Use our{' '}
+            <a
+              href="https://github.com/glasskube/distr"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-[#00b5eb] hover:text-[#174c76] dark:text-[#00b5eb] dark:hover:text-[#4ec9f0] font-medium underline">
+              community edition
+            </a>{' '}
+            with unlimited users and customer organizations for free with all
+            Starter features included. For self-hosting our Pro edition, please{' '}
+            <a
+              href="/contact/"
+              class="text-[#00b5eb] hover:text-[#174c76] dark:text-[#00b5eb] dark:hover:text-[#4ec9f0] font-medium underline">
+              contact us
+            </a>
+            .
+          </p>
         </div>
       </div>
     </section>

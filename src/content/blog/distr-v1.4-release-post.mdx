@@ -15,6 +15,10 @@ tags:
   - Releases
 ---
 
+import ThemedImage from '~/components/util/ThemedImage.astro';
+import diagramLight from '../../assets/blog/2025-03-25-distr-1-4-release/diagram-light.png';
+import diagramDark from '../../assets/blog/2025-03-25-distr-1-4-release/diagram-dark.png';
+
 # Distr v1.4 is Live!
 
 Hey there! We listened to your feedback, and we're back with a massive new feature.
@@ -45,13 +49,18 @@ With the Distr OCI registry, software vendors can now publish and distribute not
 - 📊 **Visibility**: Track where, how, and by whom artifacts are consumed
 - 📦 **Open standards**: Built on the OCI spec and compatible with existing tooling (Docker, ORAS, etc.)
 
-![Diagram showing OCI registry architecture](/src/assets/blog/2025-03-25-distr-1-4-release/diagram-dark.png)
+<ThemedImage
+  alt="Diagram showing OCI registry architecture"
+  lightSrc={diagramLight}
+  darkSrc={diagramDark}
+  alt="Distr Logo"
+/>
 
 Whether you're distributing a single binary or an entire application stack, the new registry gives you the building blocks to do it **securely**, **reliably**, and in an **OCI-compliant** way, inside your end-customers’ networks.
 
 ## Watch the video to see how it works
 
-<div style={{position: 'relative', width: '100%', paddingTop: '56.25%'}}>
+<div style="width: 100%; height: 500px">
   <iframe
     sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-downloads allow-storage-access-by-user-activation"
     frameBorder="0"
@@ -59,20 +68,11 @@ Whether you're distributing a single binary or an entire application stack, the 
     loading="lazy"
     src="https://www.youtube.com/embed/gM9WCx61owQ?si=QEccDX-VyV3XMiQI"
     allowFullScreen
-    style={{
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      border: 'none',
-    }}
+    style="width: 100%; height: 500px"
   />
 </div>
 
-#### 👉 Want to access the OCI Registry feature? Let us know via email at support@glasskube.com!
-
----
+**👉 Want to access the OCI Registry feature? Let us know via email at support@glasskube.com!**
 
 ## What’s Coming Next
 
@@ -90,7 +90,7 @@ Follow us on [LinkedIn](https://www.linkedin.com/company/glasskube) to stay up t
 
 We’d love to hear your thoughts on this release! Share your feedback, ideas, or questions:
 
-- Join the [Discord server](https://discord.gg/STk5Z3nFmT)
+- Join the [Discord server](https://discord.gg/6qqBSAWZfW)
 - [Book a demo call](https://cal.glasskube.com/team/gk/demo?duration=30)
 - Reach out on [LinkedIn](https://www.linkedin.com/company/glasskube) or [Twitter](https://twitter.com/glasskube)
 

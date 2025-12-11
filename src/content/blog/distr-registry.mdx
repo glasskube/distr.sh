@@ -16,16 +16,26 @@ tags:
   - distr-launch-week
 ---
 
-Today, we are happy to announce that the Distr [artifact registry](https://distr.sh/docs/product/registry/) is now Generally Available (GA).
+import ThemedImage from '~/components/util/ThemedImage.astro';
+import licenseLight from '../../assets/blog/2025-05-22-distr-registry/lw-license-light.png';
+import licenseDark from '../../assets/blog/2025-05-22-distr-registry/lw-license-dark.png';
+import artifactsUiLight from '../../assets/blog/2025-05-22-distr-registry/lw-artifacts-ui-light.png';
+import artifactsUiDark from '../../assets/blog/2025-05-22-distr-registry/lw-artifacts-ui-dark.png';
+import artifactsLight from '../../assets/blog/2025-05-22-distr-registry/lw-artifacts-light.png';
+import artifactsDark from '../../assets/blog/2025-05-22-distr-registry/lw-artifacts-dark.png';
+import deployLogsLight from '../../assets/blog/2025-05-22-distr-registry/lw-deploy-logs-light.png';
+import deployLogsDark from '../../assets/blog/2025-05-22-distr-registry/lw-deploy-logs-dark.png';
 
-Manage and distribute container images, Helm charts, and other OCI artifacts with license-based access control, audit logs, and a visual UI that makes self-managed software distribution pretty darn simple if we do say so ourselves, built for both you and your customers.
+Today, we are happy to announce that the Distr [artifact registry](/docs/product/registry/) is now Generally Available (GA).
 
-<hr>
+Manage and distribute container images, [Helm charts](/glossary/helm-chart/), and other [OCI artifacts](/glossary/oci-container-artifact-registry/) with license-based access control, audit logs, and a visual UI that makes [self-managed](/glossary/self-managed-software/) software distribution pretty darn simple if we do say so ourselves, built for both you and your customers.
+
+<hr />
 
 ## Why we built a registry into Distr
 
-Distr was originally built to help vendors manage software distribution in agent based [assisted self-managed](https://distr.sh/docs/use-cases/assisted-self-managed/) environments.
-But as end customers increasingly requested full control over their deployments, vendors needed a way to offer a [fully self-managed model](https://distr.sh/docs/use-cases/fully-self-managed/) as well.
+Distr was originally built to help vendors manage software distribution in agent based [assisted self-managed](/docs/use-cases/assisted-self-managed/) environments.
+But as end customers increasingly requested full control over their deployments, vendors needed a way to offer a [fully self-managed model](/docs/use-cases/fully-self-managed/) as well.
 Other third-party registries lacked the fine-grained access controls and visibility these scenarios call for, so that's why we built an OCI-compliant registry directly into Distr, enabling both assisted and fully self-managed distribution, with features like tag-based access control and detailed download logs.
 
 ## Why is Self-Managed artifact distribution hard?
@@ -37,8 +47,8 @@ Contracts signed.
 Excitement is high.
 But then you get a flurry of messages from your end customers along the lines of…
 
-> "We can't access your registry."  
-> "Is our firewall blocking the pull?"  
+> "We can't access your registry."
+> "Is our firewall blocking the pull?"
 > "Which version are we supposed to use?"
 
 Sound familiar?
@@ -51,18 +61,18 @@ With Distr's built-in registry, those problems are largely mitigated and planned
 
 ## Meet the Distr Artifact Registry
 
-Built for software vendors who serve end-customer with different [deployment appetites](https://distr.sh/docs/use-cases/fully-self-managed/), our registry brings OCI-compliant artifact distribution natively integrated into Distr.
+Built for software vendors who serve end-customer with different [deployment appetites](/docs/use-cases/fully-self-managed/), our registry brings OCI-compliant artifact distribution natively integrated into Distr.
 
 Here are a few of its key features:
 
-![registry-diagram](/src/assets/blog/2025-05-22-distr-registry/registry-diagram.png)
+![registry-diagram](../../assets/blog/2025-05-22-distr-registry/registry-diagram.png)
 
 ### OCI-compliant & format-flexible
 
-The registry supports any OCI artifact, including:
+The registry supports any [OCI artifact](/glossary/oci-container-artifact-registry/), including:
 
 - Docker images
-- Helm charts
+- [Helm charts](/glossary/helm-chart/)
 - WASM modules
 - Anything else that follows the OCI spec
 
@@ -74,7 +84,11 @@ Vendors can restrict access by using Artifacts licenses. Grant or revoke permiss
   className="app-frame mac dark borderless shadow--tl"
   data-url="app.distr.sh">
 
-![Distr Onboarding Tutorials](/src/assets/blog/2025-05-22-distr-registry/lw-license-dark.png)
+<ThemedImage
+  alt="Distr License Management"
+  lightSrc={licenseLight}
+  darkSrc={licenseDark}
+/>
 
 </div>
 
@@ -92,13 +106,21 @@ Use any OCI compliant CLI for pushing and pulling, and use the Distr Registry UI
   className="app-frame mac dark borderless shadow--tl"
   data-url="app.distr.sh">
 
-![General Artifact UI](/src/assets/blog/2025-05-22-distr-registry/lw-artifacts-ui-dark.png)
+<ThemedImage
+  alt="General Artifact UI"
+  lightSrc={artifactsUiLight}
+  darkSrc={artifactsUiDark}
+/>
 
 </div>
 
 **Deployment tracking UI**
 
-![Deployment tracking UI](/src/assets/blog/2025-05-22-distr-registry/lw-artifacts-dark.png)
+<ThemedImage
+  alt="Deployment tracking UI"
+  lightSrc={artifactsLight}
+  darkSrc={artifactsDark}
+/>
 
 The Downloads page gives granular artifact consumption logs
 
@@ -108,7 +130,11 @@ The Downloads page gives granular artifact consumption logs
   className="app-frame mac dark borderless shadow--tl"
   data-url="app.distr.sh">
 
-![Download audit logs UI](/src/assets/blog/2025-05-22-distr-registry/lw-deploy-logs-dark.png)
+<ThemedImage
+  alt="Download audit logs UI"
+  lightSrc={deployLogsLight}
+  darkSrc={deployLogsDark}
+/>
 
 </div>
 ## What's next for the Registry?
@@ -124,9 +150,9 @@ We’re just getting started, here’s what’s coming soon:
 The Distr container registry has already distributed thousands of artifact versions to end customers.
 Often completely white-labeled, with a custom CNAME DNS record, as part of a vendors software supply distribution stack.
 
-The registry is available now in all Distr accounts. Just head to the Artifacts tab in the dashboard to [get started](https://distr.sh/docs/guides/container-registry/).
+The registry is available now in all Distr accounts. Just head to the Artifacts tab in the dashboard to [get started](/docs/guides/container-registry/).
 
-- Read the [docs](https://distr.sh/docs/product/registry/)
+- Read the [docs](/docs/product/registry/)
 - Contact us for a [demo](https://cal.glasskube.com/team/gk/demo)
 
 We are excited to hear your thoughts on the registry and open to your feedback to further shape the product to make it as useful as possible for vendors and end-customers alike.

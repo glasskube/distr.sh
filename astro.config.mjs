@@ -1,4 +1,5 @@
 // @ts-check
+import mdx from '@astrojs/mdx';
 import preact from '@astrojs/preact';
 import sitemap from '@astrojs/sitemap';
 import starlight from '@astrojs/starlight';
@@ -20,7 +21,12 @@ export default defineConfig({
     sitemap({
       filter: page => {
         // Exclude specific pages by slug
-        const excludedSlugs = ['/onboarding/', '/get-started/', '/docs/'];
+        const excludedSlugs = [
+          '/onboarding/',
+          '/get-started/',
+          '/docs/',
+          '/demo/success/',
+        ];
         const url = new URL(page);
         const pathname = url.pathname;
 
@@ -43,17 +49,11 @@ export default defineConfig({
                 attrs: {
                   type: 'text/javascript',
                 },
-                content: `(function (w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
-            var f = d.getElementsByTagName(s)[0],
-              j = d.createElement(s),
-              dl = l != 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src = 'https://distr.sh/ggg/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-          })(window, document, 'script', 'dataLayer', 'GTM-T58STPCJ');
-          `,
+                content: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T58STPCJ');`,
               },
             ]
           : [],
@@ -116,7 +116,7 @@ export default defineConfig({
         },
         {
           label: 'FAQs',
-          link: '/docs/faqs',
+          link: '/docs/faqs/',
         },
       ],
       tableOfContents: {
@@ -128,6 +128,7 @@ export default defineConfig({
         starlightLinksValidator({
           exclude: [
             '/',
+            '/contact/',
             '/pricing/',
             '/blog/**',
             '/glossary/**',
@@ -142,6 +143,7 @@ export default defineConfig({
         }),
       ],
     }),
+    mdx(),
   ],
   markdown: {
     rehypePlugins: [[rehypeMermaid, {strategy: 'inline-svg'}]],
@@ -150,14 +152,19 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   redirects: {
-    '/docs/': '/docs/getting-started/what-is-distr/',
-    '/docs/getting-started/about/': '/docs/getting-started/what-is-distr/',
-    '/docs/getting-started/how-it-works/':
-      '/docs/getting-started/core-concepts/',
+    '/docs/getting-started/': '/docs/',
+    '/docs/getting-started/about/': '/docs/',
+    '/docs/getting-started/what-is-distr/': '/docs/',
+    '/docs/getting-started/how-it-works/': '/docs/core-concepts/',
+    '/docs/getting-started/core-concepts/': '/docs/core-concepts/',
+    '/docs/getting-started/quickstart/': '/docs/quickstart/',
+    '/docs/getting-started/deployment-methods/': '/docs/subscription/',
     '/docs/product/distr-hub/': '/docs/product/vendor-portal/',
     '/docs/use-cases/self-managed/': '/docs/use-cases/fully-self-managed/',
     '/docs/use-cases/byoc/': '/docs/use-cases/byoc-bring-your-own-cloud/',
     '/docs/product/faqs/': '/docs/faqs/',
     '/docs/privacy-policy/': '/privacy-policy/',
+    '/docs/guides/license-mgmt/': '/docs/guides/application-licenses/',
+    '/docs/guides/onboarding-a-new-customer/': '/docs/product/rbac/',
   },
 });

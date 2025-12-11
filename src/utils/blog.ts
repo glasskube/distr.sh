@@ -1,4 +1,4 @@
-import {getCollection, type RenderedContent} from 'astro:content';
+import {getCollection, render, type RenderResult} from 'astro:content';
 import type {BlogPostConfig} from '../content.config';
 import type {Post} from '../types';
 
@@ -8,7 +8,7 @@ const load = async function (): Promise<Array<Post>> {
       post =>
         ({
           data: post.data as BlogPostConfig,
-          rendered: post.rendered! as RenderedContent,
+          rendered: render(post) as Promise<RenderResult>,
         }) as Post,
     )
     .sort((a, b) => {
