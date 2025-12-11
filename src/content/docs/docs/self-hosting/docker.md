@@ -23,4 +23,4 @@ Once you are happy with your configuration, simply start the Hub using Docker Co
 docker compose up -d
 ```
 
-> If you are using the legacy standalone distribution of Docker Compose, you may need to use `docker compose up -d` instead.
+> If you are using the legacy standalone distribution of Docker Compose, you may need to use `docker-compose up -d` instead.
