@@ -1,22 +1,39 @@
 // @ts-check
-import starlight from '@astrojs/starlight';
-import {defineConfig} from 'astro/config';
-import starlightLinksValidator from 'starlight-links-validator';
-
-import partytown from '@astrojs/partytown';
+import mdx from '@astrojs/mdx';
 import preact from '@astrojs/preact';
 import sitemap from '@astrojs/sitemap';
+import starlight from '@astrojs/starlight';
 import starlightUtils from '@lorenzo_lewis/starlight-utils';
 import tailwindcss from '@tailwindcss/vite';
-import rehypeMermaid from 'rehype-mermaid';
-
 import icon from 'astro-icon';
+import {defineConfig} from 'astro/config';
+import serviceWorker from 'astrojs-service-worker';
+import rehypeMermaid from 'rehype-mermaid';
+import starlightLinksValidator from 'starlight-links-validator';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://distr.sh',
 
   integrations: [
+    icon({include: {lucide: ['*']}}),
+    preact(),
+    sitemap({
+      filter: page => {
+        // Exclude specific pages by slug
+        const excludedSlugs = [
+          '/onboarding/',
+          '/get-started/',
+          '/docs/',
+          '/demo/success/',
+        ];
+        const url = new URL(page);
+        const pathname = url.pathname;
+
+        return !excludedSlugs.some(slug => slug === pathname);
+      },
+    }),
+    serviceWorker(),
     starlight({
       title: 'Distr',
       customCss: ['./src/styles/global.css'],
@@ -24,25 +41,22 @@ export default defineConfig({
         baseUrl: 'https://github.com/glasskube/distr.sh/tree/main',
       },
       lastUpdated: true,
-      head: [
-        {
-          tag: 'script',
-          attrs: {
-            type: 'text/partytown',
-          },
-          content: `(function (w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
-            var f = d.getElementsByTagName(s)[0],
-              j = d.createElement(s),
-              dl = l != 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src = 'https://distr.sh/ggg/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-          })(window, document, 'script', 'dataLayer', 'GTM-T58STPCJ');
-          `,
-        },
-      ],
+      head:
+        process.env.NODE_ENV === 'production'
+          ? [
+              {
+                tag: 'script',
+                attrs: {
+                  type: 'text/javascript',
+                },
+                content: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T58STPCJ');`,
+              },
+            ]
+          : [],
       description: 'Open Source Software Distribution Platform',
       logo: {
         src: './src/assets/distr.svg',
@@ -70,10 +84,10 @@ export default defineConfig({
         {
           label: 'Navbar',
           items: [
-            {label: 'Home', link: '/'},
-            {label: 'Pricing', link: '/pricing/'},
             {label: 'Docs', link: '/docs/getting-started/what-is-distr/'},
+            {label: 'Pricing', link: '/pricing/'},
             {label: 'Blog', link: '/blog/'},
+            {label: 'Case Studies', link: '/case-studies/'},
           ],
         },
         {
@@ -102,11 +116,7 @@ export default defineConfig({
         },
         {
           label: 'FAQs',
-          link: '/docs/faqs',
-        },
-        {
-          label: 'Privacy Policy',
-          link: '/docs/privacy-policy',
+          link: '/docs/faqs/',
         },
       ],
       tableOfContents: {
@@ -118,14 +128,12 @@ export default defineConfig({
         starlightLinksValidator({
           exclude: [
             '/',
-            '/blog/',
-            '/blog/**',
-            '/pricing/',
             '/contact/',
-            '/case-studies/',
-            '/glossary/',
+            '/pricing/',
+            '/blog/**',
             '/glossary/**',
-            '/whitepaper/',
+            '/get-started/',
+            '/onboarding/',
           ],
         }),
         starlightUtils({
@@ -135,14 +143,7 @@ export default defineConfig({
         }),
       ],
     }),
-    sitemap(),
-    partytown({
-      config: {
-        forward: ['dataLayer.push'],
-      },
-    }),
-    preact(),
-    icon({include: {lucide: ['*']}}),
+    mdx(),
   ],
   markdown: {
     rehypePlugins: [[rehypeMermaid, {strategy: 'inline-svg'}]],
@@ -151,13 +152,19 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   redirects: {
-    '/docs/': '/docs/getting-started/what-is-distr/',
-    '/docs/getting-started/about/': '/docs/getting-started/what-is-distr/',
-    '/docs/getting-started/how-it-works/':
-      '/docs/getting-started/core-concepts/',
+    '/docs/getting-started/': '/docs/',
+    '/docs/getting-started/about/': '/docs/',
+    '/docs/getting-started/what-is-distr/': '/docs/',
+    '/docs/getting-started/how-it-works/': '/docs/core-concepts/',
+    '/docs/getting-started/core-concepts/': '/docs/core-concepts/',
+    '/docs/getting-started/quickstart/': '/docs/quickstart/',
+    '/docs/getting-started/deployment-methods/': '/docs/subscription/',
     '/docs/product/distr-hub/': '/docs/product/vendor-portal/',
     '/docs/use-cases/self-managed/': '/docs/use-cases/fully-self-managed/',
     '/docs/use-cases/byoc/': '/docs/use-cases/byoc-bring-your-own-cloud/',
     '/docs/product/faqs/': '/docs/faqs/',
+    '/docs/privacy-policy/': '/privacy-policy/',
+    '/docs/guides/license-mgmt/': '/docs/guides/application-licenses/',
+    '/docs/guides/onboarding-a-new-customer/': '/docs/product/rbac/',
   },
 });

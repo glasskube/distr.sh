@@ -1,5 +1,5 @@
 ---
-import {PricingFAQs} from '../../data/pricingFaq';
+import {PricingFAQs} from '~/data/pricingFaq';
 ---
 
 <section class="py-16 md:py-24">
@@ -15,26 +15,24 @@ import {PricingFAQs} from '../../data/pricingFaq';
     <div class="max-w-4xl mx-auto space-y-4">
       {
         PricingFAQs.map(faq => (
-          <div
-            class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow scroll-mt-24"
+          <details
+            class="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow scroll-mt-24 group"
             id={faq.id}>
-            <div class="p-6 md:p-8">
-              <h3 class="text-xl md:text-2xl font-semibold mb-4 m-0">
-                <a
-                  href={`#${faq.id}`}
-                  class="no-underline text-gray-900 dark:text-white hover:text-[#00b5eb] dark:hover:text-[#00b5eb] transition-colors group">
-                  <span class="inline-block -ml-7 w-6 text-[#00b5eb] opacity-0 group-hover:opacity-100 transition-opacity">
-                    #
-                  </span>
-                  {faq.question}
-                </a>
+            <summary class="p-6 md:p-8 cursor-pointer list-none">
+              <h3 class="text-xl md:text-2xl font-semibold m-0 inline-flex items-center gap-2 text-gray-900 dark:text-white group-hover:text-[#00b5eb] dark:group-hover:text-[#00b5eb] transition-colors">
+                <span class="text-[#00b5eb] opacity-0 group-hover:opacity-100 transition-opacity">
+                  #
+                </span>
+                <span>{faq.question}</span>
               </h3>
+            </summary>
+            <div class="px-6 md:px-8 pb-6 md:pb-8 pt-0">
               <div
                 class="prose prose-lg dark:prose-invert max-w-none prose-p:text-gray-600 dark:prose-p:text-gray-300 prose-p:leading-relaxed"
                 set:html={faq.answer}
               />
             </div>
-          </div>
+          </details>
         ))
       }
     </div>
@@ -78,5 +76,14 @@ import {PricingFAQs} from '../../data/pricingFaq';
 
   :global(.prose a:hover) {
     color: #0099cc;
+  }
+
+  /* Details/Summary accordion styles */
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details summary::marker {
+    display: none;
   }
 </style>

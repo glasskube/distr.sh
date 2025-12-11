@@ -1,10 +1,12 @@
 ---
-import StarlightLayout from '../../../layouts/StarlightLayout.astro';
-import WhitePaperForm from '../../../components/WhitePaperForm.tsx';
-import TestimonialsSection from '../../../components/home/TestimonialsSection.astro';
-import CTASection from '../../../components/home/CTASection.astro';
+import StarlightLayout from '~/layouts/StarlightLayout.astro';
+import WhitePaperForm from '~/components/WhitePaperForm.tsx';
+import TestimonialsSection from '~/components/home/TestimonialsSection.astro';
+import CTASection from '~/components/home/CTASection.astro';
 import {Image} from 'astro:assets';
-import whitepaperImage from '../../../assets/white-paper/building-blocks-teaser.png';
+import whitepaperImage from '~/assets/white-paper/building-blocks-teaser.png';
+
+const formsServerBaseUrl = import.meta.env.FORMS_SERVER;
 
 const TITLE = 'Building Blocks for Modern Self-Managed Software Distribution';
 const DESCRIPTION =
@@ -39,7 +41,7 @@ const DESCRIPTION =
 
         <!-- Form -->
         <div class="lg:sticky lg:top-8">
-          <WhitePaperForm client:load />
+          <WhitePaperForm client:load formsServerBaseUrl={formsServerBaseUrl} />
         </div>
       </div>
     </section>
@@ -55,20 +57,12 @@ const DESCRIPTION =
 <style>
   .whitepaper-card {
     position: relative;
-    border: 3px solid transparent;
-    background:
-      linear-gradient(
-          to bottom right,
-          var(--sl-color-accent-low),
-          var(--sl-color-accent)
-        )
-        border-box,
-      var(--sl-color-bg) padding-box;
-    -webkit-mask:
-      linear-gradient(#fff 0 0) padding-box,
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
+    background: linear-gradient(
+      to bottom right,
+      var(--sl-color-accent-low),
+      var(--sl-color-accent)
+    );
+    border-radius: 1rem;
   }
 
   .not-content {

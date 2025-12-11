@@ -1,8 +1,9 @@
 ---
-import Layout from '../../layouts/StarlightLayout.astro';
-import CTASection from '../../components/home/CTASection.astro';
+import Layout from '~/layouts/StarlightLayout.astro';
+import CTASection from '~/components/home/CTASection.astro';
 import {Icon} from '@astrojs/starlight/components';
-import Image from '../../components/common/Image.astro';
+import Image from '~/components/common/Image.astro';
+import comparisonThumbnail from '~/assets/blog/2025-02-26-replicated-comparison/comparison-thumbnail.png';
 
 export async function getStaticPaths() {
   return [
@@ -14,8 +15,7 @@ export async function getStaticPaths() {
         description:
           'A comprehensive comparison of Distr and Replicated for software distribution. Compare deployment models, pricing, features, and architecture to make an informed decision.',
         competitor: 'Replicated',
-        heroImage:
-          '/src/assets/blog/2025-02-26-replicated-comparison/comparison-thumbnail.png',
+        heroImage: comparisonThumbnail,
       },
     },
   ];
@@ -27,7 +27,7 @@ const {title, description, competitor, heroImage} = Astro.props;
 
 <Layout title={title} description={description}>
   <div class="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
-    <section class="py-8 sm:py-12 mx-auto">
+    <section class="pt-8 sm:ty-12 mx-auto">
       <article class="max-w-4xl mx-auto px-6 sm:px-8">
         <!-- Back to compare button -->
         <div class="mb-8 text-center">
@@ -267,7 +267,7 @@ const {title, description, competitor, heroImage} = Astro.props;
               </tr>
               <tr>
                 <td><strong>Pricing (Starts at)</strong></td>
-                <td>$39/month</td>
+                <td>$40/month</td>
                 <td>$2000/month</td>
               </tr>
             </tbody>

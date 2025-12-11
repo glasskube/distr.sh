@@ -1,8 +1,8 @@
 ---
-import DemoButton from '../DemoButton.astro';
-import SignupButton from '../SignupButton.astro';
+import DemoButton from '~/components/buttons/DemoButton.astro';
+import SignupButton from '~/components/buttons/SignupButton.astro';
 import HeroCarousel from './HeroCarousel.astro';
-import {images} from '../../assets/index';
+import {images} from '~/assets/index';
 ---
 
 <header
@@ -10,11 +10,6 @@ import {images} from '../../assets/index';
   style="color: white;">
   <div class="container mx-auto px-4 max-w-7xl">
     <div class="text-center">
-      <h2
-        class="text-xl md:text-2xl lg:text-3xl font-semibold mb-4 md:mb-8 mt-8 md:mt-16"
-        style="color: white;">
-        Introducing Distr
-      </h2>
       <h1
         class="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 leading-tight"
         style="color: white;">
@@ -25,7 +20,7 @@ import {images} from '../../assets/index';
     <div class="flex flex-col items-center gap-4 mb-8">
       <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
         <DemoButton class="w-full md:w-auto" />
-        <SignupButton class="w-full md:w-auto" />
+        <SignupButton class="w-full md:w-auto text-white border-white" />
       </div>
 
       <div class="mt-6 md:mt-10 text-center">

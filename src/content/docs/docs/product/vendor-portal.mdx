@@ -5,9 +5,9 @@ sidebar:
   order: 1
 ---
 
-import ThemedImage from '../../../../components/util/ThemedImage.astro';
-import hubLight from '../../../../assets/docs/product/vendor-portal/hub-light.png';
-import hubDark from '../../../../assets/docs/product/vendor-portal/hub-dark.png';
+import ThemedImage from '~/components/util/ThemedImage.astro';
+import hubLight from '~/assets/docs/product/vendor-portal/hub-light.png';
+import hubDark from '~/assets/docs/product/vendor-portal/hub-dark.png';
 
 The Vendor Portal serves as the control plane for vendors, providing access to all Distr features, including [application onboarding](/docs/guides/onboarding-a-helm-app/), [artifact registry](/docs/guides/container-registry/) management, and monitoring of end-customer deployment states. In contrast, the [Customer Portal](/docs/product/customer-portal/) offers a simplified interface for end customers, allowing them to configure and manage their deployments while centralizing release information and helpful instructions for operating the vendor’s software.
 
@@ -19,12 +19,12 @@ The Vendor Portal serves as the control plane for vendors, providing access to a
 
 ## Key Features
 
-1. **Tutorials**: Start with the [Quickstart](/docs/getting-started/quickstart/#getting-started-with-platform-tutorials) to get familiar with the platform.
+1. **Tutorials**: Start with the [Quickstart](/docs/quickstart/#getting-started-with-platform-tutorials) to get familiar with the platform.
 2. **Dashboard**: View health status for agents and artifacts across all deployments.
 3. **Agents**: Use the [Agents](/docs/product/agents/) section to add applications, configure deployments monitor the health and view deployment logs.
 4. **Registry**: Browse and view consumption metrics of your [artifacts](/docs/product/registry/) in the _Registry_ section.
 5. **Licenses**: Define license rules to control access to specific artifact and application versions or tags.
-6. **Customers**: Invite [customers](/docs/guides/onboarding-a-new-customer/) to your organization and update their profile details.
+6. **Customers**: Invite [customers](/docs/product/rbac/#inviting-customer-organization-users) to your organization and update their profile details.
 7. **Users**: Add and manage internal team members to your Distr account.
 8. **Branding**: [White-label](/docs/product/branding/) the customer portal with your branding and provide customers with self-service instructions and documentation.
 9. **Settings**: Set your organization name, configure your registry [slug](/docs/guides/container-registry/#1-set-your-registry-slug) in the _Settings_ section.

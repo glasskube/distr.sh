@@ -1,9 +1,9 @@
-import type {RenderedContent} from 'astro:content';
+import type {RenderResult} from 'astro:content';
 import type {BlogPostConfig} from './content.config';
 
 export interface Post {
   data: BlogPostConfig;
-  rendered: RenderedContent;
+  rendered: Promise<RenderResult>;
 }
 
 export type PostData = BlogPostConfig;

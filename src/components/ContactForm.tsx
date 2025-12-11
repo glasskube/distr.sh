@@ -10,6 +10,10 @@ interface ContactRequest {
   useCase: string;
 }
 
+interface ContactFormProps {
+  formsServerBaseUrl: string;
+}
+
 // Load HubSpot script
 function loadHubSpotScript() {
   if (typeof window === 'undefined') {
@@ -26,7 +30,7 @@ function loadHubSpotScript() {
   }
 }
 
-export default function ContactForm() {
+export default function ContactForm({formsServerBaseUrl}: ContactFormProps) {
   const [formData, setFormData] = useState<ContactRequest>({
     firstName: '',
     lastName: '',
@@ -61,17 +65,14 @@ export default function ContactForm() {
     loadHubSpotScript();
 
     try {
-      const response = await fetch(
-        'https://forms.glasskube.com/api/v1/contact',
-        {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
+      const response = await fetch(`${formsServerBaseUrl}/contact`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
         },
-      );
+        body: JSON.stringify(formData),
+      });
 
       if (!response.ok) {
         throw new Error('Failed to submit form');
@@ -239,7 +240,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        class="w-full md:w-auto px-8 py-4 text-lg font-medium text-white bg-accent-600 hover:bg-accent-700 disabled:bg-gray-400 disabled:cursor-not-allowed rounded-lg transition-colors">
+        class="w-full md:w-auto px-8 py-4 text-lg font-medium text-white bg-accent-600 hover:bg-accent-700 disabled:bg-gray-400 disabled:cursor-not-allowed rounded-lg transition-colors cursor-pointer">
         {isSubmitting ? 'Submitting...' : 'Submit'}
       </button>
     </form>

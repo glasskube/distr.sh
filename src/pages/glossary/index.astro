@@ -1,6 +1,6 @@
 ---
-import Layout from '../../layouts/StarlightLayout.astro';
-import {getSortedGlossaryEntries} from '../../utils/glossary';
+import Layout from '~/layouts/StarlightLayout.astro';
+import {getSortedGlossaryEntries} from '~/utils/glossary';
 
 const entries = await getSortedGlossaryEntries();
 const title = 'Glossary';

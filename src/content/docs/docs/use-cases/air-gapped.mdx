@@ -6,18 +6,18 @@ sidebar:
 ---
 
 import {Aside, Steps, Tabs, TabItem} from '@astrojs/starlight/components';
-import ThemedImage from '../../../../components/util/ThemedImage.astro';
-import airgappedLight from '../../../../assets/docs/use-cases/airgapped/airgapped-light.png';
-import airgappedDark from '../../../../assets/docs/use-cases/airgapped/airgapped-dark.png';
+import ThemedImage from '~/components/util/ThemedImage.astro';
+import airgappedLight from '~/assets/docs/use-cases/airgapped/airgapped-light.png';
+import airgappedDark from '~/assets/docs/use-cases/airgapped/airgapped-dark.png';
 
-Distr supports air-gapped environments where strict security requirements demand physical or logical isolation from public networks.
+Distr supports [air-gapped](/glossary/air-gapped-meaning/) environments where strict security requirements demand physical or logical isolation from public networks.
 This deployment model is ideal for organizations in regulated industries, such as defense, finance, and critical infrastructure,
 where external connectivity or the use of agents is not permitted.
 
 Distr offers two approaches to support these environments:
 
 1. **IP Whitelisting**: For environments that can allow limited outbound connections.
-2. **Self-Managed Registry with Physical Transfers**: For fully isolated environments, Distr supports a workflow where updates are packaged, encrypted, and physically transferred (e.g., via USB or secure media).
+2. **[Self-Managed](/glossary/self-managed-software/) Registry with Physical Transfers**: For fully isolated environments, Distr supports a workflow where updates are packaged, encrypted, and physically transferred (e.g., via USB or secure media).
 
 ## Solution Architecture
 
@@ -39,7 +39,7 @@ Distr offers two approaches to support these environments:
     1. Set Up Your [Registry](/docs/guides/container-registry/)
     2. Onboard Your [Application](/docs/guides/onboarding-a-helm-app/)
     3. White-label the [Customer portal](/docs/product/branding/)
-    4. Onboard your first [customer](/docs/guides/onboarding-a-new-customer/)
+    4. Onboard your first [customer](/docs/product/rbac/#inviting-customer-organization-users)
     5. Request IP Allowlist for Customer Access
     6. Customer creates a [Personal Access token](/docs/integrations/personal-access-token/)
     7. Customer can [access and pull](/docs/guides/container-registry-for-end-customers/#registry-quickstart-from-the-customer-portal) your private artifacts
