@@ -83,6 +83,7 @@ Your customers fall somewhere on this spectrum:
 Count how many of these apply to your application:
 
 **Docker Compose Indicators (1 point each):**
+
 - Runs on 5 or fewer containers
 - Single database dependency
 - No complex service mesh requirements
@@ -90,6 +91,7 @@ Count how many of these apply to your application:
 - Fixed scaling requirements
 
 **Kubernetes Indicators (1 point each):**
+
 - Auto-scaling requirements
 - Complex service discovery
 - Multiple environment configurations
@@ -156,7 +158,7 @@ services:
       - DATABASE_URL=${DATABASE_URL}
       - LICENSE_KEY=${LICENSE_KEY}
     ports:
-      - "80:8080"
+      - '80:8080'
     volumes:
       - app_data:/data
     restart: unless-stopped
@@ -258,25 +260,21 @@ The most successful distribution strategies often support both:
 ### Implementation Strategy
 
 1. **Start with Docker Compose**
-
    - Faster initial development
    - Simpler testing
    - Quick customer validation
 
 2. **Extract configuration patterns**
-
    - Identify common environment variables
    - Standardize volume mounts
    - Document networking requirements
 
 3. **Create Helm charts that mirror Docker Compose structure**
-
    - Same environment variables
    - Similar service names
    - Compatible networking
 
 4. **Maintain parity**
-
    - Test both deployment methods
    - Keep documentation synchronized
    - Ensure feature compatibility
@@ -442,4 +440,3 @@ Then they add Kubernetes support when:
 The key is maintaining flexibility. Choose a distribution platform that supports both approaches, allowing you to serve customers wherever they are on the technical maturity spectrum.
 
 Remember: Your customers care about solving their problems, not your architectural choices. Pick the deployment method that gets them to value fastest, then evolve as needed.
-
