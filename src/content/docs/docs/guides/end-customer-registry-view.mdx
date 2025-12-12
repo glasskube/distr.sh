@@ -76,7 +76,7 @@ Click on the artifact name to see details like available versions, creation date
 
 Generate a [Personal Access Token (PAT)](/docs/integrations/personal-access-token/) in your Distr account and use it to log in:
 
-```bash
+```shell
 echo "YOUR-ACCESS-TOKEN" | docker login registry.distr.sh:8585 --password-stdin -u -
 ```
 
@@ -88,7 +88,7 @@ Once authenticated, you can pull the artifacts using Docker, [ORAS](https://oras
   You will find the exact commands in the Customer Portal.
 </Aside>
 
-```bash
+```shell
 docker pull registry.distr.sh/slug/hello-world:1.0.0
 oras pull registry.distr.sh/slug/vendor-artifact:1.0.0
 helm pull registry.distr.sh/slug/vendor-helm-chart:1.0.0

@@ -409,7 +409,7 @@ myapp:development
 
 **Pull images by digest, not just tag:**
 
-```bash
+```shell
 # Tag can change, digest guarantees exact version
 docker pull myapp@sha256:abc123def456...
 ```
@@ -458,31 +458,31 @@ Modern registries increasingly support **OCI artifacts** beyond traditional cont
 
 **Helm Charts**: Kubernetes application packages
 
-```bash
+```shell
 helm push my-chart.tgz oci://registry.example.com/helm-charts
 ```
 
 **Terraform Modules**: Infrastructure-as-code templates
 
-```bash
+```shell
 oras push registry.example.com/terraform/aws-vpc:v1.0 ./module:application/vnd.hashicorp.terraform.module.v1+tar.gz
 ```
 
 **Machine Learning Models**: AI/ML model files packaged as OCI artifacts
 
-```bash
+```shell
 oras push registry.example.com/models/bert-base:v1.0 model.pkl:application/vnd.myorg.model
 ```
 
 **WebAssembly (WASM) Modules**: Lightweight, portable binary modules
 
-```bash
+```shell
 oras push registry.example.com/wasm/serverless-fn:v1.0 function.wasm:application/vnd.wasm.content.layer.v1+wasm
 ```
 
 **Software Bill of Materials (SBOM)**: Security metadata about software components
 
-```bash
+```shell
 # SBOM attached to container image
 oras attach registry.example.com/myapp:v1.0 sbom.json:application/vnd.cyclonedx+json
 ```
@@ -504,14 +504,15 @@ A **registry mirror** (also called pull-through cache) is a registry that caches
 
 **Setting up a Docker Hub mirror:**
 
-```yaml
-# /etc/docker/daemon.json
+Configure a mirror in `/etc/docker/daemon.json`
+
+```json
 {"registry-mirrors": ["https://mirror.example.com:5000"]}
 ```
 
 Restart Docker daemon:
 
-```bash
+```shell
 sudo systemctl restart docker
 ```
 
