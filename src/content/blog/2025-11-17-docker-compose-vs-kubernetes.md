@@ -121,7 +121,7 @@ Docker Compose gets you from zero to deployed in hours. A simple `docker-compose
 
 When customers have issues, Docker Compose debugging is straightforward:
 
-```bash
+```shell
 docker compose logs
 docker compose ps
 docker exec -it container_name bash
@@ -129,7 +129,7 @@ docker exec -it container_name bash
 
 Compare this to Kubernetes debugging:
 
-```bash
+```shell
 kubectl get pods --all-namespaces
 kubectl describe pod pod-name
 kubectl logs pod-name -c container-name

@@ -23,7 +23,7 @@ Software developers nowadays have a lot of options when choosing a container reg
 But not all OCI registries serve the same purpose.
 Some are designed primarily for **internal use**—filling the gap between developers, CI/CD pipelines, and deployment within a single organization.
 Others are built for **external distribution**—helping software vendors distribute artifacts to customers,
-often across security boundaries or into air-gapped environments.
+often across security boundaries or into [air-gapped](/glossary/air-gapped-meaning/) environments.
 
 In this post, we'll compare different registry options, focusing on how each supports real-world software distribution needs.
 
@@ -31,44 +31,43 @@ But first, let's define a few key terms.
 
 ## Terminology
 
-- **Registry**: A service for storing and distributing container artifacts.
+- **[Registry](/glossary/oci-container-artifact-registry/)**: A service for storing and distributing container artifacts.
   Examples include private Docker image registries, OCI registries, and many proprietary registries which will be covered below.
-- **Artifact**: Can have multiple meanings, but in this context it refers to an OCI-compliant image.
-- **Container Image**: A type of artifact. It consists of manifests and blobs.
-- **Digest**: A unique identifier for a specific version of an artifact, typically a SHA256 hash. The digest cannot change.
-- **Tag**: A human-readable label for a specific version of an artifact, often used for versioning (e.g., `latest`, `v1.0`, etc.).
+- **[Artifact](/glossary/oci-container-artifact-registry/)**: Can have multiple meanings, but in this context it refers to an OCI-compliant image.
+- **[Container Image](/glossary/oci-container-artifact-registry/)**: A type of artifact. It consists of manifests and blobs.
+- **[Digest](/glossary/oci-container-artifact-registry/)**: A unique identifier for a specific version of an artifact, typically a SHA256 hash. The digest cannot change.
+- **[Tag](/glossary/oci-container-artifact-registry/)**: A human-readable label for a specific version of an artifact, often used for versioning (e.g., `latest`, `v1.0`, etc.).
   It points to a unique digest.
   If tags in a registry are immutable, it is not possible to change the pointer to another digest.
-- **Manifest**: Metadata that defines how blobs are combined to form a container image.
+- **[Manifest](/glossary/oci-container-artifact-registry/)**: Metadata that defines how blobs are combined to form a container image.
   It can also reference other manifests in the case of a multi-arch image.
-- **Blob**: The actual data of an artifact, most commonly an archive of files.
+- **[Blob](/glossary/oci-container-artifact-registry/)**: The actual data of an artifact, most commonly an archive of files.
 - **[SBOM (Software Bill of Materials)](/glossary/sbom-software-bill-of-materials/)**: A list of components and dependencies used in a software build. It is most common to directly add it as a layer to the OCI image.
-- **Image Signing**: A cryptographic process that ensures the integrity and authenticity of container images. The signature can also be directly integrated into the OCI image.
+- **[Image Signing](/glossary/oci-container-artifact-registry/#image-signing-and-verification)**: A cryptographic process that ensures the integrity and authenticity of container images. The signature can also be directly integrated into the OCI image.
 - **[OCI Compliance](/glossary/oci-container-artifact-registry/)**: Adherence to the Open Container Initiative standards, ensuring OCI-compliant containers can be used across different platforms.
 
 ## What Is a Container Registry?
 
-A container registry is used by software developers as a service to store, manage, and distribute container images and related OCI-compliant artifacts.
+A [container registry](/glossary/oci-container-artifact-registry/) is used by software developers as a service to store, manage, and distribute container images and related OCI-compliant artifacts.
 It provides APIs for pushing and pulling artifacts and is mostly consumed by CLI clients in CI/CD environments or deployment targets.
 Mature container registries come with advanced access control, analytics, and user interfaces.
 
+For a deeper understanding of how container registries work, including the difference between registries and repositories, see our [complete container registry guide](/glossary/oci-container-artifact-registry/).
+
 ## Understanding the OCI Format
 
-Based on the original Docker runtime and image format, the Open Container Initiative (OCI) stepped in to standardize these into open, vendor-neutral specifications: the OCI Image, Distribution, and Runtime specs.
-This brought consistency and portability to container images, and now, the same is happening for other types of software artifacts.
+[OCI (Open Container Initiative) compliance](/glossary/oci-container-artifact-registry/#oci-container-registry-what-is-oci-compliance) ensures container images and artifacts work consistently across different platforms and tools. The OCI standardizes image formats, distribution methods, and runtime specifications, bringing portability and preventing vendor lock-in.
 
 Popular tools like Helm, Docker, and [ORAS](https://oras.land/) support pushing and pulling OCI-compliant artifacts.
 A growing trend is using ORAS to package and store non-OCI-native formats, like Kubeflow pipelines, configuration bundles, or machine learning models, as OCI artifacts.
 
-[ORAS](https://oras.land/) handles the heavy lifting under the hood: it wraps arbitrary files in a compliant OCI format, generating the appropriate manifests, content digests, and metadata needed to make the artifact registry-friendly.
-
 For example, you can push a machine learning model like this:
 
-```bash
+```shell
 oras push registry.distr.sh/my-org/ml-model:0.0.1 ./model.pkl:application/vnd.myorg.model
 ```
 
-This command will wrap my `model.pkl` file in an OCI-compliant format of my custom type `application/vnd.myorg.model`, generating the necessary manifest and digest, and then push it to the specified registry.
+For a comprehensive explanation of OCI specifications, compliance requirements, and conformance testing, see our [complete guide to OCI container registries](/glossary/oci-container-artifact-registry/#oci-container-registry-what-is-oci-compliance).
 
 ## Key Considerations When Choosing a Registry
 
@@ -79,16 +78,17 @@ Is this for your internal development team's workflow, or for distributing to cu
 This is the most fundamental distinction.
 
 **OCI Compliance Level**
-How completely does the registry implement the OCI specification?
+How completely does the registry implement the [OCI specification](/glossary/oci-container-artifact-registry/#oci-container-registry-what-is-oci-compliance)?
 This affects which artifact types you can store and distribute.
 
 **Security & Access Controls**
 For internal use, integration with your existing IAM may be sufficient.
 For external distribution, you'll need granular controls over which artifacts are visible to which customers.
-[Vulnerability scanning](/glossary/vulnerability-scanning/) is also an important consideration.
+[Vulnerability scanning](/glossary/vulnerability-scanning/) and [image signing](/glossary/oci-container-artifact-registry/#image-signing-and-verification) are also important considerations. See our [container registry security best practices](/glossary/oci-container-artifact-registry/#container-registry-security-best-practices) guide for more details.
 
 **Deployment Flexibility**
 Can the registry be deployed where you need it—cloud, [on-premises](/glossary/on-premises-definition/), or [air-gapped](/glossary/air-gapped-meaning/) environments?
+For more on registry deployment options, see our [container registry use cases](/glossary/oci-container-artifact-registry/#container-registry-use-cases) guide.
 
 **Support**
 Does the registry have a strong support community or a commercial vendor backing?
@@ -302,12 +302,12 @@ While it's a convenient starting point for development, its rate limits and secu
 
 ## List of container registries that support external users
 
-External registries face a fundamentally different challenge: distributing software to end customers, usually outside of your organization. That shift requires a different focus: access control, auditing, version visibility, and compliance.
+External registries face a fundamentally different challenge: distributing software to end customers, usually outside of your organization. That shift requires a different focus: access control, auditing, version visibility, and compliance. For more on the unique challenges of customer-facing container registries, see our [guide to container registries for software distribution](/glossary/oci-container-artifact-registry/#container-registry-for-software-distribution-to-customers).
 
 While GitHub Container Registry and Docker Hub are excellent for open-source and low-security use cases, they're not well suited for commercial software distribution because they lack:
 
 - **Granular access control**: No way to give specific customers access to specific artifact versions
-- **Air-gapped support**: Limited options for distributing to high-security environments
+- **[Air-gapped](/glossary/air-gapped-meaning/) support**: Limited options for distributing to high-security environments
 - **Usage visibility**: Missing audit logs and download tracking that commercial vendors need
 - **License management**: No built-in capabilities to manage software entitlements
 
