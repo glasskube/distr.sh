@@ -24,7 +24,7 @@ import dashboardLight from '../../assets/blog/2025-05-21-dashboard/distr-dashboa
 import dashboardDark from '../../assets/blog/2025-05-21-dashboard/distr-dashboard-dark.webp';
 import {TabItem, Tabs} from '@astrojs/starlight/components';
 
-I am Philip—an engineer working at Glasskube, which helps software and AI companies distribute their applications to self-managed environments.
+I am Philip—an engineer working at Glasskube, which helps [software and AI companies](/glossary/isv-meaning/) distribute their applications to [self-managed environments](/glossary/self-managed-software/).
 We build an Open Source Software Distribution platform called Distr ([`github.com/glasskube/distr`](https://github.com/glasskube/distr)).
 
 Adding support for multiple deployments per target and introducing metrics forced us to rethink our current dashboard and led to redesigning it from scratch.
@@ -56,9 +56,9 @@ To be quite frank, our users didn't mind having these components on our old dash
 <br />
 <br />
 
-With the recent [introduction of our container registry](https://distr.sh/docs/product/registry/) we are now also supporting
-[fully self-managed](https://distr.sh/docs/use-cases/fully-self-managed/) environments
-in addition to agent-based [assisted self-managed](https://distr.sh/docs/use-cases/assisted-self-managed/) environments.
+With the recent [introduction of our container registry](/docs/product/registry/) we are now also supporting
+[fully self-managed](/docs/use-cases/fully-self-managed/) environments
+in addition to agent-based [assisted self-managed](/docs/use-cases/assisted-self-managed/) environments.
 
 ## Current version of the Distr Dashboard
 
@@ -89,7 +89,7 @@ The main reason for the switch to cards was the introduction of multiple deploym
 [Distr v1.6](https://github.com/glasskube/distr/releases/tag/1.6.0).
 Often software vendors receive a pretty beefy VM or quite large namespace to deploy their software to.
 Modern applications consist of multiple application components which might need to be deployed independently of each other,
-so the docker compose and Helm Charts stay in a manageable size.
+so the docker compose and [Helm Charts](/glossary/helm-chart/) stay in a manageable size.
 
 With the introduction of cards we are now able to display a list of all deployed applications on a deployment target.
 
@@ -98,8 +98,8 @@ With the introduction of cards we are now able to display a list of all deployed
 Deployment target metrics have been introduced in [Distr v1.9](https://github.com/glasskube/distr/releases/tag/1.9.0).
 We extended our agent to not only reconcile the application deployment but also collect—if configured—metrics from the target.
 
-Read more about the [Docker Metrics Collection](https://distr.sh/docs/product/agents/#docker-metrics) and
-[Kubernetes Metrics Collection](https://distr.sh/docs/product/agents/#kubernetes-metrics) in our documentation.
+Read more about the [Docker Metrics Collection](/docs/product/agents/#docker-metrics) and
+[Kubernetes Metrics Collection](/docs/product/agents/#kubernetes-metrics) in our documentation.
 
 These newly introduced metrics allow us to calculate the CPU and memory utilization of the deployment targets.
 These metrics allow you to spot any resource constraints directly on the Dashboard.

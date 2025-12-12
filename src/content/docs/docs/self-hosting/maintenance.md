@@ -12,7 +12,7 @@ Distr includes built-in cli tasks for database pruning to prevent unbounded grow
 
 The cleanup jobs can be executed manually.
 
-```bash
+```shell
 distr cleanup DeploymentLogRecord
 ```
 

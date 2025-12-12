@@ -1,6 +1,7 @@
 ---
 title: Core Concepts
 description: Explore Distr’s core concepts, like the distribution models it caters to, vendor and customer portals, the artifact registry, deployment agents and extensibility via the Distr Rest API and SDK.
+slug: docs/core-concepts
 sidebar:
   order: 2
 ---
@@ -43,6 +44,11 @@ Unlike other artifact registries, Distr's includes a [UI](/docs/product/registry
 [Distr Agents](/docs/product/agents/) are lightweight deployment agents that run in the customer’s target environment.
 They pull configurations from Distr's control plane (Distr Hub), execute deployment operations locally, and report status back to the vendor and customer portal.
 
+### Distr License Management
+
+[Distr License Management](/docs/product/license-management/) provides fine-grained control over which applications, versions, and artifacts your customers can access.
+You can create Application Licenses to control deployment access via agents, and Artifact Licenses to control registry access, each with customizable expiration dates and version constraints.
+
 ## API and Extensibility
 
 Distr provides programmatic access through:
@@ -54,6 +60,5 @@ The [API](/docs/integrations/api/) and [SDK](/docs/integrations/sdk/) use the sa
 
 <Aside type="tip">
   Ready to apply these concepts? Follow our [quickstart
-  guide](/docs/getting-started/quickstart/) to set up your first distribution
-  workflow.
+  guide](/docs/quickstart/) to set up your first distribution workflow.
 </Aside>

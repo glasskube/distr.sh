@@ -23,7 +23,7 @@ To create a Personal Access Token, follow the steps outlined in the [Creating a 
 
 For each HTTP request to the API, you need to include the Personal Access Token in the `Authorization` header, like shown here:
 
-```bash
+```shell
 curl 'https://app.distr.sh/api/v1/applications' \
   -H "Authorization: AccessToken <your-access-token-here>"
 ```

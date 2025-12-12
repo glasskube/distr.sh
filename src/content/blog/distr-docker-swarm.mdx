@@ -16,16 +16,16 @@ tags:
   - docker swarm
 ---
 
-I am Jakob—an engineer working at Glasskube, which helps software and AI companies distribute their applications to self-managed environments.
+I am Jakob—an engineer working at Glasskube, which helps [software and AI companies](/glossary/isv-meaning/) distribute their applications to [self-managed environments](/glossary/self-managed-software/).
 We build an Open Source Software Distribution platform called Distr ([`github.com/glasskube/distr`](https://github.com/glasskube/distr)).
 
-If you've ever thought that **Docker Compose** is too basic for your deployment needs, but a full **Kubernetes** setup feels like overkill, you're definitely not alone.
+If you've ever thought that **Docker Compose** is too basic for your deployment needs, but a full **[Kubernetes](/glossary/kubernetes/)** setup feels like overkill, you're definitely not alone.
 
 <hr />
 
 Luckily, Docker has come up with a solution just for this: Docker Swarm.
 This tool lets you connect multiple Docker daemons to create a Swarm cluster, giving you access to distributed computing features.
-With Docker Swarm, you get benefits like scheduling, better availability, and many of the advantages that come with cloud-native technologies like Kubernetes.
+With Docker Swarm, you get benefits like scheduling, better availability, and many of the advantages that come with cloud-native technologies like [Kubernetes](/glossary/kubernetes/).
 
 On top of that, Docker Stacks make it easy to deploy almost any Compose file to your Swarm cluster.
 This means you can take advantage of a distributed deployment infrastructure while keeping your application manifest straightforward and easy to manage.
@@ -76,7 +76,7 @@ Keep in mind that you currently can't enable or disable Swarm mode for existing 
 
 Once Swarm mode is turned on, the Distr Docker Agent will use the Docker Stack API to deploy your application's Compose file.
 It will also use the Docker Service API to monitor your application's health metrics and log streams (coming soon).
-If you want to learn more about Docker Swarm mode in Distr, definitely check out our [documentation](https://distr.sh/docs/product/agents/#docker-swarm)!
+If you want to learn more about Docker Swarm mode in Distr, definitely check out our [documentation](/docs/product/agents/#docker-swarm)!
 
 Have you tried out the new Docker Swarm mode in Distr yet?
 We'd love to hear your thoughts, as we're on a mission to create the best application distribution solution possible!
