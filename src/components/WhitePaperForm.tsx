@@ -45,14 +45,16 @@ export default function WhitePaperForm({
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [reCaptchaVerified, setReCaptchaVerified] = useState(false);
+  const [reCaptchaToken, setReCaptchaToken] = useState('');
 
   // Load reCAPTCHA script and set up callback on component mount
   useEffect(() => {
     loadRecaptchaScript();
 
     // Set up global callback for reCAPTCHA
-    (window as any).onWhitePaperRecaptchaCallback = () => {
+    (window as any).onWhitePaperRecaptchaCallback = (token: string) => {
       setReCaptchaVerified(true);
+      setReCaptchaToken(token);
     };
 
     return () => {
@@ -68,6 +70,17 @@ export default function WhitePaperForm({
       return;
     }
 
+    // Get the reCAPTCHA token
+    let token = reCaptchaToken;
+    if (!token && (window as any).grecaptcha) {
+      token = (window as any).grecaptcha.getResponse();
+    }
+
+    if (!token) {
+      alert('Please complete the reCAPTCHA verification.');
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -77,7 +90,10 @@ export default function WhitePaperForm({
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          reCaptchaToken: token,
+        }),
       });
 
       if (response.ok) {
@@ -93,6 +109,13 @@ export default function WhitePaperForm({
           jobTitle: '',
           companyName: '',
         });
+
+        // Reset reCAPTCHA
+        setReCaptchaVerified(false);
+        setReCaptchaToken('');
+        if ((window as any).grecaptcha) {
+          (window as any).grecaptcha.reset();
+        }
       } else {
         throw new Error('Failed to submit form');
       }
@@ -237,18 +260,20 @@ export default function WhitePaperForm({
           </div>
         </div>
 
-        {/* reCAPTCHA */}
-        <div
-          class="g-recaptcha"
-          data-sitekey={reCaptchaKeyV2}
-          data-callback="onWhitePaperRecaptchaCallback"></div>
+        {/* reCAPTCHA and Submit Button */}
+        <div class="flex flex-col md:flex-row gap-4 items-center md:justify-between">
+          <div
+            class="g-recaptcha"
+            data-sitekey={reCaptchaKeyV2}
+            data-callback="onWhitePaperRecaptchaCallback"></div>
 
-        <button
-          type="submit"
-          disabled={isSubmitting || !reCaptchaVerified}
-          class="mt-2 px-8 py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-semibold rounded-lg transition-colors duration-200 disabled:cursor-not-allowed">
-          {isSubmitting ? 'Submitting...' : 'Submit'}
-        </button>
+          <button
+            type="submit"
+            disabled={isSubmitting || !reCaptchaVerified}
+            class="w-full md:w-80 px-8 py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-semibold rounded-lg transition-colors duration-200 disabled:cursor-not-allowed cursor-pointer">
+            {isSubmitting ? 'Submitting...' : 'Submit'}
+          </button>
+        </div>
       </form>
     </div>
   );

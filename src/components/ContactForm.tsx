@@ -48,6 +48,7 @@ export default function ContactForm({
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [reCaptchaVerified, setReCaptchaVerified] = useState(false);
+  const [reCaptchaToken, setReCaptchaToken] = useState('');
 
   const handleChange = (
     e: Event & {currentTarget: HTMLInputElement | HTMLTextAreaElement},
@@ -61,8 +62,9 @@ export default function ContactForm({
     loadRecaptchaScript();
 
     // Set up global callback for reCAPTCHA
-    (window as any).onContactRecaptchaCallback = () => {
+    (window as any).onContactRecaptchaCallback = (token: string) => {
       setReCaptchaVerified(true);
+      setReCaptchaToken(token);
     };
 
     return () => {
@@ -78,6 +80,17 @@ export default function ContactForm({
       return;
     }
 
+    // Get the reCAPTCHA token
+    let token = reCaptchaToken;
+    if (!token && (window as any).grecaptcha) {
+      token = (window as any).grecaptcha.getResponse();
+    }
+
+    if (!token) {
+      alert('Please complete the reCAPTCHA verification.');
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -87,7 +100,10 @@ export default function ContactForm({
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          reCaptchaToken: token,
+        }),
       });
 
       if (!response.ok) {
@@ -108,6 +124,13 @@ export default function ContactForm({
         companyName: '',
         useCase: '',
       });
+
+      // Reset reCAPTCHA
+      setReCaptchaVerified(false);
+      setReCaptchaToken('');
+      if ((window as any).grecaptcha) {
+        (window as any).grecaptcha.reset();
+      }
     } catch (err) {
       const errorMessage =
         err instanceof Error ? err.message : 'An error occurred';
@@ -252,19 +275,20 @@ export default function ContactForm({
         />
       </div>
 
-      {/* reCAPTCHA */}
-      <div
-        class="g-recaptcha"
-        data-sitekey={reCaptchaKeyV2}
-        data-callback="onContactRecaptchaCallback"></div>
+      {/* reCAPTCHA and Submit Button */}
+      <div class="flex flex-col md:flex-row gap-4 items-center md:justify-between">
+        <div
+          class="g-recaptcha"
+          data-sitekey={reCaptchaKeyV2}
+          data-callback="onContactRecaptchaCallback"></div>
 
-      {/* Submit Button */}
-      <button
-        type="submit"
-        disabled={isSubmitting || !reCaptchaVerified}
-        class="w-full md:w-auto px-8 py-4 text-lg font-medium text-white bg-accent-600 hover:bg-accent-700 disabled:bg-gray-400 disabled:cursor-not-allowed rounded-lg transition-colors cursor-pointer">
-        {isSubmitting ? 'Submitting...' : 'Submit'}
-      </button>
+        <button
+          type="submit"
+          disabled={isSubmitting || !reCaptchaVerified}
+          class="w-full md:w-80 px-8 py-4 text-lg font-medium text-white bg-accent-600 hover:bg-accent-700 disabled:bg-gray-400 disabled:cursor-not-allowed rounded-lg transition-colors cursor-pointer">
+          {isSubmitting ? 'Submitting...' : 'Submit'}
+        </button>
+      </div>
     </form>
   );
 }

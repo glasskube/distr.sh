@@ -42,14 +42,7 @@ const ogUrl = Astro.url.href;
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    {
-      import.meta.env.PROD && (
-        <>
-          <GoogleTagManager />
-          <HubSpot />
-        </>
-      )
-    }
+    {import.meta.env.PROD && <GoogleTagManager />}
     <ReCAPTCHA />
   </head>
   <body class="bg-gray-50 dark:bg-gray-900 min-h-screen">
