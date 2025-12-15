@@ -1,4 +1,4 @@
-import {useState} from 'preact/hooks';
+import {useEffect, useState} from 'preact/hooks';
 
 interface ContactRequest {
   firstName: string;
@@ -12,25 +12,30 @@ interface ContactRequest {
 
 interface ContactFormProps {
   formsServerBaseUrl: string;
+  reCaptchaKeyV2: string;
 }
 
-// Load HubSpot script
-function loadHubSpotScript() {
+// Load reCAPTCHA script
+function loadRecaptchaScript() {
   if (typeof window === 'undefined') {
     return;
   }
 
-  const elementId = 'hs-script';
+  const elementId = 'recaptcha-script';
   if (document.getElementById(elementId) === null) {
     const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = 'https://js-eu1.hs-scripts.com/144345473.js';
+    script.src = 'https://www.google.com/recaptcha/api.js';
     script.id = elementId;
+    script.async = true;
+    script.defer = true;
     document.head.appendChild(script);
   }
 }
 
-export default function ContactForm({formsServerBaseUrl}: ContactFormProps) {
+export default function ContactForm({
+  formsServerBaseUrl,
+  reCaptchaKeyV2,
+}: ContactFormProps) {
   const [formData, setFormData] = useState<ContactRequest>({
     firstName: '',
     lastName: '',
@@ -42,27 +47,38 @@ export default function ContactForm({formsServerBaseUrl}: ContactFormProps) {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [hubSpotLoaded, setHubSpotLoaded] = useState(false);
+  const [reCaptchaVerified, setReCaptchaVerified] = useState(false);
 
   const handleChange = (
     e: Event & {currentTarget: HTMLInputElement | HTMLTextAreaElement},
   ) => {
     const {name, value} = e.currentTarget;
     setFormData(prev => ({...prev, [name]: value}));
-
-    // Load HubSpot when user starts typing in email field
-    if (name === 'email' && !hubSpotLoaded) {
-      loadHubSpotScript();
-      setHubSpotLoaded(true);
-    }
   };
+
+  // Load reCAPTCHA script and set up callback on component mount
+  useEffect(() => {
+    loadRecaptchaScript();
+
+    // Set up global callback for reCAPTCHA
+    (window as any).onContactRecaptchaCallback = () => {
+      setReCaptchaVerified(true);
+    };
+
+    return () => {
+      delete (window as any).onContactRecaptchaCallback;
+    };
+  }, []);
 
   const handleSubmit = async (e: Event) => {
     e.preventDefault();
-    setIsSubmitting(true);
 
-    // Load HubSpot script
-    loadHubSpotScript();
+    if (!reCaptchaVerified) {
+      alert('Please complete the reCAPTCHA verification.');
+      return;
+    }
+
+    setIsSubmitting(true);
 
     try {
       const response = await fetch(`${formsServerBaseUrl}/contact`, {
@@ -236,10 +252,16 @@ export default function ContactForm({formsServerBaseUrl}: ContactFormProps) {
         />
       </div>
 
+      {/* reCAPTCHA */}
+      <div
+        class="g-recaptcha"
+        data-sitekey={reCaptchaKeyV2}
+        data-callback="onContactRecaptchaCallback"></div>
+
       {/* Submit Button */}
       <button
         type="submit"
-        disabled={isSubmitting}
+        disabled={isSubmitting || !reCaptchaVerified}
         class="w-full md:w-auto px-8 py-4 text-lg font-medium text-white bg-accent-600 hover:bg-accent-700 disabled:bg-gray-400 disabled:cursor-not-allowed rounded-lg transition-colors cursor-pointer">
         {isSubmitting ? 'Submitting...' : 'Submit'}
       </button>
