@@ -2,7 +2,7 @@
 title: Onboarding a Helm App
 description: Package and deploy your Kubernetes applications to customer environments using Distr's Helm deployment agent.
 sidebar:
-  order: 2
+  hidden: true
 ---
 
 In this guide, we will walk you through the process of onboarding a new [Helm](/glossary/helm-chart/) ([Kubernetes](/glossary/kubernetes/)) App in Distr.
@@ -51,7 +51,7 @@ Click on the **Create** button to add the version to your Helm App.
 
 After you have created the version, you can see it in the list of versions:
 
-![Version list](../../../../assets/docs/guides/kubernets_version_manage.png)
+![Version list](../../../../assets/docs/guides/kubernetes_version_manage.png)
 
 You can use the **Copy from** button to create a new version based on the existing one.
 

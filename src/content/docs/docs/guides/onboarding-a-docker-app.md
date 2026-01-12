@@ -2,7 +2,7 @@
 title: Onboarding a Docker App
 description: Package and deploy your Docker applications to customer environments using Distr's docker deployment agent.
 sidebar:
-  order: 1
+  hidden: true
 ---
 
 In this guide, we will walk you through the process of onboarding a new Docker App in Distr.
