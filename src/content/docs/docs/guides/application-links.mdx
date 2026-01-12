@@ -2,10 +2,10 @@
 title: Configure Application Links
 description: Create dynamic links to deployed applications using environment variables and Helm values as template variables.
 sidebar:
-  order: 5
+  order: 8
 ---
 
-import {Aside, Code} from '@astrojs/starlight/components';
+import {Aside} from '@astrojs/starlight/components';
 
 Distr allows you to define dynamic application links that automatically resolve to the correct URL after deployment.
 This enables users to quickly access their deployed applications directly from the Distr interface.
@@ -97,7 +97,7 @@ Result: `https://localhost:8080`
 
 ### Nested Values
 
-For accessing nested YAML structures, use dot notation:
+For accessing nested YAML structures, use dot notation for nested objects, and use the `index` function when you need to access array elements by position. For example, to access the first host entry, use:
 
 ```
 https://{{ index .Values.app.ingress.hosts 0 "host" }}
