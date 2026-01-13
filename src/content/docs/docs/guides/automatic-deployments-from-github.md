@@ -278,6 +278,7 @@ Here's how everything works together:
 4. **Build Images** - Tag triggers your build workflows:
    - Docker images are built and pushed with the version tag
 5. **Push to Distr** - Tag triggers the `push-distr.yaml` workflow:
+   - **IMPORTANT**: This workflow must wait for all Docker images to be pushed before running
    - Creates new version in Distr with the updated compose file (now referencing the correct image tags)
    - Optionally updates all deployments
 
@@ -325,6 +326,8 @@ When version `0.2.0` is released:
 2. Git tag `0.2.0` is created
 3. Build workflows push images tagged `0.2.0`
 4. Distr workflow creates version with compose file referencing `0.2.0` images
+
+**Note:** In hello-distr's current setup, build workflows and the Distr workflow trigger simultaneously on tags. In practice, image builds take longer than uploading a compose file, so this works. However, for production use, you should implement proper workflow sequencing (see [Critical: Workflow Sequencing](#critical-workflow-sequencing-for-docker-applications)) to guarantee images are available before deployments are triggered.
 
 ### Alternative: Manual Version Management
 
@@ -450,6 +453,127 @@ on:
 compose-file: ${{ github.workspace }}/deploy/docker-compose.yaml
 template-file: ${{ github.workspace }}/deploy/env.template
 ```
+
+### Critical: Workflow Sequencing for Docker Applications
+
+**IMPORTANT**: If your application builds and pushes Docker images, the Distr workflow **must wait** for all images to be pushed before running. Otherwise, deployments will fail because the images referenced in your `docker-compose.yaml` won't be available yet.
+
+#### Why This Matters
+
+When you create a release:
+
+1. Your `docker-compose.yaml` references images with the release tag (e.g., `ghcr.io/yourorg/app:0.2.0`)
+2. The Distr action uploads this compose file to Distr
+3. If `update-deployments: true`, deployments are triggered immediately
+4. The deployment agent tries to pull the images from the registry
+5. **If the images aren't pushed yet, the deployment fails**
+
+#### Solution 1: Use Workflow Dependencies (Recommended)
+
+Configure your Distr workflow to run **after** all build workflows complete:
+
+```yaml
+name: Push Distr Application Version
+
+on:
+  workflow_run:
+    workflows: ["Build Backend", "Build Frontend", "Build Proxy"]
+    types:
+      - completed
+    branches-ignore:
+      - '**'  # Only trigger on tags
+  push:
+    tags:
+      - '*'
+
+jobs:
+  push-to-distr:
+    # Only run if all build workflows succeeded
+    if: |
+      github.event_name == 'push' ||
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create Distr Version and Update Deployments
+        uses: glasskube/distr-create-version-action@v1
+        with:
+          api-token: ${{ secrets.DISTR_API_TOKEN }}
+          application-id: ${{ vars.DISTR_APPLICATION_ID }}
+          version-name: ${{ github.ref_name }}
+          compose-file: ${{ github.workspace }}/deploy/docker-compose.yaml
+          template-file: ${{ github.workspace }}/deploy/env.template
+          update-deployments: true
+```
+
+This ensures the Distr workflow only runs after your build workflows ("Build Backend", "Build Frontend", "Build Proxy") have all completed successfully.
+
+#### Solution 2: Combined Workflow
+
+Alternatively, combine image builds and Distr push into a single workflow:
+
+```yaml
+name: Build and Push to Distr
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build-backend:
+    runs-on: ubuntu-latest
+    steps:
+      # ... build and push backend image
+
+  build-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      # ... build and push frontend image
+
+  build-proxy:
+    runs-on: ubuntu-latest
+    steps:
+      # ... build and push proxy image
+
+  push-to-distr:
+    needs: [build-backend, build-frontend, build-proxy]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create Distr Version and Update Deployments
+        uses: glasskube/distr-create-version-action@v1
+        with:
+          api-token: ${{ secrets.DISTR_API_TOKEN }}
+          application-id: ${{ vars.DISTR_APPLICATION_ID }}
+          version-name: ${{ github.ref_name }}
+          compose-file: ${{ github.workspace }}/deploy/docker-compose.yaml
+          template-file: ${{ github.workspace }}/deploy/env.template
+          update-deployments: true
+```
+
+The `needs:` clause ensures `push-to-distr` only runs after all build jobs complete.
+
+#### Solution 3: Delay Update Deployments
+
+If you can't control workflow order, create the version without immediately updating deployments:
+
+```yaml
+- name: Create Distr Version
+  uses: glasskube/distr-create-version-action@v1
+  with:
+    api-token: ${{ secrets.DISTR_API_TOKEN }}
+    application-id: ${{ vars.DISTR_APPLICATION_ID }}
+    version-name: ${{ github.ref_name }}
+    compose-file: ${{ github.workspace }}/deploy/docker-compose.yaml
+    update-deployments: false  # Don't update automatically
+```
+
+Then manually trigger deployment updates after verifying images are available, either through the Distr UI or using the [Distr API](/docs/integrations/api/).
 
 ## Step 7: Test Your Automation
 
@@ -657,6 +781,22 @@ This example from [hello-distr](https://github.com/glasskube/hello-distr) shows 
 - Verify your Docker Compose file or Helm chart is valid
 - Ensure required environment variables are configured in the deployment
 - Check the deployment logs in the Distr web interface
+
+### Deployments Fail with "Image Pull Error" or "manifest unknown"
+
+**Problem:** Deployments fail immediately after creation with errors like "failed to pull image" or "manifest for image not found".
+
+**Cause:** The Distr workflow ran before your Docker images were fully pushed to the registry.
+
+**Solution:**
+
+This is a critical sequencing issue. See the **[Critical: Workflow Sequencing for Docker Applications](#critical-workflow-sequencing-for-docker-applications)** section above for detailed solutions. In summary:
+
+1. Use `workflow_run` to make the Distr workflow wait for build workflows to complete
+2. Use `needs:` in a combined workflow to enforce job order
+3. Set `update-deployments: false` and update manually after images are available
+
+**Quick check:** Look at your GitHub Actions runs - do the build workflows complete *after* the Distr workflow? If yes, you need to fix the sequencing.
 
 ### Version Already Exists Error
 
