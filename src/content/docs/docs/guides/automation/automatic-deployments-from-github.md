@@ -1,6 +1,7 @@
 ---
 title: Automatic Deployments from GitHub
 description: Automatically create new versions and update customer deployments whenever you push a release to GitHub using the Distr GitHub Action.
+slug: docs/guides/automatic-deployments-from-github
 sidebar:
   order: 7
 ---
@@ -307,7 +308,7 @@ When version `0.2.0` is released:
 3. Build workflows push images tagged `0.2.0`
 4. Distr workflow creates version with compose file referencing `0.2.0` images
 
-**Note:** In hello-distr's current setup, build workflows and the Distr workflow trigger simultaneously on tags. In practice, image builds take longer than uploading a compose file, so this works. However, for production use, you should implement proper workflow sequencing (see [Critical: Workflow Sequencing](#critical-workflow-sequencing-for-docker-applications)) to guarantee images are available before deployments are triggered.
+**Note:** In hello-distr's current setup, build workflows and the Distr workflow trigger simultaneously on tags. In practice, image builds take longer than uploading a compose file, so this works. However, for production use, you should implement proper workflow sequencing to guarantee images are available before deployments are triggered.
 
 ## Step 6: Create the GitHub Actions Workflow
 
@@ -384,7 +385,7 @@ jobs:
 - **`api-token`** - Your Personal Access Token (from GitHub Secrets)
 - **`application-id`** - Your Application ID (from GitHub Variables)
 - **`version-name`** - The version name (here we use the git tag name)
-- **`link-template`** - Template for generating links to deployments (e.g., `http://{{ .Env.APP_HOST }}`). See [Application Links](/docs/guides/configuration/application-links/) for details
+- **`link-template`** - Template for generating links to deployments (e.g., `http://{{ .Env.APP_HOST }}`). See [Application Links](/docs/guides/application-links/) for details
 - **`update-deployments: true`** - **This is the key setting that enables automatic deployment updates**
 
 When `update-deployments` is set to `true`, the action will:
@@ -395,7 +396,6 @@ When `update-deployments` is set to `true`, the action will:
 4. Skip targets that are already on the new version or don't have the app deployed
 
 **IMPORTANT**: If your application builds and pushes Docker images, the Distr workflow **must wait** for all images to be pushed before running. Otherwise, deployments will fail because the images referenced in your `docker-compose.yaml` won't be available yet.
-
 
 ```yaml
 name: Build and Push to Distr
@@ -579,7 +579,7 @@ Skipped 2 deployment target(s):
 
 **Solution:**
 
-This is a critical sequencing issue. See the **[Critical: Workflow Sequencing for Docker Applications](#critical-workflow-sequencing-for-docker-applications)** section above for detailed solutions. In summary:
+This is a critical sequencing issue. In summary:
 
 1. Use `workflow_run` to make the Distr workflow wait for build workflows to complete
 2. Use `needs:` in a combined workflow to enforce job order
@@ -601,8 +601,8 @@ This is a critical sequencing issue. See the **[Critical: Workflow Sequencing fo
 
 Now that you have automatic deployments set up, consider:
 
-- **[Application Licenses](/docs/guides/customer-management/application-licenses/)** - Control which customers receive automatic updates
-- **[Application Links](/docs/guides/configuration/application-links/)** - Create dynamic links for customers to access their deployments
+- **[Application Licenses](/docs/guides/application-licenses/)** - Control which customers receive automatic updates
+- **[Application Links](/docs/guides/application-links/)** - Create dynamic links for customers to access their deployments
 - **[Distr SDK](/docs/integrations/sdk/)** - Build custom automation and integrations
 - **[Distr API](/docs/integrations/api/)** - Explore advanced API capabilities
 

@@ -1,6 +1,7 @@
 ---
 title: Create a Deployment
 description: Learn how to create deployments for Docker and Helm applications, including the updated deployment flow with customer selection and license management.
+slug: docs/guides/deployment
 sidebar:
   order: 2
 ---
@@ -37,8 +38,8 @@ After selecting a customer, choose the Docker application and version you want t
 <Aside type="tip">
   If an application doesn't appear in the list, it may be because: - The
   customer doesn't have a license for that application - You need to create an
-  [application license](/docs/guides/customer-management/application-licenses/) and assign it to the
-  customer first
+  [application license](/docs/guides/application-licenses/)
+  and assign it to the customer first
 </Aside>
 
 ### Step 3: Deployment Configuration
@@ -54,7 +55,7 @@ Configure the environment variables for your Docker Compose application. These v
 ![Application Configuration step](../../../../../assets/screenshots/distr/docker-application-config.png)
 
 The entered environment variables will be passed unmodified to the `docker compose` process via the `--env-file` argument.
-For more information on how to use them, please refer to [our guide on working with environment variables](/docs/guides/configuration/docker-env-var-template/).
+For more information on how to use them, please refer to [our guide on working with environment variables](/docs/guides/docker-env-var-template/).
 
 You can also enable Docker Swarm mode for deployments that should run in swarm mode. See [Docker Swarm](/docs/product/agents/#docker-swarm) for more details. Additionally, you can enable container log collection to view application logs directly in the portal. Learn more about [Container Logs](/docs/product/agents/#container-logs).
 
@@ -96,8 +97,8 @@ After selecting a customer, choose the Helm application and version you want to 
 <Aside type="tip">
   If an application doesn't appear in the list, it may be because: - The
   customer doesn't have a license for that application - You need to create an
-  [application license](/docs/guides/customer-management/application-licenses/) and assign it to the
-  customer first
+  [application license](/docs/guides/application-licenses/)
+  and assign it to the customer first
 </Aside>
 
 ### Step 3: Deployment Configuration
@@ -148,6 +149,6 @@ This will show you the same flow as above, where you can select your application
 ## Related Guides
 
 - [Create a Application](/docs/guides/application/) - Learn how to create Docker and Helm applications
-- [Application Licenses](/docs/guides/customer-management/application-licenses/) - Control which applications customers can access
-- [Docker Environment Variables](/docs/guides/configuration/docker-env-var-template/) - Configure environment variable templates
-- [Helm Chart Registry Auth](/docs/guides/configuration/helm-chart-registry-auth/) - Set up authenticated image pulls
+- [Application Licenses](/docs/guides/application-licenses/) - Control which applications customers can access
+- [Docker Environment Variables](/docs/guides/docker-env-var-template/) - Configure environment variable templates
+- [Helm Chart Registry Auth](/docs/guides/helm-chart-registry-auth/) - Set up authenticated image pulls
