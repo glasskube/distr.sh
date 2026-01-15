@@ -6,18 +6,18 @@ sidebar:
 ---
 
 import {Aside, Code, TabItem, Tabs} from '@astrojs/starlight/components';
-import dockerComposeBasic from './docker-env-basic/docker-compose.yaml?raw';
-import envBasic from './docker-env-basic/.env?raw';
-import dockerComposeMultiService from './docker-env-multi-service/docker-compose.yaml?raw';
-import envMultiService from './docker-env-multi-service/.env?raw';
-import oneJson from './docker-env-multi-service/one.json?raw';
-import twoJson from './docker-env-multi-service/two.json?raw';
-import threeJson from './docker-env-multi-service/three.json?raw';
+import dockerComposeBasic from '../docker-env-basic/docker-compose.yaml?raw';
+import envBasic from '../docker-env-basic/.env?raw';
+import dockerComposeMultiService from '../docker-env-multi-service/docker-compose.yaml?raw';
+import envMultiService from '../docker-env-multi-service/.env?raw';
+import oneJson from '../docker-env-multi-service/one.json?raw';
+import twoJson from '../docker-env-multi-service/two.json?raw';
+import threeJson from '../docker-env-multi-service/three.json?raw';
 
 Distr allows users to define environment variable templates for Docker applications.
 Users can configure and customize environment variables before deploying an application.
 
-In this guide, builds on top the [create a Docker application](/docs/guides/application/) and explains the
+In this guide, builds on top the [create a Docker application](/docs/guides/getting-started/application/) and explains the
 environment variable templates in more detail.
 
 ## What is an Environment Variable Template?

@@ -106,7 +106,7 @@ Navigate to **Deployments** in the sidebar and click on the **+ New Deployment**
 
 Choose the application you want to deploy.
 
-![Select Application step](../../../../assets/screenshots/distr/distr-customer-select-application.png)
+![Select Application step](../../../../../assets/screenshots/distr/distr-customer-select-application.png)
 
 ### Step 2: Deployment Configuration
 
@@ -114,7 +114,7 @@ Give your deployment a descriptive name. This name will help you identify and ma
 
 For Helm applications, you'll also need to specify the Kubernetes namespace where it should be deployed. Make sure the namespace exists in your cluster before proceeding.
 
-![Deployment Configuration step](../../../../assets/screenshots/distr/customer-create-deployment.png)
+![Deployment Configuration step](../../../../../assets/screenshots/distr/customer-create-deployment.png)
 
 <Aside type="tip">
   You can also enable cluster-scoped permissions for Helm deployments. When
@@ -128,7 +128,7 @@ For Helm applications, you'll also need to specify the Kubernetes namespace wher
 Configure the environment variables for your Docker Compose application. These variables will be passed to the `docker compose` process via the `--env-file` argument.
 
 The entered environment variables will be passed unmodified to the `docker compose` process via the `--env-file` argument.
-For more information on how to use them, please refer to [our guide on working with environment variables](/docs/guides/docker-env-var-template/).
+For more information on how to use them, please refer to [our guide on working with environment variables](/docs/guides/configuration/docker-env-var-template/).
 
 You can also enable Docker Swarm mode for deployments that should run in swarm mode. See [Docker Swarm](/docs/product/agents/#docker-swarm) for more details. Additionally, you can enable container log collection to view application logs directly in the portal. Learn more about [Container Logs](/docs/product/agents/#container-logs).
 
@@ -138,13 +138,13 @@ You can also enable Docker Swarm mode for deployments that should run in swarm m
   creating the application version.
 </Aside>
 
-![Application Configuration step](../../../../assets/screenshots/distr/customer-deployment-configuration.png)
+![Application Configuration step](../../../../../assets/screenshots/distr/customer-deployment-configuration.png)
 
 ### Step 4: Deploy
 
 Review your configuration and click **Create Deployment** to proceed to the deployment page.
 
-![Deployment success page](../../../../assets/screenshots/distr/customer-success.png)
+![Deployment success page](../../../../../assets/screenshots/distr/customer-success.png)
 
 <Aside type="caution">
   **Important**: This command will automatically install the Distr agent, which

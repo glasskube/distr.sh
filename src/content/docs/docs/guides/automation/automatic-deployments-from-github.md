@@ -7,8 +7,6 @@ sidebar:
 
 In this guide, you'll learn how to set up a fully automated deployment pipeline that creates new application versions in Distr and automatically updates all your customer deployments whenever you push a new release to GitHub.
 
-## Overview
-
 By the end of this guide, you'll have:
 
 - A Docker or Helm application configured in Distr
@@ -386,7 +384,7 @@ jobs:
 - **`api-token`** - Your Personal Access Token (from GitHub Secrets)
 - **`application-id`** - Your Application ID (from GitHub Variables)
 - **`version-name`** - The version name (here we use the git tag name)
-- **`link-template`** - Template for generating links to deployments (e.g., `http://{{ .Env.APP_HOST }}`). See [Application Links](/docs/guides/application-links/) for details
+- **`link-template`** - Template for generating links to deployments (e.g., `http://{{ .Env.APP_HOST }}`). See [Application Links](/docs/guides/configuration/application-links/) for details
 - **`update-deployments: true`** - **This is the key setting that enables automatic deployment updates**
 
 When `update-deployments` is set to `true`, the action will:
@@ -603,8 +601,8 @@ This is a critical sequencing issue. See the **[Critical: Workflow Sequencing fo
 
 Now that you have automatic deployments set up, consider:
 
-- **[Application Licenses](/docs/guides/application-licenses/)** - Control which customers receive automatic updates
-- **[Application Links](/docs/guides/application-links/)** - Create dynamic links for customers to access their deployments
+- **[Application Licenses](/docs/guides/customer-management/application-licenses/)** - Control which customers receive automatic updates
+- **[Application Links](/docs/guides/configuration/application-links/)** - Create dynamic links for customers to access their deployments
 - **[Distr SDK](/docs/integrations/sdk/)** - Build custom automation and integrations
 - **[Distr API](/docs/integrations/api/)** - Explore advanced API capabilities
 

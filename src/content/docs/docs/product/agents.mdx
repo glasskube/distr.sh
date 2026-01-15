@@ -129,7 +129,7 @@ such that authentication secrets can be reused.
 This means that any registries that are accessible from the host system will also be accessible to the agent container.
 
 Another option is to provide a username and a personal access token via an
-[application license](/docs/guides/application-licenses/#oci-registry-authentication) (PRO Feature).
+[application license](/docs/guides/customer-management/application-licenses/#oci-registry-authentication) (PRO Feature).
 If a deployment is then created with this license, the agent will log in to the registry given in the license using the provided credentials.
 
 ### Agent Self Updates
@@ -285,10 +285,10 @@ is already authenticated with the Distr Hub anyway. That way, no additional step
 This authentication secret is stored inside a temporary directory of the Docker container.
 
 To reference to images of your Distr registry in your helm chart, please check:
-[Configuring a Helm Chart to Support Distr Artifacts](/docs/guides/helm-chart-registry-auth/).
+[Configuring a Helm Chart to Support Distr Artifacts](/docs/guides/configuration/helm-chart-registry-auth/).
 
 Another option is to provide a username and a personal access token via an
-[application license](/docs/guides/application-licenses/#oci-registry-authentication) (PRO Feature).
+[application license](/docs/guides/customer-management/application-licenses/#oci-registry-authentication) (PRO Feature).
 If a deployment is then created with this license, the agent will log in to the registry given in the license using the provided credentials.
 
 ### Agent Self Updates
@@ -341,8 +341,8 @@ The Applications section provides vendors with a dedicated space to configure an
 
 For detailed instructions on adding applications to Distr, see our platform management guides:
 
-- [Create a Application](/docs/guides/application/) - Create Docker and Helm applications
-- [Create a Deployment](/docs/guides/deployment/) - Deploy applications to customer environments
+- [Create a Application](/docs/guides/getting-started/application/) - Create Docker and Helm applications
+- [Create a Deployment](/docs/guides/getting-started/deployment/) - Deploy applications to customer environments
 
 ### Deployments
 

@@ -26,18 +26,18 @@ Navigate to **Deployments** under **Agents** in the sidebar and click on the **+
 
 The first step is to select the customer organization that will receive this deployment. If you haven't created any customers yet, you'll need to do that first. See [Onboarding a New Customer](/docs/product/rbac/#inviting-customer-organization-users) for instructions.
 
-![Select Customer step](../../../../assets/screenshots/distr/create-deployment.png)
+![Select Customer step](../../../../../assets/screenshots/distr/create-deployment.png)
 
 ### Step 2: Select Application
 
 After selecting a customer, choose the Docker application and version you want to deploy.
 
-![Select Application step](../../../../assets/screenshots/distr/select-application.png)
+![Select Application step](../../../../../assets/screenshots/distr/select-application.png)
 
 <Aside type="tip">
   If an application doesn't appear in the list, it may be because: - The
   customer doesn't have a license for that application - You need to create an
-  [application license](/docs/guides/application-licenses/) and assign it to the
+  [application license](/docs/guides/customer-management/application-licenses/) and assign it to the
   customer first
 </Aside>
 
@@ -45,16 +45,16 @@ After selecting a customer, choose the Docker application and version you want t
 
 Give your deployment a descriptive name. This name will help you identify and manage the deployment later.
 
-![Deployment Configuration step](../../../../assets/screenshots/distr/deployment-name.png)
+![Deployment Configuration step](../../../../../assets/screenshots/distr/deployment-name.png)
 
 ### Step 4: Application Configuration
 
 Configure the environment variables for your Docker Compose application. These variables will be passed to the `docker compose` process via the `--env-file` argument.
 
-![Application Configuration step](../../../../assets/screenshots/distr/docker-application-config.png)
+![Application Configuration step](../../../../../assets/screenshots/distr/docker-application-config.png)
 
 The entered environment variables will be passed unmodified to the `docker compose` process via the `--env-file` argument.
-For more information on how to use them, please refer to [our guide on working with environment variables](/docs/guides/docker-env-var-template/).
+For more information on how to use them, please refer to [our guide on working with environment variables](/docs/guides/configuration/docker-env-var-template/).
 
 You can also enable Docker Swarm mode for deployments that should run in swarm mode. See [Docker Swarm](/docs/product/agents/#docker-swarm) for more details. Additionally, you can enable container log collection to view application logs directly in the portal. Learn more about [Container Logs](/docs/product/agents/#container-logs).
 
@@ -62,7 +62,7 @@ You can also enable Docker Swarm mode for deployments that should run in swarm m
 
 Review your configuration and click **Create Deployment** to proceed to the deployment page.
 
-![Deployment success page](../../../../assets/screenshots/distr/docker_success.png)
+![Deployment success page](../../../../../assets/screenshots/distr/docker_success.png)
 
 <Aside type="caution">
   **Important**: This command will automatically install the Distr agent, which
@@ -85,18 +85,18 @@ Navigate to **Deployments** under **Agents** in the sidebar and click on the **+
 
 The first step is to select the customer organization that will receive this deployment. If you haven't created any customers yet, you'll need to do that first. See [Onboarding a New Customer](/docs/product/rbac/#inviting-customer-organization-users) for instructions.
 
-![Select Customer step](../../../../assets/screenshots/distr/create-deployment.png)
+![Select Customer step](../../../../../assets/screenshots/distr/create-deployment.png)
 
 ### Step 2: Select Application
 
 After selecting a customer, choose the Helm application and version you want to deploy.
 
-![Select Application step](../../../../assets/screenshots/distr/helm-application.png)
+![Select Application step](../../../../../assets/screenshots/distr/helm-application.png)
 
 <Aside type="tip">
   If an application doesn't appear in the list, it may be because: - The
   customer doesn't have a license for that application - You need to create an
-  [application license](/docs/guides/application-licenses/) and assign it to the
+  [application license](/docs/guides/customer-management/application-licenses/) and assign it to the
   customer first
 </Aside>
 
@@ -106,19 +106,19 @@ Give your deployment a descriptive name and specify the Kubernetes namespace whe
 
 You can also enable cluster-scoped permissions. When enabled, the agent will have cluster-wide access; otherwise, it will be limited to a specific namespace. See [Helm Agent](/docs/product/agents/#helm-agent) for more details about cluster-scoped vs namespace-scoped agents.
 
-![Deployment Configuration step](../../../../assets/screenshots/distr/helm-deployment-config.png)
+![Deployment Configuration step](../../../../../assets/screenshots/distr/helm-deployment-config.png)
 
 ### Step 4: Application Configuration
 
 Configure the Helm values for your application. You can adjust the values from the base values file you provided when creating the application version.
 
-![Application Configuration step](../../../../assets/screenshots/distr/helm-application-config.png)
+![Application Configuration step](../../../../../assets/screenshots/distr/helm-application-config.png)
 
 ### Step 5: Deploy
 
 Review your configuration and click **Create Deployment** to proceed to the deployment page.
 
-![Deployment success page](../../../../assets/screenshots/distr/helm-success.png)
+![Deployment success page](../../../../../assets/screenshots/distr/helm-success.png)
 
 <Aside type="caution">
   **Important**: This command will automatically install the Distr agent, which
@@ -141,13 +141,13 @@ If you already have a deployment environment of type `docker` or `kubernetes`, y
 
 Simply navigate to the **Deployments** section and click on the **+ Deploy App** button next to the deployment target you want to use.
 
-![Add deployment to existing target](../../../../assets/screenshots/distr/add-deployment-to-target.png)
+![Add deployment to existing target](../../../../../assets/screenshots/distr/add-deployment-to-target.png)
 
 This will show you the same flow as above, where you can select your application and version to deploy, configure the deployment settings, and get the command to install both the agent and application.
 
 ## Related Guides
 
 - [Create a Application](/docs/guides/application/) - Learn how to create Docker and Helm applications
-- [Application Licenses](/docs/guides/application-licenses/) - Control which applications customers can access
-- [Docker Environment Variables](/docs/guides/docker-env-var-template/) - Configure environment variable templates
-- [Helm Chart Registry Auth](/docs/guides/helm-chart-registry-auth/) - Set up authenticated image pulls
+- [Application Licenses](/docs/guides/customer-management/application-licenses/) - Control which applications customers can access
+- [Docker Environment Variables](/docs/guides/configuration/docker-env-var-template/) - Configure environment variable templates
+- [Helm Chart Registry Auth](/docs/guides/configuration/helm-chart-registry-auth/) - Set up authenticated image pulls
