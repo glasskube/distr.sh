@@ -477,11 +477,11 @@ name: Push Distr Application Version
 
 on:
   workflow_run:
-    workflows: ["Build Backend", "Build Frontend", "Build Proxy"]
+    workflows: ['Build Backend', 'Build Frontend', 'Build Proxy']
     types:
       - completed
     branches-ignore:
-      - '**'  # Only trigger on tags
+      - '**' # Only trigger on tags
   push:
     tags:
       - '*'
@@ -570,7 +570,7 @@ If you can't control workflow order, create the version without immediately upda
     application-id: ${{ vars.DISTR_APPLICATION_ID }}
     version-name: ${{ github.ref_name }}
     compose-file: ${{ github.workspace }}/deploy/docker-compose.yaml
-    update-deployments: false  # Don't update automatically
+    update-deployments: false # Don't update automatically
 ```
 
 Then manually trigger deployment updates after verifying images are available, either through the Distr UI or using the [Distr API](/docs/integrations/api/).
@@ -796,7 +796,7 @@ This is a critical sequencing issue. See the **[Critical: Workflow Sequencing fo
 2. Use `needs:` in a combined workflow to enforce job order
 3. Set `update-deployments: false` and update manually after images are available
 
-**Quick check:** Look at your GitHub Actions runs - do the build workflows complete *after* the Distr workflow? If yes, you need to fix the sequencing.
+**Quick check:** Look at your GitHub Actions runs - do the build workflows complete _after_ the Distr workflow? If yes, you need to fix the sequencing.
 
 ### Version Already Exists Error
 
