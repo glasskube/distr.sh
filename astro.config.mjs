@@ -194,6 +194,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     '/docs/product/distr-hub/': '/docs/product/vendor-portal/',
     '/docs/use-cases/self-managed/': '/docs/use-cases/fully-self-managed/',
     '/docs/use-cases/byoc/': '/docs/use-cases/byoc-bring-your-own-cloud/',
+    '/docs/use-cases/air-gapped/': '/docs/use-cases/air-gapped-deployments/',
     '/docs/product/faqs/': '/docs/faqs/',
     '/docs/privacy-policy/': '/privacy-policy/',
     '/docs/guides/license-mgmt/': '/docs/guides/application-licenses/',
