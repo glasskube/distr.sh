@@ -84,15 +84,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         {
           label: 'Navbar',
           items: [
-            {label: 'Docs', link: '/docs/getting-started/what-is-distr/'},
+            {label: 'Docs', link: '/docs/'},
             {label: 'Pricing', link: '/pricing/'},
             {label: 'Blog', link: '/blog/'},
             {label: 'Case Studies', link: '/case-studies/'},
           ],
         },
         {
-          label: 'Getting started',
-          autogenerate: {directory: 'docs/getting-started'},
+          label: 'Introduction',
+          autogenerate: {directory: 'docs/intro'},
         },
         {
           label: 'Use cases',
@@ -100,18 +100,46 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         },
         {
           label: 'Guides',
-          autogenerate: {directory: 'docs/guides'},
+          items: [
+            {
+              label: 'Getting Started',
+              autogenerate: {directory: 'docs/guides/getting-started'},
+            },
+            {
+              label: 'Configuration',
+              collapsed: false,
+              autogenerate: {directory: 'docs/guides/configuration'},
+            },
+            {
+              label: 'Automation & CI/CD',
+              collapsed: true,
+              autogenerate: {directory: 'docs/guides/automation'},
+            },
+            {
+              label: 'Customer Management',
+              collapsed: true,
+              autogenerate: {directory: 'docs/guides/customer-management'},
+            },
+            {
+              label: 'Advanced',
+              collapsed: true,
+              autogenerate: {directory: 'docs/guides/advanced'},
+            },
+          ],
         },
         {
           label: 'Product',
+          collapsed: true,
           autogenerate: {directory: 'docs/product'},
         },
         {
           label: 'Self hosting',
+          collapsed: true,
           autogenerate: {directory: 'docs/self-hosting'},
         },
         {
           label: 'Integrations',
+          collapsed: true,
           autogenerate: {directory: 'docs/integrations'},
         },
         {
@@ -166,6 +194,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     '/docs/product/distr-hub/': '/docs/product/vendor-portal/',
     '/docs/use-cases/self-managed/': '/docs/use-cases/fully-self-managed/',
     '/docs/use-cases/byoc/': '/docs/use-cases/byoc-bring-your-own-cloud/',
+    '/docs/use-cases/air-gapped/': '/docs/use-cases/air-gapped-deployments/',
     '/docs/product/faqs/': '/docs/faqs/',
     '/docs/privacy-policy/': '/privacy-policy/',
     '/docs/guides/license-mgmt/': '/docs/guides/application-licenses/',
