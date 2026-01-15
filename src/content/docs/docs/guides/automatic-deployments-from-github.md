@@ -141,7 +141,7 @@ Optionally, include:
 
 For Docker applications that build and push container images, you need to ensure your Docker Compose file references the correct image tags for each release. Manually updating these tags is error-prone and tedious. **Release Please** automates this process.
 
-### Why Release Please is Essential for Docker Apps
+### Why Release Please is Essential
 
 When you release a new version of your application:
 
@@ -245,24 +245,6 @@ services:
 
 Release Please will automatically update these version numbers when creating a release.
 
-#### 5. Use Conventional Commits
-
-Release Please determines version bumps and generates changelogs from your commit messages. Use conventional commit format:
-
-- **`feat:`** - New features (minor version bump)
-- **`fix:`** - Bug fixes (patch version bump)
-- **`chore:`** - Maintenance tasks
-- **`docs:`** - Documentation changes
-- **`BREAKING CHANGE:`** - Breaking changes (major version bump)
-
-**Examples:**
-
-```bash
-git commit -m "feat: add user authentication"
-git commit -m "fix: resolve database connection timeout"
-git commit -m "chore: update dependencies"
-```
-
 ### The Complete Release Flow
 
 Here's how everything works together:
@@ -328,16 +310,6 @@ When version `0.2.0` is released:
 4. Distr workflow creates version with compose file referencing `0.2.0` images
 
 **Note:** In hello-distr's current setup, build workflows and the Distr workflow trigger simultaneously on tags. In practice, image builds take longer than uploading a compose file, so this works. However, for production use, you should implement proper workflow sequencing (see [Critical: Workflow Sequencing](#critical-workflow-sequencing-for-docker-applications)) to guarantee images are available before deployments are triggered.
-
-### Alternative: Manual Version Management
-
-If you prefer not to use Release Please, you must:
-
-1. Manually update all image tags in your `docker-compose.yaml` before each release
-2. Manually create and push Git tags
-3. Ensure tags match the image versions exactly
-
-This approach is more error-prone but works for simpler projects.
 
 ## Step 6: Create the GitHub Actions Workflow
 
@@ -424,95 +396,8 @@ When `update-deployments` is set to `true`, the action will:
 3. Update each deployment to the new version
 4. Skip targets that are already on the new version or don't have the app deployed
 
-### Customizing the Workflow
-
-You can adjust the workflow based on your needs:
-
-**Different trigger pattern:**
-
-```yaml
-on:
-  push:
-    tags:
-      - 'v*' # Only trigger on tags starting with 'v'
-```
-
-**Custom API base (for self-hosted Distr):**
-
-```yaml
-- name: Create Distr Version and Update Deployments
-  uses: glasskube/distr-create-version-action@v1
-  with:
-    api-base: 'https://distr.yourcompany.com/api/v1'
-    # ... other inputs
-```
-
-**Files in subdirectories:**
-
-```yaml
-compose-file: ${{ github.workspace }}/deploy/docker-compose.yaml
-template-file: ${{ github.workspace }}/deploy/env.template
-```
-
-### Critical: Workflow Sequencing for Docker Applications
-
 **IMPORTANT**: If your application builds and pushes Docker images, the Distr workflow **must wait** for all images to be pushed before running. Otherwise, deployments will fail because the images referenced in your `docker-compose.yaml` won't be available yet.
 
-#### Why This Matters
-
-When you create a release:
-
-1. Your `docker-compose.yaml` references images with the release tag (e.g., `ghcr.io/yourorg/app:0.2.0`)
-2. The Distr action uploads this compose file to Distr
-3. If `update-deployments: true`, deployments are triggered immediately
-4. The deployment agent tries to pull the images from the registry
-5. **If the images aren't pushed yet, the deployment fails**
-
-#### Solution 1: Use Workflow Dependencies (Recommended)
-
-Configure your Distr workflow to run **after** all build workflows complete:
-
-```yaml
-name: Push Distr Application Version
-
-on:
-  workflow_run:
-    workflows: ['Build Backend', 'Build Frontend', 'Build Proxy']
-    types:
-      - completed
-    branches-ignore:
-      - '**' # Only trigger on tags
-  push:
-    tags:
-      - '*'
-
-jobs:
-  push-to-distr:
-    # Only run if all build workflows succeeded
-    if: |
-      github.event_name == 'push' ||
-      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Create Distr Version and Update Deployments
-        uses: glasskube/distr-create-version-action@v1
-        with:
-          api-token: ${{ secrets.DISTR_API_TOKEN }}
-          application-id: ${{ vars.DISTR_APPLICATION_ID }}
-          version-name: ${{ github.ref_name }}
-          compose-file: ${{ github.workspace }}/deploy/docker-compose.yaml
-          template-file: ${{ github.workspace }}/deploy/env.template
-          update-deployments: true
-```
-
-This ensures the Distr workflow only runs after your build workflows ("Build Backend", "Build Frontend", "Build Proxy") have all completed successfully.
-
-#### Solution 2: Combined Workflow
-
-Alternatively, combine image builds and Distr push into a single workflow:
 
 ```yaml
 name: Build and Push to Distr
@@ -557,23 +442,6 @@ jobs:
 ```
 
 The `needs:` clause ensures `push-to-distr` only runs after all build jobs complete.
-
-#### Solution 3: Delay Update Deployments
-
-If you can't control workflow order, create the version without immediately updating deployments:
-
-```yaml
-- name: Create Distr Version
-  uses: glasskube/distr-create-version-action@v1
-  with:
-    api-token: ${{ secrets.DISTR_API_TOKEN }}
-    application-id: ${{ vars.DISTR_APPLICATION_ID }}
-    version-name: ${{ github.ref_name }}
-    compose-file: ${{ github.workspace }}/deploy/docker-compose.yaml
-    update-deployments: false # Don't update automatically
-```
-
-Then manually trigger deployment updates after verifying images are available, either through the Distr UI or using the [Distr API](/docs/integrations/api/).
 
 ## Step 7: Test Your Automation
 
@@ -670,83 +538,6 @@ Skipped 2 deployment target(s):
   - Customer B Testing: Application not deployed on this target
 ```
 
-## Advanced Scenarios
-
-### Multiple Environments with Different Update Strategies
-
-You might want to update some customers automatically but others manually. Use the [Application Licenses](/docs/guides/application-licenses/) feature to control which customers can see specific versions.
-
-**Strategy:**
-
-1. Use `update-deployments: true` for your automated workflow
-2. Create two version naming schemes:
-   - `v1.0.0-auto` - Automatically deployed to all customers
-   - `v1.0.0-manual` - Requires manual customer opt-in
-3. Configure licenses so only auto-update customers can see `-auto` versions
-
-### Separate Workflows for Version Creation and Deployment
-
-For more control, you can separate version creation from deployment:
-
-**Workflow 1: Create Version Only**
-
-```yaml
-- name: Create Distr Version
-  uses: glasskube/distr-create-version-action@v1
-  with:
-    # ... configuration
-    update-deployments: false # Don't update automatically
-```
-
-**Workflow 2: Manual Deployment Trigger**
-
-```yaml
-on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'Version to deploy'
-        required: true
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      # Use Distr SDK or API to update deployments manually
-```
-
-### Multi-Organization Deployments
-
-If you manage multiple Distr organizations (e.g., different product lines or regions), use a matrix strategy:
-
-```yaml
-jobs:
-  push-to-distr:
-    strategy:
-      matrix:
-        include:
-          - DISTR_TOKEN_SECRET: DISTR_TOKEN_US
-            DISTR_APPLICATION_ID_VAR: DISTR_APPLICATION_ID_US
-          - DISTR_TOKEN_SECRET: DISTR_TOKEN_EU
-            DISTR_APPLICATION_ID_VAR: DISTR_APPLICATION_ID_EU
-    name: Push to Distr (${{ matrix.DISTR_TOKEN_SECRET }})
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Create Distr Version and Update Deployments
-        uses: glasskube/distr-create-version-action@v1
-        with:
-          api-token: ${{ secrets[matrix.DISTR_TOKEN_SECRET] }}
-          application-id: ${{ vars[matrix.DISTR_APPLICATION_ID_VAR] }}
-          version-name: ${{ github.ref_name }}
-          compose-file: ${{ github.workspace }}/docker-compose.yaml
-          update-deployments: true
-```
-
-This example from [hello-distr](https://github.com/glasskube/hello-distr) shows how to deploy to multiple Distr instances.
-
 ## Troubleshooting
 
 ### Workflow Fails with "401 Unauthorized"
@@ -807,14 +598,6 @@ This is a critical sequencing issue. See the **[Critical: Workflow Sequencing fo
 - Each version name must be unique within an application
 - If re-running a workflow for the same tag, delete the existing version in Distr first
 - Consider using more specific version names (e.g., include build numbers or timestamps)
-
-## Security Best Practices
-
-1. **Never commit secrets** - Always use GitHub Secrets for tokens
-2. **Set token expiry dates** - Rotate tokens regularly
-3. **Use separate tokens per repository** - Easier to track and revoke if needed
-4. **Limit token scope** - Create tokens with only necessary permissions
-5. **Use deployment protection rules** - Configure GitHub environments with approval requirements for production deployments
 
 ## Next Steps
 
