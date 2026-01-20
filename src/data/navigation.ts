@@ -1,6 +1,7 @@
 export type NavigationLink = {
   title: string;
   value: string;
+  children?: NavigationLink[];
 };
 
 export const links: NavigationLink[] = [
@@ -13,11 +14,25 @@ export const links: NavigationLink[] = [
     value: '/pricing/',
   },
   {
-    title: 'Blog',
-    value: '/blog/',
-  },
-  {
-    title: 'Case Studies',
-    value: '/case-studies/',
+    title: 'Resources',
+    value: '#',
+    children: [
+      {
+        title: 'Blog',
+        value: '/blog/',
+      },
+      {
+        title: 'Case Studies',
+        value: '/case-studies/',
+      },
+      {
+        title: 'Glossary',
+        value: '/glossary/',
+      },
+      {
+        title: 'White Paper',
+        value: '/white-paper/building-blocks/',
+      },
+    ],
   },
 ];

@@ -15,7 +15,26 @@ import {links} from '~/data/navigation';
     <label>
       <select aria-label="Menu">
         <option value="" disabled selected>Menu</option>
-        {links.map(link => <option value={link.value} set:html={link.title} />)}
+        {
+          links.map(link => (
+            <>
+              {link.children ? (
+                <>
+                  <option value={link.value} disabled>
+                    {link.title}
+                  </option>
+                  {link.children.map(child => (
+                    <option value={child.value} style="padding-left: 1rem;">
+                      &nbsp;&nbsp;{child.title}
+                    </option>
+                  ))}
+                </>
+              ) : (
+                <option value={link.value} set:html={link.title} />
+              )}
+            </>
+          ))
+        }
       </select>
       <Icon name="down-caret" class="icon caret" />
     </label>
@@ -109,6 +128,15 @@ import {links} from '~/data/navigation';
   option {
     background-color: var(--sl-color-bg-nav);
     color: var(--sl-color-gray-1);
+  }
+
+  option:disabled {
+    font-weight: 600;
+    color: var(--sl-color-white);
+  }
+
+  option[style*='padding-left'] {
+    font-size: 0.9em;
   }
 
   @media (min-width: 50rem) {
