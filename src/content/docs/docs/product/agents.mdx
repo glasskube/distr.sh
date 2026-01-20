@@ -156,6 +156,16 @@ A deployment can be run in swarm mode. For that to work, the host running the Di
 Instead of `docker compose up`, the agent will use `docker stack deploy` to deploy the deployment.
 Unlike regular compose mode, `docker stack deploy` is not called in every cycle, but only whenever the deployment has changed.
 
+### Uninstalling the Docker Agent
+
+Before removing the Docker Agent, it is recommended to undeploy all installed deployments via the UI or API.
+
+Afterwards, the agent can simply be removed with:
+
+```shell
+docker stop distr-agent-1 && docker rm distr-agent-1
+```
+
 ## Helm Agent
 
 The Helm agent specializes in Kubernetes deployments, managing the complete lifecycle of Helm charts in customer environments. It handles chart installation and upgrades, monitors Kubernetes resource health, supports customer-specific value overrides, and provides rollback capabilities for failed deployments.
@@ -313,6 +323,22 @@ The reported metrics are:
 
 - [`metrics-server`](https://github.com/kubernetes-sigs/metrics-server) needs to be installed in the cluster
 - The agent must be cluster-scoped, since it needs access to the node metrics resources.
+
+### Uninstalling the Kubernetes Agent
+
+Before removing the Kubernetes Agent, it is recommended to undeploy all installed deployments via the UI or API that the agent manages.
+
+Make sure that you configured your context to the namespace where the agent is installed.
+
+```shell
+kubectl config set-context --current --namespace={{deployment-namespace}}
+```
+
+Afterwards, the agent and associated resources can be removed with:
+
+```shell
+kubectl delete deployment/distr-agent secrets/distr-agent-auth configmaps/distr-agent-env serviceaccounts/distr-agent clusterrolebindings/distr-agent-default
+```
 
 ## Terraform Agent (Coming Soon)
 
