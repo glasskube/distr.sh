@@ -75,6 +75,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       ],
       components: {
         // Components can be overwritten here
+        Header: './src/components/overwrites/Header.astro',
         PageTitle: './src/components/overwrites/PageTitle.astro',
         ContentPanel: './src/components/overwrites/ContentPanel.astro',
         Footer: './src/components/overwrites/Footer.astro',
