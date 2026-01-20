@@ -79,6 +79,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         ContentPanel: './src/components/overwrites/ContentPanel.astro',
         Footer: './src/components/overwrites/Footer.astro',
         SocialIcons: './src/components/overwrites/SocialIcons.astro',
+        ThemeSelect: './src/components/overwrites/ThemeSelect.astro',
       },
       sidebar: [
         {
