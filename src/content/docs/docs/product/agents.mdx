@@ -160,7 +160,7 @@ Unlike regular compose mode, `docker stack deploy` is not called in every cycle,
 
 Before removing the Docker Agent, it is recommended to undeploy all installed deployments via the UI or API.
 
-Afterwards, the agent can simply removed with:
+Afterwards, the agent can simply be removed with:
 
 ```shell
 docker stop distr-agent-1 && docker rm distr-agent-1
@@ -334,7 +334,7 @@ Make sure that you configured your context to the namespace where the agent is i
 kubectl config set-context --current --namespace={{deployment-namespace}}
 ```
 
-Afterwards, the agent an associated resources can be removed with:
+Afterwards, the agent and associated resources can be removed with:
 
 ```shell
 kubectl delete deployment/distr-agent secrets/distr-agent-auth configmaps/distr-agent-env serviceaccounts/distr-agent clusterrolebindings/distr-agent-default
