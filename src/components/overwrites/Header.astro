@@ -137,27 +137,30 @@ const slug = Astro.locals.starlightRoute.entry.slug;
   }
 </style>
 
-{!slug.startsWith('docs') && <>
-  <style>
-    .header {
-      background-color: transparent;
-      -webkit-backdrop-filter: blur(16px);
-      backdrop-filter: blur(16px);
-      padding-inline-end: calc(var(--sl-nav-gap) + var(--sl-nav-pad-x));
-    }
-
-    @media (min-width: 50rem) {
-      header {
-        background-color: transparent !important;
-      }
-    }
-    @media (min-width: 50rem) {
+{
+  /* prettier-ignore */
+  !slug.startsWith('docs') && <>
+    <style>
       .header {
-        padding-inline-end: var(--sl-nav-pad-y);
+        background-color: transparent;
+        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px);
+        padding-inline-end: calc(var(--sl-nav-gap) + var(--sl-nav-pad-x));
       }
-    }
-  </style>
-</>}
+
+      @media (min-width: 50rem) {
+        header {
+          background-color: transparent !important;
+        }
+      }
+      @media (min-width: 50rem) {
+        .header {
+          padding-inline-end: var(--sl-nav-pad-y);
+        }
+      }
+    </style>
+  </>
+}
 
 <style>
   .desktop {

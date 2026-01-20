@@ -15,7 +15,7 @@ export const links: NavigationLink[] = [
   },
   {
     title: 'Resources',
-    value: '#',
+    value: 'javascript:void(0)',
     children: [
       {
         title: 'Blog',
