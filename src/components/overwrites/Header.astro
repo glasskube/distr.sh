@@ -17,27 +17,33 @@ const slug = Astro.locals.starlightRoute.entry.slug;
     <Search />
   </div>
   <div class="sl-hidden md:sl-flex right-group">
-    <div class="desktop">
+    <nav class="desktop" aria-label="Main navigation">
       {
         links.map((link) => (
           <div class="nav-item">
             {link.children ? (
               <div class="dropdown">
-                <button class="dropdown-trigger">
+                <button
+                  class="dropdown-trigger"
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
                   {link.title}
                   <svg
                     width="12"
                     height="12"
                     viewBox="0 0 12 12"
                     fill="currentColor"
+                    aria-hidden="true"
                     style="display: inline-block; margin-left: 4px;"
                   >
                     <path d="M6 8L2 4h8z" />
                   </svg>
                 </button>
-                <div class="dropdown-content">
+                <div class="dropdown-content" role="menu">
                   {link.children.map((child) => (
-                    <a href={child.value} class="dropdown-item">
+                    <a href={child.value} class="dropdown-item" role="menuitem">
                       {child.title}
                     </a>
                   ))}
@@ -49,7 +55,7 @@ const slug = Astro.locals.starlightRoute.entry.slug;
           </div>
         ))
       }
-    </div>
+    </nav>
     <div class="sl-flex social-icons">
       <SocialIcons />
     </div>
@@ -73,7 +79,7 @@ const slug = Astro.locals.starlightRoute.entry.slug;
     gap: 1rem;
     align-items: center;
   }
-  .desktop,
+  .desktop::after,
   .release-link::after,
   .social-icons::after {
     content: '';
