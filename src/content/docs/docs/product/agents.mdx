@@ -411,13 +411,16 @@ thereby also reporting the health of the deployment target and the contained dep
   Consider investigating the errors via the Status logs.
 - 🟡 **Stale**: The agent has not reported the deployment health in the last 60 seconds.
 - 🔵 **Progressing**: The agent is currently installing or upgrading the deployment, due to your previous request or the containers are still starting up.
-- <strong class="text-green-500 text-xl font-bold leading-none ml-0.5">
-    O
-  </strong>
+- <strong class="text-green-500 text-xl leading-none ml-0.5">O</strong>
   **Running**: The deployment is running, but no healthchecks are configured.
-- 🟢 **Healthy**: The deployment is running and healthcheck is passing.
+- 🟢 **Healthy**: The deployment is running and healthchecks are passing.
 
 #### Healthchecks
+
+<Aside type="caution" title="Docker Agent Update Required">
+  Docker healthcheck reporting requires the Distr platform and Docker Agent
+  version 2.7.0 or higher.
+</Aside>
 
 Consider configuring healthchecks for your deployment to ensure it is running as expected and the Distr agent is able to report its status correctly.
 For Docker deployments add a [healthcheck](https://docs.docker.com/reference/compose-file/services/#healthcheck) to your service definition.
