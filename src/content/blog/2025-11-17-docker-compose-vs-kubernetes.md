@@ -359,7 +359,7 @@ If you're selling $100k+ deals exclusively to Global 2000 companies, they expect
 
 1. **No resource limits** - Always set memory and CPU limits
 2. **Hardcoded configurations** - Use environment variables
-3. **Missing health checks** - Add them for automated recovery
+3. **Missing healthchecks** - Add them for automated recovery
 4. **No backup strategy** - Document volume backup procedures
 
 ### Kubernetes Mistakes
