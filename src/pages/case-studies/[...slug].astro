@@ -1,7 +1,7 @@
 ---
 import StarlightLayout from '~/layouts/StarlightLayout.astro';
 import CaseStudyCard from '~/components/case-studies/CaseStudyCard.astro';
-import CTASection from '~/components/home/CTASection.astro';
+import SignUpCta from '~/components/cta/standalone/SignUpCta.astro';
 import NewsletterSection from '~/components/home/NewsletterSection.astro';
 import {caseStudies} from '~/data/caseStudies';
 
@@ -22,7 +22,7 @@ const {pageTitle, pageDescription} = caseStudy;
       <CaseStudyCard {...caseStudy} />
     </div>
   </section>
-  <CTASection />
+  <SignUpCta />
 
   <NewsletterSection />
 </StarlightLayout>

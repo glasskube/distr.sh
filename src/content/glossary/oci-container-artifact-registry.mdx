@@ -4,6 +4,8 @@ slug: oci-container-artifact-registry
 description: 'Complete guide to container registries and Docker registries: what they are, how they work, public vs private registries, OCI compliance, security best practices, and choosing the right registry for CI/CD, software distribution, and air-gapped deployments.'
 ---
 
+import EmbeddedWhitePaperCta from '~/components/cta/embedded/EmbeddedWhitePaperCta.astro';
+
 # Container Registry & Docker Registry: Complete Guide for Software Distribution
 
 ## What is a Container Registry?
@@ -135,6 +137,8 @@ Container registries fall into two primary categories based on access control:
 
 For detailed comparisons of popular private and public registries, see our [comprehensive container registry comparison guide](/blog/container-image-registry-comparison/).
 
+<EmbeddedWhitePaperCta />
+
 ## OCI Container Registry: What is OCI Compliance?
 
 **OCI (Open Container Initiative)** is an industry standard that ensures container images, runtimes, and distribution methods work consistently across different platforms and tools. An **OCI-compliant registry** adheres to the OCI Distribution Specification, guaranteeing interoperability with standard tooling.
@@ -245,6 +249,8 @@ For more on vulnerability scanning, see our [vulnerability scanning glossary](/g
 - Alert on unusual pull volumes (potential data exfiltration)
 - Track which images are being pulled by which systems
 - Monitor for deprecated or vulnerable images still in use
+
+<EmbeddedWhitePaperCta />
 
 ## Container Registry for Software Distribution to Customers
 
@@ -452,6 +458,8 @@ docker pull myapp@sha256:abc123def456...
 - Put dependency installation before application code
 - This maximizes layer reuse across builds
 
+<EmbeddedWhitePaperCta />
+
 ## Artifact Registry vs Container Registry: Beyond Docker Images
 
 Modern registries increasingly support **OCI artifacts** beyond traditional container images. An **artifact registry** stores any OCI-compliant artifact type, including:
@@ -515,6 +523,8 @@ Restart Docker daemon:
 ```shell
 sudo systemctl restart docker
 ```
+
+<EmbeddedWhitePaperCta />
 
 ## Frequently Asked Questions (FAQ)
 

@@ -1,6 +1,6 @@
 ---
 import Layout from '~/layouts/StarlightLayout.astro';
-import CTASection from '~/components/home/CTASection.astro';
+import SignUpCta from '~/components/cta/standalone/SignUpCta.astro';
 import {Icon} from '@astrojs/starlight/components';
 import Image from '~/components/common/Image.astro';
 import comparisonThumbnail from '~/assets/blog/2025-02-26-replicated-comparison/comparison-thumbnail.png';
@@ -556,5 +556,5 @@ const {title, description, competitor, heroImage} = Astro.props;
       </article>
     </section>
   </div>
-  <CTASection />
+  <SignUpCta />
 </Layout>
