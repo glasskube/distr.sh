@@ -21,7 +21,7 @@
     "@fontsource/poppins": "^5.2.7",
     "@iconify-json/lucide": "^1.2.86",
     "@tailwindcss/vite": "^4.1.18",
-    "astro": "5.16.15",
+    "astro": "5.16.16",
     "astro-icon": "^1.1.5",
     "astrojs-service-worker": "^2.0.0",
     "embla-carousel": "^8.6.0",
